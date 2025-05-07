@@ -1,0 +1,160 @@
+/* src/styles/layout.css */
+/* Estilos para la estructura principal de la página y contenedores globales. */
+
+/* === CONTROLES GLOBALES === */
+/* Contenedor para los botones de herramientas y tienda */
+#right-controls {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex; /* Se gestiona por JS (flex/none) */
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 30; 
+  pointer-events: auto; 
+}
+
+/* Posicionamiento del componente del botón de tienda (la apariencia está en el componente) */
+shop-button-component {
+  /* El componente es inline-flex por defecto, el contenedor #right-controls lo posiciona. */
+  /* No se necesita posicionamiento 'fixed' aquí si está dentro de #right-controls */
+}
+
+/* Contenedores para grupos de botones de herramientas */
+#drawing-buttons-container,
+#cat-food-ui-container {
+  display: flex; /* Se mostrarán/ocultarán con la clase .hidden */
+  flex-direction: inherit; /* Heredan la dirección de #right-controls */
+  gap: inherit;           /* Heredan el gap de #right-controls */
+  pointer-events: auto; 
+}
+#cat-food-ui-container {
+  align-items: center; /* Específico para este contenedor */
+  position: relative;
+  padding-bottom: 0;
+}
+
+/* --- Overlays y Backdrop Globales --- */
+.overlay { 
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; /* Para centrar contenido */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 101; 
+  padding: 2rem; /* Espaciado general para overlays */
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* El overlay no es interactivo, su contenido sí */
+  transition: opacity 0.4s ease-in-out, visibility 0s linear 0.4s;
+}
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* Permite interacción con el contenido del overlay */
+}
+.overlay > * { /* El contenido directo del overlay sí puede ser interactivo */
+    pointer-events: auto;
+}
+
+#blur-backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--gq-backdrop-bg-color, rgba(17, 24, 39, 0.5)); /* Themed */
+    backdrop-filter: blur(var(--gq-backdrop-blur-radius, 5px)); /* Themed */
+    -webkit-backdrop-filter: blur(var(--gq-backdrop-blur-radius, 5px));
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, display 0s linear 0.4s;
+    pointer-events: none; 
+    z-index: 100; /* Debajo de los overlays */
+    display: none; /* Controlado por JS */
+}
+#blur-backdrop.visible {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out, display 0s linear 0s;
+}
+
+/* --- Estilos para el Overlay de Explicación (elementos globales) --- */
+#explanation-overlay .overlay-content-wrapper {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  max-width: 80%; /* Limita el ancho del contenido */
+}
+/* #explanation-overlay .overlay-content-wrapper > * { pointer-events: auto; } /* Redundante si .overlay.visible lo tiene */
+
+#explanation-text-content {
+    color: var(--gq-expl-text-color, white);
+    font-size: 1.75rem; line-height: 1.6; font-weight: 600;
+    text-shadow: var(--gq-expl-text-shadow, 1px 1px 3px rgba(0,0,0,0.7));
+    background-color: var(--gq-expl-bg, rgba(17, 24, 39, 0.8));
+    padding: 1rem 1.5rem;
+    border-radius: var(--gq-expl-border-radius, 0.75rem);
+    border: var(--gq-expl-border, 1px solid rgba(75, 85, 99, 0.5));
+    max-height: 70vh; /* Permite scroll si el texto es largo */
+    overflow-y: auto;
+    max-width: 90%; /* Dentro del wrapper */
+    margin-top: 0; /* Reset por si acaso */
+}
+.overlay-continue-prompt {
+    margin-top: 1.5rem; font-size: 0.9rem;
+    color: var(--gq-expl-prompt-text-color, rgba(229, 231, 235, 0.7));
+    font-weight: 400; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    animation: fadeInOut 2s infinite ease-in-out; /* Animación global de base.css */
+}
+
+/* Estilos de Estado de Explicación (usando variables CSS) */
+.explanation-status-base { 
+  font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; 
+  padding: 0.3rem 0.8rem; border-radius: 0.5rem; display: inline-block; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); line-height: 1.3;
+}
+.explanation-status-correct { 
+  color: var(--gq-expl-text-color, white); 
+  background-color: var(--gq-expl-status-correct-bg, rgba(16, 185, 129, 0.8)); 
+  border: var(--gq-expl-status-correct-border, 1px solid #34d399); 
+}
+.explanation-status-incorrect { 
+  color: var(--gq-expl-text-color, white); 
+  background-color: var(--gq-expl-status-incorrect-bg, rgba(239, 68, 68, 0.8)); 
+  border: var(--gq-expl-status-incorrect-border, 1px solid #f87171); 
+}
+.explanation-status-shield { 
+  color: var(--gq-expl-text-color, white); 
+  background-color: var(--gq-expl-status-shield-bg, rgba(59, 130, 246, 0.8)); 
+  border: var(--gq-expl-status-shield-border, 1px solid #93c5fd); 
+}
+
+/* =========================================== */
+/* ========== MEDIA QUERIES (Layout) ========= */
+/* =========================================== */
+@media (max-width: 768px) {
+  #right-controls { 
+    top: 0; left: 50%; transform: translateX(-50%); 
+    padding-top: 0.5rem; bottom: auto; right: auto; 
+    flex-direction: row; 
+    align-items: center; 
+    gap: 0.5rem; 
+    width: auto; 
+    background-color: transparent; /* Asegurar que no tenga fondo propio si no es necesario */
+    border: none; 
+    box-shadow: none;
+  }
+
+  .overlay { padding: 0.5rem; padding-top: 2vh; padding-bottom: 2vh; overflow-y: auto; }
+  /* #shop-popup.overlay { align-items: flex-start; padding-top: 5vh; padding-bottom: 5vh; } /* shop-popup maneja su propio padding y max-height */
+  #explanation-overlay.overlay { align-items: center; }
+  #explanation-overlay .overlay-content-wrapper { max-width: 95%; }
+  #explanation-text-content { font-size: 1rem; padding: 0.8rem 1rem; max-height: 80vh; line-height: 1.5; }
+  .overlay-continue-prompt { font-size: 0.75rem; margin-top: 1rem;}
+
+  .explanation-status-base { font-size: 1.2rem; padding: 0.25rem 0.6rem; margin-bottom: 0.5rem; }
+  #explanation-text-content { margin-top: 0; } /* Resetear por si acaso */
+}
+
+@media (max-width: 480px) {
+  #explanation-text-content { font-size: 0.9rem; padding: 0.6rem 0.8rem; }
+  #right-controls { top: 0; padding-top: 0.25rem; gap: 0.3rem; }
+  .explanation-status-base { font-size: 1rem; padding: 0.2rem 0.5rem; }
+}

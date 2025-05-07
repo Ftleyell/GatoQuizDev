@@ -1,0 +1,40 @@
+{
+  "name": "quiz-felino", 
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5", 
+    "@vitejs/plugin-lit": "^?", 
+    "lit": "^3.3.0",
+    "typescript": "~5.7.2",
+    "@types/node": "^?", 
+    "@types/matter-js": "^0.19.8", 
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-storybook": "^0.12.0",
+    "prettier": "^3.5.3",
+    "@chromatic-com/storybook": "^3.2.6",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/web-components": "^8.6.12",
+    "@storybook/web-components-vite": "^8.6.12",
+    "storybook": "^8.6.12",
+    "gh-pages": "^6.3.0",
+    "@storybook/experimental-addon-test": "^8.6.12",
+    "@storybook/test": "^8.6.12"
+  },
+  "dependencies": {
+    "matter-js": "^0.20.0" 
+  }
+}

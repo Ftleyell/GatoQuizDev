@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botones Estilizados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos adicionales y configuración de fuente */
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8; /* Fondo suave */
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea en pantallas pequeñas */
+            gap: 2rem; /* Espacio entre botones */
+            justify-content: center;
+            padding: 2rem; /* Espacio alrededor del contenedor */
+        }
+        /* Estilo base para asegurar que los iconos se alineen con el texto */
+        button svg {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem; /* Espacio entre icono y texto */
+        }
+        /* Estilo específico para el botón Neumórfico */
+        .neumorphic {
+            background-color: #e0e5ec; /* Color base */
+            box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5); /* Sombras */
+            transition: all 0.2s ease-in-out;
+        }
+        .neumorphic:active {
+            box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px rgba(255,255,255, 0.5); /* Sombra inset al presionar */
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="
+            px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white
+            font-semibold rounded-lg shadow-lg
+            hover:shadow-xl hover:scale-105
+            active:scale-95 active:shadow-md
+            transition-all duration-200 ease-in-out
+        ">
+            <i data-lucide="star"></i> Gradiente Mágico
+        </button>
+
+        <button class="
+            relative px-8 py-4 border-2 border-green-500 text-green-600
+            font-semibold rounded-lg overflow-hidden
+            group transition-all duration-300 ease-in-out
+        ">
+            <span class="relative z-10 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="zap"></i> Contorno Activo
+            </span>
+            <span class="absolute inset-0 bg-green-500 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+        </button>
+
+        <button class="
+            neumorphic px-8 py-4 text-gray-700
+            font-semibold rounded-xl
+            hover:text-blue-600
+            active:scale-98
+            transition-all duration-200 ease-in-out
+        ">
+            <i data-lucide="box"></i> Estilo Neumórfico
+        </button>
+
+        <button class="
+            px-8 py-4 bg-red-500 text-white
+            font-semibold rounded-full shadow-md
+            flex items-center justify-center
+            hover:bg-red-600 hover:shadow-lg
+            active:bg-red-700 active:scale-95
+            transition-all duration-200 ease-in-out
+        ">
+            <i data-lucide="heart" class="animate-pulse"></i> Pulsar Aquí
+        </button>
+
+        <button class="
+            px-8 py-4 bg-yellow-400 text-gray-800
+            font-bold rounded-lg
+            shadow-[4px_4px_0px_0px_rgba(0,0,0,0.9)] /* Sombra inferior derecha negra */
+            border-2 border-black
+            hover:bg-yellow-500 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.9)] /* Sombra más grande al hacer hover */
+            active:bg-yellow-600 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.9)] /* Sombra más pequeña al presionar */
+            active:translate-x-[2px] active:translate-y-[2px] /* Efecto de presión */
+            transition-all duration-150 ease-in-out
+        ">
+            <i data-lucide="award"></i> Botón Elevado
+        </button>
+    </div>
+
+    <script>
+        // Inicializar Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

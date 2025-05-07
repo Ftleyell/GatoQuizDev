@@ -1,0 +1,100 @@
+/* src/styles/base.css */
+/* Estilos globales, fuentes, body, variables CSS, animaciones globales */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+:root {
+  /* Variables CSS para efectos dinámicos globales (controladas por JS) */
+  --flare-intensity: 0;
+  --combo-font-size: 2.5rem; /* Podría ser específico de combo-counter si no se usa en otro lado */
+  --element-glow-intensity: 0;
+  --score-font-size: 2.5rem; /* Podría ser específico de score-display */
+  --score-line-height: 1.1; /* Podría ser específico de score-display */
+  --difficulty-glow-color: transparent; /* Específico de question-display, se puede mover */
+  --difficulty-glow-blur: 0px; /* Específico de question-display, se puede mover */
+
+  /* Variables CSS para las sombras del flare del score (usadas por score-display) */
+  /* Estas podrían moverse a score-display.ts si solo se usan allí, o mantenerse aquí si son un "efecto global" disponible */
+  --flare-shadow:
+    0 0 5px hsla(0, 0%, 100%, calc(var(--flare-intensity) * 0.5)),
+    0 0 10px hsla(55, 100%, 70%, calc(var(--flare-intensity) * 0.8)),
+    0 0 15px hsla(40, 100%, 60%, calc(var(--flare-intensity) * 0.6)),
+    0 0 20px hsla(10, 100%, 55%, calc(var(--flare-intensity) * 0.4));
+  --flare-shadow-pulse:
+    0 0 5px hsla(0, 0%, 100%, calc(var(--flare-intensity) * 0.5)),
+    0 0 12px hsla(50, 100%, 75%, calc(var(--flare-intensity) * 0.7)),
+    0 0 18px hsla(35, 100%, 65%, calc(var(--flare-intensity) * 0.5)),
+    0 0 24px hsla(5, 100%, 60%, calc(var(--flare-intensity) * 0.3));
+
+  /* Variables de tema (serán sobreescritas por themes.json) */
+  --gq-body-bg-color: #111827; /* Fallback */
+  --gq-body-text-color: #e5e7eb; /* Fallback */
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif; /* Fuente por defecto para todo */
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--gq-body-bg-color);
+  color: var(--gq-body-text-color);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.8s ease-in-out;
+}
+
+#app {
+  width: 100%;
+  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; 
+  z-index: 20; 
+  pointer-events: none; 
+}
+
+/* Utilidad para ocultar elementos */
+.hidden {
+  display: none !important;
+}
+
+/* --- Animaciones Globales (usadas por múltiples elementos o para transiciones de página) --- */
+@keyframes fadeInOut { /* Usado por main-menu-screen y explanation-overlay */
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+/* --- Estilos para Estados del Body (si se usan para fondos globales o efectos amplios) --- */
+/* (Se mantienen por si se usan para estilos de fondo globales o efectos) */
+
+/* --- Animaciones Fade In/Out para transiciones de estado (globales) --- */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.state-fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+  pointer-events: none;
+}
+.state-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+/* Media queries globales muy básicas */
+@media (max-width: 768px) {
+    /* Ajustes globales para tablets si son necesarios */
+}
+@media (max-width: 480px) {
+    /* Ajustes globales para móviles si son necesarios */
+}

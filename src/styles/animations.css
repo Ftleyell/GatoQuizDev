@@ -1,0 +1,137 @@
+/* src/styles/animations.css */
+
+/* --- Variables CSS Globales para Duraciones de Barrido --- */
+:root {
+    --gq-wipe-in-duration: 0.6s;  /* Duración por defecto para la animación de entrada del barrido */
+    --gq-wipe-out-duration: 0.6s; /* Duración por defecto para la animación de salida del barrido */
+    /* --gq-wipe-color: #2c3e50; /* Color por defecto del barrido, puede ser definido por el tema */
+  }
+  
+  
+  /* --- Contenedor para Transiciones (Aplicado a #app por StateMachine) --- */
+  .transition-container { 
+      width: 100%;
+      height: 100%;
+      position: relative; 
+      overflow: hidden; 
+  }
+  
+  /* --- Definiciones de Keyframes (Animaciones Existentes para #app) --- */
+  @keyframes anim-fade-out {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); } 
+  }
+  
+  @keyframes anim-fade-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+  @keyframes anim-slide-out-left {
+    from { transform: translateX(0%); opacity: 1; }
+    to { transform: translateX(-100%); opacity: 0; }
+  }
+  
+  @keyframes anim-slide-in-right {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0%); opacity: 1; }
+  }
+  
+  @keyframes anim-slide-out-right {
+    from { transform: translateX(0%); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+  }
+  
+  @keyframes anim-slide-in-left {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0%); opacity: 1; }
+  }
+  
+  @keyframes anim-slide-out-up {
+    from { transform: translateY(0%); opacity: 1; }
+    to { transform: translateY(-30%); opacity: 0; } 
+  }
+  
+  @keyframes anim-slide-in-down {
+    from { transform: translateY(-30%); opacity: 0; }
+    to { transform: translateY(0%); opacity: 1; }
+  }
+  
+  
+  /* --- Clases de Utilidad para Transiciones de Estado (Aplicadas a #app) --- */
+  .gq-state-is-exiting.gq-fade-out {
+    animation: anim-fade-out 0.3s ease-out forwards;
+    pointer-events: none;
+  }
+  .gq-state-is-exiting.gq-slide-out-left {
+    animation: anim-slide-out-left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; 
+    pointer-events: none;
+  }
+  .gq-state-is-exiting.gq-slide-out-right {
+    animation: anim-slide-out-right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    pointer-events: none;
+  }
+  .gq-state-is-exiting.gq-slide-out-up {
+    animation: anim-slide-out-up 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    pointer-events: none;
+  }
+  
+  
+  .gq-state-is-entering.gq-fade-in {
+    animation: anim-fade-in 0.3s ease-in forwards;
+  }
+  .gq-state-is-entering.gq-slide-in-right {
+    animation: anim-slide-in-right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  }
+  .gq-state-is-entering.gq-slide-in-left {
+    animation: anim-slide-in-left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  }
+  .gq-state-is-entering.gq-slide-in-down {
+    animation: anim-slide-in-down 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  }
+  
+  
+  /* --- Keyframes para el Barrido Diagonal (Global) --- */
+  /* Estos @keyframes son usados por el componente <diagonal-wipe> */
+  @keyframes sweep-in-tl-to-br {
+      0% { clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%); } /* Comienza invisible en la esquina superior izquierda */
+      10% { clip-path: polygon(0% 0%, 20% 0%, 0% 20%); }
+      20% { clip-path: polygon(0% 0%, 40% 0%, 0% 40%); }
+      30% { clip-path: polygon(0% 0%, 60% 0%, 0% 60%); }
+      40% { clip-path: polygon(0% 0%, 80% 0%, 0% 80%); }
+      50% { clip-path: polygon(0% 0%, 100% 0%, 0% 100%); } /* Cubre el triángulo superior izquierdo-superior derecho-inferior izquierdo */
+      60% { clip-path: polygon(0% 0%, 100% 0%, 100% 20%, 20% 100%, 0% 100%); }
+      70% { clip-path: polygon(0% 0%, 100% 0%, 100% 40%, 40% 100%, 0% 100%); }
+      80% { clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 60% 100%, 0% 100%); }
+      90% { clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%); }
+      100% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); } /* Cubre toda la pantalla */
+  }
+  
+  @keyframes sweep-out-towards-br {
+      0% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); } /* Comienza cubriendo toda la pantalla */
+      10% { clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 20%); }
+      20% { clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 40%); }
+      30% { clip-path: polygon(60% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 60%); }
+      40% { clip-path: polygon(80% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 80%); }
+      50% { clip-path: polygon(100% 0%, 100% 100%, 0% 100%); } /* El barrido cubre el triángulo superior derecho-inferior derecho-inferior izquierdo, revelando el triángulo superior izquierdo */
+      60% { clip-path: polygon(100% 20%, 100% 100%, 20% 100%); }
+      70% { clip-path: polygon(100% 40%, 100% 100%, 40% 100%); }
+      80% { clip-path: polygon(100% 60%, 100% 100%, 60% 100%); }
+      90% { clip-path: polygon(100% 80%, 100% 100%, 80% 100%); }
+      100% { clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%); } /* Termina como un punto invisible en la esquina inferior derecha */
+  }
+  
+  /* La clase .gq-wipe-transition es una clase "señal" para la StateMachine. */
+  /* Las clases .animate-in y .animate-out se aplican directamente al componente <diagonal-wipe> */
+  /* y sus estilos (que usan estos keyframes y las variables de duración) están definidos dentro del propio componente Lit. */
+  
+  
+  /* --- Clases de Utilidad para Transiciones Internas de Elementos (Existentes) --- */
+  .gq-element-fade-out {
+    animation: anim-fade-out 0.2s ease-out forwards;
+    pointer-events: none;
+  }
+  .gq-element-fade-in {
+    animation: anim-fade-in 0.2s ease-in forwards;
+  }
+  
