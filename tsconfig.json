@@ -1,22 +1,22 @@
 {
     "compilerOptions": {
-      "target": "ESNext", // O ES2020, ES2021, etc. según necesites
+      "target": "ESNext",
       "module": "ESNext",
       "lib": ["ESNext", "DOM", "DOM.Iterable"],
-      "moduleResolution": "node", // O "bundler" si usas TS 5+ y prefieres esa resolución
+      "moduleResolution": "node", // O "bundler" si prefieres
       "resolveJsonModule": true,
       "isolatedModules": true,
       "esModuleInterop": true,
-      "noEmit": true, // Vite se encarga de transpilar, TS solo para chequeo de tipos
+      "noEmit": true,
       "strict": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
-      "useDefineForClassFields": false, // Importante para Lit
-      // Paths (opcional, si usabas alias)
-      // "paths": {
-      //   "@/*": ["./src/*"]
-      // }
+      "useDefineForClassFields": false, // Importante para Lit, ya lo tenías bien
+      // --- ASEGÚRATE DE QUE ESTA LÍNEA EXISTA Y ESTÉ EN 'true' ---
+      "experimentalDecorators": true,
+      // ----------------------------------------------------------
+      "emitDecoratorMetadata": false // Generalmente no es necesario para Lit
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts"], // Incluye tus archivos fuente
-    "exclude": ["node_modules", "dist"] // Excluye directorios
+    "include": ["src/**/*.ts", "src/**/*.d.ts"],
+    "exclude": ["node_modules", "dist"]
   }
