@@ -1,3 +1,4 @@
+// LPM/vite.config.ts
 import { defineConfig } from 'vite';
 
 // Si estás usando un plugin específico para Lit (como @vitejs/plugin-lit) impórtalo aquí
@@ -8,12 +9,13 @@ export default defineConfig({
     // Si usas el plugin de Lit, añádelo aquí:
     // litPlugin(), // Ejemplo
   ],
+  // --- Configuración 'base' para tu repositorio ---
+  base: '/GatoQuizDev/', // <-- ¡Este es el valor correcto para tu repo!
+  // ---------------------------------------------
   build: {
-    // Opciones de build si necesitas (ej. cambiar directorio de salida)
-    // outDir: 'dist',
+    outDir: 'dist', // Directorio de salida (default)
   },
   server: {
-    // Opciones del servidor de desarrollo (ej. puerto)
-    // port: 3000,
+    // port: 3000, // Opciones del servidor de desarrollo
   }
 });

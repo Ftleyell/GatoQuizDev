@@ -223,50 +223,50 @@ export class ShopPopup extends LitElement {
   }
 
   render() {
-    return html`
-      <div class="shop-content-box">
-        <button class="shop-close-btn" @click=${this._handleCloseClick} title="Cerrar Tienda (Esc)">&times;</button>
-        <h2 class="shop-title-text">Tienda de Mejoras</h2>
-        <p class="shop-score-text">Puntos: ${this.playerDataSnapshot?.score ?? 0}</p>
+        return html`
+          <div class="shop-content-box">
+            <button class="shop-close-btn" @click=${this._handleCloseClick} title="Cerrar Tienda (Esc)">&times;</button>
+            <h2 class="shop-title-text">Tienda de Mejoras</h2>
+            <p class="shop-score-text">Puntos: ${this.playerDataSnapshot?.score ?? 0}</p>
 
-        <div class="shop-items-container">
-          ${CATEGORY_ORDER.map(category => this._itemsByCategory[category] ? html`
-            <h3 class="shop-section-title">${CATEGORY_TITLES[category] || category}</h3>
-            <div class="shop-section-items">
-              ${this._itemsByCategory[category].map(item => {
-                const cost = this._calculateItemCost(item, this.playerDataSnapshot!);
-                const isAffordable = this.playerDataSnapshot!.score >= cost;
-                const isPurchased = this._checkItemIsPurchased(item, this.playerDataSnapshot!);
-                const canPurchaseCheck = this._checkItemCanPurchase(item, this.playerDataSnapshot!);
-                const level = this._getItemLevel(item, this.playerDataSnapshot!);
-                const isMaxLevel = item.isLeveled && typeof item.maxLevel === 'number' && level >= item.maxLevel;
-                const isDisabled = isMaxLevel || (isPurchased && !item.isLeveled) || !canPurchaseCheck || !isAffordable;
+            <div class="shop-items-container">
+              ${CATEGORY_ORDER.map(category => this._itemsByCategory[category] ? html`
+                <h3 class="shop-section-title">${CATEGORY_TITLES[category] || category}</h3>
+                <div class="shop-section-items">
+                  ${this._itemsByCategory[category].map(item => {
+                    // ... (lógica para determinar estado del shop-item-card - sin cambios) ...
+                    const cost = this._calculateItemCost(item, this.playerDataSnapshot!);
+                    const isAffordable = this.playerDataSnapshot!.score >= cost;
+                    const isPurchased = this._checkItemIsPurchased(item, this.playerDataSnapshot!);
+                    const canPurchaseCheck = this._checkItemCanPurchase(item, this.playerDataSnapshot!);
+                    const level = this._getItemLevel(item, this.playerDataSnapshot!);
+                    const isMaxLevel = item.isLeveled && typeof item.maxLevel === 'number' && level >= item.maxLevel;
+                    const isDisabled = isMaxLevel || (isPurchased && !item.isLeveled) || !canPurchaseCheck || !isAffordable;
 
-                return html`
-                  <shop-item-card
-                    .itemId=${item.id}
-                    .icon=${item.icon || '❓'}
-                    ?isDisabled=${isDisabled}
-                    ?isPurchased=${isPurchased && !item.isLeveled}
-                    ?isMaxLevel=${isMaxLevel}
-                    ?isSelected=${this._selectedItemId === item.id}
-                    @item-selected=${this._handleItemSelection}
-                  ></shop-item-card>
-                `;
-              })}
+                    return html`
+                      <shop-item-card
+                        .itemId=${item.id}
+                        .icon=${item.icon || '❓'}
+                        ?isDisabled=${isDisabled}
+                        ?isPurchased=${isPurchased && !item.isLeveled}
+                        ?isMaxLevel=${isMaxLevel}
+                        ?isSelected=${this._selectedItemId === item.id}
+                        @item-selected=${this._handleItemSelection}
+                      ></shop-item-card>
+                    `;
+                  })}
+                </div>
+              ` : nothing)}
             </div>
-          ` : nothing)}
-        </div>
 
-        <shop-tooltip
-          .itemData=${this._selectedItemData}
-          .playerDataSnapshot=${this.playerDataSnapshot}
-          ?isVisible=${!!this._selectedItemId}
-          @buy-item-requested=${this._handleBuyRequest}
-        ></shop-tooltip>
-      </div>
-    `;
-  }
+            <shop-tooltip
+              .itemData=${this._selectedItemData}
+              .playerDataSnapshot=${this.playerDataSnapshot}
+              @buy-item-requested=${this._handleBuyRequest}
+            ></shop-tooltip>
+          </div>
+        `;
+    }
 
    // --- Métodos Helper (sin cambios) ---
    private _calculateItemCost(itemData: ShopItemJsonData, playerData: PlayerData): number { const costParams = itemData.cost; let cost = costParams.base; if (itemData.isLeveled) { const levelRef = itemData.levelRef; const currentLevel = levelRef ? (playerData as any)[levelRef] ?? 0 : 0; if (costParams.type === 'exponential' && typeof costParams.multiplier === 'number') { cost = costParams.base * Math.pow(costParams.multiplier, currentLevel); } else { cost = costParams.base + (costParams.perLevel ?? 0) * currentLevel; } } else if (costParams.levelRef && typeof costParams.perLevel === 'number') { const linkedLevel = (playerData as any)[costParams.levelRef] ?? 0; cost = costParams.base + costParams.perLevel * linkedLevel; } return Math.round(cost); }

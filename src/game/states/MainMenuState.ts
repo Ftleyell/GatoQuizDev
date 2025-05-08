@@ -43,7 +43,8 @@ export class MainMenuState implements IState {
         this.gameManager.getAudioManager().playSound('ui_confirm'); // Sonido de confirmación
         
         this.removeStartListeners(); // Limpiar este listener específico
-        
+                // Reinicia el ciclo principal del juego (requestAnimationFrame y físicas)
+                this.gameManager.start(); 
         console.log("MainMenuState: Iniciando transición con BARRIDO a QuizGameplay...");
         // --- CAMBIO CLAVE: Usar la transición de barrido ---
         // Se pasa 'gq-wipe-transition' como clase de animación de salida (y/o entrada).

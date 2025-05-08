@@ -25,6 +25,7 @@ export class GameOverScreen extends LitElement {
       font-family: var(--gq-gameover-font-primary, var(--gq-font-primary, 'Poppins', sans-serif));
       gap: 1.5rem;
       -webkit-tap-highlight-color: transparent;
+      pointer-events: auto; /* <-- AÑADIR ESTA LÍNEA */
     }
 
     .game-over-title {
@@ -77,6 +78,7 @@ export class GameOverScreen extends LitElement {
       display: flex;
       gap: 1rem;
       margin-top: 1rem;
+             pointer-events: auto;
     }
 
     .action-button {
@@ -90,6 +92,8 @@ export class GameOverScreen extends LitElement {
       transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
       box-shadow: var(--gq-gameover-button-box-shadow, 0 3px 6px rgba(0,0,0,0.2));
       -webkit-tap-highlight-color: transparent;
+             pointer-events: auto;
+
     }
     .action-button:hover {
        transform: var(--gq-gameover-button-hover-transform, translateY(-2px));
@@ -148,12 +152,9 @@ export class GameOverScreen extends LitElement {
       </div>
       <div class="button-container">
         <button class="action-button restart-button" @click=${this._handleRestartClick}>
-          Reiniciar Partida
+          Reiniciar Juego
         </button>
-        <button class="action-button menu-button" @click=${this._handleMenuClick}>
-          Menú Principal
-        </button>
-      </div>
+        </div>
     `;
   }
 }
