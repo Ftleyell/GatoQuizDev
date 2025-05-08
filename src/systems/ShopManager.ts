@@ -5,6 +5,8 @@ import { GameManager } from '../game/GameManager';
 // Importar SOLO el componente ShopPopup y su tipo
 import '../game/components/ui/shop-popup.ts'; // Importar para registrar <shop-popup>
 import type { ShopPopup } from '../game/components/ui/shop-popup'; // Importar el tipo
+// <-- AÑADIDO: Importar tipo del backdrop -->
+import type { BlurBackdropComponent } from '../game/components/ui/blur-backdrop';
 
 const SHOP_POPUP_ID = 'shop-popup';
 
@@ -41,8 +43,10 @@ export class ShopManager {
         if (!this.shopPopupElement || !document.body.contains(this.shopPopupElement)) {
             this.shopPopupElement = document.getElementById(SHOP_POPUP_ID) as ShopPopup | null;
             if (this.shopPopupElement) {
+                // Limpiar listeners existentes antes de añadir nuevos para evitar duplicados
                 this.shopPopupElement.removeEventListener('close-requested', this.closeRequestListener);
                 this.shopPopupElement.removeEventListener('buy-item-requested', this.buyRequestListener);
+                // Añadir listeners
                 this.shopPopupElement.addEventListener('close-requested', this.closeRequestListener);
                 this.shopPopupElement.addEventListener('buy-item-requested', this.buyRequestListener);
             } else {
@@ -51,64 +55,82 @@ export class ShopManager {
         }
         return this.shopPopupElement;
     }
-    
+
     public isShopOpen(): boolean {
-        const popup = this.getShopPopupElement(); 
+        const popup = this.getShopPopupElement();
+        // Consideramos que está abierta si el componente existe y su propiedad isVisible es true
         return popup?.isVisible || false;
     }
 
     public openShop(): void {
         const popup = this.getShopPopupElement();
         if (!popup) {
+            console.error("ShopManager: No se pudo abrir la tienda, el elemento popup no existe.");
             return;
         }
-    
+
         try {
             popup.items = Array.from(this.items.values());
-            // --- CAMBIO PRINCIPAL AQUÍ ---
-            // Pasamos la instancia completa de playerData, no una copia superficial.
-            // Los componentes Lit (shop-popup, shop-tooltip) ahora tendrán acceso
-            // a los métodos y propiedades readonly de PlayerData.
-            popup.playerDataSnapshot = this.playerData; 
-            // --- FIN DEL CAMBIO ---
-            popup.isVisible = true; 
-    
-            const backdrop = document.getElementById('blur-backdrop');
-            if (backdrop) {
-                backdrop.style.display = 'block';
-                void backdrop.offsetHeight; 
-                backdrop.classList.add('visible');
+            // Pasamos la instancia completa de playerData
+            popup.playerDataSnapshot = this.playerData;
+            popup.isVisible = true; // Activar visibilidad del popup
+
+            // Obtener y mostrar el backdrop como componente Lit
+            // <-- MODIFICADO: Obtener y usar el componente backdrop -->
+            const backdropComponent = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
+            if (backdropComponent) {
+                backdropComponent.visible = true;
+            } else {
+                console.warn("ShopManager: Componente <blur-backdrop-component> no encontrado al abrir la tienda.");
             }
+            // <-- FIN MODIFICADO -->
+
+            // Asegurarse de que el listener de cierre esté añadido (getShopPopupElement ya lo hace)
+            // this.addShopCloseListener(popup); // Ya no es necesario si getShopPopupElement siempre lo hace
+
         } catch (error) {
             console.error("[ShopManager] Error estableciendo props o visibilidad en <shop-popup>:", error);
-            if (popup) popup.isVisible = false; 
+            if (popup) popup.isVisible = false;
+            // Asegurarse de ocultar el backdrop si falla la apertura del popup
+             const backdropComponent = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
+             if (backdropComponent) backdropComponent.visible = false;
         }
     }
 
+
     public closeShop(): void {
         const popup = this.getShopPopupElement();
+        // Solo proceder si el popup existe y está visible
         if (!popup || !popup.isVisible) return;
 
-        popup.isVisible = false; 
+        popup.isVisible = false; // Ocultar el popup
 
-        const backdrop = document.getElementById('blur-backdrop');
-        const explanationOverlay = document.getElementById('explanation-overlay');
-        if (backdrop && (!explanationOverlay || !explanationOverlay.classList.contains('visible'))) {
-            backdrop.classList.remove('visible');
+        // Obtener el backdrop como componente Lit
+        // <-- MODIFICADO: Obtener y usar el componente backdrop -->
+        const backdropComponent = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
+
+        // Solo ocultar el backdrop si el overlay de explicación tampoco está visible
+        // Usamos el UIManager para verificar el estado del overlay de explicación
+        const explanationIsVisible = this.gameManager.getUIManager()?.isExplanationVisible() ?? false;
+
+        if (backdropComponent && !explanationIsVisible) {
+            backdropComponent.visible = false;
         }
+        // <-- FIN MODIFICADO -->
+
+        // Limpiar listener de cierre (opcional, getShopPopupElement podría gestionarlo)
+        // this.removeShopCloseListener(popup); // Podría hacerse aquí o dejar que getShop lo re-añada
     }
 
     public updateShopUI(): void {
         if (!this.playerData) return;
         const popup = this.getShopPopupElement();
-        if (popup) {
-            // --- CAMBIO PRINCIPAL AQUÍ (también) ---
+        if (popup && popup.isVisible) { // Solo actualizar si está visible
             // Asegurarse de que el snapshot se actualice con la instancia completa.
             popup.playerDataSnapshot = this.playerData;
-            // --- FIN DEL CAMBIO ---
         }
     }
-    
+
     private handleBuyRequest = (e: Event) => {
         const event = e as CustomEvent;
         const itemIdToBuy = event.detail?.itemId;
@@ -119,14 +141,14 @@ export class ShopManager {
         }
     };
 
+    // --- executePurchaseAction y acciones de compra (SIN CAMBIOS LÓGICOS) ---
     private executePurchaseAction(itemId: string): boolean {
-        const itemData = this.items.get(itemId); 
-        if (!itemData) { 
+        const itemData = this.items.get(itemId);
+        if (!itemData) {
             console.error(`ShopManager: Ítem con ID '${itemId}' no encontrado.`);
-            return false; 
+            return false;
         }
-        
-        // PlayerData es la instancia completa, por lo que los métodos y propiedades son accesibles.
+
         const cost = this._calculateItemCost(itemData, this.playerData);
         const canAfford = this.playerData.score >= cost;
         const passesPurchaseCheck = this._checkItemCanPurchase(itemData, this.playerData);
@@ -135,17 +157,17 @@ export class ShopManager {
         const isAlreadyPurchasedNonLeveled = this._checkItemIsPurchased(itemData, this.playerData) && !itemData.isLeveled;
 
         if (isMaxLevel || isAlreadyPurchasedNonLeveled || !passesPurchaseCheck || !canAfford) {
-            this.updateShopUI(); 
-            this.gameManager.getAudioManager().playSound('incorrect'); 
+            this.updateShopUI(); // Actualizar UI para reflejar por qué no se puede comprar
+            this.gameManager.getAudioManager().playSound('incorrect');
             return false;
         }
 
-        this.playerData.score -= cost; 
-        this.gameManager.updateExternalScoreUI();
+        this.playerData.score -= cost;
+        this.gameManager.updateExternalScoreUI(); // Notificar a GameManager para actualizar displays externos si los hubiera
 
-        let success = false; 
+        let success = false;
         const actionId = itemData.actionId;
-        try { 
+        try {
             switch (actionId) {
                 case 'purchaseLife':            success = this.purchaseLifeAction(); break;
                 case 'purchaseShield':          success = this.purchaseShieldAction(); break;
@@ -158,28 +180,29 @@ export class ShopManager {
                 case 'purchaseExtraCatSpawn':   success = this.purchaseExtraCatSpawnAction(); break;
                 case 'purchaseMaxCatsIncrease': success = this.purchaseMaxCatsIncreaseAction(); break;
                 case 'purchaseMaxCatSize':      success = this.purchaseMaxCatSizeAction(); break;
-                default: console.error(`ShopManager: Acción desconocida: ${actionId}`); success = false; 
+                default: console.error(`ShopManager: Acción desconocida: ${actionId}`); success = false;
             }
-        } catch (error) { 
-            console.error(`ShopManager: Error ejecutando acción ${actionId}:`, error); 
-            success = false; 
+        } catch (error) {
+            console.error(`ShopManager: Error ejecutando acción ${actionId}:`, error);
+            success = false;
         }
 
         if (!success) {
-             this.playerData.score += cost; 
+             // Si la acción falló (ej. ya estaba desbloqueado), revertir costo
+             this.playerData.score += cost;
              this.gameManager.updateExternalScoreUI();
-             console.warn(`ShopManager: Acción ${actionId} falló. Costo revertido.`);
+             console.warn(`ShopManager: Acción ${actionId} falló o no aplicó. Costo revertido.`);
              this.gameManager.getAudioManager().playSound('incorrect');
         } else {
              this.gameManager.getAudioManager().playSound('purchase');
         }
-        this.updateShopUI(); 
+        // Siempre actualizar la UI después de intentar comprar
+        this.updateShopUI();
         return success;
       }
 
-      // Acciones de compra (sin cambios, pero ahora operan sobre la instancia real de PlayerData)
       private purchaseLifeAction(): boolean { this.playerData.lives++; this.gameManager.updateExternalLivesUI(); return true; }
-      private purchaseShieldAction(): boolean { this.playerData.hasShield = true; this.gameManager.updateExternalShieldUI(true); return true; }
+      private purchaseShieldAction(): boolean { if(this.playerData.hasShield) return false; this.playerData.hasShield = true; this.gameManager.updateExternalShieldUI(true); return true; }
       private purchaseHintAction(): boolean { this.playerData.hintCharges++; this.gameManager.updateExternalHintUI(this.playerData.hintCharges); return true; }
       private purchaseUnlockDrawingAction(): boolean { if (this.playerData.isDrawingUnlocked) return false; this.playerData.isDrawingUnlocked = true; let activationSuccessful = false; try { activationSuccessful = this.gameManager.enableDrawingFeature(); } catch (e) { activationSuccessful = false; } if (!activationSuccessful) { this.playerData.isDrawingUnlocked = false; return false; } return true; }
       private purchaseComboMultiplierAction(): boolean { this.playerData.comboMultiplierLevel++; return true; }
@@ -190,19 +213,23 @@ export class ShopManager {
       private purchaseUnlockCatFoodAction(): boolean { if (this.playerData.isCatFoodUnlocked) return false; this.playerData.isCatFoodUnlocked = true; this.playerData.refillCatFood(); this.gameManager.enableCatFoodFeature(); return true; }
       private purchaseRefillCatFoodAction(): boolean { if (this.playerData.currentCatFood >= this.playerData.getMaxCatFood()) return false; this.playerData.refillCatFood(); this.gameManager.updateCatFoodUI(); return true; }
 
-      // Métodos helper (sin cambios, pero ahora operan sobre la instancia real de PlayerData)
+      // --- Métodos helper (SIN CAMBIOS LÓGICOS) ---
       private _calculateItemCost(itemData: ShopItemJsonData, playerData: PlayerData): number { const costParams = itemData.cost; let cost = costParams.base; if (itemData.isLeveled) { const levelRef = itemData.levelRef; const currentLevel = levelRef ? (playerData as any)[levelRef] ?? 0 : 0; if (costParams.type === 'exponential' && typeof costParams.multiplier === 'number') { cost = costParams.base * Math.pow(costParams.multiplier, currentLevel); } else { cost = costParams.base + (costParams.perLevel ?? 0) * currentLevel; } } else if (costParams.levelRef && typeof costParams.perLevel === 'number') { const linkedLevel = (playerData as any)[costParams.levelRef] ?? 0; cost = costParams.base + costParams.perLevel * linkedLevel; } return Math.round(cost); }
       private _checkItemIsPurchased(itemData: ShopItemJsonData, playerData: PlayerData): boolean { if (!itemData.isPurchasedCheck) return false; const check = itemData.isPurchasedCheck; const valueRef = check.valueRef; const currentValue = (playerData as any)[valueRef]; if (typeof currentValue === 'undefined') return false; switch (check.condition) { case 'isTrue': return currentValue === true; case 'isFalse': return currentValue === false; case 'greaterThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue > check.limit; default: return false; } }
       private _checkItemCanPurchase(itemData: ShopItemJsonData, playerData: PlayerData): boolean { if (!itemData.purchaseCheck) return true; const check = itemData.purchaseCheck; const valueRef = check.valueRef; const currentValue = (playerData as any)[valueRef]; if (typeof currentValue === 'undefined') { return false; } switch (check.condition) { case 'lessThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue < check.limit; case 'lessThanOrEqual': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue <= check.limit; case 'isFalse': return currentValue === false; case 'isTrue': return currentValue === true; case 'greaterThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue > check.limit; case 'greaterThanOrEqual': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue >= check.limit; default: return false; } }
       private _getItemLevel(itemData: ShopItemJsonData, playerData: PlayerData): number { if (!itemData.isLeveled || !itemData.levelRef) return -1; return (playerData as any)[itemData.levelRef] ?? 0; }
 
     public destroy(): void {
-        const popup = this.getShopPopupElement(); 
+        // Limpiar listeners del popup si existe
+        const popup = this.getShopPopupElement();
         if (popup) {
             popup.removeEventListener('close-requested', this.closeRequestListener);
             popup.removeEventListener('buy-item-requested', this.buyRequestListener);
         }
         this.items.clear();
-        this.shopPopupElement = null; 
+        this.shopPopupElement = null; // Limpiar referencia al elemento
+        // No necesitamos limpiar referencias a playerData o gameManager aquí
+        // si ShopManager se recrea cuando se necesita.
+        console.log("ShopManager destruido.");
     }
 }

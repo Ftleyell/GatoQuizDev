@@ -1,45 +1,38 @@
 /* src/styles/base.css */
-/* Estilos globales, fuentes, body, variables CSS, animaciones globales */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 :root {
-  /* Variables CSS para efectos dinámicos globales (controladas por JS) */
+  /* ... (tus variables existentes) ... */
   --flare-intensity: 0;
-  --combo-font-size: 2.5rem; /* Podría ser específico de combo-counter si no se usa en otro lado */
+  --combo-font-size: 2.5rem;
   --element-glow-intensity: 0;
-  --score-font-size: 2.5rem; /* Podría ser específico de score-display */
-  --score-line-height: 1.1; /* Podría ser específico de score-display */
-  --difficulty-glow-color: transparent; /* Específico de question-display, se puede mover */
-  --difficulty-glow-blur: 0px; /* Específico de question-display, se puede mover */
+  --score-font-size: 2.5rem;
+  --score-line-height: 1.1;
+  --difficulty-glow-color: transparent;
+  --difficulty-glow-blur: 0px;
+  --flare-shadow: /* ... */;
+  --flare-shadow-pulse: /* ... */;
+  --gq-body-bg-color: #111827;
+  --gq-body-text-color: #e5e7eb;
+}
 
-  /* Variables CSS para las sombras del flare del score (usadas por score-display) */
-  /* Estas podrían moverse a score-display.ts si solo se usan allí, o mantenerse aquí si son un "efecto global" disponible */
-  --flare-shadow:
-    0 0 5px hsla(0, 0%, 100%, calc(var(--flare-intensity) * 0.5)),
-    0 0 10px hsla(55, 100%, 70%, calc(var(--flare-intensity) * 0.8)),
-    0 0 15px hsla(40, 100%, 60%, calc(var(--flare-intensity) * 0.6)),
-    0 0 20px hsla(10, 100%, 55%, calc(var(--flare-intensity) * 0.4));
-  --flare-shadow-pulse:
-    0 0 5px hsla(0, 0%, 100%, calc(var(--flare-intensity) * 0.5)),
-    0 0 12px hsla(50, 100%, 75%, calc(var(--flare-intensity) * 0.7)),
-    0 0 18px hsla(35, 100%, 65%, calc(var(--flare-intensity) * 0.5)),
-    0 0 24px hsla(5, 100%, 60%, calc(var(--flare-intensity) * 0.3));
-
-  /* Variables de tema (serán sobreescritas por themes.json) */
-  --gq-body-bg-color: #111827; /* Fallback */
-  --gq-body-text-color: #e5e7eb; /* Fallback */
+/* --- INICIO CAMBIOS --- */
+html {
+  height: 100%;
+  overflow: hidden; /* Evita scrollbars en el html */
 }
 
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif; /* Fuente por defecto para todo */
+  font-family: 'Poppins', sans-serif;
   position: relative;
-  min-height: 100vh;
+  min-height: 100%; /* Usa 100% */
+  height: 100%; /* Asegura altura 100% */
   background-color: var(--gq-body-bg-color);
   color: var(--gq-body-text-color);
-  overflow: hidden;
+  overflow: hidden; /* Mantiene overflow hidden */
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -50,15 +43,15 @@ body {
 
 #app {
   width: 100%;
-  height: 100vh; 
+  height: 100%; /* Usa 100% para heredar de body/html */
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; 
-  z-index: 20; 
-  pointer-events: none; 
+  position: relative;
+  z-index: 20;
+  pointer-events: none;
+  /* overflow: hidden; /* Opcional: añadir si #app causa scroll */
 }
-
 /* Utilidad para ocultar elementos */
 .hidden {
   display: none !important;

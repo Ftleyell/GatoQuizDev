@@ -17,11 +17,11 @@
       </div>
 
     <cat-display-area id="cat-display-area-main"></cat-display-area>
-    
+
     <diagonal-wipe id="diagonal-wipe-transition-element"></diagonal-wipe>
 
     <div id="right-controls" class="control-container hidden">
-        <div id="drawing-buttons-container"> <tool-button
+            <tool-button
               toolId="brush"
               icon="🖌️"
               titleText="Activar/Desactivar Pincel (B)"
@@ -35,27 +35,18 @@
               disabled>
             </tool-button>
         </div>
-
-        <div id="cat-food-ui-container" class="hidden"> <tool-button
+        <div id="cat-food-ui-container" class="hidden">
+             <tool-button
                toolId="cat-food"
                icon="🍲"
                titleText="Activar/Desactivar Comida (F)"
                id="cat-food-button">
                </tool-button>
-             </div>
+        </div>
     </div>
 
-    <div id="blur-backdrop" class="blur-backdrop hidden"></div>
+    <blur-backdrop-component id="blur-backdrop"></blur-backdrop-component>
 
-    <shop-popup id="shop-popup" class="hidden"></shop-popup>
-
-    <div id="explanation-overlay" class="overlay hidden">
-      <div class="overlay-content-wrapper">
-          <p id="explanation-text-content"></p>
-          <p class="overlay-continue-prompt"></p>
-      </div>
-    </div>
-
-    <script type="module" src="/src/main.ts"></script>
+    <shop-popup id="shop-popup"></shop-popup> <explanation-overlay-component id="explanation-overlay-component"></explanation-overlay-component> <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

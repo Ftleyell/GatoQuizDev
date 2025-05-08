@@ -1,7 +1,8 @@
 // src/main.ts
 import './styles/base.css';
 import './styles/layout.css';
-import './styles/animations.css'; // <--- AÑADIR ESTA LÍNEA
+import './styles/animations.css'; // <-- Esta línea ya debería estar
+import './game/components/ui/blur-backdrop.ts'; // <-- AÑADE ESTA LÍNEA
 
 // Importar GameManager
 import { GameManager } from './game/GameManager';
@@ -9,7 +10,7 @@ import { GameManager } from './game/GameManager';
 console.log('DOM Cargado. Iniciando Quiz Felino...');
 
 const appElement = document.getElementById('app');
-const shopButtonElement = document.getElementById('shop-button'); // Botón Tienda
+// const shopButtonElement = document.getElementById('shop-button'); // Ya no se usa directamente aquí
 
 if (!appElement) {
   console.error('Error: Elemento #app no encontrado en el DOM.');
