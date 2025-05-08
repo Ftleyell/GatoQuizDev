@@ -115,8 +115,8 @@ export class ShopButtonComponent extends LitElement {
         font-size: var(--gq-shopbtn-font-size-mobile, var(--gq-toolbtn-font-size, 1.1rem));
         padding: var(--gq-shopbtn-padding-mobile, var(--gq-toolbtn-padding, 0.5rem));
         /* Mantener posición fija */
-        top: var(--gq-shopbtn-pos-top-mobile, 0.5rem);
-        right: var(--gq-shopbtn-pos-right-mobile, 0.5rem);
+        top: var(--gq-shopbtn-pos-top-mobile, 0.1rem);
+        right: var(--gq-shopbtn-pos-right-mobile, 0.1rem);
       }
     }
     /* --- FIN: Media Queries --- */
