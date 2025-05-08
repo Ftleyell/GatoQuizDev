@@ -24,7 +24,7 @@ import '../game/components/ui/quiz-ui-container.ts';
 import type { QuizUiContainer } from '../game/components/ui/quiz-ui-container';
 import '../game/components/ui/explanation-overlay.ts';
 import type { ExplanationOverlayComponent, ExplanationResultType } from '../game/components/ui/explanation-overlay.ts';
-import type { BlurBackdropComponent } from '../game/components/ui/blur-backdrop'; // Importar tipo
+import type { BlurBackdropComponent } from '../game/components/ui/blur-backdrop';
 
 // Tipos locales
 interface QuestionOption { key: string; text: string; }
@@ -46,6 +46,7 @@ type UIElementsMap = {
     inkLabel: HTMLElement | null;
     inkBarContainer: InkBar | null;
     questionBox: QuizQuestionDisplay | null;
+    optionsContainer: HTMLElement | null; // Contenedor para los botones
     optionButtons: QuizOptionButton[];
     feedbackArea: FeedbackArea | null;
     explanationOverlayComponent: ExplanationOverlayComponent | null;
@@ -66,168 +67,190 @@ export class UIManager {
     }
 
     /**
-     * Construye la interfaz del quiz para la pregunta dada.
-     * Incluye la lógica para mezclar el orden de los botones de opción.
+     * Construye o actualiza la interfaz del quiz para la pregunta dada.
      */
     public buildQuizInterface(question: Question, containerElement: HTMLElement, onOptionClick: (key: string) => void, currentCombo: number): void {
         if (!question) { console.error("UIManager: Intento de construir UI sin pregunta."); return; }
-        this.clearQuizInterface(containerElement); // Limpiar interfaz anterior
-        this.optionClickCallback = onOptionClick; // Guardar callback para clics en opciones
-        const elementsMap: Partial<UIElementsMap> = { optionButtons: [] }; // Mapa para referencias a elementos
+        this.optionClickCallback = onOptionClick;
         const playerData = this.gameManager.getPlayerData();
 
-        try {
-            // Crear contenedor principal del UI del quiz
-            const quizUiContainerElement = document.createElement('quiz-ui-container') as QuizUiContainer;
+        // 1. Crear/Obtener el Contenedor Principal y Elementos Persistentes
+        let quizUiContainerElement = this.currentUIElements.quizUiContainer;
+        if (!quizUiContainerElement || !containerElement.contains(quizUiContainerElement)) {
+            console.log("[UIManager] Creando nuevo quiz-ui-container y elementos estructurales.");
+            containerElement.innerHTML = ''; // Limpiar el contenedor #app solo si se recrea todo
+            quizUiContainerElement = document.createElement('quiz-ui-container') as QuizUiContainer;
             containerElement.appendChild(quizUiContainerElement);
-            elementsMap.quizUiContainer = quizUiContainerElement;
+            this.currentUIElements = { quizUiContainer: quizUiContainerElement, optionButtons: [] }; // Resetear referencias
 
-            // Crear y añadir elementos de UI (vidas, puntaje, tinta, pregunta)
-            const livesDisplayElement = document.createElement('lives-display') as LivesDisplay;
-            livesDisplayElement.lives = this.gameManager.getLives(); livesDisplayElement.hasShield = playerData.hasShield; livesDisplayElement.hintCharges = playerData.hintCharges; livesDisplayElement.slot = "lives-display";
-            quizUiContainerElement.appendChild(livesDisplayElement); elementsMap.livesDisplay = livesDisplayElement;
+            // Crear y añadir elementos persistentes
+            this.currentUIElements.livesDisplay = document.createElement('lives-display') as LivesDisplay;
+            this.currentUIElements.livesDisplay.slot = "lives-display";
+            quizUiContainerElement.appendChild(this.currentUIElements.livesDisplay);
 
-            const scoreDisplayElement = document.createElement('score-display') as ScoreDisplay;
-            scoreDisplayElement.score = playerData.score; scoreDisplayElement.combo = currentCombo; scoreDisplayElement.slot = "score-display";
-            quizUiContainerElement.appendChild(scoreDisplayElement); elementsMap.scoreDisplay = scoreDisplayElement;
+            this.currentUIElements.scoreDisplay = document.createElement('score-display') as ScoreDisplay;
+            this.currentUIElements.scoreDisplay.slot = "score-display";
+            quizUiContainerElement.appendChild(this.currentUIElements.scoreDisplay);
 
-            const inkLabel = document.createElement('div');
-            inkLabel.id = 'ink-label'; inkLabel.className = 'ink-label-base hidden'; inkLabel.textContent = "Tinta"; inkLabel.slot = "ink-label";
-            quizUiContainerElement.appendChild(inkLabel); elementsMap.inkLabel = inkLabel;
+            this.currentUIElements.inkLabel = document.createElement('div');
+            this.currentUIElements.inkLabel.id = 'ink-label';
+            this.currentUIElements.inkLabel.className = 'ink-label-base hidden';
+            this.currentUIElements.inkLabel.textContent = "Tinta";
+            this.currentUIElements.inkLabel.slot = "ink-label";
+            quizUiContainerElement.appendChild(this.currentUIElements.inkLabel);
 
-            const inkBarElement = document.createElement('ink-bar') as InkBar;
-            inkBarElement.currentInk = playerData.currentInk; inkBarElement.maxInkPerBar = playerData.INK_BAR_CAPACITY; inkBarElement.classList.add('hidden'); inkBarElement.slot = "ink-bar";
-            quizUiContainerElement.appendChild(inkBarElement); elementsMap.inkBarContainer = inkBarElement;
+            this.currentUIElements.inkBarContainer = document.createElement('ink-bar') as InkBar;
+            this.currentUIElements.inkBarContainer.classList.add('hidden');
+            this.currentUIElements.inkBarContainer.slot = "ink-bar";
+            quizUiContainerElement.appendChild(this.currentUIElements.inkBarContainer);
 
-            const questionDisplayElement = document.createElement('quiz-question-display') as QuizQuestionDisplay;
-            questionDisplayElement.difficulty = question.difficulty; questionDisplayElement.questionText = question.text; questionDisplayElement.slot = "question-display";
-            quizUiContainerElement.appendChild(questionDisplayElement); elementsMap.questionBox = questionDisplayElement;
+            this.currentUIElements.questionBox = document.createElement('quiz-question-display') as QuizQuestionDisplay;
+            this.currentUIElements.questionBox.slot = "question-display";
+            quizUiContainerElement.appendChild(this.currentUIElements.questionBox);
+
+            // Crear el DIV contenedor para las opciones y aplicarle estilos flex
+            this.currentUIElements.optionsContainer = document.createElement('div');
+            this.currentUIElements.optionsContainer.slot = "options";
+            // *** Aplicar estilos de layout al contenedor de opciones ***
+            this.currentUIElements.optionsContainer.style.display = 'flex';
+            this.currentUIElements.optionsContainer.style.flexDirection = 'column';
+            // Usar la variable CSS para el gap, si existe, o un fallback
+            const optionsGap = getComputedStyle(document.documentElement).getPropertyValue('--gq-options-gap').trim() || '0.75rem';
+            this.currentUIElements.optionsContainer.style.gap = optionsGap;
+            this.currentUIElements.optionsContainer.style.width = '100%'; // Asegurar ancho completo
+            // *** Fin aplicación de estilos ***
+            quizUiContainerElement.appendChild(this.currentUIElements.optionsContainer);
 
 
-            // --- INICIO: Lógica para mezclar opciones ---
-            const shuffledOptions = [...question.options]; // Copiar array original
-            // Aplicar Fisher-Yates shuffle a la copia
+            this.currentUIElements.feedbackArea = document.createElement('feedback-area') as FeedbackArea;
+            this.currentUIElements.feedbackArea.slot = "feedback-area";
+            quizUiContainerElement.appendChild(this.currentUIElements.feedbackArea);
+
+            // Obtener referencias globales una vez
+            this.currentUIElements.explanationOverlayComponent = document.getElementById('explanation-overlay-component') as ExplanationOverlayComponent | null;
+            this.currentUIElements.blurBackdrop = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
+
+        } else {
+            console.log("[UIManager] Reutilizando quiz-ui-container existente.");
+        }
+
+        // 2. Actualizar Elementos Persistentes (Siempre)
+        if (this.currentUIElements.livesDisplay) {
+            this.currentUIElements.livesDisplay.lives = this.gameManager.getLives();
+            this.currentUIElements.livesDisplay.hasShield = playerData.hasShield;
+            this.currentUIElements.livesDisplay.hintCharges = playerData.hintCharges;
+        }
+        if (this.currentUIElements.scoreDisplay) {
+            this.currentUIElements.scoreDisplay.score = playerData.score;
+            this.currentUIElements.scoreDisplay.combo = currentCombo;
+        }
+        if (this.currentUIElements.inkBarContainer) {
+            this.currentUIElements.inkBarContainer.currentInk = playerData.currentInk;
+            this.currentUIElements.inkBarContainer.maxInkPerBar = playerData.INK_BAR_CAPACITY;
+        }
+        if (this.currentUIElements.inkLabel) {
+            this.updateInkVisibility(playerData.isDrawingUnlocked);
+        }
+
+        // 3. Actualizar Elementos Específicos de la Pregunta
+        if (this.currentUIElements.questionBox) {
+            this.currentUIElements.questionBox.difficulty = question.difficulty;
+            this.currentUIElements.questionBox.questionText = question.text;
+        } else { console.error("UIManager: Referencia a questionBox no encontrada."); }
+
+        // 4. Limpiar y Reconstruir Opciones
+        if (this.currentUIElements.optionsContainer) {
+            this.currentUIElements.optionsContainer.innerHTML = ''; // Limpiar opciones anteriores
+            this.currentUIElements.optionButtons = []; // Resetear array
+
+            // Mezclar y Crear nuevos botones
+            const shuffledOptions = [...question.options];
             for (let i = shuffledOptions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
             }
-            console.log(`[UIManager] Opciones mezcladas para pregunta ${question.id}. Orden original:`, question.options.map(o=>o.key), `Orden mezclado:`, shuffledOptions.map(o=>o.key));
-            // --- FIN: Lógica para mezclar opciones ---
 
-
-            // --- BUCLE MODIFICADO: Crear botones desde el array mezclado ---
             shuffledOptions.forEach(option => {
-                 if (!option?.key || typeof option.text === 'undefined') {
-                     console.warn("Opción de pregunta inválida:", option);
-                     return; // Saltar opción inválida
-                 }
+                if (!option?.key || typeof option.text === 'undefined') {
+                    console.warn("Opción de pregunta inválida:", option); return;
+                }
                 const button = document.createElement('quiz-option-button') as QuizOptionButton;
-                button.optionKey = option.key;
-                button.optionText = option.text;
-                button.disabled = false;
-                button.hinted = false;
-                button.slot = "options"; // Asignar al slot correcto en quiz-ui-container
-                // Añadir listener para el evento personalizado 'option-selected' del botón
+                button.optionKey = option.key; button.optionText = option.text;
+                button.disabled = false; button.hinted = false;
                 button.addEventListener('option-selected', (e) => {
                     const event = e as CustomEvent;
                     if (this.optionClickCallback && event.detail?.key) {
-                        this.optionClickCallback(event.detail.key); // Llamar al callback pasado desde QuizGameplayState
+                        this.optionClickCallback(event.detail.key);
                     }
                 });
-                quizUiContainerElement.appendChild(button); // Añadir botón al contenedor
-                elementsMap.optionButtons!.push(button); // Guardar referencia al botón
+                // Añadir al contenedor de opciones (que ya tiene el slot y los estilos flex)
+                this.currentUIElements.optionsContainer!.appendChild(button);
+                this.currentUIElements.optionButtons!.push(button);
             });
-            // --- FIN BUCLE MODIFICADO ---
+        } else { console.error("UIManager: Contenedor de opciones no encontrado."); }
 
-            // Crear y añadir área de feedback
-            const feedbackAreaElement = document.createElement('feedback-area') as FeedbackArea;
-            feedbackAreaElement.slot = "feedback-area";
-            quizUiContainerElement.appendChild(feedbackAreaElement); elementsMap.feedbackArea = feedbackAreaElement;
+        // 5. Limpiar Feedback Area
+        if (this.currentUIElements.feedbackArea) { this.updateFeedback('', null); }
 
-            // Obtener referencias a elementos globales (overlay, backdrop)
-            elementsMap.explanationOverlayComponent = document.getElementById('explanation-overlay-component') as ExplanationOverlayComponent | null;
-            elementsMap.blurBackdrop = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
-
-            // Logs para verificar referencias a elementos globales
-            console.log(`[UIManager] buildQuizInterface: explanationOverlayComponent encontrado? ${!!elementsMap.explanationOverlayComponent}, blurBackdrop encontrado? ${!!elementsMap.blurBackdrop}`);
-            if(elementsMap.explanationOverlayComponent) {
-              console.log(`[UIManager] buildQuizInterface: Overlay Instance ID: ${elementsMap.explanationOverlayComponent.id}`);
-            }
-            if (!elementsMap.blurBackdrop) { console.warn("UIManager: Componente <blur-backdrop-component> no encontrado al construir UI."); }
-            else if (!(elementsMap.blurBackdrop instanceof HTMLElement && 'visible' in elementsMap.blurBackdrop)) { console.error("UIManager: El elemento #blur-backdrop NO es una instancia válida de BlurBackdropComponent."); elementsMap.blurBackdrop = null; }
-
-        } catch (error) {
-            console.error("Error crítico construyendo la interfaz del quiz:", error);
-            containerElement.innerHTML = `<p style="color: red; text-align: center; padding: 1rem;">Error al construir la interfaz. Revisa consola.</p>`;
-            return; // Salir si hay error crítico
-        }
-
-        // Guardar referencias a los elementos creados
-        this.currentUIElements = elementsMap as UIElementsMap; // Asegurar que el tipo es correcto
-
-        // Actualizar el estado inicial de la UI con los datos actuales
-        this.updateScoreDisplay(playerData.score);
-        this.updateLivesDisplay(this.gameManager.getLives());
-        this.updateShieldIcon(playerData.hasShield);
-        this.updateHintIcon(playerData.hintCharges);
-        this.updateInkBar();
-        this.updateInkVisibility(playerData.isDrawingUnlocked);
-        if (elementsMap.questionBox) this.updateDifficultyLabel(question.difficulty);
+        // 6. Actualizar Efectos Visuales Generales
         this.updateComboVisuals(currentCombo);
         this.updateCatFoodBar(playerData.currentCatFood, playerData.getMaxCatFood());
         this.toggleCatFoodUIVisibility(playerData.isCatFoodUnlocked);
-        this.updateFeedback('', null); // Limpiar feedback inicial
-        // Aplicar estilos específicos del tema a elementos no-Lit si es necesario
+
+        // 7. Aplicar Estilos de Tema
         const activeTheme = this.gameManager.getThemeManager()?.getActiveTheme();
         this.applyThemeStylesToNonLitElements(activeTheme ? activeTheme.elements : null);
     }
 
+
     /**
      * Aplica clases o texto definidos en el tema a elementos HTML estándar (no-Lit).
-     * @param themeElements - Objeto con definiciones de elementos del tema activo.
      */
     private applyThemeStylesToNonLitElements(themeElements: Partial<Theme['elements']> | null): void {
         const inkLabelElement = this.currentUIElements.inkLabel;
-        // Aplicar estilos a la etiqueta de tinta si existe y está definida en el tema
         if (inkLabelElement && themeElements?.inkLabel) {
             const inkLabelThemeDef = themeElements.inkLabel;
-            // Aplicar clases CSS del tema
             if (inkLabelThemeDef.themeClass) {
                  inkLabelElement.className = 'ink-label-base'; // Resetear a clase base
                  const baseHidden = inkLabelElement.classList.contains('hidden'); // Guardar estado hidden
-                 // Añadir cada clase definida en el tema
                  inkLabelThemeDef.themeClass.split(' ').filter(cls => cls).forEach(cls => {
                      if (!inkLabelElement.classList.contains(cls)) inkLabelElement.classList.add(cls);
                  });
-                 // Reaplicar hidden si estaba oculto
                  if(baseHidden) inkLabelElement.classList.add('hidden');
             }
-            // Aplicar texto del tema si está definido
              if (inkLabelThemeDef.text !== undefined && inkLabelElement.textContent !== inkLabelThemeDef.text) {
                  inkLabelElement.textContent = inkLabelThemeDef.text;
              }
-            // Asegurar visibilidad correcta basada en si el dibujo está desbloqueado
             this.updateInkVisibility(this.gameManager.getPlayerData().isDrawingUnlocked);
         }
-        // Añadir lógica similar para otros elementos no-Lit si fuera necesario
     }
 
-    /**
-     * Limpia la interfaz del quiz del contenedor especificado.
-     * @param containerElement - El elemento HTML que contiene la interfaz del quiz.
+   /**
+     * Limpia elementos específicos de la pregunta (opciones, feedback) y callbacks.
+     * Mantiene los elementos persistentes y el contenedor principal.
      */
     public clearQuizInterface(containerElement: HTMLElement): void {
-        this.removeExplanationListener(); // Limpiar listener de confirmación de explicación
-        this.currentUIElements = {}; // Resetear mapa de referencias
-        this.optionClickCallback = null; // Limpiar callback de opciones
-        // Buscar y remover el contenedor específico del UI del quiz
-        const quizContainer = containerElement.querySelector('quiz-ui-container');
-        if (quizContainer) {
-            containerElement.removeChild(quizContainer);
+        console.log("[UIManager] clearQuizInterface llamado (limpieza parcial).");
+        this.removeExplanationListener();
+        this.optionClickCallback = null;
+
+        if (this.currentUIElements.optionsContainer) {
+            this.currentUIElements.optionsContainer.innerHTML = '';
+            console.log("[UIManager] Contenedor de opciones limpiado.");
+        } else { console.warn("[UIManager] optionsContainer no encontrado en clearQuizInterface."); }
+
+        this.currentUIElements.optionButtons = [];
+
+        if (this.currentUIElements.feedbackArea) {
+            this.updateFeedback('', null);
+             console.log("[UIManager] Área de feedback reseteada.");
         }
+
+        // NO removemos el quizUiContainer
+        // NO reseteamos todo currentUIElements, solo 'optionButtons' y 'feedbackArea'
     }
 
-    // --- Métodos de actualización de UI (sin cambios lógicos) ---
+    // --- Métodos de actualización de UI (sin cambios) ---
     public updateComboVisuals(combo: number): void {
         const root = document.documentElement; const comboCounterElement = document.querySelector('combo-counter') as ComboCounter | null; const scoreDisplayElement = this.currentUIElements?.scoreDisplay; if (!root) { return; }
         const flareIntensity = combo < FLARE_START_STREAK ? 0 : Math.min((combo - FLARE_START_STREAK + 1) / (FLARE_MAX_STREAK - FLARE_START_STREAK + 1), 1); root.style.setProperty('--flare-intensity', flareIntensity.toFixed(3));
@@ -246,126 +269,77 @@ export class UIManager {
     public updateDifficultyLabel(difficultyValue: string | number): void { this.currentUIElements?.questionBox?.setAttribute('difficulty', String(difficultyValue)); }
     public updateFeedback(message: string, type: 'correct' | 'incorrect' | 'shield' | 'info' | null): void { const feedbackArea = this.currentUIElements?.feedbackArea; if (feedbackArea) { feedbackArea.message = message; feedbackArea.type = type; } this.lastShownResultType = type; }
     public disableOptions(): void { this.currentUIElements.optionButtons?.forEach(btn => { if (btn) { btn.disabled = true; } }); }
-    public enableOptions(): void { this.currentUIElements.optionButtons?.forEach(btn => { if (btn) { btn.disabled = btn.hinted; } }); } // Habilitar solo si no está hinted
+    public enableOptions(): void { this.currentUIElements.optionButtons?.forEach(btn => { if (btn) { btn.disabled = btn.hinted; } }); }
     public applyHintVisuals(correctKey: string): void { let incorrectOptionsHinted = 0; const optionsToHint = 1; const buttons = this.currentUIElements.optionButtons; if (!buttons || buttons.length <= 1) return; const shuffledButtons = [...buttons].sort(() => 0.5 - Math.random()); shuffledButtons.forEach(btn => { if (incorrectOptionsHinted >= optionsToHint) return; if (btn && btn.optionKey !== correctKey && !btn.hinted) { btn.hinted = true; incorrectOptionsHinted++; } }); }
     private toggleCatFoodUIVisibility(show: boolean): void { const catFoodUiContainer = this.gameManager.getControlElements().catFoodUiContainer; if (catFoodUiContainer) { catFoodUiContainer.classList.toggle('hidden', !show); } }
     public updateCatFoodBar(currentAmount: number, maxAmount: number): void { const catFoodButton = this.gameManager.getControlElements().catFoodToolButton; if (catFoodButton) { const percentage = maxAmount > 0 ? Math.max(0, Math.min(100, (currentAmount / maxAmount) * 100)) : 0; catFoodButton.progressPercentage = percentage; } }
 
-
-    /**
-     * Muestra el overlay de explicación.
-     * @param explanation - El texto de la explicación a mostrar.
-     * @param onConfirm - Callback a ejecutar cuando el usuario confirma (cierra) la explicación.
-     * @param resultType - El tipo de resultado ('correct', 'incorrect', 'shield') para estilizar el overlay.
-     */
-    public showExplanation(
-        explanation: string,
-        onConfirm: () => void,
-        resultType?: 'correct' | 'incorrect' | 'shield' | 'info' | null
-    ): void {
+    // --- Gestión del Overlay de Explicación (sin cambios) ---
+    public showExplanation( explanation: string, onConfirm: () => void, resultType?: 'correct' | 'incorrect' | 'shield' | 'info' | null ): void {
         console.log("[UIManager] showExplanation llamada.");
         const overlayComponent = this.currentUIElements?.explanationOverlayComponent;
         const backdropComponent = this.currentUIElements?.blurBackdrop;
 
         if (overlayComponent) {
-            this.externalConfirmCallback = onConfirm; // Guardar el callback externo
-            // Mapear tipo de resultado para el componente
+            this.externalConfirmCallback = onConfirm;
             const finalResultTypeForComponent: ExplanationResultType = (resultType === 'info' || resultType === undefined) ? null : resultType;
-
-            // Asignar propiedades y hacer visible el overlay
             overlayComponent.explanationText = explanation;
             overlayComponent.resultType = finalResultTypeForComponent;
             overlayComponent.isVisible = true;
-
             console.log("[UIManager] Añadiendo listener 'confirm-clicked' a overlayComponent...");
-            this.addExplanationListener(overlayComponent); // Añadir listener para confirmación
-
-            // Mostrar el backdrop si existe
-            if (backdropComponent) {
-                backdropComponent.visible = true;
-            } else {
-                 console.warn("[UIManager] BackdropComponent no encontrado al intentar hacerlo visible.");
-            }
+            this.addExplanationListener(overlayComponent);
+            if (backdropComponent) { backdropComponent.visible = true; }
+            else { console.warn("[UIManager] BackdropComponent no encontrado al intentar hacerlo visible."); }
             console.log("[UIManager] showExplanation: Propiedad isVisible del overlay establecida a true.");
-
         } else {
             console.warn("UIManager: Componente de explicación no encontrado, confirmando directamente.");
-            onConfirm(); // Ejecutar callback directamente si no hay overlay
+            onConfirm();
         }
     }
-
-    /**
-     * Oculta el overlay de explicación.
-     */
     public hideExplanation(): void {
         console.log("[UIManager] --> hideExplanation() LLAMADA <--");
         const overlayComponent = this.currentUIElements?.explanationOverlayComponent;
         const backdropComponent = this.currentUIElements?.blurBackdrop;
-
         console.log("[UIManager] hideExplanation: Removiendo listener...");
-        this.removeExplanationListener(); // Siempre intentar remover listener
-
-        // Verificar si la tienda está abierta
+        this.removeExplanationListener();
         const shopIsVisible = this.gameManager.getShopManager()?.isShopOpen() ?? false;
-
-        // Ocultar backdrop solo si la tienda NO está visible
         if (backdropComponent && !shopIsVisible) {
             console.log("[UIManager] hideExplanation: Estableciendo backdrop.visible = false");
             backdropComponent.visible = false;
-        } else if (!backdropComponent) {
-             console.warn("[UIManager] hideExplanation: backdropComponent no encontrado.");
-        } else if (shopIsVisible) {
-             console.log("[UIManager] hideExplanation: No ocultando backdrop porque la tienda está visible.");
-        }
-
-        // Ocultar overlay
-        if (overlayComponent) {
-            overlayComponent.isVisible = false;
-        } else {
-             console.warn("[UIManager] hideExplanation: overlayComponent no encontrado.");
-        }
+        } else if (!backdropComponent) { console.warn("[UIManager] hideExplanation: backdropComponent no encontrado."); }
+        else if (shopIsVisible) { console.log("[UIManager] hideExplanation: No ocultando backdrop porque la tienda está visible."); }
+        if (overlayComponent) { overlayComponent.isVisible = false; }
+        else { console.warn("[UIManager] hideExplanation: overlayComponent no encontrado."); }
          console.log("[UIManager] hideExplanation FINALIZADA.");
     }
-
-    /** Añade el listener para el evento de confirmación del overlay */
     private addExplanationListener(overlayComponent: ExplanationOverlayComponent): void {
-        this.removeExplanationListener(); // Asegurar limpieza previa
+        this.removeExplanationListener();
         if (!overlayComponent || !this.externalConfirmCallback) {
-            console.warn("[UIManager] No se pudo añadir listener: overlayComponent o externalConfirmCallback es null.");
-            return;
+            console.warn("[UIManager] No se pudo añadir listener: overlayComponent o externalConfirmCallback es null."); return;
         }
-        // Crear el listener que llamará al callback externo y ocultará el overlay
         this.explanationConfirmListener = () => {
             console.log("[UIManager] >> LISTENER 'confirm-clicked' RECIBIDO <<");
             if (this.externalConfirmCallback) {
                 try {
                     console.log("[UIManager] Llamando a externalConfirmCallback...");
-                    this.externalConfirmCallback(); // Ejecutar acción de QuizGameplayState
+                    this.externalConfirmCallback();
                     console.log("[UIManager] externalConfirmCallback finalizado.");
                  }
                 catch (e) { console.error("[UIManager] Error en callback onConfirm:", e); }
-            } else {
-                console.warn("[UIManager] 'confirm-clicked' recibido pero externalConfirmCallback es null.");
-            }
-            this.hideExplanation(); // Ocultar overlay DESPUÉS de ejecutar el callback
+            } else { console.warn("[UIManager] 'confirm-clicked' recibido pero externalConfirmCallback es null."); }
+            this.hideExplanation();
         };
-        // Añadir el listener al componente (se dispara una sola vez si 'once' está en el componente)
-        overlayComponent.addEventListener('confirm-clicked', this.explanationConfirmListener); // Asumiendo que el listener interno del overlay maneja el {once: true} o lógica similar
+        overlayComponent.addEventListener('confirm-clicked', this.explanationConfirmListener);
         console.log("[UIManager] Listener 'confirm-clicked' AÑADIDO a:", overlayComponent.id);
     }
-
-    /** Remueve el listener del evento de confirmación del overlay */
     private removeExplanationListener(): void {
         const overlayComponent = this.currentUIElements?.explanationOverlayComponent;
         if (overlayComponent && this.explanationConfirmListener) {
             overlayComponent.removeEventListener('confirm-clicked', this.explanationConfirmListener);
             console.log("[UIManager] Listener 'confirm-clicked' REMOVIDO de:", overlayComponent.id);
         }
-        this.explanationConfirmListener = null; // Limpiar referencia al listener
-        // NO limpiar externalConfirmCallback aquí, podría necesitarse si la UI se reconstruye
+        this.explanationConfirmListener = null;
     }
-
-    /** Verifica si el overlay de explicación está visible */
     public isExplanationVisible(): boolean {
         const overlayComponent = this.currentUIElements?.explanationOverlayComponent;
         return overlayComponent?.isVisible ?? false;
@@ -373,19 +347,20 @@ export class UIManager {
 
     /**
      * Reconstruye la interfaz del quiz (usado después de cambios de tema, etc.).
-     * Asegura que el estado del overlay de explicación se restaure si estaba visible.
+     * Utiliza la lógica actualizada de buildQuizInterface que preserva elementos.
      */
-    public rebuildInterface(): void {
+     public rebuildInterface(): void {
+        console.log("[UIManager] rebuildInterface llamado.");
         const currentState = this.gameManager.getCurrentState();
         if (currentState instanceof QuizGameplayState && currentState.currentQuestion) {
             const appContainer = this.gameManager.getContainerElement();
             if (appContainer) {
-                // Guardar estado actual del overlay antes de limpiar
                 const isExplanationCurrentlyVisible = this.isExplanationVisible();
-                const originalConfirmCallback = this.externalConfirmCallback; // Guardar callback
+                const originalConfirmCallback = this.externalConfirmCallback;
                 const savedResultType = this.lastShownResultType;
 
-                // Construir la nueva interfaz
+                // Llamar a buildQuizInterface, que ahora reutilizará/actualizará elementos
+                console.log("[UIManager] Reconstruyendo: Llamando a buildQuizInterface...");
                 this.buildQuizInterface(
                     currentState.currentQuestion,
                     appContainer,
@@ -397,27 +372,29 @@ export class UIManager {
                 const hintWasApplied = (currentState as any).hintAppliedToQuestionId === currentState.currentQuestion.id;
                 if (hintWasApplied && this.gameManager.getPlayerData().hintCharges > 0) {
                     this.applyHintVisuals(currentState.currentQuestion.correctAnswerKey);
+                     console.log("[UIManager] Reconstruyendo: Estado de pista reaplicado.");
                 }
 
-                // Restaurar el overlay de explicación si estaba visible
+                // Restaurar el overlay si estaba visible
                 if (isExplanationCurrentlyVisible && currentState.currentQuestion.explanation) {
-                    console.log("[UIManager] Reconstruyendo interfaz: Restaurando explicación visible.");
-                    // Definir callback por defecto robusto
+                    console.log("[UIManager] Reconstruyendo: Restaurando explicación visible.");
                     const confirmCallback = originalConfirmCallback ?? (() => {
                          console.warn("[UIManager] Callback por defecto ejecutado al reconstruir interfaz con expl visible.");
                          const currentFsmState = this.gameManager.getStateMachine().getCurrentState();
-                         if (currentFsmState instanceof QuizGameplayState) {
-                             currentFsmState.proceedToNextStep();
-                         }
+                         if (currentFsmState instanceof QuizGameplayState) { currentFsmState.proceedToNextStep(); }
                      });
-                    // Volver a mostrar la explicación con el texto y callback correctos
                     this.showExplanation(
-                        currentState.currentQuestion.explanation,
-                        confirmCallback,
-                        savedResultType
+                        currentState.currentQuestion.explanation, confirmCallback, savedResultType
                     );
+                } else {
+                     console.log("[UIManager] Reconstruyendo: No se necesita restaurar explicación.");
                 }
+                 console.log("[UIManager] rebuildInterface finalizado.");
+            } else {
+                console.error("[UIManager] rebuildInterface: appContainer no encontrado.");
             }
+        } else {
+             console.warn("[UIManager] rebuildInterface: No en QuizGameplayState o sin pregunta actual.");
         }
      }
 
