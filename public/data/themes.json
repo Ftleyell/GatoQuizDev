@@ -406,7 +406,18 @@
       "--gq-shopbtn-pos-right-mobile": "0.5rem",
       "--gq-shopbtn-z-index": "31",
       "--gq-shop-button-icon-content": "'🛒'",
-      "--gq-shop-button-font-family": "inherit"
+      "--gq-shop-button-font-family": "inherit",
+      "--gq-shop-tooltip-buy-btn-bg": "#4b5563", 
+      "--gq-shop-tooltip-buy-btn-bg-affordable": "#10B981", 
+      "--gq-shop-tooltip-buy-btn-bg-unaffordable": "#EF4444", 
+      "--gq-shop-tooltip-buy-btn-bg-disabled": "rgba(55, 65, 81, 0.6)", 
+      "--gq-shop-tooltip-buy-btn-icon-color": "#facc15", 
+      "--gq-shop-tooltip-buy-btn-icon-color-affordable": "#FFFFFF", 
+      "--gq-shop-tooltip-buy-btn-icon-color-unaffordable": "#FFFFFF",
+      "--gq-shop-tooltip-buy-btn-disabled-icon-color": "#6b7280", 
+      "--gq-shop-tooltip-buy-btn-hover-bg-affordable": "#059669", 
+      "--gq-shop-tooltip-buy-btn-hover-bg-unaffordable": "#DC2626",
+      "--gq-shop-tooltip-buy-btn-hover-bg": "#5a6677"
     }
   },
   {
@@ -757,7 +768,6 @@
       "--gq-shop-tooltip-cost-text-color": "#FF69B4",
       "--gq-shop-tooltip-status-font-size": "0.75rem",
       "--gq-shop-tooltip-status-text-color": "#DB7093",
-      "--gq-shop-tooltip-buy-btn-padding-x": "1rem",
       "--gq-shop-tooltip-buy-btn-bg": "#FFC0CB",
       "--gq-shop-tooltip-buy-btn-icon-color": "#6A404A",
       "--gq-shop-tooltip-buy-btn-icon-size": "3.4rem",

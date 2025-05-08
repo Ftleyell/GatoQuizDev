@@ -4,7 +4,8 @@ import { customElement, property, state, query } from 'lit/decorators.js';
 import type { ShopItemJsonData } from '../../../types/ShopItemData';
 import type { PlayerData } from '../../../game/PlayerData';
 import './shop-item-card.ts';
-import './shop-tooltip.ts';
+import './shop-tooltip.ts'; // Asegúrate que tooltip esté importado
+import { ShopTooltip } from './shop-tooltip'; // Importar la clase para el querySelector tipado
 
 interface ItemsByCategory {
   [key: string]: ShopItemJsonData[];
@@ -25,12 +26,19 @@ export class ShopPopup extends LitElement {
   @property({ type: Object }) playerDataSnapshot: PlayerData | null = null;
   @property({ type: Boolean, reflect: true, attribute: 'visible' }) isVisible = false;
 
+  // Propiedad trigger (como discutimos)
+  @property({ type: Number }) updateTrigger = 0;
+
   @state() private _selectedItemId: string | null = null;
   @state() private _itemsByCategory: ItemsByCategory = {};
   @state() private _selectedItemData: ShopItemJsonData | null = null;
 
   @query('.shop-content-box') private _shopContentBox!: HTMLElement;
+  // Añadimos query para el tooltip interno
+  @query('shop-tooltip') private _tooltipElement!: ShopTooltip | null;
 
+
+  // --- Estilos CSS (sin cambios) ---
   static styles: CSSResultGroup = css`
     :host {
       /* El :host es el overlay que ocupa toda la pantalla */
@@ -151,27 +159,63 @@ export class ShopPopup extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    // Añadir el listener de clic al host cuando el componente se conecta al DOM
     this.addEventListener('click', this._handleHostClick as EventListener);
-    // console.log('[shop-popup] connectedCallback, host click listener ADDED.');
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    // Remover el listener de clic del host cuando el componente se desconecta del DOM
     this.removeEventListener('click', this._handleHostClick as EventListener);
-    // console.log('[shop-popup] disconnectedCallback, host click listener REMOVED.');
   }
 
+  // --- MÉTODO updated CON LOGS ---
   protected updated(changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
     super.updated(changedProperties);
+    let needsInternalUpdate = false; // Flag para saber si necesitamos actualizar estados internos
+
+    // ---> LOGS AÑADIDOS <---
+    console.log(`%c[ShopPopup DEBUG] updated()`, 'color: blue; font-weight: bold;', "Cambios:", Array.from(changedProperties.keys()));
+
+    if (changedProperties.has('playerDataSnapshot')) {
+        const oldVal = changedProperties.get('playerDataSnapshot') as PlayerData | null;
+        const newVal = this.playerDataSnapshot;
+        // Compara un valor específico para ver si cambió
+        const oldLevel = oldVal?.comboMultiplierLevel ?? 'N/A';
+        const newLevel = newVal?.comboMultiplierLevel ?? 'N/A';
+        console.log(`%c[ShopPopup DEBUG]   > playerDataSnapshot cambió. Nivel Combo Anterior: ${oldLevel}, Nuevo: ${newLevel}`, 'color: blue;');
+        needsInternalUpdate = true; // Necesitamos pasar esto al tooltip
+    }
+    if (changedProperties.has('updateTrigger')) {
+         console.log(`%c[ShopPopup DEBUG]   > updateTrigger cambió a: ${this.updateTrigger}`, 'color: blue;');
+         needsInternalUpdate = true; // El trigger indica que PlayerData pudo haber cambiado
+    }
+    if (changedProperties.has('isVisible')) {
+         console.log(`%c[ShopPopup DEBUG]   > isVisible cambió a: ${this.isVisible}`, 'color: blue;');
+         // No necesariamente necesita actualizar el tooltip, pero sí re-render
+    }
     if (changedProperties.has('items')) {
-      this._groupItemsByCategory();
+        console.log(`%c[ShopPopup DEBUG]   > items cambió.`, 'color: blue;');
+        this._groupItemsByCategory();
+        needsInternalUpdate = true; // Si cambian los items, podría afectar al tooltip si estaba seleccionado
     }
     if (changedProperties.has('_selectedItemId')) {
-      this._updateTooltipData();
+        console.log(`%c[ShopPopup DEBUG]   > _selectedItemId cambió a: ${this._selectedItemId}`, 'color: blue;');
+        this._updateTooltipData(); // Actualiza qué item mostrar en el tooltip
+        needsInternalUpdate = true; // Necesita actualizar el tooltip
+    }
+    // ---> FIN LOGS <---
+
+    // Si algo relevante para el tooltip cambió, forzamos su refresco
+    // Esto es redundante si la propiedad playerDataSnapshot se pasa correctamente
+    // y el tooltip reacciona a ella, pero lo dejamos como seguridad extra por ahora.
+    if (needsInternalUpdate && this._tooltipElement && typeof this._tooltipElement.forceRefresh === 'function') {
+         console.log(`%c[ShopPopup DEBUG]   Forzando refresh del tooltip...`, 'color: blue;');
+         // Puede ser útil esperar un microtask aquí también si forceRefresh causa problemas de timing
+         // queueMicrotask(() => this._tooltipElement?.forceRefresh());
+         this._tooltipElement.forceRefresh();
     }
   }
+  // --- FIN MÉTODO updated ---
+
 
   private _groupItemsByCategory() {
     const grouped: ItemsByCategory = {};
@@ -187,90 +231,110 @@ export class ShopPopup extends LitElement {
   }
 
   private _updateTooltipData() {
+    // Actualiza qué item se pasa al tooltip basado en la selección
     this._selectedItemData = this._selectedItemId ? this.items.find(item => item.id === this._selectedItemId) ?? null : null;
+    // Forzar actualización del tooltip aquí también podría ser una opción,
+    // aunque debería reaccionar al cambio de `itemData`
+    // this._tooltipElement?.forceRefresh();
   }
 
   private _handleItemSelection(event: CustomEvent) {
     const itemId = event.detail?.itemId;
+    // ---> LOG AÑADIDO <---
+    console.log(`[ShopPopup DEBUG] _handleItemSelection: Ítem seleccionado/deseleccionado: ${itemId}`);
+    // ---> FIN LOG <---
     if (this._selectedItemId === itemId) {
-      this._selectedItemId = null;
+      this._selectedItemId = null; // Deseleccionar
     } else {
-      this._selectedItemId = itemId;
+      this._selectedItemId = itemId; // Seleccionar
     }
+    // El cambio en _selectedItemId disparará `updated` que llamará a `_updateTooltipData`
   }
 
   private _handleBuyRequest(event: CustomEvent) {
     const itemId = event.detail?.itemId;
+     // ---> LOG AÑADIDO <---
+    console.log(`[ShopPopup DEBUG] _handleBuyRequest: Recibido buy request para: ${itemId}`);
+    // ---> FIN LOG <---
     if (itemId) {
+      // Re-emitir para que GameManager lo capture
       this.dispatchEvent(new CustomEvent('buy-item-requested', { detail: { itemId: itemId }, bubbles: true, composed: true }));
     }
   }
 
   private _handleCloseClick() {
-    // console.log('[shop-popup] close-requested evento emitido por botón X');
+    console.log('[ShopPopup DEBUG] Botón X clickeado, emitiendo close-requested.');
     this.dispatchEvent(new CustomEvent('close-requested', {bubbles: true, composed: true}));
   }
 
   private _handleHostClick(event: MouseEvent) {
-    // console.log('[shop-popup] _handleHostClick triggered. event.target:', event.target, 'this (host):', this);
-    // Si el clic ocurrió directamente en el host (el fondo) y no en el contenido de la tienda.
     if (event.target === this) {
-        // console.log('[shop-popup] Click was directly on the host (backdrop area). Emitting close-requested.');
-        this.dispatchEvent(new CustomEvent('close-requested', {bubbles: true, composed: true}));
-    } else {
-        // console.log('[shop-popup] Click was on a child of the host, not the backdrop. Target:', event.target);
+       console.log('[ShopPopup DEBUG] Clic en host (fondo), emitiendo close-requested.');
+      this.dispatchEvent(new CustomEvent('close-requested', {bubbles: true, composed: true}));
     }
   }
 
+  // --- Render con la lógica de habilitación modificada ---
   render() {
-        return html`
-          <div class="shop-content-box">
-            <button class="shop-close-btn" @click=${this._handleCloseClick} title="Cerrar Tienda (Esc)">&times;</button>
-            <h2 class="shop-title-text">Tienda de Mejoras</h2>
-            <p class="shop-score-text">Puntos: ${this.playerDataSnapshot?.score ?? 0}</p>
+    // ---> LOG AÑADIDO <---
+    console.log(`%c[ShopPopup DEBUG] render() ejecutado. Item seleccionado: ${this._selectedItemId}`, 'color: green;');
+    // ---> FIN LOG <---
+    return html`
+      <div class="shop-content-box">
+        <button class="shop-close-btn" @click=${this._handleCloseClick} title="Cerrar Tienda (Esc)">&times;</button>
+        <h2 class="shop-title-text">Tienda de Mejoras</h2>
+        <p class="shop-score-text">Puntos: ${this.playerDataSnapshot?.score ?? 0}</p>
 
-            <div class="shop-items-container">
-              ${CATEGORY_ORDER.map(category => this._itemsByCategory[category] ? html`
-                <h3 class="shop-section-title">${CATEGORY_TITLES[category] || category}</h3>
-                <div class="shop-section-items">
-                  ${this._itemsByCategory[category].map(item => {
-                    // ... (lógica para determinar estado del shop-item-card - sin cambios) ...
-                    const cost = this._calculateItemCost(item, this.playerDataSnapshot!);
-                    const isAffordable = this.playerDataSnapshot!.score >= cost;
-                    const isPurchased = this._checkItemIsPurchased(item, this.playerDataSnapshot!);
-                    const canPurchaseCheck = this._checkItemCanPurchase(item, this.playerDataSnapshot!);
-                    const level = this._getItemLevel(item, this.playerDataSnapshot!);
-                    const isMaxLevel = item.isLeveled && typeof item.maxLevel === 'number' && level >= item.maxLevel;
-                    const isDisabled = isMaxLevel || (isPurchased && !item.isLeveled) || !canPurchaseCheck || !isAffordable;
+        <div class="shop-items-container">
+          ${CATEGORY_ORDER.map(category => this._itemsByCategory[category] ? html`
+            <h3 class="shop-section-title">${CATEGORY_TITLES[category] || category}</h3>
+            <div class="shop-section-items">
+              ${this._itemsByCategory[category].map(item => {
+                // --- LÓGICA DE isDisabledCard MODIFICADA (Fase 2 del plan) ---
+                const isPurchased = this.playerDataSnapshot ? this._checkItemIsPurchased(item, this.playerDataSnapshot) : false;
+                const canPurchaseCheck = this.playerDataSnapshot ? this._checkItemCanPurchase(item, this.playerDataSnapshot) : true; // Default a true si no hay snapshot
+                const level = this.playerDataSnapshot ? this._getItemLevel(item, this.playerDataSnapshot) : -1;
+                const isMaxLevel = item.isLeveled && typeof item.maxLevel === 'number' && level >= item.maxLevel;
 
-                    return html`
-                      <shop-item-card
-                        .itemId=${item.id}
-                        .icon=${item.icon || '❓'}
-                        ?isDisabled=${isDisabled}
-                        ?isPurchased=${isPurchased && !item.isLeveled}
-                        ?isMaxLevel=${isMaxLevel}
-                        ?isSelected=${this._selectedItemId === item.id}
-                        @item-selected=${this._handleItemSelection}
-                      ></shop-item-card>
-                    `;
-                  })}
-                </div>
-              ` : nothing)}
+                // La tarjeta SÓLO se deshabilita (impide selección) si:
+                // 1. Ha alcanzado el nivel máximo.
+                // 2. Ya se compró y NO es mejorable.
+                // 3. NO cumple con los requisitos previos (canPurchaseCheck es false).
+                // ¡La falta de dinero NO la deshabilita!
+                const isDisabledCard = isMaxLevel || (isPurchased && !item.isLeveled) || !canPurchaseCheck;
+                // --- FIN LÓGICA MODIFICADA ---
+
+                return html`
+                  <shop-item-card
+                    .itemId=${item.id}
+                    .icon=${item.icon || '❓'}
+                    ?isDisabled=${isDisabledCard} /* Usar la nueva variable */
+                    ?isPurchased=${isPurchased && !item.isLeveled} /* Solo para estilo visual */
+                    ?isMaxLevel=${isMaxLevel} /* Solo para estilo visual */
+                    ?isSelected=${this._selectedItemId === item.id}
+                    @item-selected=${this._handleItemSelection}
+                  ></shop-item-card>
+                `;
+              })}
             </div>
+          ` : nothing)}
+        </div>
 
-            <shop-tooltip
-              .itemData=${this._selectedItemData}
-              .playerDataSnapshot=${this.playerDataSnapshot}
-              @buy-item-requested=${this._handleBuyRequest}
-            ></shop-tooltip>
-          </div>
-        `;
-    }
+        <shop-tooltip
+          .itemData=${this._selectedItemData}
+          .playerDataSnapshot=${this.playerDataSnapshot} /* Pasa el snapshot */
+          @buy-item-requested=${this._handleBuyRequest}
+          id="internal-tooltip"
+        ></shop-tooltip>
+      </div>
+    `;
+  }
 
-   // --- Métodos Helper (sin cambios) ---
-   private _calculateItemCost(itemData: ShopItemJsonData, playerData: PlayerData): number { const costParams = itemData.cost; let cost = costParams.base; if (itemData.isLeveled) { const levelRef = itemData.levelRef; const currentLevel = levelRef ? (playerData as any)[levelRef] ?? 0 : 0; if (costParams.type === 'exponential' && typeof costParams.multiplier === 'number') { cost = costParams.base * Math.pow(costParams.multiplier, currentLevel); } else { cost = costParams.base + (costParams.perLevel ?? 0) * currentLevel; } } else if (costParams.levelRef && typeof costParams.perLevel === 'number') { const linkedLevel = (playerData as any)[costParams.levelRef] ?? 0; cost = costParams.base + costParams.perLevel * linkedLevel; } return Math.round(cost); }
-   private _checkItemIsPurchased(itemData: ShopItemJsonData, playerData: PlayerData): boolean { if (!itemData.isPurchasedCheck) return false; const check = itemData.isPurchasedCheck; const valueRef = check.valueRef; const currentValue = (playerData as any)[valueRef]; if (typeof currentValue === 'undefined') return false; switch (check.condition) { case 'isTrue': return currentValue === true; case 'isFalse': return currentValue === false; case 'greaterThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue > check.limit; default: return false; } }
-   private _checkItemCanPurchase(itemData: ShopItemJsonData, playerData: PlayerData): boolean { if (!itemData.purchaseCheck) return true; const check = itemData.purchaseCheck; const valueRef = check.valueRef; const currentValue = (playerData as any)[valueRef]; if (typeof currentValue === 'undefined') { return false; } switch (check.condition) { case 'lessThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue < check.limit; case 'lessThanOrEqual': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue <= check.limit; case 'isFalse': return currentValue === false; case 'isTrue': return currentValue === true; case 'greaterThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue > check.limit; case 'greaterThanOrEqual': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue >= check.limit; default: return false; } }
-   private _getItemLevel(itemData: ShopItemJsonData, playerData: PlayerData): number { if (!itemData.isLeveled || !itemData.levelRef) return -1; return (playerData as any)[itemData.levelRef] ?? 0; }
+  // --- Helpers ---
+  private _calculateItemCost(itemData: ShopItemJsonData, playerData: PlayerData): number { const costParams = itemData.cost; let cost = costParams.base; if (itemData.isLeveled) { const levelRef = itemData.levelRef; const currentLevel = levelRef ? (playerData as any)[levelRef] ?? 0 : 0; if (costParams.type === 'exponential' && typeof costParams.multiplier === 'number') { cost = costParams.base * Math.pow(costParams.multiplier, currentLevel); } else { cost = costParams.base + (costParams.perLevel ?? 0) * currentLevel; } } else if (costParams.levelRef && typeof costParams.perLevel === 'number') { const linkedLevel = (playerData as any)[costParams.levelRef] ?? 0; cost = costParams.base + costParams.perLevel * linkedLevel; } return Math.round(cost); }
+  private _checkItemIsPurchased(itemData: ShopItemJsonData, playerData: PlayerData): boolean { if (!itemData.isPurchasedCheck) return false; const check = itemData.isPurchasedCheck; const valueRef = check.valueRef; const currentValue = (playerData as any)[valueRef]; if (typeof currentValue === 'undefined') return false; switch (check.condition) { case 'isTrue': return currentValue === true; case 'isFalse': return currentValue === false; case 'greaterThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue > check.limit; default: return false; } }
+  private _checkItemCanPurchase(itemData: ShopItemJsonData, playerData: PlayerData): boolean { if (!itemData.purchaseCheck) return true; const check = itemData.purchaseCheck; const valueRef = check.valueRef; const currentValue = (playerData as any)[valueRef]; if (typeof currentValue === 'undefined') { return false; } switch (check.condition) { case 'lessThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue < check.limit; case 'lessThanOrEqual': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue <= check.limit; case 'isFalse': return currentValue === false; case 'isTrue': return currentValue === true; case 'greaterThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue > check.limit; case 'greaterThanOrEqual': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue >= check.limit; default: return false; } }
+  private _getItemLevel(itemData: ShopItemJsonData, playerData: PlayerData): number { if (!itemData.isLeveled || !itemData.levelRef) return -1; return (playerData as any)[itemData.levelRef] ?? 0; }
 }
+
+declare global { interface HTMLElementTagNameMap { 'shop-popup': ShopPopup; } }
