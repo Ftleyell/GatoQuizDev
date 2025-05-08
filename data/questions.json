@@ -1,0 +1,1354 @@
+[
+  {
+    "id": 1,
+    "text": "Según Michel Foucault en '¿Qué es un autor?', ¿cuál es la función principal del 'nombre de autor'?",
+    "options": [
+      {"key": "A", "text": "Funciona para caracterizar un modo de ser del discurso."},
+      {"key": "B", "text": "Es simplemente un elemento decorativo en un discurso."},
+      {"key": "C", "text": "Sirve únicamente para identificar la propiedad intelectual."},
+      {"key": "D", "text": "Niega la importancia del sujeto en la interpretación del texto."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "1",
+    "explanation": "Foucault sostiene que el 'nombre de autor' no es un simple elemento, sino que funciona para caracterizar un modo de ser específico del discurso."
+  },
+  {
+    "id": 2,
+    "text": "¿Qué indica, según Foucault, el hecho de que un discurso tenga un autor?",
+    "options": [
+      {"key": "A", "text": "Que el discurso es universalmente válido e indiferente a la cultura."},
+      {"key": "B", "text": "Que no es indiferente y posee un estatuto particular en una cultura dada."},
+      {"key": "C", "text": "Que el autor tiene control absoluto sobre todas sus interpretaciones."},
+      {"key": "D", "text": "Que el discurso carece de influencia del sistema jurídico."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Para Foucault, que un discurso tenga autor señala que no es indiferente; es una palabra que debe recibirse de cierto modo y posee un estatuto particular en una cultura."
+  },
+  {
+    "id": 3,
+    "text": "De acuerdo con Foucault, ¿cómo se relaciona la 'función autor' con el sistema jurídico y legal?",
+    "options": [
+      {"key": "A", "text": "La función autor es completamente independiente de cualquier sistema legal."},
+      {"key": "B", "text": "El sistema jurídico se enfoca solo en la originalidad, no en la función autor."},
+      {"key": "C", "text": "Está intrínsecamente ligada al sistema jurídico y legal, implicando influencia institucional."},
+      {"key": "D", "text": "La función autor solo es relevante en discursos puramente literarios."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Foucault vincula la función del autor al sistema jurídico y legal, lo que implica que las instituciones y el marco legal influyen en la figura y función de los autores."
+  },
+  {
+    "id": 4,
+    "text": "¿Cuál es la postura de Foucault sobre el concepto de 'sujeto' dentro del estructuralismo?",
+    "options": [
+      {"key": "A", "text": "El estructuralismo niega radicalmente la existencia del concepto de sujeto."},
+      {"key": "B", "text": "El sujeto es visto como totalmente autónomo e independiente del significante."},
+      {"key": "C", "text": "El estructuralismo se centra exclusivamente en la estructura, ignorando al sujeto."},
+      {"key": "D", "text": "No se niega el concepto de sujeto, sino que se aborda su dependencia en relación con el significante."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Foucault aclara que, incluso dentro del estructuralismo, no se niega el concepto de sujeto, sino que se analiza su dependencia y articulación con el significante."
+  },
+  {
+    "id": 5,
+    "text": "Según Jorge Luis Borges en 'El Libro', ¿qué es lo más importante de un autor y de un libro?",
+    "options": [
+      {"key": "A", "text": "La entonación y la voz del autor."},
+      {"key": "B", "text": "La complejidad de la trama y la originalidad de los personajes."},
+      {"key": "C", "text": "El rigor histórico y la precisión de los datos presentados."},
+      {"key": "D", "text": "La adherencia a las normas gramaticales y estilísticas de la época."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "1",
+    "explanation": "Borges enfatiza: 'Lo más importante de un autor es su entonación, lo más importante de un libro es la voz de un autor, esa voz que llega a nosotros.'"
+  },
+  {
+    "id": 6,
+    "text": "¿Qué recomendación hace Borges respecto a la lectura de críticas literarias?",
+    "options": [
+      {"key": "A", "text": "Leer siempre las críticas antes de la obra para una mejor comprensión inicial."},
+      {"key": "B", "text": "Evitar leer críticas antes que la obra original, pues la voz del crítico no es la original."},
+      {"key": "C", "text": "Considerar la voz del crítico como una extensión válida de la voz del autor."},
+      {"key": "D", "text": "Basar la interpretación de una obra exclusivamente en el consenso de los críticos."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Borges recomienda evitar leer críticas antes que la obra original, argumentando que la voz del crítico no es la voz original del autor."
+  },
+  {
+    "id": 7,
+    "text": "En el paralelismo entre Freud y Lacan, ¿cómo se caracteriza la aportación de Lacan al psicoanálisis mencionada en el texto?",
+    "options": [
+      {"key": "A", "text": "Lacan se enfoca en el yo como un sistema de percepción-conciencia, al igual que Freud."},
+      {"key": "B", "text": "Lacan niega el carácter subversivo del psicoanálisis propuesto por Freud."},
+      {"key": "C", "text": "Lacan aborda la estructura del lenguaje en el psicoanálisis y reconstruye conceptos como el sujeto."},
+      {"key": "D", "text": "Lacan considera el inconsciente únicamente como la fuerza de la pulsión en el fondo del alma."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "El texto señala que Lacan enfatiza el carácter subversivo del psicoanálisis, aborda la estructura del lenguaje en su seno y reconstruye conceptos como el de sujeto."
+  },
+  {
+    "id": 8,
+    "text": "Según Lacan, ¿cuál es la naturaleza esencial del 'Yo'?",
+    "options": [
+      {"key": "A", "text": "Es una entidad innata, verdadera y completamente autónoma del Otro."},
+      {"key": "B", "text": "Es una representación directa y fiel de la realidad objetiva."},
+      {"key": "C", "text": "Es el núcleo de la verdad del sujeto, inafectado por la imagen especular."},
+      {"key": "D", "text": "Es esencialmente ilusorio y se constituye como resultado del Otro."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "Lacan postula que el 'Yo' es el resultado del Otro, una imagen especular reflejada y devuelta al sujeto, siendo, por lo tanto, esencialmente ilusorio."
+  },
+  {
+    "id": 9,
+    "text": "¿Qué ocurre fundamentalmente durante el 'Estadio del Espejo' descrito por Lacan?",
+    "options": [
+      {"key": "A", "text": "Un niño entre 6 y 18 meses anticipa el dominio de su unidad corporal al captar su imagen en el espejo."},
+      {"key": "B", "text": "El niño desarrolla plenamente su capacidad de habla y comprensión del lenguaje complejo."},
+      {"key": "C", "text": "El niño supera completamente su narcisismo primario y se orienta al objeto."},
+      {"key": "D", "text": "El niño internaliza las normas sociales y morales de su cultura."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "1",
+    "explanation": "El Estadio del Espejo es la etapa en que un niño (6-18 meses) anticipa el dominio de su unidad corporal mediante la captación de su imagen completa en el espejo."
+  },
+  {
+    "id": 10,
+    "text": "Metafóricamente, ¿cómo se contrasta la aportación de Lacan con la de Freud respecto a la imagen del sujeto?",
+    "options": [
+      {"key": "A", "text": "Lacan representa una escultura antigua y Freud una fotografía digital."},
+      {"key": "B", "text": "Lacan representa el universo de la pintura moderna, mientras Freud una imagen más clásica del sujeto."},
+      {"key": "C", "text": "Lacan es como la música dodecafónica y Freud como una sinfonía romántica."},
+      {"key": "D", "text": "Lacan es el cine experimental y Freud el teatro realista."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "El texto indica que, metafóricamente, Lacan representa el universo de la pintura moderna (un cuadro moderno), en contraste con Freud, quien ofrecería una imagen más clásica del sujeto."
+  },
+  {
+    "id": 11,
+    "text": "¿Sobre qué trató la tesis doctoral de Lacan y cómo describió este fenómeno?",
+    "options": [
+      {"key": "A", "text": "La histeria, descrita como un desorden puramente emocional sin estructura lógica."},
+      {"key": "B", "text": "El Estadio del Espejo, conceptualizado como una fase de confusión y desintegración."},
+      {"key": "C", "text": "La paranoia, descrita como una forma de razonamiento lógico que busca una verdad oculta."},
+      {"key": "D", "text": "El lenguaje en la psicosis, visto como una manifestación caótica e incomprensible."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La tesis doctoral de Lacan versó sobre la paranoia, la cual caracterizó como una forma de razonamiento lógico, una búsqueda de la verdad oculta tras el desorden aparente de las apariencias (complot)."
+  },
+  {
+    "id": 12,
+    "text": "¿Cómo evolucionó la teoría de Lacan sobre las mujeres y el goce femenino?",
+    "options": [
+      {"key": "A", "text": "Siempre las consideró una categoría central, idéntica en su estructura a la masculina."},
+      {"key": "B", "text": "Pasó de no categorizarlas a verlas como una 'NO categoría', enfatizando la especificidad del goce femenino."},
+      {"key": "C", "text": "Inicialmente las describió detalladamente como una categoría psicoanalítica, para luego excluirlas."},
+      {"key": "D", "text": "Mantuvo consistentemente que las mujeres y su goce no podían ser abordados por el psicoanálisis."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "3",
+    "explanation": "Inicialmente, las mujeres no existían como categoría en los trabajos de Lacan (años 60); luego habló de la 'NO categoría' de las mujeres, destacando la particularidad del goce femenino, que capta una especie de 'locura femenina'."
+  },
+  {
+    "id": 13,
+    "text": "Según Lacan, ¿cuál es una característica fundamental de la 'Cadena Significante'?",
+    "options": [
+      {"key": "A", "text": "Es infinita, no se cierra, y el punto donde 'salta' es la causa del objeto de deseo (objeto a petit)."},
+      {"key": "B", "text": "Es una estructura finita y cerrada que define unívocamente el significado de cada término."},
+      {"key": "C", "text": "Es completamente caótica y no sigue ninguna lógica articulatoria discernible."},
+      {"key": "D", "text": "Se refiere exclusivamente a la estructura del pensamiento consciente y racional."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "La cadena significante, influenciada por Saussure, es para Lacan la estructura básica del inconsciente y del lenguaje. Es infinita, no se cierra, y el punto donde 'salta' o falla se relaciona con la causa del deseo, el objeto a petit."
+  },
+  {
+    "id": 14,
+    "text": "¿Qué caracteriza al registro de lo Real en la teoría de los tres registros de Lacan?",
+    "options": [
+      {"key": "A", "text": "Es el lugar de las ilusiones del yo y las identificaciones especulares."},
+      {"key": "B", "text": "Escapa a toda simbolización y emerge de lo ilimitado, siendo la falta que retorna."},
+      {"key": "C", "text": "Está determinado por las estructuras sociales, simbólicas y del lenguaje."},
+      {"key": "D", "text": "Es fácilmente representable a través de la palabra y se integra plenamente en el discurso."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Lo Real, según Lacan, es aquello que escapa a toda simbolización, emerge de lo ilimitado y se manifiesta como una falta fundamental que retorna. Si se separa de lo Simbólico e Imaginario, la estructura del ser se derrumba."
+  },
+  {
+    "id": 15,
+    "text": "¿Cómo describe Lacan el registro Imaginario?",
+    "options": [
+      {"key": "A", "text": "Como la ley que nos determina y está dominada por estructuras simbólicas."},
+      {"key": "B", "text": "Como aquello que permite anularse a lo simbólico y escapa a la simbolización."},
+      {"key": "C", "text": "Como el lugar de las ilusiones del yo, formando parte del psiquismo."},
+      {"key": "D", "text": "Como la base de la verdad última del sujeto, independiente de la imagen."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El registro Imaginario en Lacan es fundamentalmente el lugar de las ilusiones del yo, el ámbito de las identificaciones especulares y forma parte integral del psiquismo."
+  },
+  {
+    "id": 16,
+    "text": "¿Cuál es una característica central del registro Simbólico según Lacan?",
+    "options": [
+      {"key": "A", "text": "Ser el espacio de la formación del yo ideal a través de la imagen especular."},
+      {"key": "B", "text": "Representar lo imposible de ser capturado por el lenguaje, la falta primordial."},
+      {"key": "C", "text": "Albergar las pulsiones primarias antes de cualquier articulación lingüística."},
+      {"key": "D", "text": "Tener prioridad en la determinación del sujeto, siendo la ley y el orden del lenguaje."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "El registro Simbólico, para Lacan, tiene una prioridad lógica en tanto nos determina como sujetos. Es el orden de la ley, el lenguaje y las estructuras sociales que nos preexisten y nos moldean."
+  },
+  {
+    "id": 17,
+    "text": "En el 'Informe de Roma', ¿qué caracteriza a la 'Palabra Vacía' en la relación analítica?",
+    "options": [
+      {"key": "A", "text": "La anticipación de lo que el Yo (consciente) planifica decir."},
+      {"key": "B", "text": "Ser una manifestación sorpresiva e imprevista del inconsciente."},
+      {"key": "C", "text": "Producir un efecto retroactivo que redefine el sentido del discurso."},
+      {"key": "D", "text": "Abrir siempre nuevas cadenas disociativas de forma inesperada."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "La Palabra Vacía, según Lacan, se corresponde con la vertiente de la comunicación lineal en la que el Yo planifica lo que va a decir (anticipación), siendo un discurso que no necesariamente toca la verdad del inconsciente."
+  },
+  {
+    "id": 18,
+    "text": "¿Cuál es una característica distintiva de la 'Palabra Plena' según Lacan?",
+    "options": [
+      {"key": "A", "text": "Es una comunicación lineal y predecible, controlada por el Yo."},
+      {"key": "B", "text": "Emerge sorpresivamente como una manifestación del inconsciente."},
+      {"key": "C", "text": "Carece de efecto retroactivo en la significación del discurso del paciente."},
+      {"key": "D", "text": "Es principalmente utilizada por el terapeuta para guiar la sesión de forma directiva."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Palabra Plena, en contraste con la vacía, emerge de manera sorpresiva, es una manifestación del inconsciente (no del Yo) y se define por el efecto retroactivo que produce, abriendo nuevas significaciones."
+  },
+  {
+    "id": 19,
+    "text": "¿Cuál es el médium fundamental del psicoanalista, según lo expuesto por Lacan en 'Función y campo de la palabra y el lenguaje en psicoanálisis'?",
+    "options": [
+      {"key": "A", "text": "La interpretación exclusiva de los sueños y sus símbolos."},
+      {"key": "B", "text": "La observación detallada del comportamiento no verbal del paciente."},
+      {"key": "C", "text": "La palabra."},
+      {"key": "D", "text": "La aplicación de técnicas de sugestión hipnótica."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Lacan, en su 'Informe de Roma', retoma la 'cura por la palabra' de Freud, enfatizando que el médium esencial del psicoanalista es la palabra."
+  },
+  {
+    "id": 20,
+    "text": "Según Lacan, en el contexto del análisis, ¿qué valor puede adquirir el silencio del paciente?",
+    "options": [
+      {"key": "A", "text": "Es siempre una forma de resistencia activa que debe ser confrontada inmediatamente."},
+      {"key": "B", "text": "Indica la ausencia total de pensamiento o de producción significante."},
+      {"key": "C", "text": "Es un elemento irrelevante que el analista debe ignorar para no interrumpir."},
+      {"key": "D", "text": "Puede cobrar valor de significante, especialmente cuando hay un oyente (el analista)."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Lacan sostiene que en el análisis no hay palabra sin respuesta, e incluso el silencio, en presencia de un oyente (el analista), cobra valor de significante y debe ser considerado."
+  },
+  {
+    "id": 21,
+    "text": "Cuando el analista puntúa un 'término significativo' en el discurso del paciente, ¿qué busca lograr según Lacan?",
+    "options": [
+      {"key": "A", "text": "Extraer un significante específico, darle un nuevo sentido y producir una nueva significación."},
+      {"key": "B", "text": "Ignorar dicho término para no interrumpir el flujo de la palabra vacía del Yo."},
+      {"key": "C", "text": "Interpretarlo siempre como una manifestación de resistencia al proceso analítico."},
+      {"key": "D", "text": "Limitarse a registrarlo objetivamente sin intervenir en su posible significación ulterior."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Al puntuar un término significativo (emergencia de palabra plena), el analista extrae un significante, le otorga un nuevo sentido, y con ello modifica y produce una nueva significación en el discurso del paciente (ej. 'cansada' en vez de 'casada')."
+  },
+  {
+    "id": 22,
+    "text": "¿Cuál es el propósito de la 'escansión' o suspensión no cronometrada de la sesión en la práctica lacaniana?",
+    "options": [
+      {"key": "A", "text": "Asegurar que todas las sesiones tengan una duración fija y preestablecida."},
+      {"key": "B", "text": "Funcionar como una interrupción con valor de interpretación o intervención, para que el paciente siga asociando."},
+      {"key": "C", "text": "Permitir al analista tomar un breve descanso sin afectar el desarrollo del análisis."},
+      {"key": "D", "text": "Marcar el final definitivo del análisis una vez que el paciente ha agotado su discurso."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La escansión lacaniana es un corte de la sesión no cronometrado que sigue la lógica del inconsciente (tiempo lógico). Esta interrupción tiene valor de interpretación o intervención, buscando que el paciente continúe asociando y que el análisis produzca efectos."
+  },
+  {
+    "id": 23,
+    "text": "¿En qué se diferencia la anamnesis psicoanalítica propuesta por Lacan de una anamnesis centrada en la 'realidad' fáctica?",
+    "options": [
+      {"key": "A", "text": "Busca recopilar exhaustivamente hechos objetivos y cronológicos de la vida del paciente."},
+      {"key": "B", "text": "Se concentra exclusivamente en los eventos traumáticos de la primera infancia."},
+      {"key": "C", "text": "Se enfoca en la 'verdad' del sujeto, que emerge como efecto de la palabra plena y reordena contingencias pasadas."},
+      {"key": "D", "text": "Es un proceso idéntico a la anamnesis médica tradicional, buscando un diagnóstico preciso."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "3",
+    "explanation": "La anamnesis psicoanalítica, según Lacan, no persigue la 'realidad' de los hechos, sino la 'verdad' del sujeto. Esta verdad es un efecto de la palabra plena que tiene el poder de reordenar las contingencias pasadas y modificar la posición subjetiva."
+  },
+  {
+    "id": 24,
+    "text": "Según la definición de Lacan citada en 'Función y campo...', ¿qué es el inconsciente?",
+    "options": [
+      {"key": "A", "text": "Un reservorio de instintos primitivos y deseos reprimidos sin ninguna estructura lingüística."},
+      {"key": "B", "text": "Un sinónimo exacto del Ello freudiano, caracterizado por ser puramente pulsional y caótico."},
+      {"key": "C", "text": "Un capítulo de la historia personal del individuo marcado por el olvido voluntario y consciente."},
+      {"key": "D", "text": "Aquella parte del discurso concreto transindividual que falta a la disposición del sujeto para restablecer la continuidad de su discurso consciente."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "3",
+    "explanation": "Lacan define el inconsciente como 'Aquella parte del discurso concreto en cuanto transindividual que falta a la disposición del sujeto para restablecer la continuidad de su discurso consciente.' Es decir, se manifiesta en un discurso articulado que falta a la conciencia."
+  },
+  {
+    "id": 25,
+    "text": "En 'La instancia de la letra en el inconsciente...', ¿cuál de las siguientes NO es una acepción de la palabra 'instancia' explorada por Lacan?",
+    "options": [
+      {"key": "A", "text": "Una etapa cronológica fija del desarrollo psicosexual infantil."},
+      {"key": "B", "text": "La autoridad de la letra (significante) en el funcionamiento del inconsciente."},
+      {"key": "C", "text": "La insistencia o repetición, vinculada a la compulsión a la repetición freudiana."},
+      {"key": "D", "text": "Una connotación de legalidad o estructura normativa, heredada del ámbito judicial."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Lacan explora varias acepciones de 'instancia': psíquica (como las instancias freudianas), legal, etimológica (instare: insistir, repetir) y la autoridad de la letra. Una etapa evolutiva cronológica no se incluye en estas acepciones."
+  },
+  {
+    "id": 26,
+    "text": "¿Qué representa 'la letra' para Lacan en el contexto de su escrito sobre 'La instancia de la letra...'?",
+    "options": [
+      {"key": "A", "text": "Un elemento puramente gráfico y visual, sin relación con el lenguaje hablado."},
+      {"key": "B", "text": "La estructura esencialmente localizada del significante en la cadena del discurso."},
+      {"key": "C", "text": "El significado último, estable y unívoco de una palabra o concepto."},
+      {"key": "D", "text": "Un concepto obsoleto del estructuralismo que Lacan busca superar."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Para Lacan, 'la letra' es el soporte material del discurso y se refiere a la estructura esencialmente localizada del significante, que obtiene su lugar por leyes combinatorias (metonimia y metáfora) en la cadena del discurso concreto."
+  },
+  {
+    "id": 27,
+    "text": "En el algoritmo S/s (Significante sobre significado) de Lacan, ¿qué simboliza la barra '/' entre S y s?",
+    "options": [
+      {"key": "A", "text": "Una conexión directa, recíproca e indisoluble entre el significante y el significado."},
+      {"key": "B", "text": "La primacía indiscutible del significado sobre el significante en la producción de sentido."},
+      {"key": "C", "text": "Una resistencia a la significación unívoca, vinculada a la represión primaria."},
+      {"key": "D", "text": "La transparencia total del lenguaje y la fácil accesibilidad al significado."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Lacan modifica el signo saussureano. En su algoritmo S/s, la barra (/) representa una resistencia a la significación unívoca y está vinculada a la represión primaria; un significante puede remitir a múltiples significados que 'deslizan' bajo él."
+  },
+  {
+    "id": 28,
+    "text": "Al relacionar el algoritmo S/s con sus tres registros, ¿a qué registro asocia Lacan predominantemente el Significante (S)?",
+    "options": [
+      {"key": "A", "text": "Al Registro Real, como aquello que resiste la simbolización."},
+      {"key": "B", "text": "Al Registro Imaginario, como la imagen acústica o concepto."},
+      {"key": "C", "text": "A una combinación indiferenciada de los tres registros por igual."},
+      {"key": "D", "text": "Al Registro Simbólico, como elemento del orden del lenguaje."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "En la articulación del algoritmo S/s con los tres registros, Lacan asocia el Significante (S) al Registro Simbólico (el orden del lenguaje), el significado (s) al Registro Imaginario, y la barra de resistencia al Real."
+  },
+  {
+    "id": 29,
+    "text": "¿Qué son los 'puntos de capitoné' o 'bastas de acolchado' en la teoría lacaniana del significante?",
+    "options": [
+      {"key": "A", "text": "Puntos donde el significante y el significado se anudan temporalmente, deteniendo el deslizamiento del sentido."},
+      {"key": "B", "text": "Momentos de máxima confusión y sinsentido en el discurso del paciente que el analista debe evitar."},
+      {"key": "C", "text": "Las defensas yoicas más rígidas y estructuradas contra la emergencia del inconsciente."},
+      {"key": "D", "text": "Errores de interpretación cometidos por el analista que fijan incorrectamente el sentido."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Los 'puntos de capitoné' (bastas de acolchado) son, para Lacan, puntos cruciales en la cadena significante donde el significante y el significado se anudan, deteniendo momentáneamente el deslizamiento constante del significado y fijando un sentido."
+  },
+  {
+    "id": 30,
+    "text": "Según Lacan, ¿qué caracteriza a la metonimia (desplazamiento freudiano) en la cadena significante?",
+    "options": [
+      {"key": "A", "text": "Siempre crea significaciones nuevas y sorprendentes, revelando el inconsciente."},
+      {"key": "B", "text": "Mantiene el sentido que viene diciendo el paciente (palabra vacía) a través de la conexión palabra a palabra."},
+      {"key": "C", "text": "Se basa en la sustitución de un significante por otro, produciendo un plus de sentido."},
+      {"key": "D", "text": "Es el mecanismo principal de la represión, ocultando el verdadero deseo."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "3",
+    "explanation": "La metonimia, para Lacan (análoga al desplazamiento en Freud), es la conexión de significante a significante en la dimensión temporal del discurso. No crea significaciones nuevas, sino que mantiene el sentido que el paciente ya viene expresando, ligándose a la palabra vacía."
+  },
+  {
+    "id": 31,
+    "text": "¿Cuál es el efecto principal de la metáfora (condensación freudiana) en la teoría lacaniana?",
+    "options": [
+      {"key": "A", "text": "Mantener la conexión lineal y temporal del discurso sin alterar el significado preexistente."},
+      {"key": "B", "text": "Reforzar las defensas del yo consciente contra la irrupción de contenidos inconscientes."},
+      {"key": "C", "text": "Crear un nuevo sentido (palabra plena) mediante la sustitución de un significante por otro, produciendo un plus de sentido."},
+      {"key": "D", "text": "Evitar el franqueamiento de la barra de la represión, manteniendo el inconsciente silenciado."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La metáfora (análoga a la condensación en Freud) implica la sustitución de un significante por otro. Este cruce produce un nuevo sentido (palabra plena), permitiendo que algo del inconsciente se filtre y generando un 'plus de sentido'."
+  },
+  {
+    "id": 32,
+    "text": "Según el Seminario 1 de Lacan ('Los Escritos Técnicos de Freud'), ¿a qué remite fundamentalmente la significación?",
+    "options": [
+      {"key": "A", "text": "A un objeto real y tangible en el mundo exterior que la palabra designa."},
+      {"key": "B", "text": "A una verdad última, trascendente y definitiva que el lenguaje puede alcanzar."},
+      {"key": "C", "text": "Al pensamiento lógico y consciente del sujeto que enuncia el discurso."},
+      {"key": "D", "text": "Siempre a otra significación, en un juego incesante de remisiones significantes."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "En el Seminario 1, Lacan afirma que la significación 'nunca remite más que a ella misma', es decir, a otra significación, en un deslizamiento continuo donde un significante remite a otro significante."
+  },
+  {
+    "id": 33,
+    "text": "En la fábula de los compañeros de Ulises (transformados en cerdos) mencionada por Lacan, ¿cuándo se transforma el 'gruñido' en 'palabra'?",
+    "options": [
+      {"key": "A", "text": "Cuando alguien se plantea qué pretende hacer creer con ese gruñido y cree en esa intención, lo que implica una 'puntuación' del terapeuta."},
+      {"key": "B", "text": "Automáticamente, en el instante en que Ulises escucha los gruñidos y los reconoce como sus compañeros."},
+      {"key": "C", "text": "Cuando los compañeros recuperan su forma humana por intervención divina o mágica."},
+      {"key": "D", "text": "Nunca, ya que el gruñido es inherentemente animal y no puede acceder al estatuto de palabra humana."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "3",
+    "explanation": "Lacan utiliza esta fábula para ilustrar que una emisión (como un gruñido) se transforma en palabra cuando hay una intención de hacer creer algo, y se cree en esa intención. Esto a menudo implica una 'puntuación' por parte del analista que otorga ese estatuto de palabra al discurso."
+  },
+  {
+    "id": 34,
+    "text": "Lacan relaciona el Estadio del Espejo como un 'nuevo acto psíquico' con un concepto central de Freud. ¿Cuál es este concepto?",
+    "options": [
+      {"key": "A", "text": "El complejo de Edipo y la prohibición del incesto."},
+      {"key": "B", "text": "La constitución del narcisismo y la unificación de las pulsiones parciales en el yo."},
+      {"key": "C", "text": "La pulsión de muerte y su manifestación en la compulsión a la repetición."},
+      {"key": "D", "text": "El desarrollo del superyó como instancia moral y crítica."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Lacan retoma 'Introducción al Narcisismo' de Freud, donde este habla de un 'nuevo acto psíquico' necesario para la unificación de las pulsiones parciales en el yo (narcisismo). Lacan postula que este 'nuevo acto psíquico' es precisamente el Estadio del Espejo."
+  },
+  {
+    "id": 35,
+    "text": "¿Qué implica la afirmación lacaniana 'El yo es otro (a)' en el contexto del Estadio del Espejo?",
+    "options": [
+      {"key": "A", "text": "Que el yo es una entidad completamente separada y ajena al sujeto, sin relación alguna."},
+      {"key": "B", "text": "Que el yo es idéntico y se fusiona completamente con la imagen especular sin ninguna diferencia."},
+      {"key": "C", "text": "Una distancia y alienación fundamental, ya que el yo se constituye a partir de una imagen externa (el otro, 'a')."},
+      {"key": "D", "text": "Que el yo se forma exclusivamente a través de la internalización de las figuras parentales significativas."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La frase 'El yo es otro (a)' subraya la alienación constitutiva del yo. Este se forma a partir de una imagen que es 'otra' (la imagen en el espejo, el semejante, 'a'), implicando una distancia entre esa imagen idealizada y la experiencia fragmentada del sujeto."
+  },
+  {
+    "id": 36,
+    "text": "En la constitución del yo según Lacan, ¿qué significa el término 'alienación'?",
+    "options": [
+      {"key": "A", "text": "Un estado patológico caracterizado por la pérdida del juicio de realidad."},
+      {"key": "B", "text": "La pérdida de contacto con el entorno social y las normas culturales."},
+      {"key": "C", "text": "La separación completa y definitiva del sujeto respecto a sus deseos inconscientes."},
+      {"key": "D", "text": "Que el yo se constituye fundamentalmente a partir de una imagen del Otro, quedando 'pegado' o identificado con ella."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "En el Estadio del Espejo, la 'alienación' se refiere a que el yo se constituye a partir de una imagen que es 'Otra' (la imagen especular o la mirada del Otro). El sujeto se identifica con esta imagen externa, quedando 'alienado' o 'pegado' a ella, lo que es fundante para el yo."
+  },
+  {
+    "id": 37,
+    "text": "¿Qué desfasaje es crucial en la experiencia del Estadio del Espejo, relacionado con la prematuración del nacimiento humano?",
+    "options": [
+      {"key": "A", "text": "El desfasaje entre la percepción visual de una imagen corporal completa (anticipación) y la inmadurez motriz real del infante."},
+      {"key": "B", "text": "El desfasaje entre el desarrollo cognitivo avanzado y un desarrollo emocional rudimentario."},
+      {"key": "C", "text": "El desfasaje entre las elevadas expectativas de los padres y las capacidades limitadas del niño."},
+      {"key": "D", "text": "El desfasaje entre la comprensión temprana del lenguaje hablado y la tardía adquisición del lenguaje escrito."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Un aspecto clave del Estadio del Espejo es la prematuración fisiológica del ser humano al nacer. Esto genera un desfasaje entre la percepción visual (el niño ve una imagen unificada y completa de sí mismo) y su coordinación motriz aún insuficiente. Esta imagen completa es una anticipación."
+  },
+  {
+    "id": 38,
+    "text": "En la relación imaginaria inaugurada en el Estadio del Espejo, ¿qué tipo de tensión estructural se genera con el Otro (semejante), según Lacan?",
+    "options": [
+      {"key": "A", "text": "Una tensión puramente libidinal, caracterizada por la atracción y la búsqueda de fusión armoniosa."},
+      {"key": "B", "text": "Una tensión agresiva, de rivalidad y celos, ya que en lo imaginario 'hay lugar para dos'."},
+      {"key": "C", "text": "Una tensión de indiferencia y apatía mutua, donde el Otro no tiene relevancia para el yo."},
+      {"key": "D", "text": "Una tensión de colaboración y entendimiento perfectos, basada en la identificación especular."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La relación imaginaria, establecida en el Estadio del Espejo con la imagen del semejante (el otro 'a'), es estructuralmente fuente de tensión agresiva, rivalidad y celos. En el plano imaginario, la relación es dual y competitiva ('o tú o yo')."
+  },
+  {
+    "id": 39,
+    "text": "Según la síntesis de los tres registros de Lacan, ¿cuál de las siguientes NO es una fuente principal del registro Imaginario?",
+    "options": [
+      {"key": "A", "text": "La etología y los estudios sobre el comportamiento animal."},
+      {"key": "B", "text": "El narcisismo freudiano y la constitución del yo."},
+      {"key": "C", "text": "La lingüística estructural de Ferdinand de Saussure."},
+      {"key": "D", "text": "La experiencia del bebé frente al espejo y la psicología evolutiva."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Las fuentes mencionadas para el registro Imaginario incluyen la etología, embriología, psicología evolutiva, la experiencia del espejo y el narcisismo freudiano. La lingüística de Saussure es una fuente crucial para el registro Simbólico, no para el Imaginario."
+  },
+  {
+    "id": 40,
+    "text": "En la síntesis de los tres órdenes, ¿qué aportación de la antropología de Lévi-Strauss es fundamental para el Orden Simbólico según Lacan?",
+    "options": [
+      {"key": "A", "text": "El estudio comparativo de los mitos en diversas culturas primitivas."},
+      {"key": "B", "text": "La teoría sobre el pensamiento salvaje y su lógica particular."},
+      {"key": "C", "text": "El análisis de los rituales de pasaje en las sociedades tradicionales."},
+      {"key": "D", "text": "La ley de la alianza y la prohibición del incesto como estructurantes de la sociedad."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Para el Orden Simbólico, el texto destaca la influencia de la antropología de Lévi-Strauss, específicamente la ley de la alianza (que regula los intercambios matrimoniales) y la prohibición del incesto, como leyes fundamentales que estructuran la sociedad y los lazos simbólicos."
+  },
+  {
+    "id": 41,
+    "text": "¿Cómo interpreta Lacan el juego del Fort-Da (observado por Freud) en relación con la emergencia del Orden Simbólico?",
+    "options": [
+      {"key": "A", "text": "Como el germen de lo simbólico, donde el juego con el carretel instaura la simbolización de la presencia y ausencia de la madre."},
+      {"key": "B", "text": "Como una manifestación puramente imaginaria de la angustia de separación, sin implicaciones simbólicas."},
+      {"key": "C", "text": "Como un encuentro traumático con lo Real de la ausencia materna, imposible de simbolizar en esa etapa."},
+      {"key": "D", "text": "Como una simple descarga motriz y lúdica del niño, sin un significado trascendente para la estructura psíquica."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "El juego del Fort-Da es interpretado por Lacan como un momento inaugural, el 'germen de lo simbólico'. A través de este juego, el niño simboliza la presencia y ausencia de la madre, dominando activamente la angustia y entrando en el orden del lenguaje."
+  },
+  {
+    "id": 42,
+    "text": "En la síntesis de los tres registros, ¿con qué conceptos se vincula estrechamente el registro de lo Real?",
+    "options": [
+      {"key": "A", "text": "Con la ilusión de completud del yo y la fascinación por la imagen especular."},
+      {"key": "B", "text": "Con la Repetición (aquello que vuelve siempre al mismo lugar) y la Fijación libidinal."},
+      {"key": "C", "text": "Con la ley, el lenguaje articulado y las estructuras sociales normativas."},
+      {"key": "D", "text": "Con la creatividad, el juego y la capacidad para la experiencia cultural."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La síntesis sobre lo Real lo describe como 'aquello que vuelve siempre al mismo lugar', lo que lo enlaza directamente con la compulsión a la Repetición. También se menciona su ligazón con la Fijación de la libido en las etapas evolutivas."
+  },
+  {
+    "id": 43,
+    "text": "La afirmación lacaniana 'No hay relación sexual' se relaciona con la idea de que lo Simbólico no alcanza para capturar un aspecto de lo Real. ¿A qué imposibilidad fundamental alude esta frase?",
+    "options": [
+      {"key": "A", "text": "A la imposibilidad de una comunicación perfecta y sin malentendidos en el Imaginario."},
+      {"key": "B", "text": "A la dificultad de expresar verbalmente los sentimientos amorosos en el Simbólico."},
+      {"key": "C", "text": "A la ausencia de una complementariedad natural o armonía preestablecida entre los sexos en lo Real."},
+      {"key": "D", "text": "A la prohibición cultural del incesto que impide ciertas relaciones en lo Social."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "3",
+    "explanation": "La frase 'No hay relación sexual' apunta a lo Real. Significa que no existe en el orden simbólico una fórmula que garantice una complementariedad o armonía natural entre los sexos. La sexualidad humana está marcada por una falta estructural, una hiancia que el lenguaje no puede suturar completamente."
+  },
+  {
+    "id": 44,
+    "text": "En el 'Simposium sobre Análisis Infantil' de 1927, ¿cuál era la postura de Melanie Klein respecto a la metodología de análisis para niños en comparación con los adultos?",
+    "options": [
+      {"key": "A", "text": "Proponía una metodología completamente diferente y mucho más simplificada para los niños."},
+      {"key": "B", "text": "Consideraba que el análisis de niños solo era posible a partir del periodo de latencia."},
+      {"key": "C", "text": "Adaptaba la metodología adulta, pero con un fuerte énfasis en el componente pedagógico."},
+      {"key": "D", "text": "Sostenía que debía aplicarse la misma metodología psicoanalítica tanto para niños como para adultos."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "Melanie Klein, a diferencia de Anna Freud, defendía en el Simposium de 1927 que la metodología psicoanalítica debía ser la misma para niños y adultos, sin necesidad de adaptaciones 'preparatorias' o pedagógicas."
+  },
+  {
+    "id": 45,
+    "text": "¿Cuál era el foco principal del trabajo analítico con niños para Melanie Klein, según la comparación con Anna Freud presentada en el texto?",
+    "options": [
+      {"key": "A", "text": "El inconsciente, considerando que los niños están gobernados por él debido a un yo no plenamente desarrollado."},
+      {"key": "B", "text": "El desarrollo del yo consciente y sus mecanismos de defensa para adaptarse a la realidad."},
+      {"key": "C", "text": "La relación del niño con su entorno educativo y la internalización de normas familiares."},
+      {"key": "D", "text": "La adaptación del niño a las exigencias sociales y la superación de conductas disruptivas."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Melanie Klein ponía en primer plano el inconsciente en el análisis infantil, argumentando que los niños están gobernados por el inconsciente ya que su yo no está completamente desarrollado, a diferencia de Anna Freud que se centraba más en el yo consciente."
+  },
+  {
+    "id": 46,
+    "text": "¿Cómo concebía Melanie Klein la temporalidad del Complejo de Edipo y la formación del superyó en los niños, en contraste con las ideas de Anna Freud?",
+    "options": [
+      {"key": "A", "text": "El Complejo de Edipo y el superyó solo aparecían de forma significativa en la adolescencia."},
+      {"key": "B", "text": "El Complejo de Edipo declinaba tempranamente y el superyó asumía una forma duradera e inalterable en etapas precoces."},
+      {"key": "C", "text": "El superyó se desarrollaba principalmente en el periodo de latencia, funcionando a través de la figura de los padres."},
+      {"key": "D", "text": "Negaba la existencia del Complejo de Edipo en la infancia temprana, considerándolo una construcción teórica."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "A diferencia de la visión clásica y de Anna Freud, Melanie Klein postulaba una declinación temprana del Complejo de Edipo y una formación también temprana, duradera e inalterable del superyó en los primeros años de vida."
+  },
+  {
+    "id": 47,
+    "text": "Según Melanie Klein, ¿cuál debía ser la relación entre el rol de analista y el de educador en el análisis infantil?",
+    "options": [
+      {"key": "A", "text": "El analista debía asumir un rol principalmente educador para guiar al niño."},
+      {"key": "B", "text": "El analista y el educador debían trabajar en estrecha colaboración, compartiendo objetivos."},
+      {"key": "C", "text": "Los roles de analista y educador eran incompatibles, y la función educadora era innecesaria para el analista."},
+      {"key": "D", "text": "La educación era una parte secundaria pero útil del trabajo analítico con niños pequeños."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Melanie Klein consideraba que los roles de analista y educador eran incompatibles en el contexto del análisis infantil. Sostenía que la función educadora por parte del analista era innecesaria e incluso perjudicial para el proceso analítico."
+  },
+  {
+    "id": 48,
+    "text": "¿Cuál era la aproximación de Melanie Klein al manejo de la transferencia negativa en el análisis de niños, en comparación con Anna Freud?",
+    "options": [
+      {"key": "A", "text": "Evitarla a toda costa, ya que era considerada indeseable y perjudicial para el vínculo."},
+      {"key": "B", "text": "Intentar modificarla o destruirla activamente para mantener una transferencia positiva constante."},
+      {"key": "C", "text": "Considerarla una señal inequívoca de fracaso terapéutico y de la necesidad de interrumpir el análisis."},
+      {"key": "D", "text": "Trabajar con ella, al igual que con la positiva, analizándola hasta su origen en la situación edípica temprana."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Melanie Klein abogaba por trabajar tanto con la transferencia positiva como con la negativa, buscando analizar ambas hasta sus orígenes en la situación edípica temprana del niño. Anna Freud, en cambio, consideraba la transferencia negativa como indeseable."
+  },
+  {
+    "id": 49,
+    "text": "¿Cuál fue el propósito principal de la 'técnica de juego' ideada por Melanie Klein para el análisis infantil?",
+    "options": [
+      {"key": "A", "text": "Acceder a la fantasía del niño, liberar asociaciones y penetrar más profundamente en el inconsciente."},
+      {"key": "B", "text": "Únicamente entretener al niño y mantenerlo ocupado durante las sesiones analíticas."},
+      {"key": "C", "text": "Evaluar el desarrollo cognitivo y las habilidades motoras finas del niño."},
+      {"key": "D", "text": "Enseñar al niño habilidades sociales y normas de comportamiento a través del juego dirigido."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "1",
+    "explanation": "Melanie Klein desarrolló la técnica de juego como un medio privilegiado para acceder a las fantasías inconscientes del niño, facilitar la libre asociación (equivalente a la de los adultos) y así poder analizar el material inconsciente de manera más directa y profunda."
+  },
+  {
+    "id": 50,
+    "text": "Melanie Klein, en 'Estadios Tempranos del Conflicto Edípico', sitúa la emergencia de este conflicto y del superyó en un periodo diferente al postulado por Freud. ¿Cuál es este periodo según Klein?",
+    "options": [
+      {"key": "A", "text": "En la adolescencia tardía, coincidiendo plenamente con las formulaciones freudianas clásicas."},
+      {"key": "B", "text": "Mucho antes, entre los 0 y 3 años de edad, en las fases pregenitales."},
+      {"key": "C", "text": "Después del periodo de latencia, alrededor de los 7 u 8 años, con la entrada a la escolaridad."},
+      {"key": "D", "text": "Únicamente en la vida adulta, como resultado de traumas infantiles no resueltos previamente."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Klein revolucionó la comprensión del desarrollo infantil al postular que tanto el conflicto edípico como la formación del superyó ocurren mucho más temprano de lo que Freud había indicado, situándolos en los primeros años de vida (0-3 años), durante las fases oral y anal."
+  },
+  {
+    "id": 51,
+    "text": "Según Melanie Klein, ¿qué evento importante en la vida del niño, ocurrido entre 1 y 2 años, contribuye a liberar tendencias edípicas tempranas?",
+    "options": [
+      {"key": "A", "text": "El inicio de la escolarización formal y la separación prolongada de los padres."},
+      {"key": "B", "text": "El desarrollo del lenguaje articulado y la capacidad de expresar deseos verbalmente."},
+      {"key": "C", "text": "El destete, cuya frustración libera deseos amorosos y hostiles, reforzado por el aprendizaje de hábitos higiénicos."},
+      {"key": "D", "text": "El nacimiento de un hermano, que introduce la rivalidad fraterna en la dinámica familiar."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Klein considera que el destete (entre 1-2 años) es una frustración crucial que libera tendencias edípicas (deseos amorosos y hostiles). Esto se ve reforzado por las frustraciones anales asociadas al aprendizaje de hábitos higiénicos."
+  },
+  {
+    "id": 52,
+    "text": "En la fase oral, según Klein, ¿cómo puede ser vivido el destete por el niño y qué mecanismo psíquico se activa predominantemente ante la angustia resultante?",
+    "options": [
+      {"key": "A", "text": "Como una liberación gozosa y un paso hacia la autonomía, llevando a la expulsión del objeto materno."},
+      {"key": "B", "text": "Con total indiferencia y apatía, sin un impacto psíquico significativo en el desarrollo temprano."},
+      {"key": "C", "text": "Como un logro importante en su desarrollo, fortaleciendo el mecanismo de proyección hacia nuevos objetos."},
+      {"key": "D", "text": "Como un castigo y la pérdida del pecho, generando angustia, sentimientos depresivos y activando la introyección del objeto."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Klein describe que en la fase oral, el destete puede ser vivido por el lactante como un castigo y la pérdida del pecho (objeto externo e introyectado). Esto genera sentimientos depresivos, duelo y angustia, ante la cual se activa el mecanismo de introyección del objeto."
+  },
+  {
+    "id": 53,
+    "text": "¿Cuál es el origen del sentimiento de culpa según la concepción kleiniana del Edipo temprano?",
+    "options": [
+      {"key": "A", "text": "Es un producto del superyó temprano, que resulta de la introyección de los objetos de amor (y odio) edípicos."},
+      {"key": "B", "text": "Es impuesto externamente por los padres a través de castigos y reproches directos."},
+      {"key": "C", "text": "Surge únicamente en la etapa genital tardía, con la resolución del complejo de Edipo freudiano."},
+      {"key": "D", "text": "Es una manifestación directa de la pulsión de muerte no elaborada, sin mediación del superyó."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Para Klein, el sentimiento de culpa es una manifestación temprana del superyó. Este superyó se origina en la introyección de los objetos de amor (y odio) edípicos, internalizando así las imagos parentales con sus aspectos buenos y malos."
+  },
+  {
+    "id": 54,
+    "text": "En la 'fase femenina' descrita por Klein, presente tanto en niños como en niñas, ¿con qué se equiparan simbólicamente las heces?",
+    "options": [
+      {"key": "A", "text": "Con armas peligrosas destinadas a atacar y destruir el cuerpo de la madre."},
+      {"key": "B", "text": "Con un hijo anhelado, lo que da lugar al deseo de tener hijos y a los celos asociados."},
+      {"key": "C", "text": "Con un regalo valioso ofrecido a la madre como muestra de amor y reparación."},
+      {"key": "D", "text": "Con algo intrínsecamente sucio y malo que debe ser eliminado y negado rápidamente."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Klein describe una 'fase femenina' temprana en ambos sexos, donde las heces son fantaseadas como equivalentes a un hijo deseado. Esta equiparación simbólica da lugar al deseo de tener hijos y a los celos correspondientes hacia quienes los poseen."
+  },
+  {
+    "id": 55,
+    "text": "¿Cómo puede manifestarse el 'complejo femenino' en los niños varones durante su desarrollo temprano, según Melanie Klein?",
+    "options": [
+      {"key": "A", "text": "Con una identificación plena, armoniosa y sin conflictos con la figura materna protectora."},
+      {"key": "B", "text": "Con una ausencia total de ansiedades o intereses relacionados con la feminidad o el cuerpo materno."},
+      {"key": "C", "text": "Mediante un desplazamiento al plano intelectual (buscando la superioridad del pene) o una agresión excesiva como protesta contra el rol femenino."},
+      {"key": "D", "text": "Con un desarrollo acelerado y prematuro de una masculinidad normativa y heterosexual."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "3",
+    "explanation": "Klein describe el complejo femenino en el varón como 'más oscuro'. Puede manifestarse a través de un desplazamiento de la ansiedad hacia el plano intelectual (como forma de afirmar la superioridad del pene) o mediante una agresión excesiva, que puede interpretarse como una protesta contra el rol femenino temido o deseado."
+  },
+  {
+    "id": 56,
+    "text": "En 'La Formación de Símbolos en el Desarrollo del Yo', ¿cuál es uno de los objetivos de los impulsos sádicos tempranos según Klein, en relación con el cuerpo materno?",
+    "options": [
+      {"key": "A", "text": "Establecer una relación de cuidado mutuo y protección con la figura materna."},
+      {"key": "B", "text": "Explorar el mundo exterior de forma pacífica y constructiva."},
+      {"key": "C", "text": "Desarrollar la capacidad de empatía y compasión hacia los otros."},
+      {"key": "D", "text": "Apoderarse del contenido del cuerpo de la madre y destruirla con diversas 'armas' sádicas (dientes, excrementos, etc.)."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Klein otorga gran importancia al sadismo en las etapas tempranas. Los objetivos de estas fantasías sádicas incluyen apoderarse del contenido del cuerpo materno (pene del padre, niños, etc.) y destruirla utilizando diversas 'armas' sádicas derivadas del propio cuerpo."
+  },
+  {
+    "id": 57,
+    "text": "Para Melanie Klein, ¿qué implica la simbolización más allá de ser una simple fantasía o un mecanismo de sublimación?",
+    "options": [
+      {"key": "A", "text": "Una relación fundamental del sujeto con el mundo exterior y con la realidad, permitiendo su aprehensión."},
+      {"key": "B", "text": "Un proceso puramente intrapsíquico y autista, sin conexión significativa con el entorno externo."},
+      {"key": "C", "text": "Un mecanismo de defensa primitivo para evitar la angustia, sin valor adaptativo."},
+      {"key": "D", "text": "Un indicador de patología severa en el desarrollo temprano, propio de la esquizofrenia infantil."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Klein expande el concepto de simbolización. No es solo fantasía o sublimación, sino un proceso esencial que establece y media la relación del sujeto con el mundo exterior y la realidad, permitiendo al yo relacionarse con ellos."
+  },
+  {
+    "id": 58,
+    "text": "En el Caso Dick, analizado por Melanie Klein, ¿cuál fue la consecuencia principal de su (supuesta) incapacidad constitucional para tolerar la angustia y su defensa prematura contra el sadismo?",
+    "options": [
+      {"key": "A", "text": "Un desarrollo acelerado y precoz de la capacidad simbólica y la creatividad."},
+      {"key": "B", "text": "La detención en la formación de símbolos y un profundo aislamiento de la realidad."},
+      {"key": "C", "text": "Una excesiva y patológica dependencia de la figura materna y otros cuidadores."},
+      {"key": "D", "text": "Un comportamiento predominantemente agresivo, extrovertido y disruptivo."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "3",
+    "explanation": "En el análisis del Caso Dick, Klein concluyó que su (supuesta) incapacidad constitucional para tolerar la angustia llevó a una identificación precoz con el objeto atacado y una defensa prematura contra su propio sadismo. Esto resultó en una severa detención en la formación de símbolos y, consecuentemente, en un profundo aislamiento de la realidad."
+  },
+  {
+    "id": 59,
+    "text": "Durante el proceso terapéutico de Dick, la emergencia de la angustia ¿a qué tipo de sentimientos y deseos dio lugar progresivamente, según la interpretación de Klein?",
+    "options": [
+      {"key": "A", "text": "A una mayor intensificación de la agresividad, la destructividad y el negativismo."},
+      {"key": "B", "text": "A una negación completa de sus problemas y un rechazo a la figura de la terapeuta."},
+      {"key": "C", "text": "A sentimientos de remordimiento, lástima hacia el objeto dañado y deseos de reparación."},
+      {"key": "D", "text": "A una indiferencia total y apática hacia la terapeuta y el entorno del consultorio."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "En el curso de la terapia, a medida que Dick pudo contactar con su angustia (antes masivamente negada), también emergieron progresivamente sentimientos de remordimiento, lástima hacia los objetos fantaseados como dañados (incluida la terapeuta, a quien llamó 'Pobre Sra. Klein'), y el deseo de reparación."
+  },
+  {
+    "id": 60,
+    "text": "¿Cuál fue el diagnóstico diferencial de Melanie Klein para el Caso Dick, y a qué atribuyó la severa inhibición en el desarrollo de su yo?",
+    "options": [
+      {"key": "A", "text": "Autismo infantil, debido a una falla constitucional en la capacidad de vinculación afectiva."},
+      {"key": "B", "text": "Demencia precoz, coincidiendo plenamente con el diagnóstico inicial del Dr. Forsyth."},
+      {"key": "C", "text": "Trastorno de ansiedad generalizada severo, por su manifiesta incapacidad de tolerar la angustia."},
+      {"key": "D", "text": "Un cuadro más cercano a la esquizofrenia infantil, atribuyendo la inhibición del yo al sadismo excesivo y a una defensa prematura contra este."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Aunque el Dr. Forsyth había diagnosticado a Dick con demencia precoz, Melanie Klein consideró que su cuadro clínico era más cercano a la esquizofrenia infantil. Atribuyó la severa inhibición en el desarrollo de su yo a la intensidad de su sadismo temprano y a las defensas excesivas y prematuras erigidas contra este."
+  },
+  {
+    "id": 61,
+    "text": "En su obra 'Envidia y gratitud', ¿cómo define Melanie Klein la envidia en su origen y cuándo considera que aparece?",
+    "options": [
+      {"key": "A", "text": "Como una expresión oral-sádica y anal-sádica de impulsos destructivos, con una base constitucional y presente desde el inicio de la vida."},
+      {"key": "B", "text": "Como un sentimiento complejo que surge exclusivamente durante la resolución del complejo de Edipo, en la rivalidad con el progenitor del mismo sexo."},
+      {"key": "C", "text": "Como una reacción adaptativa a la frustración externa impuesta por el ambiente, sin una base constitucional innata."},
+      {"key": "D", "text": "Como un mecanismo de defensa secundario y elaborado, que aparece frente a la ansiedad de castración en la etapa fálica."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Klein define la envidia como una expresión oral-sádica y anal-sádica de impulsos destructivos. Considera que tiene una base constitucional y está presente desde el inicio mismo de la vida post-natal, siendo uno de los afectos más tempranos y primitivos."
+  },
+  {
+    "id": 62,
+    "text": "¿Cuál es el primer objeto de la envidia según la teoría de Melanie Klein?",
+    "options": [
+      {"key": "A", "text": "El pene del padre, percibido como un órgano de poder y satisfacción."},
+      {"key": "B", "text": "El pecho nutricio de la madre, fantaseado como poseedor de todo lo bueno (leche, amor ilimitados)."},
+      {"key": "C", "text": "Un hermano rival, que acapara la atención y el amor de los padres."},
+      {"key": "D", "text": "La propia imagen idealizada del niño, inalcanzable y frustrante."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Klein postula que el primer objeto de la envidia es el pecho materno. Este es percibido por el bebé como nutricio y poseedor de un flujo ilimitado de leche y amor, es decir, de todo lo deseable, lo que despierta la envidia."
+  },
+  {
+    "id": 63,
+    "text": "¿Cuál es la principal diferencia que establece Melanie Klein entre la envidia, los celos y la voracidad?",
+    "options": [
+      {"key": "A", "text": "La envidia es siempre más destructiva que los celos, mientras la voracidad es constructiva."},
+      {"key": "B", "text": "Los celos son una forma más primitiva e indiferenciada de envidia, y la voracidad es su máxima expresión."},
+      {"key": "C", "text": "La envidia es una relación de a dos (con el objeto poseedor), los celos de al menos tres (con un rival), y la voracidad es un deseo insaciable de vaciar el objeto."},
+      {"key": "D", "text": "La envidia busca poseer el objeto, los celos buscan destruir al rival, y la voracidad busca la fusión total con el objeto."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Klein distingue: la envidia es una relación con una persona por algo que posee y que se desea dañar o quitar. Los celos implican al menos dos personas (el sujeto y el ser amado) y un rival que quita ese amor. La voracidad es un deseo insaciable que busca vaciar el objeto por introyección destructiva."
+  },
+  {
+    "id": 64,
+    "text": "¿De dónde deriva la gratitud y cuál es su base primordial según Melanie Klein?",
+    "options": [
+      {"key": "A", "text": "Del miedo al castigo y la necesidad de apaciguar al objeto para evitar su retaliación."},
+      {"key": "B", "text": "De la superación exitosa y definitiva de la envidia primaria hacia el objeto bueno."},
+      {"key": "C", "text": "De una obligación social aprendida culturalmente, como forma de mantener los lazos sociales."},
+      {"key": "D", "text": "Deriva de la capacidad para amar y su base es la satisfacción plena al mamar, vivida como un don incomparable del objeto bueno."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "La gratitud, para Klein, deriva de la capacidad innata para amar y es esencial para estructurar una buena relación con el objeto bueno. Su base primordial se encuentra en la experiencia de satisfacción plena al mamar, vivida como un don incomparable que proviene del pecho bueno."
+  },
+  {
+    "id": 65,
+    "text": "¿Cuál es una de las consecuencias más graves de la envidia excesiva en el desarrollo psíquico temprano, según Melanie Klein?",
+    "options": [
+      {"key": "A", "text": "Interfiere con la disociación primaria entre el pecho bueno y el malo, dificultando la integración de la personalidad y la elaboración de la posición depresiva."},
+      {"key": "B", "text": "Fortalece de manera desmedida la capacidad de amar y la gratitud, llevando a una dependencia patológica del objeto."},
+      {"key": "C", "text": "Acelera la superación de la posición esquizo-paranoide, llevando a una madurez precoz pero frágil."},
+      {"key": "D", "text": "Lleva a una identificación saludable y estable con el objeto bueno, superando rápidamente las ansiedades persecutorias."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "3",
+    "explanation": "Klein señala que la envidia excesiva tiene graves consecuencias para el desarrollo. Interfiere con la disociación primaria entre el pecho bueno y el malo (necesaria en la posición esquizo-paranoide), lo que impide sentar las bases para una personalidad desarrollada e integrada. Esto, a su vez, causa culpa prematura (vivida como persecución) y dificulta la elaboración de la posición depresiva."
+  },
+  {
+    "id": 66,
+    "text": "Según Donald Woods Winnicott, ¿qué caracteriza el estado de 'Preocupación Maternal Primaria'?",
+    "options": [
+      {"key": "A", "text": "Un estado de ansiedad patológica y disfuncional que requiere intervención terapéutica inmediata en la madre."},
+      {"key": "B", "text": "Un estado de sensibilidad exaltada, casi una enfermedad normal, que ocurre cerca del parto y en las primeras semanas postparto, y que no es fácilmente recordado por la madre."},
+      {"key": "C", "text": "Una capacidad innata y estable presente en todas las madres por igual, independientemente de su historia personal."},
+      {"key": "D", "text": "Un conjunto de conocimientos y habilidades aprendidas socialmente sobre cómo cuidar a un bebé de manera eficiente."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Winnicott define la Preocupación Maternal Primaria como un estado especial de sensibilidad exaltada en la madre (casi una 'enfermedad' normal, similar a una disociación o episodio esquizoide). Ocurre al final del embarazo y en las primeras semanas postparto, y la madre no suele recordarlo fácilmente después."
+  },
+  {
+    "id": 67,
+    "text": "¿Cuál es la función principal de la 'Preocupación Maternal Primaria' en el desarrollo del bebé, según Winnicott?",
+    "options": [
+      {"key": "A", "text": "Asegurar la supervivencia física y la alimentación adecuada del bebé exclusivamente."},
+      {"key": "B", "text": "Establecer la autoridad materna y los límites necesarios desde el inicio de la vida."},
+      {"key": "C", "text": "Aportar el marco o 'holding' necesario para la constitución psíquica del pequeño, el despliegue de sus tendencias de desarrollo y la vivencia de experiencias espontáneas."},
+      {"key": "D", "text": "Proteger a la madre de la ansiedad y la depresión postparto, permitiéndole delegar el cuidado."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La función de la Preocupación Maternal Primaria es crucial. A través de su adaptación sensible, la madre aporta el marco (holding) que permite la constitución del psiquismo del bebé, el despliegue de sus tendencias innatas de desarrollo y la posibilidad de tener experiencias espontáneas, fundamentales para el sentimiento de ser."
+  },
+  {
+    "id": 68,
+    "text": "Si la adaptación materna es 'insuficiente' en el contexto de la Preocupación Maternal Primaria, ¿qué consecuencias puede tener para el bebé según Winnicott?",
+    "options": [
+      {"key": "A", "text": "El bebé desarrolla una independencia precoz y una gran capacidad de auto-sostenimiento."},
+      {"key": "B", "text": "Se fortalece el yo del bebé al tener que enfrentar desafíos ambientales desde muy temprano."},
+      {"key": "C", "text": "La vida del bebé transcurre sin mayores turbaciones, ya que se adapta a cualquier entorno."},
+      {"key": "D", "text": "Se interrumpe la 'continuidad existencial' del bebé, pudiendo generar una amenaza de aniquilamiento y angustia primitiva."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Una adaptación materna 'insuficiente' implica que el bebé experimenta fases de reacción a 'ataques' o fallas ambientales. Esto interrumpe su continuidad existencial (el 'seguir siendo'). Un exceso de estas interrupciones puede generar una amenaza de aniquilamiento y angustia primitiva."
+  },
+  {
+    "id": 69,
+    "text": "Según Winnicott, si el medio ambiente proporcionado por la madre es predominantemente 'insuficiente', ¿qué tipo de estructura del self tiende a constituirse en el niño?",
+    "options": [
+      {"key": "A", "text": "La constitución de un 'falso self' como una defensa para proteger al verdadero self."},
+      {"key": "B", "text": "Un yo personal o 'verdadero self' fuerte, auténtico y con gran capacidad creativa."},
+      {"key": "C", "text": "Una capacidad excepcional para la sublimación y la producción artística."},
+      {"key": "D", "text": "Una rápida superación de la dependencia y una autonomía prematura pero saludable."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Winnicott postula que un medio ambiente (madre) 'suficientemente bueno' permite el desarrollo de un yo personal o 'verdadero self'. Por el contrario, un medio ambiente predominantemente 'insuficiente' (que no se adapta a las necesidades del bebé) puede llevar a la constitución de un 'falso self' como una forma de defensa, ocultando y protegiendo al verdadero self."
+  },
+  {
+    "id": 70,
+    "text": "En 'Realidad y Juego', ¿cómo describe Winnicott al 'objeto transicional' en relación con la experiencia del bebé y el mundo exterior?",
+    "options": [
+      {"key": "A", "text": "Como una alucinación puramente interna creada por el bebé para compensar la ausencia materna."},
+      {"key": "B", "text": "Como la primera posesión 'no-yo', marcando un área intermedia entre lo subjetivo y lo objetivo."},
+      {"key": "C", "text": "Como un sustituto directo y plenamente satisfactorio de la figura materna real."},
+      {"key": "D", "text": "Como un objeto impuesto por los padres para calmar al bebé, sin significado para este."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El objeto transicional es caracterizado por Winnicott como la primera posesión 'no-yo' para el bebé. No es ni puramente interno (subjetivo) ni completamente externo (objetivo), sino que ocupa una zona intermedia de experiencia."
+  },
+  {
+    "id": 71,
+    "text": "¿Qué designan los 'fenómenos transicionales' en la teoría de Winnicott?",
+    "options": [
+      {"key": "A", "text": "Manifestaciones patológicas del desarrollo temprano que indican una fijación."},
+      {"key": "B", "text": "Etapas evolutivas claramente definidas que se superan y desaparecen por completo."},
+      {"key": "C", "text": "Una zona intermedia de experiencia entre la realidad psíquica interna y la realidad exterior percibida objetivamente."},
+      {"key": "D", "text": "Conductas exclusivamente imitativas y aprendidas del entorno social, sin creatividad propia."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Los fenómenos transicionales, para Winnicott, designan una zona intermedia de experiencia. Esta 'tercera zona' no es ni la realidad psíquica interna del bebé ni la realidad exterior objetiva, sino un espacio donde se ubican el objeto transicional y las primeras experiencias creativas y de juego."
+  },
+  {
+    "id": 72,
+    "text": "¿Cuál es una de las funciones importantes del objeto transicional para el bebé, según Winnicott?",
+    "options": [
+      {"key": "A", "text": "Estimular el desarrollo intelectual y cognitivo de forma exclusiva."},
+      {"key": "B", "text": "Reemplazar completamente la necesidad de la madre y permitir una independencia total."},
+      {"key": "C", "text": "Facilitar el aprendizaje de normas sociales y la adaptación al grupo."},
+      {"key": "D", "text": "Servir como defensa contra la ansiedad (especialmente la de tipo depresivo) y ser vital para dormir."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "El objeto transicional tiene una importancia vital para el bebé. Entre sus funciones, Winnicott destaca su papel como defensa contra la ansiedad (en particular, la ansiedad de tipo depresivo) y su utilidad para poder conciliar el sueño."
+  },
+  {
+    "id": 73,
+    "text": "Respecto a la relación del bebé con el objeto transicional, ¿qué cualidad esencial debe tener este objeto según Winnicott?",
+    "options": [
+      {"key": "A", "text": "Debe poder sobrevivir tanto al amor instintivo como al odio y la agresión destructiva del bebé."},
+      {"key": "B", "text": "Debe ser cambiado frecuentemente por los padres para mantener el interés y la novedad."},
+      {"key": "C", "text": "Debe ser protegido de cualquier manifestación de agresividad por parte del bebé para no dañarlo."},
+      {"key": "D", "text": "Debe ser un objeto puramente idealizado, sin aspectos negativos o imperfectos."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Una cualidad esencial del objeto transicional es que debe poder 'sobrevivir' a las manifestaciones de amor instintivo y también al odio y la agresión del bebé (ser abrazado con afecto pero también mutilado con excitación), sin ser destruido ni alterado fundamentalmente (salvo por el propio bebé)."
+  },
+  {
+    "id": 74,
+    "text": "¿Cuál es la relación del objeto transicional con el desarrollo del simbolismo, según Winnicott?",
+    "options": [
+      {"key": "A", "text": "Es un símbolo en sí mismo, pero no da origen a la capacidad general de simbolizar."},
+      {"key": "B", "text": "Es la raíz del simbolismo en el tiempo; representa un viaje de lo puramente subjetivo a una aprehensión más objetiva."},
+      {"key": "C", "text": "Representa el fin de la capacidad simbólica del niño, marcando su entrada en la realidad objetiva pura."},
+      {"key": "D", "text": "No tiene ninguna relación significativa con el desarrollo de la capacidad de usar símbolos."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Winnicott considera que el objeto transicional es la 'raíz del simbolismo en el tiempo'. Representa un paso crucial en el viaje del bebé desde una relación puramente subjetiva con el mundo (donde el objeto es creado por él) hacia una aprehensión más objetiva de la realidad, y es fundamental para el desarrollo posterior de la capacidad de usar símbolos."
+  },
+  {
+    "id": 75,
+    "text": "En 'La Dependencia en la Infancia y la Niñez', ¿cómo describe Winnicott la etapa de 'Dependencia Absoluta'?",
+    "options": [
+      {"key": "A", "text": "Como un signo de patología o regresión que debe ser superado lo más rápidamente posible."},
+      {"key": "B", "text": "Como una etapa que solo ocurre en casos de negligencia materna o deprivación ambiental severa."},
+      {"key": "C", "text": "Como una etapa natural y necesaria del desarrollo inicial, esencial para el apego seguro y la confianza básica."},
+      {"key": "D", "text": "Como un estado indeseable que dificulta la autonomía futura y genera una personalidad sumisa."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Winnicott describe la Dependencia Absoluta como una etapa inicial natural y necesaria para el bebé, donde este depende completamente del cuidado materno para su supervivencia y desarrollo. Esta etapa es esencial para la construcción del apego seguro y la confianza básica en el entorno."
+  },
+  {
+    "id": 76,
+    "text": "¿Qué caracteriza a la 'Madre Suficientemente Buena' en la teoría de Winnicott?",
+    "options": [
+      {"key": "A", "text": "Una madre que satisface instantánea y perfectamente todas las necesidades y deseos del bebé, sin permitirle experimentar frustración alguna."},
+      {"key": "B", "text": "Una madre que sigue estrictamente al pie de la letra todos los manuales de puericultura y las recomendaciones de los expertos."},
+      {"key": "C", "text": "Una madre que se sacrifica completamente por su hijo, anulándose a sí misma y sus propias necesidades en todo momento."},
+      {"key": "D", "text": "Una madre que, sin ser perfecta, es sensible y receptiva a las necesidades del bebé, proporcionando el cuidado, el sostén y la seguridad necesarios, adaptándose gradualmente y permitiendo fallas tolerables."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "El concepto de 'Madre Suficientemente Buena' de Winnicott se refiere a una madre que, sin ser perfecta (lo cual sería incluso perjudicial), es sensible y receptiva a las necesidades de su bebé. Proporciona el cuidado y la seguridad que permiten un desarrollo saludable, lo que incluye una adaptación activa inicial y fallas graduales que el bebé puede aprender a tolerar."
+  },
+  {
+    "id": 77,
+    "text": "En 'El Juego: Actividad Creadora y Búsqueda de la Persona', ¿dónde ubica Winnicott el 'Espacio Potencial' y cómo se relaciona con la psicoterapia?",
+    "options": [
+      {"key": "A", "text": "Se origina en la zona intermedia entre la madre y el bebé (tercera zona); en psicoterapia, es la superposición de las zonas de juego del paciente y el terapeuta."},
+      {"key": "B", "text": "Se encuentra exclusivamente dentro de la mente del bebé, como un espacio de fantasía pura y solipsista, inaccesible para el terapeuta."},
+      {"key": "C", "text": "Reside en el mundo exterior objetivo, en las instituciones culturales, independientemente de la relación madre-bebé o paciente-terapeuta."},
+      {"key": "D", "text": "Es un concepto puramente teórico sin aplicación práctica directa en la clínica psicoanalítica, referente solo a la infancia."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "El 'Espacio Potencial' de Winnicott se origina en la zona intermedia entre la madre y el bebé (la tercera zona de experiencia, ni interna ni externa). En la psicoterapia, este espacio se recrea y es fundamental: es la superposición de las zonas de juego (o experiencia cultural) del paciente y el terapeuta, siendo el lugar donde ocurre el trabajo terapéutico y la creatividad."
+  },
+  {
+    "id": 78,
+    "text": "Según Winnicott, ¿cómo se relaciona el juego con la 'búsqueda de la persona' o el descubrimiento del self?",
+    "options": [
+      {"key": "A", "text": "El juego es una actividad infantil que distrae al individuo de la seria y adulta búsqueda de su verdadera persona."},
+      {"key": "B", "text": "Es precisamente en el juego, cuando el individuo se muestra creador y espontáneo, donde puede descubrir y sentir su propia persona (su self auténtico)."},
+      {"key": "C", "text": "La búsqueda de la persona es un proceso predominantemente intelectual y reflexivo, ajeno a la actividad lúdica y corporal del juego."},
+      {"key": "D", "text": "El juego solo permite expresar aspectos superficiales y socialmente aceptados de la personalidad, no el self profundo."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Para Winnicott, el juego está intrínsecamente ligado a la creatividad y a la 'búsqueda de la persona'. Es en la experiencia de jugar y ser creador, en un espacio de confianza, donde el individuo puede descubrir, experimentar y sentir su propia persona, su self auténtico."
+  },
+  {
+    "id": 79,
+    "text": "En 'La Creatividad y sus Orígenes', Winnicott opone la 'Apercepción Creadora' (que hace que la vida valga la pena) a otro estado. ¿Cuál es este estado opuesto?",
+    "options": [
+      {"key": "A", "text": "La dependencia absoluta del bebé respecto a su madre."},
+      {"key": "B", "text": "El uso saludable y necesario de objetos transicionales."},
+      {"key": "C", "text": "El 'Acatamiento' (compliance), que genera un sentimiento de inutilidad y de que la vida no es digna de ser vivida."},
+      {"key": "D", "text": "La expresión directa de la agresión instintiva y la destructividad."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Winnicott contrasta la 'Apercepción Creadora', que es lo que hace que la vida se sienta real y valga la pena ser vivida, con el 'Acatamiento' (compliance). El acatamiento es una forma de vida no creativa donde el individuo se somete pasivamente a la realidad externa sin sentirla propia, lo que puede llevar a un sentimiento de inutilidad, futilidad y enfermedad."
+  },
+  {
+    "id": 80,
+    "text": "Winnicott distingue un 'Elemento Femenino Puro' y un 'Elemento Masculino Puro' en la experiencia temprana. ¿A qué conduce principalmente el 'Elemento Femenino Puro'?",
+    "options": [
+      {"key": "A", "text": "Al HACER, a la actividad instintiva y a la relación con objetos claramente separados del yo."},
+      {"key": "B", "text": "A la agresividad, la competencia y la afirmación activa del self en el mundo."},
+      {"key": "C", "text": "A la sumisión pasiva, el acatamiento y la negación de la propia existencia."},
+      {"key": "D", "text": "Al SER; es la base del autodescubrimiento, del sentimiento de existir y se relaciona con la identificación primaria con el pecho/madre (bebé ES el pecho/madre)."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Winnicott describe el 'Elemento Femenino Puro' como la experiencia temprana de relación con el pecho/madre donde el bebé ES el pecho/madre (identificación primaria). Esta experiencia conduce al SER, y es la base para el autodescubrimiento y el sentimiento fundamental de existir. Se contrasta con el 'Elemento Masculino Puro' que se relaciona con el HACER y la relación con un objeto separado."
+  },
+  {
+    "id": 81,
+    "text": "¿Dónde ubica Winnicott la 'experiencia cultural' en su teoría?",
+    "options": [
+      {"key": "A", "text": "En el espacio potencial que se origina entre el individuo y el ambiente (inicialmente, entre el bebé y la madre), y que comienza con el vivir creador del juego."},
+      {"key": "B", "text": "Exclusivamente en las instituciones formales como museos, bibliotecas y universidades, donde se transmite el saber acumulado."},
+      {"key": "C", "text": "Dentro de la psique individual como un producto de la sublimación de los instintos primarios, tal como lo planteó Freud."},
+      {"key": "D", "text": "En la realidad externa objetiva, como un conjunto de tradiciones y costumbres independientes de la experiencia subjetiva del individuo."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Winnicott sitúa la experiencia cultural en el 'espacio potencial'. Esta es la tercera zona de experiencia (ni interna ni externa) que se origina entre el individuo y el ambiente (inicialmente, el bebé y la madre). Esta experiencia cultural comienza con el vivir creador, es decir, con el juego y los fenómenos transicionales."
+  },
+  {
+    "id": 82,
+    "text": "En 'El Lugar en que Vivimos', Winnicott habla de una 'Zona Intermedia' o 'Tercer Espacio'. ¿Qué surge y se desarrolla fundamentalmente en este espacio?",
+    "options": [
+      {"key": "A", "text": "Únicamente la realidad psíquica interna del individuo, con sus fantasías y deseos."},
+      {"key": "B", "text": "El juego, que a su vez da lugar a la capacidad para la experiencia cultural y la creatividad."},
+      {"key": "C", "text": "La conducta observable y la adaptación a la realidad exterior consensuada socialmente."},
+      {"key": "D", "text": "La dependencia absoluta del bebé hacia la madre, como base de la seguridad primaria."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La 'Zona Intermedia' o 'Tercer Espacio' es donde Winnicott ubica el juego. Esta área de experiencia, que no es ni puramente interna ni puramente externa, es fundamental, ya que a partir del juego se desarrolla la capacidad para la experiencia cultural, la creatividad y el uso de símbolos."
+  },
+  {
+    "id": 83,
+    "text": "En 'Papel del Espejo de la Madre y la Familia...', ¿qué papel fundamental cumple el rostro de la madre para el bebé, según Winnicott, en su desarrollo temprano?",
+    "options": [
+      {"key": "A", "text": "El bebé ve a la madre como un objeto completamente separado y ajeno desde el inicio de la vida."},
+      {"key": "B", "text": "El rostro de la madre es primordialmente una fuente de alimento y satisfacción de necesidades básicas."},
+      {"key": "C", "text": "El bebé, al mirar el rostro de la madre que lo mira, se ve a sí mismo reflejado en ella; el rostro materno es el primer espejo."},
+      {"key": "D", "text": "El bebé aprende a imitar las expresiones faciales de la madre para comunicarse de forma rudimentaria."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Winnicott propone que, antes del espejo literal, el primer espejo para el bebé es el rostro de la madre. Cuando el bebé mira a la madre y esta lo mira de una manera que refleja al bebé (y no su propio estado de ánimo o rigidez), el bebé se ve a sí mismo. Esto es crucial para el desarrollo del self."
+  },
+  {
+    "id": 84,
+    "text": "Según Winnicott, ¿qué puede ocurrir si la madre no cumple adecuadamente su función de 'espejo' para el bebé (por ejemplo, si no devuelve la mirada o refleja su propio ánimo)?",
+    "options": [
+      {"key": "A", "text": "El bebé desarrolla una mayor independencia visual y una capacidad de observación más aguda del entorno."},
+      {"key": "B", "text": "El bebé se vuelve más introspectivo y filosófico, buscando respuestas en su interior."},
+      {"key": "C", "text": "No tiene consecuencias significativas para el desarrollo del bebé, ya que este encontrará otros espejos."},
+      {"key": "D", "text": "La capacidad creadora del bebé puede atrofiarse, su mirada puede convertirse en una defensa (mirar para percibir, no para apercibir-se), y el mundo puede ser visto como algo que se mira, pero no que refleja al self."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Si la madre no devuelve la mirada al bebé o refleja su propio estado de ánimo en lugar del bebé, este no se ve reflejado. Como consecuencia, la capacidad creadora del bebé (apercepción) puede atrofiarse. Su propia mirada puede dejar de ser un medio para 'verse' (apercibirse) y convertirse en una defensa (solo 'percibir'). El espejo (el mundo, los otros) se convierte en algo que se mira, no en algo en lo que uno se ve reflejado."
+  },
+  {
+    "id": 85,
+    "text": "En 'La instancia de la letra en el inconsciente', Lacan menciona 'la falta' que permite el juego y la movilidad en la estructura del lenguaje (ej. 'juego del 15'). ¿A qué concepto fundamental remite esta 'falta'?",
+    "options": [
+      {"key": "A", "text": "A la castración simbólica, entendida como la imposibilidad de que todo pueda ser dicho o que haya un significante último."},
+      {"key": "B", "text": "A la ausencia física y real de la madre durante los primeros cuidados del infante."},
+      {"key": "C", "text": "A una deficiencia cognitiva o un déficit en la capacidad intelectual del sujeto hablante."},
+      {"key": "D", "text": "Al objeto 'a' petit como el objeto primordial y constitutivamente perdido del deseo."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "3",
+    "explanation": "Lacan vincula 'la falta' en la estructura del lenguaje –aquello que permite su juego, movilidad e incompletud– con el concepto de castración simbólica. Esta castración implica que no hay un significante que pueda decirlo todo, que el Otro del lenguaje es incompleto, lo que abre el espacio para el deseo y la palabra."
+  },
+  {
+    "id": 86,
+    "text": "¿Cómo considera Lacan el 'nombre propio' en relación al sujeto y su inscripción en el lenguaje, según 'La instancia de la letra...'?",
+    "options": [
+      {"key": "A", "text": "Como la expresión más auténtica y singular de la identidad verdadera e íntima del sujeto."},
+      {"key": "B", "text": "Como algo fundamentalmente ajeno al sujeto, una marca en el lenguaje asignada por otros que lo preexiste."},
+      {"key": "C", "text": "Como un significante que el individuo elige libre y conscientemente para representarse a sí mismo."},
+      {"key": "D", "text": "Como un elemento puramente imaginario y especular, sin un anclaje firme en el orden simbólico."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Lacan señala que el nombre propio, lejos de ser una expresión íntima del ser, es 'lo más ajeno'. Es una marca impuesta desde el Otro en el lenguaje, que preexiste al sujeto y lo inscribe en un orden simbólico y una historia familiar antes incluso de su nacimiento."
+  },
+  {
+    "id": 87,
+    "text": "En 'Función y campo de la palabra y el lenguaje en psicoanálisis', ¿qué critica Lacan respecto al papel de la palabra en algunas prácticas analíticas de su época?",
+    "options": [
+      {"key": "A", "text": "El uso excesivo de la palabra por parte del analista, en detrimento del necesario silencio interpretativo."},
+      {"key": "B", "text": "La interpretación directa y simplista de los símbolos oníricos sin considerar la cadena significante."},
+      {"key": "C", "text": "La obstrucción de la palabra como tercer término mediador en la relación analítica, reduciéndola a un dualismo imaginario."},
+      {"key": "D", "text": "La falta de atención a la transferencia afectiva y su manejo técnico en la cura psicoanalítica."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "3",
+    "explanation": "Lacan critica a ciertas corrientes del psicoanálisis de su tiempo por haber, según él, obstruido la función de la palabra como un 'tercer término' mediador esencial en la cura. Al no darle su debido lugar, la relación analítica corría el riesgo de reducirse a un dualismo imaginario entre paciente y analista, perdiendo la dimensión simbólica (él plantea una relación 'de a cuatro')."
+  },
+  {
+    "id": 88,
+    "text": "Según la enumeración en 'Función y campo...', ¿cuál de los siguientes NO es un lugar o manifestación donde se halla y se expresa el inconsciente?",
+    "options": [
+      {"key": "A", "text": "El cuerpo, a través de síntomas histéricos o fenómenos de conversión somática."},
+      {"key": "B", "text": "La evolución semántica personal, el vocabulario particular, el estilo de vida y las muletillas."},
+      {"key": "C", "text": "Las tradiciones familiares, las costumbres transmitidas y la historia de origen del sujeto."},
+      {"key": "D", "text": "Las decisiones racionales, planificadas y deliberadas tomadas por el Yo consciente del sujeto."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Lacan enumera diversas manifestaciones del inconsciente: el cuerpo (síntomas), recuerdos de infancia, el lenguaje (vocabulario, estilo, muletillas), tradiciones, etc. Las decisiones racionales y planificadas del Yo consciente, por definición, pertenecerían al ámbito de la conciencia y no a las manifestaciones directas del inconsciente en el sentido lacaniano."
+  },
+  {
+    "id": 89,
+    "text": "En la niña, según la descripción de Melanie Klein en 'Estadios Tempranos del Conflicto Edípico', ¿qué factor contribuye a su alejamiento de la madre y su vuelta hacia el padre como objeto de amor en la etapa edípica temprana?",
+    "options": [
+      {"key": "A", "text": "La envidia y el odio hacia la madre (por fantasear que posee el pene del padre), junto con frustraciones orales y anales previas."},
+      {"key": "B", "text": "Una identificación primaria exitosa, placentera y sin conflictos con la figura materna como modelo ideal."},
+      {"key": "C", "text": "El miedo intenso a la castración por parte de la madre, percibida como un agente punitivo y peligroso."},
+      {"key": "D", "text": "La ausencia de deseos libidinales hacia el padre y una fijación exclusiva en la relación con la madre."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "3",
+    "explanation": "Klein describe que, en la niña, el destete y las frustraciones anales generan un primer alejamiento de la madre. Posteriormente, el desplazamiento de la libido oral a la genital, y la fantasía de que la madre posee el pene del padre (lo que genera envidia y odio hacia ella), contribuyen a la vuelta de la niña hacia el padre como objeto de amor en el marco del Edipo temprano."
+  },
+  {
+    "id": 90,
+    "text": "¿Cómo se caracteriza el superyó temprano en la niña según Melanie Klein, en relación con la figura materna internalizada?",
+    "options": [
+      {"key": "A", "text": "Como un superyó predominantemente benévolo y protector, identificado con la imagen idealizada del padre."},
+      {"key": "B", "text": "Como un superyó particularmente cruel, fuertemente influenciado por una imagen materna internalizada durante la fase anal-sádica y teñida por la envidia."},
+      {"key": "C", "text": "Como un superyó débil, poco estructurado y apenas funcional hasta bien entrado el periodo de latencia."},
+      {"key": "D", "text": "Como un superyó idéntico en su crueldad y en su origen al superyó del niño varón, sin diferencias significativas."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "3",
+    "explanation": "Klein postula que el superyó de la niña, influido por los celos y la envidia al pene (que atribuye a la madre), y formado en conexión con la fase anal-sádica y la identificación con la madre, tiende a ser particularmente cruel. Internaliza una imagen materna a menudo sádica y persecutoria."
+  },
+  {
+    "id": 91,
+    "text": "Según Winnicott en 'Preocupación Maternal Primaria', ¿cuál podría ser una razón por la que algunas madres no alcanzan o tienen dificultades para entrar en este estado de sensibilidad exaltada?",
+    "options": [
+      {"key": "A", "text": "Un exceso de sensibilidad natural y una empatía desbordante hacia el bebé."},
+      {"key": "B", "text": "Una dedicación exclusiva y absorbente al cuidado físico del bebé, descuidando otros aspectos."},
+      {"key": "C", "text": "Una fuerte identificación masculina, una 'huida de la cordura' (temor a ese estado especial) o una envidia reprimida al pene."},
+      {"key": "D", "text": "La ausencia de dificultades significativas durante el embarazo y el parto, lo que impide la activación de este estado."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "3",
+    "explanation": "Winnicott menciona que no todas las madres alcanzan fácilmente el estado de Preocupación Maternal Primaria. Entre las posibles razones para esta dificultad, señala factores como una 'huida de la cordura' (una resistencia a entrar en ese estado mental casi psicótico que requiere la PMP), una fuerte identificación masculina por parte de la madre, o una envidia reprimida al pene."
+  },
+  {
+    "id": 92,
+    "text": "Desde la perspectiva del bebé, ¿cómo es percibido el objeto transicional en cuanto a su origen, según Winnicott en 'Realidad y Juego'?",
+    "options": [
+      {"key": "A", "text": "Como una creación interna completamente alucinatoria, sin conexión con el mundo exterior."},
+      {"key": "B", "text": "Como un objeto claramente externo, que le es dado e impuesto por la madre o el entorno."},
+      {"key": "C", "text": "Como una parte indiferenciada de su propio cuerpo, como sus dedos o su pulgar."},
+      {"key": "D", "text": "No se percibe como proveniente de afuera (aunque para un observador sí lo sea), ni como una alucinación; está en una zona intermedia de creación."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Winnicott subraya la particularidad del objeto transicional: aunque para un observador externo proviene de 'afuera', para el bebé no es (aún) experimentado de esa manera. Tampoco es una simple alucinación interna. El objeto transicional ocupa una zona intermedia, y su paradoja es que es 'creado' por el bebé pero a partir de algo que ya estaba allí."
+  },
+  {
+    "id": 93,
+    "text": "Según Foucault, ¿cuál es la relación del autor y su discurso con la cultura en la que se inscriben?",
+    "options": [
+      {"key": "A", "text": "Ocupan un lugar específico y no indiferente dentro de ella, debiendo ser recibidos de cierta manera."},
+      {"key": "B", "text": "Son elementos completamente irrelevantes para la dinámica y la estructura cultural."},
+      {"key": "C", "text": "Flotan libremente en un espacio atemporal, sin un anclaje cultural particular o significativo."},
+      {"key": "D", "text": "Solo los discursos científicos y objetivos tienen un lugar verdadero y reconocido en la cultura."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "1",
+    "explanation": "Foucault señala que el autor y su discurso no son elementos aislados o universales, sino que 'ocupan un lugar específico en la cultura'. El hecho de que un discurso tenga autor indica que no es indiferente y posee un estatuto particular que requiere ser recibido de cierta manera."
+  },
+  {
+    "id": 94,
+    "text": "En el contexto psicoanalítico que Lacan retoma en 'Función y campo...', ¿qué suele indicar una 'doble negación' en el discurso del paciente (ej. 'No es que no lo quiera')?",
+    "options": [
+      {"key": "A", "text": "Una profunda duda o incertidumbre por parte del paciente respecto a sus sentimientos."},
+      {"key": "B", "text": "Una afirmación subyacente de aquello que se está negando de forma indirecta."},
+      {"key": "C", "text": "Una negación rotunda, definitiva e incuestionable del contenido proposicional."},
+      {"key": "D", "text": "Un mecanismo de defensa particularmente fuerte y elaborado para ocultar la verdad."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Lacan, siguiendo a Freud, recuerda que en psicoanálisis una doble negación (Verneinung) a menudo funciona como una forma velada o indirecta de afirmación. Lo negado es, de alguna manera, admitido o traído a la luz por el propio acto de negarlo de esa forma particular."
+  },
+  {
+    "id": 95,
+    "text": "Al utilizar figuras topológicas como la Banda de Moebius, ¿qué característica principal de esta figura destaca Lacan para pensar la espacialidad del inconsciente?",
+    "options": [
+      {"key": "A", "text": "Su complejidad matemática intrínseca, que la hace inabordable para el pensamiento común."},
+      {"key": "B", "text": "La clara y definida separación entre sus dos caras distintas y sus dos bordes separados."},
+      {"key": "C", "text": "La continuidad entre interior y exterior (un solo plano o superficie), rompiendo la bidimensionalidad y la oposición simple dentro/fuera."},
+      {"key": "D", "text": "Su utilidad para representar únicamente el pensamiento consciente, lógico y racional del sujeto."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Lacan utiliza figuras topológicas como la Banda de Moebius para ilustrar conceptos psicoanalíticos como la estructura del sujeto y el inconsciente. De la Banda de Moebius destaca su propiedad de tener una sola superficie y un solo borde, lo que permite pensar la continuidad o indistinción entre interior y exterior, útil para representar la espacialidad del inconsciente que no se rige por la geometría euclidiana."
+  },
+  {
+    "id": 96,
+    "text": "¿Cómo describía Melanie Klein su abordaje en el análisis infantil, en contraste con el de Anna Freud, según la tabla comparativa del 'Simposium sobre Análisis Infantil'?",
+    "options": [
+      {"key": "A", "text": "Principalmente pedagógico y con una fuerte función educadora, no estrictamente analítica."},
+      {"key": "B", "text": "Una combinación equilibrada de técnicas analíticas y estrategias pedagógicas adaptadas al niño."},
+      {"key": "C", "text": "Enfocado en la modificación conductual directa y la enseñanza de habilidades sociales."},
+      {"key": "D", "text": "Estrictamente analítico y psicoanalítico, aplicando la misma metodología que con los adultos."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "La tabla comparativa del 'Simposium sobre Análisis Infantil' (1927) indica que Melanie Klein defendía un abordaje puramente analítico y psicoanalítico para los niños, considerando que se debía usar la misma metodología que con los adultos. Anna Freud, en cambio, proponía un enfoque más pedagógico y con una función educadora."
+  },
+  {
+    "id": 97,
+    "text": "En 'La Formación de Símbolos en el Desarrollo del Yo', ¿qué papel juegan las 'nuevas ecuaciones' que el niño establece (ej. equiparar órganos temidos con otros objetos) en su relación con el mundo?",
+    "options": [
+      {"key": "A", "text": "Son la base del interés por nuevos objetos y del progresivo desarrollo del simbolismo y la relación con la realidad."},
+      {"key": "B", "text": "Limitan severamente la capacidad del niño para relacionarse con la realidad, encerrándolo en un mundo de fantasía."},
+      {"key": "C", "text": "Son exclusivamente manifestaciones de la angustia persecutoria, sin ninguna función constructiva para el yo."},
+      {"key": "D", "text": "Reflejan una falla fundamental en el proceso de introyección de los objetos buenos, indicando patología."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Melanie Klein explica que, a partir de las primeras equiparaciones simbólicas (por ejemplo, entre órganos temidos y otros objetos del entorno), se establecen 'nuevas ecuaciones'. Estas ecuaciones son fundamentales porque constituyen la base para el interés del niño en nuevos objetos y para la expansión y complejización de su capacidad de simbolización, lo que a su vez es crucial para su relación con la realidad."
+  },
+  {
+    "id": 98,
+    "text": "En 'Realidad y Juego' (Cap. 4), ¿cómo interpreta Winnicott la 'abstinencia del analista' en el contexto del juego y la creatividad del paciente?",
+    "options": [
+      {"key": "A", "text": "Como una actitud de fría indiferencia y distanciamiento emocional absoluto hacia el paciente."},
+      {"key": "B", "text": "Como la capacidad del analista de abstenerse de imponer sus propias ideas, permitiendo así al paciente jugar y ser creador en la sesión."},
+      {"key": "C", "text": "Como la prohibición estricta de cualquier tipo de juego o actividad lúdica durante el proceso analítico."},
+      {"key": "D", "text": "Como la imposición de interpretaciones directivas y autoritarias por parte del analista para guiar al paciente."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Para Winnicott, la 'abstinencia' del analista no significa pasividad o frialdad, sino más bien la habilidad crucial de abstenerse de imponer sus propias ideas o interpretaciones prematuras. Esto crea un espacio de confianza donde el paciente puede jugar, ser espontáneo y creador, lo cual es esencial para el proceso terapéutico y el descubrimiento del self."
+  },
+  {
+    "id": 99,
+    "text": "Según la explicación de la cita de Jorge Luis Borges sobre 'El Libro', ¿qué se 'escucha' en un libro al leerlo que es fundamental para captar al autor?",
+    "options": [
+      {"key": "A", "text": "Únicamente el argumento lógico de la narración y la descripción objetiva de los personajes y escenarios."},
+      {"key": "B", "text": "Las opiniones y valoraciones de los críticos literarios más influyentes sobre dicha obra."},
+      {"key": "C", "text": "La intención real del autor, su particular modalidad de transmitir, es decir, su 'voz' distintiva."},
+      {"key": "D", "text": "Un mensaje unívoco, cerrado y definitivo, sin ambigüedades ni múltiples interpretaciones posibles."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La explicación de la cita de Borges sobre la 'voz del autor' indica que al leer un libro se puede 'escuchar' la intención real del autor y su particular modalidad de transmitir. Esto es lo que constituye su 'voz', que es más importante que otros aspectos formales o argumentales."
+  },
+  {
+    "id": 100,
+    "text": "En la síntesis final de los tres registros lacanianos (Simbólico, Imaginario, Real), ¿cuál es la relación jerárquica que se establece entre ellos?",
+    "options": [
+      {"key": "A", "text": "No existen niveles ni órdenes jerárquicos fijos entre ellos; están interrelacionados y dependen del Otro."},
+      {"key": "B", "text": "El Simbólico siempre domina jerárquicamente al Imaginario y al Real, siendo el más fundamental."},
+      {"key": "C", "text": "El Real es el registro fundante y lógicamente superior a los otros dos, determinándolos por completo."},
+      {"key": "D", "text": "El Imaginario precede cronológica y jerárquicamente al Simbólico y al Real en la constitución subjetiva."}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "2",
+    "explanation": "Aunque el Simbólico tiene una 'prioridad' lógica en la determinación del sujeto, Lacan enfatiza que los tres registros están intrínsecamente interrelacionados (como en el nudo borromeo) y no mantienen niveles u órdenes jerárquicos fijos y estáticos entre sí. El texto indica que 'los tres registros dependen del Otro, sin niveles ni órdenes jerárquicos fijos entre ellos'."
+  },
+  {
+    "id": 101,
+    "text": "Según Melanie Klein en 'Envidia y gratitud', ¿cómo puede manifestarse la envidia primaria en la transferencia durante el proceso analítico?",
+    "options": [
+      {"key": "A", "text": "Con una idealización excesiva y constante del analista y de sus interpretaciones."},
+      {"key": "B", "text": "El paciente puede desvalorizar la ayuda del analista o el éxito del análisis, haciendo críticas destructivas incluso a interpretaciones útiles."},
+      {"key": "C", "text": "Con una rápida y completa resolución de los conflictos infantiles y una gratitud desbordante."},
+      {"key": "D", "text": "A través de una colaboración perfecta y una ausencia total de resistencias en el tratamiento."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Klein señala que la envidia primaria puede revivirse en la transferencia. Una manifestación de esto es que, incluso cuando una interpretación del analista es útil, puede convertirse en objeto de críticas destructivas. El paciente puede escatimar el éxito del análisis, desvalorizar la ayuda recibida o atacar al 'objeto bueno' (el analista o el análisis) debido a la envidia."
+  },
+  {
+    "id": 102,
+    "text": "En 'La Creatividad y sus Orígenes', ¿cómo distingue Winnicott la 'creatividad' como cualidad universal de la producción de 'obras de arte'?",
+    "options": [
+      {"key": "A", "text": "La creatividad es una cualidad exclusiva de los artistas profesionales, mientras que las obras de arte son para el disfrute del público general."},
+      {"key": "B", "text": "No hay una distinción clara; considera que toda manifestación de creatividad resulta necesariamente en una obra de arte reconocida."},
+      {"key": "C", "text": "La creatividad es una condición universal del estar vivo, una forma de apercepción, mientras que las obras de arte son solo una manifestación específica y no la única de esta capacidad."},
+      {"key": "D", "text": "Las obras de arte son producto del acatamiento a las normas estéticas, mientras que la creatividad es una rebelión contra ellas."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Winnicott diferencia la creatividad, que considera una cualidad universal, una forma de estar vivo y de percibir el mundo (apercepción creadora), de la creación de obras de arte. Estas últimas serían una manifestación particular y socialmente reconocida de esta capacidad creativa más fundamental, pero no la agotan ni son su única expresión."
+  },
+  {
+    "id": 103,
+    "text": "En el contexto del Estadio del Espejo y evocando formulaciones freudianas, ¿dónde sitúa Lacan el 'Ideal del Yo' (lo que el sujeto quiere llegar a ser)?",
+    "options": [
+      {"key": "A", "text": "En la imagen especular directa y totalizadora, que corresponde al Yo Ideal (lo que uno cree ser)."},
+      {"key": "B", "text": "En la propia capacidad de agencia y autonomía del sujeto, independientemente de la mirada ajena."},
+      {"key": "C", "text": "En las pulsiones parciales autoeróticas que buscan satisfacción en el propio cuerpo fragmentado."},
+      {"key": "D", "text": "En el Otro (con mayúscula), es decir, en el lugar del tesoro de los significantes, de la ley y del reconocimiento simbólico."}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Lacan evoca la distinción freudiana entre Yo Ideal (la imagen narcisista de lo que uno cree ser, ligada a la imagen especular del registro Imaginario) y el Ideal del Yo (el modelo al que el sujeto aspira). En su elaboración, el Ideal del Yo está ubicado en el Otro (Simbólico), que es quien sanciona o reconoce la imagen del yo y desde donde se establecen los ideales a los que el sujeto se confronta."
+  },
+  {
+    "id": 104,
+    "text": "¿Cuál es la principal crítica de Lacan a quienes, en su época, obstruyeron la palabra como 'tercer término' en la relación analítica, según 'Función y campo...'?",
+    "options": [
+      {"key": "A", "text": "Que promovían una relación analítica de 'a cuatro', complejizando innecesariamente el vínculo."},
+      {"key": "B", "text": "Que reducían el análisis a una dialéctica imaginaria entre dos yoes, perdiendo la dimensión simbólica."},
+      {"key": "C", "text": "Que sobrevaloraban el silencio del analista como única herramienta interpretativa válida."},
+      {"key": "D", "text": "Que se enfocaban excesivamente en la rememoración de hechos pasados en lugar de la verdad del discurso."}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "3",
+    "explanation": "Lacan critica a aquellos analistas que, al obstruir la palabra como mediadora y tercer término, reducían la relación analítica a un dualismo imaginario (entre el yo del paciente y el yo del analista). Esto llevaba a una relación 'de a dos' que descuidaba la dimensión del Otro y del inconsciente estructurado como lenguaje. Lacan, en cambio, plantea una relación 'de a cuatro' (paciente, analista, el Otro, y el objeto a)."
+  }
+]

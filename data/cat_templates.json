@@ -1,0 +1,91 @@
+[
+  {
+    "id": "common_cat",
+    "rarity": 0,
+    "initialSize": 45,
+    "scoreValue": 1,
+    "spawnWeight": 100,
+    "physicsOptions": {
+      "restitution": 0.6,
+      "friction": 0.1
+    },
+    "renderOptions": {
+       
+    }
+  },
+  {
+    "id": "uncommon_gray",
+    "rarity": 1,
+    "initialSize": 46,
+    "scoreValue": 2,
+    "spawnWeight": 60,
+    "physicsOptions": {
+      "restitution": 0.6,
+      "friction": 0.1
+    },
+    "renderOptions": {
+      
+      "glowClass": "glow-gray"
+    }
+  },
+   {
+    "id": "uncommon_green",
+    "rarity": 2,
+    "initialSize": 48,
+    "scoreValue": 4,
+    "spawnWeight": 40,
+    "physicsOptions": {
+      "restitution": 0.55,
+      "density": 0.0055
+    },
+    "renderOptions": {
+      
+      "glowClass": "glow-green"
+    }
+  },
+  {
+    "id": "rare_blue",
+    "rarity": 3,
+    "initialSize": 50,
+    "scoreValue": 8,
+    "spawnWeight": 25,
+    "physicsOptions": {
+      "restitution": 0.5,
+      "density": 0.006
+    },
+    "renderOptions": {
+       "glowClass": "glow-blue"
+       
+    }
+  },
+   {
+    "id": "epic_violet",
+    "rarity": 4,
+    "initialSize": 52,
+    "scoreValue": 15,
+    "spawnWeight": 15,
+    "physicsOptions": {
+      "restitution": 0.45,
+      "density": 0.0065
+    },
+    "renderOptions": {
+      
+      "glowClass": "glow-violet"
+    }
+  },
+   {
+    "id": "legendary_orange",
+    "rarity": 5,
+    "initialSize": 55,
+    "scoreValue": 30,
+    "spawnWeight": 8,
+    "physicsOptions": {
+      "restitution": 0.4,
+      "density": 0.007
+    },
+    "renderOptions": {
+      
+      "glowClass": "glow-orange"
+    }
+  }
+]
