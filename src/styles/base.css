@@ -1,7 +1,7 @@
 /* src/styles/base.css */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('[https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap](https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap)');
+@import url('[https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap](https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap)');
+@import url('[https://fonts.googleapis.com/css2?family=Pacifico&display=swap](https://fonts.googleapis.com/css2?family=Pacifico&display=swap)');
 
 :root {
   /* ... (tus variables existentes) ... */
@@ -18,21 +18,18 @@
   --gq-body-text-color: #e5e7eb;
 }
 
-/* --- INICIO CAMBIOS --- */
 html {
   height: 100%;
-  overflow: hidden; /* Evita scrollbars en el html */
 }
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   position: relative;
-  min-height: 100%; /* Usa 100% */
-  height: 100%; /* Asegura altura 100% */
+  min-height: 100%; 
+  height: 100%; 
   background-color: var(--gq-body-bg-color);
   color: var(--gq-body-text-color);
-  overflow: hidden; /* Mantiene overflow hidden */
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -43,19 +40,40 @@ body {
 
 #app {
   width: 100%;
-  height: 100%; /* Usa 100% para heredar de body/html */
+  height: 100%; 
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* MODIFICACIÓN:
+   * - Cambiado justify-content a flex-start para alinear el contenido (como quiz-ui-container si es hijo directo)
+   * hacia arriba si la pantalla es muy alta.
+   * - align-items: center se mantiene para centrar horizontalmente.
+   * - Si quiz-ui-container es fixed, estos no lo afectarán directamente, pero es bueno para otros estados.
+   */
+  justify-content: flex-start; /* Alinear contenido arriba */
+  align-items: center; /* Centrar horizontalmente */
   position: relative;
-  z-index: 20;
-  pointer-events: none;
-  /* overflow: hidden; /* Opcional: añadir si #app causa scroll */
+  z-index: 20; /* Mantener el z-index original de #app */
+  pointer-events: none; /* #app no debe interceptar eventos, sus hijos sí */
+  /* overflow: hidden;  Si el contenido de #app (como quiz-ui-container) tiene su propio scroll, no es necesario aquí */
 }
-/* Utilidad para ocultar elementos */
+
+/*
+ * MODIFICACIÓN:
+ * - Cambiada la forma de ocultar elementos para que reserven espacio.
+ * En lugar de 'display: none !important;', usamos 'visibility: hidden;' y 'opacity: 0;'.
+ * Esto es crucial para que el área de la barra de tinta no cause saltos.
+ * - También se añade 'position: relative;' por si el elemento oculto necesita mantener
+ * su posición relativa para calcular el espacio que ocuparía.
+ * - 'pointer-events: none;' para que no sea interactivo cuando está oculto.
+ */
 .hidden {
-  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  /* Opcional: mantener dimensiones si es necesario, aunque min-height en el contenedor de tinta es mejor */
+  /* width: auto; height: auto; */
+  /* position: relative;  Podría ser necesario en algunos casos, pero min-height es más específico */
 }
+
 
 /* --- Animaciones Globales (usadas por múltiples elementos o para transiciones de página) --- */
 @keyframes fadeInOut { /* Usado por main-menu-screen y explanation-overlay */

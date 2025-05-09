@@ -47,7 +47,7 @@
           box-shadow: var(--gq-qbox-inset-shadow, inset 0 1px 2px rgba(0,0,0,0.2)),
                       0 0 var(--gq-element-glow-blur-radius, calc(var(--element-glow-intensity, 0) * 18px)) var(--gq-element-glow-spread-radius, calc(var(--element-glow-intensity, 0) * 4px)) var(--gq-element-glow-color, hsla(50, 100%, 60%, calc(var(--element-glow-intensity, 0) * 0.6)));
           transition: box-shadow 0.5s ease-out, background-color 0.3s ease, border 0.3s ease;
-          overflow: hidden; 
+          overflow: visible; 
           position: relative; 
         }
         

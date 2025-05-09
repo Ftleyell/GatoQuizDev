@@ -10,20 +10,29 @@ export class QuizUiContainer extends LitElement {
 
   static styles: CSSResultGroup = css`
     :host {
-      /* Estilos base que antes estaban en .game-container de layout.css */
+      /*
+       * MODIFICACIÓN:
+       * - Cambiado a position: fixed para anclarlo a la parte superior.
+       * - Añadido 'top', 'left', 'transform' para centrarlo horizontalmente y fijar la distancia superior.
+       * - Eliminado 'margin-top' ya que 'top' lo maneja.
+       * - 'pointer-events: auto' se mantiene para que el contenedor sea interactivo por defecto.
+       */
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
+      position: fixed; /* Anclado al viewport */
+      top: 7vh; /* Distancia fija desde la parte superior (ej. 5% de la altura del viewport) */
+               /* Puedes cambiarlo a un valor en px si prefieres, ej: top: 20px; */
+      left: 50%; /* Para centrar horizontalmente */
+      transform: translateX(-50%); /* Para centrar horizontalmente */
       width: 90%;
-      max-width: 600px; /* O usar variable CSS de theme.json */
+      max-width: 600px;
       box-sizing: border-box;
-      padding: 0 1rem; /* Ajustar según sea necesario o usar variables */
-      margin-top: 2vh;  /* Ajustar según sea necesario o usar variables */
-      background-color: transparent; /* El fondo lo da el body o el tema */
+      padding: 0 1rem;
+      background-color: transparent;
       transition: opacity 0.25s ease-in-out;
-      /* Por defecto, el contenedor es interactivo */
       pointer-events: auto;
+      z-index: 20; /* Asegurar que esté por encima del cat-display-area pero debajo de overlays */
     }
 
     :host([isFaded]) {
@@ -31,15 +40,12 @@ export class QuizUiContainer extends LitElement {
       pointer-events: none;
     }
 
-    /* Estructura interna similar a la que generaba UIManager */
     .top-ui-container-internal {
-      /* Estilos para el contenedor de score, vidas, tinta */
       width: 100%;
       display: flex;
-      flex-direction: column; /* O row, según el diseño de .top-ui-container */
+      flex-direction: column;
       align-items: center;
-      margin-bottom: 1rem; /* Espacio antes de la pregunta */
-      /* background-color: var(--gq-top-ui-bg, transparent); */ /* Ejemplo de variable de tema */
+      margin-bottom: 1rem;
     }
 
     .status-row-internal {
@@ -49,7 +55,6 @@ export class QuizUiContainer extends LitElement {
         align-items: center;
         padding: 0.5rem 0;
         gap: 0.5rem;
-         /* background-color: var(--gq-status-row-bg, transparent); */
     }
     
     .ink-area-internal {
@@ -59,7 +64,14 @@ export class QuizUiContainer extends LitElement {
         align-items: center;
         gap: 0.2rem;
         margin-top: 0.5rem;
-        /* background-color: var(--gq-ink-area-bg, transparent); */
+        /*
+         * MODIFICACIÓN:
+         * - Añadido min-height para reservar espacio para la etiqueta de tinta y la barra.
+         * Ajusta este valor según el tamaño combinado de la etiqueta y la barra.
+         * Por ejemplo, si la etiqueta es ~0.8rem y la barra ~0.5rem + gap, podría ser ~1.5rem o 2rem.
+         */
+        min-height: 2rem; /* Ejemplo: Ajusta este valor según sea necesario */
+                          /* Esto asegura que el espacio esté siempre ocupado. */
     }
 
 
@@ -68,37 +80,61 @@ export class QuizUiContainer extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
+      /*
+       * MODIFICACIÓN:
+       * - Añadido overflow-y: auto y max-height para que el contenido scrollee
+       * si excede la altura disponible, manteniendo el contenedor principal fijo.
+       * El max-height debe calcularse considerando la posición 'top' y el espacio
+       * que quieras dejar en la parte inferior. (ej. 90vh - top - padding_inferior_deseado)
+       */
+      overflow-y: auto;
+      max-height: calc(95vh - 5vh - 2rem); /* 95vh (altura casi total) - 5vh (top) - 2rem (padding inferior deseado) */
+                                          /* Ajusta estos valores según tus necesidades */
+      scrollbar-width: thin; /* Para Firefox */
+      scrollbar-color: rgba(150,150,150,0.5) transparent; /* Para Firefox */
     }
+    .quiz-content-wrapper-internal::-webkit-scrollbar {
+        width: 8px;
+    }
+    .quiz-content-wrapper-internal::-webkit-scrollbar-thumb {
+        background-color: rgba(150,150,150,0.5);
+        border-radius: 4px;
+    }
+     .quiz-content-wrapper-internal::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
 
     .quiz-scrollable-content-internal {
       width: 100%;
+      padding: var(--gq-scrollable-content-glow-padding, 5px); /* Ajusta el valor según necesites */
+      box-sizing: border-box;
     }
 
     .options-container-internal {
-      /* Estilos para el contenedor de opciones si son necesarios aquí */
       display: flex;
       flex-direction: column;
-      gap: var(--gq-options-gap, 0.75rem); /* Usar variable de tema */
+      gap: var(--gq-options-gap, 0.75rem);
       width: 100%;
       margin-top: var(--gq-options-margin-top, 1rem);
       margin-bottom: var(--gq-options-margin-bottom, 1rem);
     }
 
-    /* Media queries para responsiveness dentro del componente */
+    /*
+     * MODIFICACIÓN:
+     * - Eliminadas las media queries que ajustaban 'margin-top' ya que ahora se usa 'top' fijo.
+     * - Se mantiene el ajuste de 'width' y 'padding' para pantallas pequeñas.
+     */
     @media (max-width: 768px) {
       :host {
         padding: 0 0.5rem;
-        width: 100%;
-        max-width: none;
-        margin-top: 7vh; /* Ajustado de layout.css */
-      }
-      .top-ui-container-internal {
-        /* Ajustes si son necesarios */
+        width: calc(100% - 1rem); /* Ajustar para que el padding no cause overflow si el max-width es mayor */
+        /* top: 7vh;  Si quieres un 'top' diferente para tablet, ajústalo aquí */
       }
     }
      @media (max-width: 480px) {
        :host {
-         margin-top: 5vh; /* Ajustado de layout.css */
+         /* top: 5vh; Si quieres un 'top' diferente para móvil, ajústalo aquí */
        }
      }
   `;
