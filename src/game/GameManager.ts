@@ -24,18 +24,19 @@ import { ResultsState } from './states/ResultsState';
 import { GameOverState } from './states/GameOverState';
 
 // --- Importaciones de Componentes UI y sus Tipos ---
-// Importar los archivos de los componentes para asegurar su registro (efecto secundario)
 import './components/ui/tool-button.ts';
 import './components/ui/combo-counter.ts';
-import './components/ui/cat-display-area.ts'; // <--- IMPORTANTE: Asegurar registro
+import './components/ui/cat-display-area.ts';
 import './components/ui/drawing-canvas-layer.ts';
 import './components/ui/shop-button.ts';
-import './components/ui/shop-popup.ts'; // Aunque se obtiene por ID, su definición debe cargarse
-import './components/ui/main-menu-screen.ts'; // Para cuando StateMachine lo crea
-import './components/ui/quiz-ui-container.ts'; // Para cuando StateMachine lo crea
+import './components/ui/shop-popup.ts';
+import './components/ui/main-menu-screen.ts';
+import './components/ui/quiz-ui-container.ts';
 import './components/ui/diagonal-wipe.ts';
+import './components/ui/blur-backdrop.ts';
+import './components/ui/options-button-component.ts';
+import './components/ui/options-menu-popup.ts';
 
-// Importar tipos después de los componentes
 import type { ToolButton } from './components/ui/tool-button';
 import type { CatDisplayArea } from './components/ui/cat-display-area';
 import type { QuizUiContainer } from './components/ui/quiz-ui-container';
@@ -44,22 +45,23 @@ import type { ShopButtonComponent } from './components/ui/shop-button';
 import type { ShopPopup } from './components/ui/shop-popup';
 import type { MainMenuScreen } from './components/ui/main-menu-screen';
 import type { DiagonalWipe } from './components/ui/diagonal-wipe';
+import type { BlurBackdropComponent } from './components/ui/blur-backdrop';
+import type { OptionsButtonComponent } from './components/ui/options-button-component';
+import type { OptionsMenuPopup } from './components/ui/options-menu-popup';
+
 
 /**
  * Define la estructura para las referencias a los elementos de control de herramientas.
  */
 type ControlElements = {
     controlsContainer: HTMLElement | null;
-    drawingButtonsContainer: HTMLElement | null; // Referencia al contenedor específico
+    drawingButtonsContainer: HTMLElement | null;
     catFoodUiContainer: HTMLElement | null;
     brushToolButton: ToolButton | null;
     clearInkToolButton: ToolButton | null;
     catFoodToolButton: ToolButton | null;
 };
 
-/**
- * GameManager: Orquesta todos los sistemas, la máquina de estados y el ciclo de vida del juego.
- */
 export class GameManager {
     // --- Referencias a Sistemas ---
     private physicsManager!: PhysicsManager;
@@ -77,9 +79,14 @@ export class GameManager {
     // --- Referencias a Elementos UI Clave ---
     private catDisplayAreaElement!: CatDisplayArea;
     private drawingCanvasLayerElement: DrawingCanvasLayer | null = null;
-    private containerElement: HTMLElement; // El elemento #app, usado para transiciones
-    private gameUiContainer: QuizUiContainer | null = null; // Contenedor específico del UI del Quiz
-    private diagonalWipeElement: DiagonalWipe | null = null; // Referencia al componente Lit de barrido
+    private containerElement: HTMLElement;
+    private gameUiContainer: QuizUiContainer | null = null;
+    private diagonalWipeElement: DiagonalWipe | null = null;
+    private blurBackdrop: BlurBackdropComponent | null = null;
+
+    // --- Referencias a componentes de Opciones ---
+    private optionsButtonInstance: OptionsButtonComponent | null = null;
+    private optionsPopupInstance: OptionsMenuPopup | null = null;
 
     // --- Estado del Juego ---
     private lastTimestamp: number = 0;
@@ -93,34 +100,30 @@ export class GameManager {
     private shopButtonInstance: ShopButtonComponent | null = null;
     private shopButtonInteractionListener: (() => void) | null = null;
     private shopCloseRequestListener: (() => void) | null = null;
+    private optionsButtonClickListener: (() => void) | null = null;
+    private optionsPopupCloseListener: (() => void) | null = null;
 
-    // --- Mensajes de Carga ---
     private loadingMessages: string[] = ["Desenredando la diversión..."];
-
-    // --- Constantes y Debounce ---
     private _lastToolToggleTime: number = 0;
     private readonly TOOL_TOGGLE_DEBOUNCE_MS = 300;
 
     constructor(container: HTMLElement) {
         this.containerElement = container;
 
-        // Inicialización de sistemas (orden puede importar)
         this.audioManager = new AudioManager();
         this.quizSystem = new QuizSystem();
         this.playerData = new PlayerData();
-        this.themeManager = new ThemeManager('body'); // Aplica temas al body
+        this.themeManager = new ThemeManager('body');
         this.catManager = new CatManager(this.audioManager, this);
-        this.uiManager = new UIManager(this); // UIManager necesita GameManager
-        this.shopManager = new ShopManager(this.playerData, this); // ShopManager necesita PlayerData y GameManager
-        this.inkManager = new InkManager(this); // InkManager necesita GameManager (para PlayerData y UIManager)
-        this.catFoodManager = new CatFoodManager(this); // CatFoodManager necesita GameManager
-        this.physicsManager = new PhysicsManager(this.catManager, this.catFoodManager, this); // PhysicsManager necesita CatManager, CatFoodManager y GameManager
+        this.uiManager = new UIManager(this);
+        this.shopManager = new ShopManager(this.playerData, this);
+        this.inkManager = new InkManager(this);
+        this.catFoodManager = new CatFoodManager(this);
+        this.physicsManager = new PhysicsManager(this.catManager, this.catFoodManager, this);
 
-        // Configuración de StateMachine
         this.stateMachine = new StateMachine();
-        this.stateMachine.setAnimationContainer(this.containerElement); // Usar #app para transiciones
+        this.stateMachine.setAnimationContainer(this.containerElement);
 
-        // Obtener wipe component
         this.diagonalWipeElement = document.getElementById('diagonal-wipe-transition-element') as DiagonalWipe | null;
         if (!this.diagonalWipeElement || !(this.diagonalWipeElement instanceof HTMLElement && 'playIn' in this.diagonalWipeElement)) {
             console.error("GameManager CRITICAL: Componente <diagonal-wipe id='diagonal-wipe-transition-element'> no encontrado o inválido.");
@@ -128,7 +131,6 @@ export class GameManager {
         }
         this.stateMachine.setWipeComponent(this.diagonalWipeElement);
 
-        // Obtener Cat Display Area
         const catDisplayArea = document.getElementById('cat-display-area-main') as CatDisplayArea | null;
         if (!catDisplayArea || !(catDisplayArea instanceof HTMLElement && 'clearAllEntityElements' in catDisplayArea)) {
             console.error("GameManager CRITICAL: <cat-display-area id='cat-display-area-main'> no encontrado o inválido.");
@@ -136,188 +138,192 @@ export class GameManager {
         }
         this.catDisplayAreaElement = catDisplayArea;
 
-        // Obtener Drawing Canvas Layer
         this.drawingCanvasLayerElement = document.getElementById('drawing-canvas-layer-main') as DrawingCanvasLayer | null;
         if (this.drawingCanvasLayerElement && !(this.drawingCanvasLayerElement instanceof HTMLElement && 'resizeCanvas' in this.drawingCanvasLayerElement)) {
             console.warn("GameManager: drawingCanvasLayerElement no parece ser una instancia válida de DrawingCanvasLayer.");
         }
 
-        // Establecer dependencias cruzadas
         this.catManager.setCatDisplayArea(this.catDisplayAreaElement);
-        this.catFoodManager.setCatDisplayArea(this.catDisplayAreaElement); // CatFood necesita el área también
+        this.catFoodManager.setCatDisplayArea(this.catDisplayAreaElement);
         this.catManager.setPhysicsManager(this.physicsManager);
-        this.inkManager.setPhysicsManager(this.physicsManager); // InkManager necesita PhysicsManager
+        this.inkManager.setPhysicsManager(this.physicsManager);
 
-        // Referencias a elementos de control
         this.controlElements = {
             controlsContainer: document.getElementById('right-controls'),
-            drawingButtonsContainer: document.getElementById('drawing-buttons-container'), // Obtener referencia al nuevo contenedor
+            drawingButtonsContainer: document.getElementById('drawing-buttons-container'),
             catFoodUiContainer: document.getElementById('cat-food-ui-container'),
             brushToolButton: document.querySelector<ToolButton>('tool-button[toolId="brush"]'),
             clearInkToolButton: document.querySelector<ToolButton>('tool-button[toolId="clear-ink"]'),
             catFoodToolButton: document.querySelector<ToolButton>('tool-button[toolId="cat-food"]'),
         };
-
-        // Verificar que los elementos existen (opcional pero recomendado)
         if (!this.controlElements.controlsContainer ||
-            !this.controlElements.drawingButtonsContainer || // Verificar el nuevo contenedor
+            !this.controlElements.drawingButtonsContainer ||
             !this.controlElements.catFoodUiContainer ||
             !this.controlElements.brushToolButton ||
             !this.controlElements.clearInkToolButton ||
             !this.controlElements.catFoodToolButton) {
             console.warn("GameManager: Uno o más elementos de control UI no fueron encontrados en el DOM.");
         }
-
-        this.setupStates(); // Configurar la máquina de estados
+        this.setupStates();
     }
 
-    /** Aplica/remueve la clase de estado al body */
     public setBodyStateClass(stateName: string | null): void {
         const body = document.body;
-        // Remover clases de estado anteriores
         body.className.split(' ').forEach(cls => {
             if (cls.startsWith('state-')) {
                 body.classList.remove(cls);
             }
         });
-        // Añadir nueva clase si hay un nombre de estado
         if (stateName) {
             body.classList.add(`state-${stateName.toLowerCase()}`);
         }
     }
 
-    /** Inicializa sistemas básicos y precarga assets */
     public async init(): Promise<void> {
-        this.playerData.reset(); // Asegurar que PlayerData esté limpio al inicio
-        this.physicsManager.init(this.catDisplayAreaElement); // Inicializar físicas con el área correcta
-        this.catFoodManager.init(); // Inicializar gestor de comida
-        this.hideToolControls();    // Ocultar controles de herramientas inicialmente
-        this.hideShopButton();      // Ocultar botón de tienda inicialmente
-        this.addThemeChangeListener(); // Escuchar cambios de tema
-        await this.preload();       // Cargar datos (preguntas, plantillas, etc.)
-        this.setupToolButtonListeners(); // Configurar listeners para botones de herramientas
-        this.addKeyboardListener();  // Configurar listeners de teclado
+        this.playerData.reset();
+        this.physicsManager.init(this.catDisplayAreaElement);
+        this.catFoodManager.init();
+
+        this.blurBackdrop = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
+        if (!this.blurBackdrop) {
+            console.warn("GameManager (init): Componente <blur-backdrop-component> no encontrado.");
+        }
+
+        this.optionsButtonInstance = document.getElementById('settings-options-button-global') as OptionsButtonComponent | null;
+        this.optionsPopupInstance = document.getElementById('options-menu-popup-global') as OptionsMenuPopup | null;
+
+        if (!this.optionsButtonInstance || !this.optionsPopupInstance) {
+            console.error("GameManager (init): No se encontraron los componentes de opciones (botón o popup). La funcionalidad de opciones no estará disponible.");
+        } else {
+            this.optionsPopupInstance.audioManagerInstance = this.audioManager;
+            this.optionsPopupInstance.themeManagerInstance = this.themeManager;
+            (this.optionsPopupInstance as any).gameManagerInstance = this;
+            console.log("GameManager (init): Instancias de AudioManager y ThemeManager pasadas a OptionsMenuPopup.");
+        }
+
+        this.shopButtonInstance = document.getElementById('shop-button-global') as ShopButtonComponent | null;
+        if (!this.shopButtonInstance) {
+            console.info("GameManager (init): Botón de tienda global no encontrado inicialmente. Se creará si es necesario.");
+        }
+
+        this.hideToolControls();
+        this.hideShopButton();
+        this.hideOptionsButton();
+        this.addThemeChangeListener();
+        await this.preload();
+        this.setupToolButtonListeners();
+        this.addKeyboardListener();
+        this.setupGlobalUICListeners();
     }
 
-    /** Configura el juego para un nuevo inicio (usualmente transiciona a MainMenu) */
     public create(): void {
-        console.log("GameManager: create() - Iniciando reseteo..."); 
-        this.quizSystem.resetAvailableQuestions(); 
-        this.catManager.removeAllCats();           
-        
+        console.log("GameManager: create() - Iniciando reseteo...");
+        this.quizSystem.resetAvailableQuestions();
+        this.catManager.removeAllCats();
+
         if (this.shopManager) {
-             this.shopManager.closeShop(); // Asegura que isVisible sea false
-             console.log("GameManager: create() - ShopManager.closeShop() llamado."); 
+             this.shopManager.closeShop();
+             console.log("GameManager: create() - ShopManager.closeShop() llamado.");
         } else {
-             console.warn("GameManager: create() - ShopManager no disponible para cerrar tienda."); 
+             console.warn("GameManager: create() - ShopManager no disponible para cerrar tienda.");
         }
-        
-        // Ocultar botones (esto llamará a updateShopButtonState internamente si es necesario)
-        this.hideToolControls(); 
-        this.hideShopButton();   
-        
+        if (this.optionsPopupInstance?.isVisible) {
+            this.closeOptionsMenu();
+        }
+
+        this.hideToolControls();
+        this.hideShopButton();
+        this.hideOptionsButton();
+
         if (!document.querySelector('combo-counter')) {
              document.body.appendChild(document.createElement('combo-counter'));
         }
-        
-        this.stateMachine.changeState('MainMenu', undefined, 'gq-wipe-transition'); 
-        console.log("GameManager: create() - Reseteo completado, transicionando a MainMenu."); 
+
+        this.stateMachine.changeState('MainMenu', undefined, 'gq-wipe-transition');
+        console.log("GameManager: create() - Reseteo completado, transicionando a MainMenu.");
     }
 
-
-    /** Configura los estados y sus wrappers para gestionar UI común */
     private setupStates(): void {
-        // Crear instancias de todos los estados
         const loadingState = new LoadingState(this);
         const mainMenuState = new MainMenuState(this);
         const quizGameplayState = new QuizGameplayState(this);
         const resultsState = new ResultsState(this);
         const gameOverState = new GameOverState(this);
 
-        // Wrapper para el método enter de cada estado
-        const wrapEnter = (state: IState, showShopBtn: boolean, showToolCtrl: boolean) => {
-            const originalEnter = state.enter.bind(state); // Guardar referencia al método original
+        const wrapEnter = (state: IState, showShopBtn: boolean, showToolCtrl: boolean, showOptionsBtn: boolean) => {
+            const originalEnter = state.enter.bind(state);
             return (params?: any) => {
-                // Ejecutar lógica original de enter
                 try { originalEnter(params); }
                 catch (e) { console.error(`Error en enter() para ${state.constructor.name}:`, e); }
 
-                // Lógica común de GameManager al entrar a un estado
                 if (state instanceof QuizGameplayState) {
-                    // Obtener referencia al contenedor UI del quiz cuando se entra a este estado
                     this.gameUiContainer = this.containerElement.querySelector('quiz-ui-container');
                 } else if (state instanceof MainMenuState) {
-                    // Pasar mensajes de carga al componente del menú principal
                     const mainMenuElement = this.containerElement.querySelector('main-menu-screen') as MainMenuScreen | null;
                     if (mainMenuElement) {
                         mainMenuElement.loadingMessages = this.getLoadingMessages();
                     }
                 }
 
-                // Mostrar/ocultar botón de tienda
                 if (showShopBtn) this.showShopButton();
                 else this.hideShopButton();
 
-                // Mostrar/ocultar controles de herramientas
+                // <<< INICIO CAMBIO VISIBILIDAD BOTÓN OPCIONES >>>
+                if (showOptionsBtn) this.showOptionsButton();
+                else this.hideOptionsButton();
+                // <<< FIN CAMBIO VISIBILIDAD BOTÓN OPCIONES >>>
+
                 if (showToolCtrl) {
                     this.showToolControls();
-                    // Si estamos en gameplay, actualizar UI de comida
                     if (state instanceof QuizGameplayState) {
                         this.updateCatFoodUI();
                     }
                 } else {
                     this.hideToolControls();
                 }
+                this.updateGlobalButtonsState(); // Esta función también debe ser ajustada
             };
         };
 
-        // Wrapper para el método exit de cada estado
         const wrapExit = (state: IState) => {
-            const originalExit = state.exit.bind(state); // Guardar referencia al método original
+            const originalExit = state.exit.bind(state);
             return () => {
-                // Ejecutar lógica original de exit
                 try { originalExit(); }
                 catch (e) { console.error(`Error en exit() para ${state.constructor.name}:`, e); }
-                // Lógica común de GameManager al salir de un estado
                 if (state instanceof QuizGameplayState) {
-                    this.gameUiContainer = null; // Limpiar referencia al salir del gameplay
+                    this.gameUiContainer = null;
                 }
             };
         };
 
-        // Aplicar wrappers a los métodos enter/exit de cada estado
-        loadingState.enter = wrapEnter(loadingState, false, false);
+        // <<< INICIO CAMBIO VISIBILIDAD BOTÓN OPCIONES (en parámetros de wrapEnter) >>>
+        loadingState.enter = wrapEnter(loadingState, false, false, false);
         loadingState.exit = wrapExit(loadingState);
-        mainMenuState.enter = wrapEnter(mainMenuState, false, false);
+        mainMenuState.enter = wrapEnter(mainMenuState, false, false, false); // Opciones NO visible
         mainMenuState.exit = wrapExit(mainMenuState);
-        quizGameplayState.enter = wrapEnter(quizGameplayState, true, true);
+        quizGameplayState.enter = wrapEnter(quizGameplayState, true, true, true); // Opciones SÍ visible
         quizGameplayState.exit = wrapExit(quizGameplayState);
-        resultsState.enter = wrapEnter(resultsState, false, false);
+        resultsState.enter = wrapEnter(resultsState, false, false, false); // Opciones NO visible
         resultsState.exit = wrapExit(resultsState);
-        gameOverState.enter = wrapEnter(gameOverState, false, false);
-        gameOverState.exit = wrapExit(gameOverState);
+        gameOverState.enter = wrapEnter(gameOverState, false, false, false); // Opciones NO visible
+        // <<< FIN CAMBIO VISIBILIDAD BOTÓN OPCIONES >>>
 
-        // Añadir estados a la máquina de estados
         this.stateMachine.addState('Loading', loadingState);
         this.stateMachine.addState('MainMenu', mainMenuState);
         this.stateMachine.addState('QuizGameplay', quizGameplayState);
         this.stateMachine.addState('Results', resultsState);
         this.stateMachine.addState('GameOver', gameOverState);
 
-        // Estado especial para shutdown (limpieza)
         this.stateMachine.addState('__shutdown__', {
-            enter: () => { this.hideToolControls(); this.hideShopButton(); },
+            enter: () => { this.hideToolControls(); this.hideShopButton(); this.hideOptionsButton(); },
             exit: () => {},
             update: () => {}
         });
     }
 
-    /** Carga los archivos JSON necesarios */
     public async preload(): Promise<void> {
-        const baseUrl = import.meta.env.BASE_URL; // Obtener base URL de Vite
-        // Asegurarse que no haya doble barra al inicio si BASE_URL es solo '/'
+        const baseUrl = import.meta.env.BASE_URL;
         const cleanBaseUrl = baseUrl === '/' ? '' : (baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl);
-
         const urls = {
             questions: `${cleanBaseUrl}/data/questions.json`,
             templates: `${cleanBaseUrl}/data/cat_templates.json`,
@@ -325,21 +331,12 @@ export class GameManager {
             themes: `${cleanBaseUrl}/data/themes.json`,
             loadingMessages: `${cleanBaseUrl}/data/loading_messages.json`
         };
-
-        console.log("GameManager: Preload - URLs a cargar:", urls);
-
         try {
             const responses = await Promise.all(Object.values(urls).map(url => fetch(url)));
-
-            // Verificar respuestas HTTP
             responses.forEach((res, i) => {
                 if (!res.ok) throw new Error(`HTTP ${res.status} cargando ${Object.values(urls)[i]}`);
             });
-
-            // Parsear JSON
             const [questionData, templateData, shopItemJsonData, themeData, loadingMessagesData] = await Promise.all(responses.map(res => res.json()));
-
-            // Validar y procesar datos
             if (!Array.isArray(questionData) || !Array.isArray(templateData) ||
                 !Array.isArray(shopItemJsonData) || !Array.isArray(themeData) ||
                 !Array.isArray(loadingMessagesData)) {
@@ -347,390 +344,353 @@ export class GameManager {
             }
             if (!(await this.quizSystem.loadQuestionsData(questionData))) throw new Error("Fallo al procesar preguntas.");
             this.catManager.loadTemplates(templateData as CatTemplate[]);
-            this.shopManager.init(shopItemJsonData as ShopItemJsonData[]); // Inicializar ShopManager con los items
+            this.shopManager.init(shopItemJsonData as ShopItemJsonData[]);
             if (!(await this.themeManager.loadThemesData(themeData as Theme[]))) throw new Error("Fallo al procesar temas.");
-
             this.loadingMessages = loadingMessagesData as string[];
-            if (this.loadingMessages.length === 0) { // Fallback si el archivo está vacío
+            if (this.loadingMessages.length === 0) {
                 this.loadingMessages = ["Cargando michi-diversión..."];
             }
              console.log("GameManager: Preload completado exitosamente.");
-
         } catch (error: any) {
             console.error('GameManager: Error durante preload:', error);
             this.containerElement.innerHTML = `Error cargando assets: ${error.message}. Revisa la consola.`;
-            throw error; // Re-lanzar para detener la inicialización
+            throw error;
         }
     }
 
-    /** Inicia el ciclo de juego */
     public start(): void {
         if (this.isRunning) return;
         this.isRunning = true;
-        this.lastTimestamp = performance.now(); // Iniciar timestamp
-        this.physicsManager.start(); // Iniciar el motor de físicas
-        // Iniciar el ciclo de juego principal
+        this.lastTimestamp = performance.now();
+        this.physicsManager.start();
         this.gameLoopRequestId = requestAnimationFrame(this.gameLoop.bind(this));
         console.log("GameManager: Ciclo de juego iniciado.");
     }
 
-    /** Detiene el ciclo de juego */
     public stop(): void {
         if (!this.isRunning) return;
         this.isRunning = false;
         if (this.gameLoopRequestId) {
-            cancelAnimationFrame(this.gameLoopRequestId); // Detener el ciclo de animación
+            cancelAnimationFrame(this.gameLoopRequestId);
         }
         this.gameLoopRequestId = undefined;
-        this.physicsManager.stop(); // Detener el motor de físicas
+        this.physicsManager.stop();
         console.log("GameManager: Ciclo de juego detenido.");
     }
 
-    /** Ciclo principal del juego */
     private gameLoop(timestamp: number): void {
         if (!this.isRunning) return;
-
-        // Calcular deltaTime
-        const deltaTime = (timestamp - this.lastTimestamp) / 1000.0; // DeltaTime en segundos
+        const deltaTime = (timestamp - this.lastTimestamp) / 1000.0;
         this.lastTimestamp = timestamp;
-        // Limitar deltaTime para evitar saltos grandes si la pestaña pierde foco
-        const clampedDeltaTime = Math.min(deltaTime, 0.1); // Máximo 100ms (10 FPS)
-
-        // Actualizar sistemas y estado actual
+        const clampedDeltaTime = Math.min(deltaTime, 0.1);
         this.update(clampedDeltaTime);
-
-        // Solicitar el siguiente frame
         this.gameLoopRequestId = requestAnimationFrame(this.gameLoop.bind(this));
     }
 
-    /** Actualiza todos los sistemas relevantes en cada frame */
     public update(deltaTime: number): void {
         try {
-            this.stateMachine.update(deltaTime); // Actualizar lógica del estado actual
-            this.catManager.updateCats(deltaTime); // Actualizar gatos (posición visual, etc.)
-            this.catFoodManager.update(deltaTime); // Actualizar pellets de comida
-            // PhysicsManager se actualiza internamente por su Runner
+            this.stateMachine.update(deltaTime);
+            this.catManager.updateCats(deltaTime);
+            this.catFoodManager.update(deltaTime);
         } catch (error) {
             console.error("Error en gameLoop update:", error);
-            this.stop(); // Detener el juego si hay un error crítico
+            this.stop();
         }
     }
 
-    /** Detiene y limpia todos los sistemas y listeners */
     public shutdown(): void {
         console.log("GameManager: Iniciando shutdown...");
-        this.stop(); // Detener ciclo de juego y físicas
-        this.hideToolControls(); // Ocultar controles
-        this.hideShopButton(); // Ocultar botón de tienda
-        this.removeKeyboardListener(); // Limpiar listener de teclado
-        this.removeThemeChangeListener(); // Limpiar listener de tema
-        this.physicsManager.shutdown(); // Limpiar mundo físico y listeners
+        this.stop();
+        this.hideToolControls();
+        this.hideShopButton();
+        this.hideOptionsButton();
+        this.removeKeyboardListener();
+        this.removeThemeChangeListener();
+        this.removeGlobalUICListeners();
+        this.physicsManager.shutdown();
 
-        // Salir del estado actual y transicionar a estado de shutdown
         const currentStateName = this.stateMachine.getCurrentStateName();
         if (currentStateName && currentStateName !== '__shutdown__') {
             try { this.stateMachine.getCurrentState()?.exit(); }
             catch (e) { console.warn("Error en exit() del estado durante shutdown:", e) }
         }
-        this.stateMachine.changeState('__shutdown__'); // Estado vacío para limpiar
+        this.stateMachine.changeState('__shutdown__');
 
-        // Limpiar otros sistemas y elementos
-        this.catManager.removeAllCats(); // Eliminar entidades de gato
-        this.inkManager.destroy();       // Limpiar InkManager
-        this.shopManager.destroy();      // Limpiar ShopManager
-        this.catFoodManager.destroy();   // Limpiar CatFoodManager
+        this.catManager.removeAllCats();
+        this.inkManager.destroy();
+        this.shopManager.destroy();
+        this.catFoodManager.destroy();
 
-        this.containerElement.innerHTML = ''; // Limpiar contenedor principal
-        this.gameUiContainer = null;          // Limpiar referencia a UI del quiz
-        this.setBodyStateClass(null);         // Limpiar clase de estado del body
-        document.querySelector('combo-counter')?.remove(); // Remover contador de combo
-        this.diagonalWipeElement?.reset(); // Resetear barrido diagonal
+        this.containerElement.innerHTML = '';
+        this.gameUiContainer = null;
+        this.setBodyStateClass(null);
+        document.querySelector('combo-counter')?.remove();
+        this.diagonalWipeElement?.reset();
+        this.blurBackdrop = null;
 
         console.log("GameManager: Shutdown completado.");
     }
 
-    // --- Getters públicos para acceder a los sistemas y elementos ---
     public getUIManager(): UIManager {
         if (!this.uiManager) throw new Error("UIManager no inicializado en GameManager.");
         return this.uiManager;
     }
     public getQuizUiContainerElement(): QuizUiContainer | null {
-        // Intenta obtener la referencia si es nula o no está en el DOM
         if (!this.gameUiContainer || !this.containerElement.contains(this.gameUiContainer)) {
             this.gameUiContainer = this.containerElement.querySelector('quiz-ui-container');
         }
         return this.gameUiContainer;
     }
 
-    /** Aplica/remueve la clase 'faded' al contenedor UI del quiz */
     public setQuizUiFaded(isFaded: boolean): void {
         const quizUi = this.getQuizUiContainerElement();
         if (quizUi) { quizUi.isFaded = isFaded; }
     }
 
-    /** Notifica a los componentes relevantes sobre el estado de arrastre de un gato */
     public setCatDragState(isDragging: boolean): void {
-        this.setQuizUiFaded(isDragging); // Atenuar UI del quiz
-        // Bloquear/desbloquear canvas de dibujo si existe
+        this.setQuizUiFaded(isDragging);
         if (this.drawingCanvasLayerElement) {
             this.drawingCanvasLayerElement.isPointerLockdown = isDragging;
-            // Si se deja de arrastrar, actualizar el estado del canvas (por si el pincel estaba activo)
             if (!isDragging && this.inkManager) { this.inkManager.updateCanvasActiveState(); }
         }
     }
-    
-/**
-     * Realiza un reseteo completo de los sistemas del juego a su estado inicial,
-     * ideal para llamar después de un Game Over o para reiniciar la experiencia.
-     * Transiciona al MainMenuState después del reseteo.
-     */
-public resetGame(): void {
-    console.log("GameManager: resetGame() - Iniciando reseteo completo...");
 
-    // 1. Detener el ciclo de juego si está corriendo
-    this.stop(); // Detiene el requestAnimationFrame y el runner de físicas
-
-    // 2. Resetear datos del jugador
-    if (this.playerData) {
-        this.playerData.reset();
-        console.log("GameManager: resetGame() - PlayerData reseteado.");
-    } else {
-        console.warn("GameManager: resetGame() - PlayerData no disponible para resetear.");
-    }
-
-    // 3. Resetear sistema de preguntas
-    if (this.quizSystem) {
-        this.quizSystem.resetAvailableQuestions();
-        console.log("GameManager: resetGame() - QuizSystem reseteado.");
-    } else {
-        console.warn("GameManager: resetGame() - QuizSystem no disponible para resetear.");
-    }
-
-    // 4. Limpiar sistemas con estado persistente
-    if (this.catManager) {
-        this.catManager.removeAllCats(); // Esto también debería limpiar cuerpos físicos asociados
-        console.log("GameManager: resetGame() - CatManager.removeAllCats() llamado.");
-    } else {
-         console.warn("GameManager: resetGame() - CatManager no disponible.");
-    }
-    if (this.inkManager) {
-        this.inkManager.destroy(); // Limpia líneas, listeners y estado interno
-        console.log("GameManager: resetGame() - InkManager.destroy() llamado.");
-    } else {
-         console.warn("GameManager: resetGame() - InkManager no disponible.");
-    }
-    if (this.catFoodManager) {
-        this.catFoodManager.destroy(); // Limpia pellets, listeners y estado interno
-         console.log("GameManager: resetGame() - CatFoodManager.destroy() llamado.");
-    } else {
-         console.warn("GameManager: resetGame() - CatFoodManager no disponible.");
-    }
-    // Opcional: Limpiar explícitamente el mundo físico si removeAllCats no lo hace completamente
-    if (this.physicsManager) {
-        // physicsManager.shutdown() es demasiado, solo queremos limpiar cuerpos no estáticos
-        // const world = this.physicsManager.getWorld();
-        // if (world) {
-        //     Matter.World.clear(world, true); // 'true' para mantener los estáticos (paredes)
-        //     this.physicsManager.init(this.catDisplayAreaElement); // Re-añadir paredes? O mejor asegurarse que removeAllCats limpie bien.
-        // }
-         console.log("GameManager: resetGame() - Asumiendo que removeAllCats limpió los cuerpos físicos.");
-    }
-
-    // 5. Asegurar que la tienda y su UI estén cerradas/ocultas
-    if (this.shopManager) {
-        this.shopManager.closeShop();
-        console.log("GameManager: resetGame() - ShopManager.closeShop() llamado.");
-    } else {
-        console.warn("GameManager: resetGame() - ShopManager no disponible.");
-    }
-    this.hideToolControls();
-    this.hideShopButton();
-
-    // 6. Limpiar UI residual (opcional, depende de cómo maneje las transiciones StateMachine)
-    // this.uiManager.clearQuizInterface(this.containerElement); // Podría ser redundante si StateMachine limpia el contenedor
-
-    // 7. Limpiar referencias de UI específicas del estado anterior si es necesario
-    this.gameUiContainer = null;
-    document.querySelector('combo-counter')?.remove(); // Remover contador si existe
-
-    // 8. Transicionar al Menú Principal
-    console.log("GameManager: resetGame() - Transicionando a MainMenuState...");
-    // Usar el barrido para una transición limpia
-    this.stateMachine.changeState('MainMenu', undefined, 'gq-wipe-transition');
-
-    // Nota: NO volvemos a llamar a this.start() aquí. El flujo normal es que
-    // el usuario interactúe con el MainMenu para iniciar el juego de nuevo.
-}
-    // --- Gestión del Botón de Tienda ---
-    private showShopButton(): void {
-        if (!this.shopButtonInstance) {
-            // ... (código de creación del botón y listener de interacción) ...
-             const shopButton = document.createElement('shop-button-component') as ShopButtonComponent;
-             shopButton.id = 'shop-button-global'; 
-             shopButton.titleText = "Abrir Tienda (S)"; 
-             document.body.appendChild(shopButton);
-             this.shopButtonInstance = shopButton;
- 
-             this.shopButtonInteractionListener = () => this.handleShopButtonInteraction();
-             shopButton.addEventListener('shop-button-interaction', this.shopButtonInteractionListener);
+    public resetGame(): void {
+        console.log("GameManager: resetGame() - Iniciando reseteo completo...");
+        this.stop();
+        if (this.playerData) {
+            this.playerData.reset();
         }
-        
-        this.shopButtonInstance.classList.remove('hidden'); // Asegurar visibilidad visual
-        
-        // Asegurar que el listener de cierre del popup esté listo
-        const popup = this.shopManager.getShopPopupElement();
-        if (popup) this.addShopCloseListener(popup);
-
-        // Actualizar estado (habilitado/deshabilitado) DESPUÉS de mostrar y configurar listeners
-        this.updateShopButtonState(); 
-    }
-
-    private hideShopButton(): void {
-        if (this.shopButtonInstance) {
-            // Ocultar el botón ANTES de quitar listeners
-            this.shopButtonInstance.classList.add('hidden'); 
-
-            this.removeShopButtonListener(); 
-            const popup = this.shopManager.getShopPopupElement();
-            if(popup) this.removeShopCloseListener(popup);
-            
-            // Actualizar estado (aunque esté oculto, para consistencia)
-            // this.updateShopButtonState(); // Opcional llamar aquí, ya que estará oculto
+        if (this.quizSystem) {
+            this.quizSystem.resetAvailableQuestions();
         }
-    }
-
-    private handleShopButtonInteraction(): void {
-        const audioManager = this.getAudioManager();
-        // Inicializar audio si es necesario
-        if (!audioManager.isReady()) { audioManager.init(); }
-
-        // Abrir tienda solo si no está ya abierta
-        if (!this.shopManager.isShopOpen()) {
-             this.openShop(); // Llama al método público para abrir la tienda
-             audioManager?.playSound('ui_confirm'); // Sonido de apertura
+        if (this.catManager) {
+            this.catManager.removeAllCats();
         }
-    }
-
-    // Limpiar listener de interacción del botón de tienda
-    private removeShopButtonListener(): void {
-        if (this.shopButtonInstance && this.shopButtonInteractionListener) {
-            this.shopButtonInstance.removeEventListener('shop-button-interaction', this.shopButtonInteractionListener);
-            this.shopButtonInteractionListener = null;
+        if (this.inkManager) {
+            this.inkManager.destroy();
         }
-    }
-
-    // Manejador para cuando el popup solicita cerrarse
-    private handleShopCloseRequest(): void {
-        this.closeShop(); // Llama al método público para cerrar la tienda
-        this.getAudioManager().playSound('ui_cancel'); // Sonido de cierre
-    }
-    
-    // Añadir listener de cierre al popup
-    private addShopCloseListener(popupElement: ShopPopup): void {
-        this.removeShopCloseListener(popupElement); // Quitar listener anterior si existe
-        this.shopCloseRequestListener = () => this.handleShopCloseRequest();
-        popupElement.addEventListener('close-requested', this.shopCloseRequestListener);
-    }
-    
-    // Quitar listener de cierre del popup
-     private removeShopCloseListener(popupElement: ShopPopup): void {
-         if (popupElement && this.shopCloseRequestListener) {
-             popupElement.removeEventListener('close-requested', this.shopCloseRequestListener);
-             this.shopCloseRequestListener = null;
-         }
-     }
-
-    /** Abre la interfaz de la tienda */
-    public openShop(): void {
-        if (this.shopManager) { // Verificar que ShopManager exista
-            this.shopManager.openShop(); // Delegar apertura al ShopManager
-            // El listener de cierre se añade dentro de openShop/getShopPopupElement en ShopManager
-            this.updateShopButtonState(); // Actualizar estado del botón (debería deshabilitarse)
-        } else {
-            console.warn("GameManager: openShop() llamado pero ShopManager no está disponible.");
+        if (this.catFoodManager) {
+            this.catFoodManager.destroy();
         }
-    }
-
-    /** Cierra la interfaz de la tienda */
-    public closeShop(): void {
-        if (this.shopManager) { // Verificar que ShopManager exista
-            this.shopManager.closeShop(); // Delegar cierre al ShopManager
-            // El listener de cierre se debería limpiar al ocultar el popup
-            
-            // Actualizar estado del botón DESPUÉS de que el popup se marque como cerrado
-            queueMicrotask(() => { // Usar microtask para esperar posible actualización de 'isVisible'
-                 this.updateShopButtonState(); // Botón debería habilitarse
-            });
-        } else {
-            console.warn("GameManager: closeShop() llamado pero ShopManager no está disponible.");
+        if (this.shopManager) {
+            this.shopManager.closeShop();
         }
-    }
-
-    /** Actualiza el estado (habilitado/deshabilitado) del botón de tienda */
-    private updateShopButtonState(): void {
-        if (this.shopButtonInstance && this.shopManager) {
-            const isShopCurrentlyOpen = this.shopManager.isShopOpen();
-            const isGameplayActive = this.stateMachine.getCurrentStateName() === 'QuizGameplay';
-            
-            // --- LÓGICA MODIFICADA ---
-            // El botón se deshabilita si:
-            // 1. La tienda está abierta (para evitar abrirla de nuevo)
-            // 2. O si NO estamos en el estado de Gameplay (donde debe estar disponible)
-            this.shopButtonInstance.disabled = isShopCurrentlyOpen || !isGameplayActive;
-            // --- FIN LÓGICA MODIFICADA ---
-
-            // Log para depuración (opcional)
-            // console.log(`[GameManager] updateShopButtonState: isShopOpen=${isShopCurrentlyOpen}, isGameplay=${isGameplayActive}, Button Disabled=${this.shopButtonInstance.disabled}`);
+        if (this.optionsPopupInstance?.isVisible) {
+            this.closeOptionsMenu();
         }
+        this.hideToolControls();
+        this.hideShopButton();
+        this.hideOptionsButton();
+        this.gameUiContainer = null;
+        document.querySelector('combo-counter')?.remove();
+        this.stateMachine.changeState('MainMenu', undefined, 'gq-wipe-transition');
     }
 
-    // --- Gestión de Controles de Herramientas ---
+    // --- Métodos para mostrar/ocultar controles y botones ---
     private showToolControls(): void {
         const container = this.controlElements.controlsContainer;
         if (container) {
-            container.classList.remove('hidden'); // Mostrar contenedor principal
-            // Actualizar visibilidad de sub-contenedores basados en unlocks
+            container.classList.remove('hidden');
             this.updateControlVisibilityBasedOnUnlocks();
         } else {
             console.warn("[GameManager] Contenedor de controles (#right-controls) no encontrado.");
         }
     }
+
     private hideToolControls(): void {
         const container = this.controlElements.controlsContainer;
         if (container) {
-            container.classList.add('hidden'); // Ocultar contenedor principal
+            container.classList.add('hidden');
         }
     }
 
-    /** Actualiza la visibilidad de los contenedores de dibujo y comida basado en PlayerData */
+    private showShopButton(): void {
+        if (!this.shopButtonInstance) {
+             this.shopButtonInstance = document.getElementById('shop-button-global') as ShopButtonComponent | null;
+             if (!this.shopButtonInstance) {
+                 console.warn("GameManager: shop-button-global no encontrado, creando dinámicamente. Revisa index.html.");
+                 const shopButton = document.createElement('shop-button-component') as ShopButtonComponent;
+                 shopButton.id = 'shop-button-global';
+                 shopButton.titleText = "Abrir Tienda (S)";
+                 document.body.appendChild(shopButton);
+                 this.shopButtonInstance = shopButton;
+             }
+             if (this.shopButtonInstance && !this.shopButtonInteractionListener) {
+                this.shopButtonInteractionListener = () => this.handleShopButtonInteraction();
+                this.shopButtonInstance.addEventListener('shop-button-interaction', this.shopButtonInteractionListener);
+             }
+        }
+        if (this.shopButtonInstance) {
+            this.shopButtonInstance.classList.remove('hidden');
+        }
+        // El estado (disabled) se actualiza en updateGlobalButtonsState
+    }
+
+    private hideShopButton(): void {
+        if (this.shopButtonInstance) {
+            this.shopButtonInstance.classList.add('hidden');
+        }
+    }
+
+    private showOptionsButton(): void {
+        if (this.optionsButtonInstance) {
+            this.optionsButtonInstance.classList.remove('hidden');
+        }
+    }
+
+    private hideOptionsButton(): void {
+        if (this.optionsButtonInstance) {
+            this.optionsButtonInstance.classList.add('hidden');
+        }
+    }
+    // --- Fin Métodos para mostrar/ocultar ---
+
+
+    public updateBackdropAndFadeState(): void {
+        const shopIsOpen = this.shopManager.isShopOpen();
+        const optionsAreOpen = this.optionsPopupInstance?.isVisible ?? false;
+        const explanationIsVisible = this.uiManager.isExplanationVisible();
+
+        const isAnyPopupOpen = shopIsOpen || optionsAreOpen || explanationIsVisible;
+
+        if (this.blurBackdrop) {
+            this.blurBackdrop.visible = isAnyPopupOpen;
+        } else {
+            // console.warn("[GameManager] updateBackdropAndFadeState: blurBackdrop es null.");
+        }
+
+        this.setQuizUiFaded(isAnyPopupOpen);
+        this.updateGlobalButtonsState();
+    }
+
+    // <<< MODIFICADO >>> toggleOptionsMenu
+    private toggleOptionsMenu(): void {
+        if (!this.optionsPopupInstance) { 
+            console.warn("GameManager: No se puede alternar el menú de opciones, falta el popup.");
+            return;
+        }
+
+        const currentVisibility = this.optionsPopupInstance.isVisible;
+        const newState = !currentVisibility;
+
+        this.optionsPopupInstance.isVisible = newState; 
+
+        if (newState) { 
+            this.optionsPopupInstance.initialVolume = this.audioManager.getVolume();
+            this.optionsPopupInstance.initiallyMuted = this.audioManager.isMuted();
+            this.audioManager.playSound('ui_confirm');
+        }
+        
+        this.updateBackdropAndFadeState(); 
+    }
+
+    // <<< MODIFICADO Y CORREGIDO >>> closeOptionsMenu
+    private closeOptionsMenu(): void {
+        if (this.optionsPopupInstance) { 
+            if (this.optionsPopupInstance.isVisible) { 
+                this.optionsPopupInstance.isVisible = false; 
+            }
+            this.updateBackdropAndFadeState();
+        }
+    }
+    // <<< FIN MODIFICADO Y CORREGIDO >>>
+
+    private handleShopButtonInteraction(): void {
+        const audioManager = this.getAudioManager();
+        if (!audioManager.isReady()) { audioManager.init(); }
+        if (!this.shopManager.isShopOpen()) {
+             this.openShop();
+             audioManager?.playSound('ui_confirm');
+        }
+    }
+
+    private handleShopCloseRequest(): void {
+        this.closeShop();
+    }
+
+    private addShopCloseListener(popupElement: ShopPopup): void {
+        this.removeShopCloseListener(popupElement);
+        this.shopCloseRequestListener = () => this.handleShopCloseRequest();
+        popupElement.addEventListener('close-requested', this.shopCloseRequestListener);
+    }
+
+     private removeShopCloseListener(popupElement: ShopPopup): void {
+         if (popupElement && this.shopCloseRequestListener) {
+             popupElement.removeEventListener('close-requested', this.shopCloseRequestListener);
+         }
+     }
+
+    public openShop(): void {
+        if (this.shopManager) {
+            this.shopManager.openShop();
+            this.updateBackdropAndFadeState();
+        } else {
+            console.warn("GameManager: openShop() llamado pero ShopManager no está disponible.");
+        }
+    }
+
+    public closeShop(): void {
+        if (this.shopManager) {
+            this.shopManager.closeShop();
+            this.updateBackdropAndFadeState();
+        } else {
+            console.warn("GameManager: closeShop() llamado pero ShopManager no está disponible.");
+        }
+    }
+
+    // <<< INICIO CAMBIO VISIBILIDAD BOTÓN OPCIONES (en updateGlobalButtonsState) >>>
+    private updateGlobalButtonsState(): void {
+        const isShopOpen = this.shopManager.isShopOpen();
+        const isOptionsOpen = this.optionsPopupInstance?.isVisible ?? false;
+        const isExplanationVisible = this.uiManager.isExplanationVisible();
+        const isAnyPopupOpen = isShopOpen || isOptionsOpen || isExplanationVisible;
+
+        const currentStateName = this.stateMachine.getCurrentStateName();
+        const isGameplay = currentStateName === 'QuizGameplay';
+        // const isMainMenu = currentStateName === 'MainMenu'; // No se usa más para optionsButton
+        // const isResults = currentStateName === 'Results';   // No se usa más para optionsButton
+        // const isGameOver = currentStateName === 'GameOver'; // No se usa más para optionsButton
+
+        if (this.shopButtonInstance) {
+            this.shopButtonInstance.disabled = isAnyPopupOpen || !isGameplay;
+            this.shopButtonInstance.classList.toggle('hidden', !isGameplay);
+        }
+
+        if (this.optionsButtonInstance) {
+            // Botón de opciones solo visible en Gameplay
+            const shouldBeVisibleForState = isGameplay; 
+            this.optionsButtonInstance.disabled = (isShopOpen || isExplanationVisible) || !shouldBeVisibleForState; // Deshabilitado si otros popups están abiertos o no es gameplay
+            this.optionsButtonInstance.classList.toggle('hidden', !shouldBeVisibleForState);
+        }
+        this.updateToolButtonStates();
+    }
+    // <<< FIN CAMBIO VISIBILIDAD BOTÓN OPCIONES >>>
+
     public updateControlVisibilityBasedOnUnlocks(): void {
         const drawingUnlocked = this.playerData.isDrawingUnlocked;
         const catFoodUnlocked = this.playerData.isCatFoodUnlocked;
-        // Ocultar/mostrar contenedor de botones de DIBUJO
         if (this.controlElements.drawingButtonsContainer) {
             this.controlElements.drawingButtonsContainer.classList.toggle('hidden', !drawingUnlocked);
         }
-        // Ocultar/mostrar contenedor de botón de COMIDA
         if (this.controlElements.catFoodUiContainer) {
             this.controlElements.catFoodUiContainer.classList.toggle('hidden', !catFoodUnlocked);
         }
-        // Actualizar estado individual de los botones (activo/deshabilitado)
         this.updateToolButtonStates();
     }
 
-
-    // --- Listener de Cambio de Tema ---
     private addThemeChangeListener(): void {
-        this.removeThemeChangeListener(); // Asegurar que no haya duplicados
+        this.removeThemeChangeListener();
         this.themeChangeListener = (_event: Event) => {
-            // Si el estado actual es QuizGameplay, reconstruir la interfaz
             const currentState = this.stateMachine.getCurrentState();
             if (currentState instanceof QuizGameplayState) {
-                this.uiManager.rebuildInterface(); // UIManager reconstruye su parte
+                this.uiManager.rebuildInterface();
             }
-            // Si la tienda está abierta, actualizarla
             if (this.shopManager.isShopOpen()) {
-                this.shopManager.updateShopUI(); // ShopManager actualiza la tienda
+                this.shopManager.updateShopUI();
+            }
+            if (this.optionsPopupInstance?.isVisible) {
+                this.optionsPopupInstance.requestUpdate();
             }
         };
         document.addEventListener('theme-changed', this.themeChangeListener);
@@ -742,57 +702,62 @@ public resetGame(): void {
         }
     }
 
-    // --- Listener de Teclado ---
     private addKeyboardListener(): void {
-        this.removeKeyboardListener(); // Limpiar listener anterior
+        this.removeKeyboardListener();
         this.keydownListener = (event: KeyboardEvent) => {
-            // Ignorar si se está escribiendo en un input (no relevante aquí, pero buena práctica)
-            // if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
-
-            // Tecla Escape: Cerrar tienda o explicación (prioridad al que esté visible)
             if (event.key === 'Escape') {
-                if (this.shopManager.isShopOpen()) {
-                    this.closeShop();
-                    this.audioManager.playSound('ui_cancel');
-                    return; // Evita que procese otras teclas si cerró la tienda
+                if (this.optionsPopupInstance?.isVisible) {
+                    this.closeOptionsMenu(); 
+                    return;
                 }
-                // Si la tienda no está abierta, pero la explicación sí, no hacer nada (la explicación maneja su propio cierre)
-                if (this.uiManager.isExplanationVisible()) {
-                   return; // Dejar que el overlay de explicación maneje Escape
+                if (this.shopManager.isShopOpen()) {
+                    this.closeShop(); 
+                    this.audioManager.playSound('ui_cancel'); 
+                    return;
                 }
             }
 
-            // Ignorar otras teclas si la tienda o la explicación están abiertas
-            if (this.shopManager.isShopOpen() || this.uiManager.isExplanationVisible()) return;
+            const isAnyPopupTrulyOpen = this.shopManager.isShopOpen() || (this.optionsPopupInstance?.isVisible ?? false) || this.uiManager.isExplanationVisible();
+            if (isAnyPopupTrulyOpen) return;
 
-            // Lógica específica del estado actual
             const currentStateName = this.stateMachine.getCurrentStateName();
             if (currentStateName === 'QuizGameplay') {
                 switch (event.key.toLowerCase()) {
                     case 'b': this.activateBrush(); break;
-                    case 'c': // Borrar tinta
+                    case 'c':
                         if (this.playerData.isDrawingUnlocked && this.playerData.inkSpentSinceLastClear > 0) {
                             this.inkManager.clearInkLines();
                         }
                         break;
                     case 'f': this.activateCatFood(); break;
-                    case 's': // Abrir tienda
-                        // Verificar si el botón existe y no está deshabilitado
-                        if (this.shopButtonInstance && !this.shopButtonInstance.disabled) { 
-                            this.handleShopButtonInteraction(); // Usar el mismo manejador que el clic
+                    case 's':
+                        if (this.shopButtonInstance && !this.shopButtonInstance.disabled) {
+                            this.handleShopButtonInteraction();
                         }
                         break;
-                    case 't': this.themeManager.cycleTheme(); break; // Cambiar tema
+                    case 'o': // Atajo para opciones durante el quiz
+                        if (this.optionsButtonInstance && !this.optionsButtonInstance.disabled) {
+                            this.toggleOptionsMenu();
+                        }
+                        break;
+                    case 't': this.themeManager.cycleTheme(); break; // Mantener atajo de tema en quiz
                 }
             } else if (['MainMenu', 'GameOver', 'Results'].includes(currentStateName || '')) {
-                 // Permitir cambiar tema en otros estados
+                 // Atajos solo para tema y opciones si el botón de opciones estuviera visible en esos estados (actualmente no)
                  if (event.key.toLowerCase() === 't') {
                     this.themeManager.cycleTheme();
                 }
+                // Ya no se necesita el atajo 'o' aquí si el botón de opciones no está visible
+                //  if (event.key.toLowerCase() === 'o') {
+                //         if (this.optionsButtonInstance && !this.optionsButtonInstance.disabled) {
+                //             this.toggleOptionsMenu();
+                //         }
+                //  }
             }
         };
         window.addEventListener('keydown', this.keydownListener);
     }
+
     private removeKeyboardListener(): void {
         if (this.keydownListener) {
             window.removeEventListener('keydown', this.keydownListener);
@@ -800,98 +765,107 @@ public resetGame(): void {
         }
     }
 
-    // --- Métodos de Acceso y Actualización de PlayerData (Delegados a UIManager) ---
+    private setupGlobalUICListeners(): void {
+        this.removeGlobalUICListeners();
+
+        if (this.shopButtonInstance) {
+            this.shopButtonInteractionListener = () => this.handleShopButtonInteraction();
+            this.shopButtonInstance.addEventListener('shop-button-interaction', this.shopButtonInteractionListener);
+        } else {
+            console.warn("GameManager: shopButtonInstance es null en setupGlobalUICListeners. No se pudo añadir listener.");
+        }
+
+        const shopPopup = this.shopManager.getShopPopupElement();
+        if (shopPopup) {
+            this.addShopCloseListener(shopPopup);
+        }
+
+        if (this.optionsButtonInstance) {
+            this.optionsButtonClickListener = () => this.toggleOptionsMenu();
+            this.optionsButtonInstance.addEventListener('options-button-clicked', this.optionsButtonClickListener);
+        } else {
+            console.warn("GameManager: optionsButtonInstance es null en setupGlobalUICListeners. No se pudo añadir listener.");
+        }
+
+        if (this.optionsPopupInstance) {
+            this.optionsPopupCloseListener = () => this.closeOptionsMenu();
+            this.optionsPopupInstance.addEventListener('options-close-requested', this.optionsPopupCloseListener);
+        } else {
+            console.warn("GameManager: optionsPopupInstance es null en setupGlobalUICListeners. No se pudo añadir listener.");
+        }
+    }
+
+    private removeGlobalUICListeners(): void {
+        if (this.shopButtonInstance && this.shopButtonInteractionListener) {
+            this.shopButtonInstance.removeEventListener('shop-button-interaction', this.shopButtonInteractionListener);
+            this.shopButtonInteractionListener = null;
+        }
+        const shopPopup = this.shopManager?.getShopPopupElement();
+        if (shopPopup && this.shopCloseRequestListener) {
+            shopPopup.removeEventListener('close-requested', this.shopCloseRequestListener);
+            this.shopCloseRequestListener = null;
+        }
+
+        if (this.optionsButtonInstance && this.optionsButtonClickListener) {
+            this.optionsButtonInstance.removeEventListener('options-button-clicked', this.optionsButtonClickListener);
+            this.optionsButtonClickListener = null;
+        }
+        if (this.optionsPopupInstance && this.optionsPopupCloseListener) {
+            this.optionsPopupInstance.removeEventListener('options-close-requested', this.optionsPopupCloseListener);
+            this.optionsPopupCloseListener = null;
+        }
+    }
+
+
     public getLives(): number { return this.playerData.lives; }
-    public decrementLives(): void {
-        if (this.playerData.lives > 0) {
-            this.playerData.lives--;
-            this.updateExternalLivesUI(); // Actualizar UI
-        }
-    }
-    public incrementLives(): void { // Usado por la tienda
-        this.playerData.lives++;
-        this.updateExternalLivesUI(); // Actualizar UI
-    }
-
-    /** Habilita las características de dibujo (llamado por ShopManager) */
-    public enableDrawingFeature(): boolean {
-        try {
-            this.inkManager.init(); // Asegurar inicialización del InkManager
-            this.updateInkUI(); // Actualizar UI relacionada con la tinta
-            this.updateControlVisibilityBasedOnUnlocks(); // Mostrar controles de dibujo
-            return true;
-        } catch(e) {
-            console.error("GameManager: Error habilitando dibujo:", e);
-            return false;
-        }
-    }
-    /** Habilita las características de comida para gatos (llamado por ShopManager) */
-    public enableCatFoodFeature(): void {
-        try {
-            this.catFoodManager.enable(); // Habilitar lógica de CatFoodManager
-            this.updateCatFoodUI(); // Actualizar UI de comida
-            this.updateControlVisibilityBasedOnUnlocks(); // Mostrar controles de comida
-        } catch(e) {
-            console.error("GameManager: Error habilitando comida:", e);
-        }
-    }
-
-    // --- Métodos para que UIManager actualice la UI externa ---
+    public decrementLives(): void { if (this.playerData.lives > 0) { this.playerData.lives--; this.updateExternalLivesUI(); } }
+    public incrementLives(): void { this.playerData.lives++; this.updateExternalLivesUI(); }
+    public enableDrawingFeature(): boolean { try { this.inkManager.init(); this.updateInkUI(); this.updateControlVisibilityBasedOnUnlocks(); return true; } catch(e) { console.error("GameManager: Error habilitando dibujo:", e); return false; } }
+    public enableCatFoodFeature(): void { try { this.catFoodManager.enable(); this.updateCatFoodUI(); this.updateControlVisibilityBasedOnUnlocks(); } catch(e) { console.error("GameManager: Error habilitando comida:", e); } }
     public updateInkUI(): void { this.uiManager.updateInkVisibility(this.playerData.isDrawingUnlocked); this.uiManager.updateInkBar(); this.updateToolButtonStates(); }
     public updateExternalLivesUI(): void { this.uiManager.updateLivesDisplay(this.playerData.lives); }
     public updateExternalShieldUI(isActive: boolean): void { this.uiManager.updateShieldIcon(isActive); }
     public updateExternalHintUI(charges: number): void { this.uiManager.updateHintIcon(charges); }
     public updateExternalScoreUI(): void { this.uiManager.updateScoreDisplay(this.playerData.score); }
-    public updateCatFoodUI(): void {
-        this.uiManager.updateCatFoodBar(this.playerData.currentCatFood, this.playerData.getMaxCatFood());
-        this.updateToolButtonStates(); // Actualizar estado del botón de comida
-    }
+    public updateCatFoodUI(): void { this.uiManager.updateCatFoodBar(this.playerData.currentCatFood, this.playerData.getMaxCatFood()); this.updateToolButtonStates(); }
 
-    // --- Activación de Herramientas ---
-    /** Activa/desactiva el pincel de dibujo */
     public activateBrush(): void {
         const now = Date.now();
-        if (now - this._lastToolToggleTime < this.TOOL_TOGGLE_DEBOUNCE_MS) return; // Debounce
+        if (now - this._lastToolToggleTime < this.TOOL_TOGGLE_DEBOUNCE_MS) return;
         this._lastToolToggleTime = now;
-
-        if (!this.playerData.isDrawingUnlocked) return; // Salir si no está desbloqueado
-        if (this.catFoodManager.isActive) this.catFoodManager.toggleActive(false); // Desactivar comida si estaba activa
-        this.inkManager.toggleBrush(); // Delegar al InkManager
+        if (!this.playerData.isDrawingUnlocked) return;
+        if (this.catFoodManager.isActive) this.catFoodManager.toggleActive(false);
+        this.inkManager.toggleBrush();
+        this.updateGlobalButtonsState();
     }
 
-    /** Activa/desactiva la herramienta de comida */
     public activateCatFood(): void {
         const now = Date.now();
-        if (now - this._lastToolToggleTime < this.TOOL_TOGGLE_DEBOUNCE_MS) return; // Debounce
+        if (now - this._lastToolToggleTime < this.TOOL_TOGGLE_DEBOUNCE_MS) return;
         this._lastToolToggleTime = now;
-
-        if (!this.playerData.isCatFoodUnlocked) return; // Salir si no está desbloqueado
-        if (this.inkManager.isBrushActive) this.inkManager.toggleBrush(false); // Desactivar pincel si estaba activo
-        this.catFoodManager.toggleActive(); // Delegar al CatFoodManager
+        if (!this.playerData.isCatFoodUnlocked) return;
+        if (this.inkManager.isBrushActive) this.inkManager.toggleBrush(false);
+        this.catFoodManager.toggleActive();
+        this.updateGlobalButtonsState();
     }
 
-    /** Actualiza el estado visual (activo/deshabilitado) de los botones de herramienta */
     public updateToolButtonStates(): void {
+        const isAnyPopupOpen = this.shopManager.isShopOpen() || (this.optionsPopupInstance?.isVisible ?? false) || this.uiManager.isExplanationVisible();
+
         if (this.controlElements.brushToolButton) {
             this.controlElements.brushToolButton.active = this.inkManager.isBrushActive;
-            // Deshabilitar si no desbloqueado O si no hay tinta Y no está activo
-            this.controlElements.brushToolButton.disabled = !this.playerData.isDrawingUnlocked || (this.playerData.currentInk <= 0 && !this.inkManager.isBrushActive);
+            this.controlElements.brushToolButton.disabled = isAnyPopupOpen || !this.playerData.isDrawingUnlocked || (this.playerData.currentInk <= 0 && !this.inkManager.isBrushActive);
         }
         if (this.controlElements.clearInkToolButton) {
-            // Deshabilitar si no desbloqueado O si no hay tinta gastada para recuperar
-            this.controlElements.clearInkToolButton.disabled = !this.playerData.isDrawingUnlocked || this.playerData.inkSpentSinceLastClear <= 0;
+            this.controlElements.clearInkToolButton.disabled = isAnyPopupOpen || !this.playerData.isDrawingUnlocked || this.playerData.inkSpentSinceLastClear <= 0;
         }
         if (this.controlElements.catFoodToolButton) {
             this.controlElements.catFoodToolButton.active = this.catFoodManager.isActive;
-            // Deshabilitar si no desbloqueado O si no hay comida Y no está activo
-            this.controlElements.catFoodToolButton.disabled = !this.playerData.isCatFoodUnlocked || (this.playerData.currentCatFood <= 0 && !this.catFoodManager.isActive);
-            // Actualizar barra de progreso interna del botón de comida
+            this.controlElements.catFoodToolButton.disabled = isAnyPopupOpen || !this.playerData.isCatFoodUnlocked || (this.playerData.currentCatFood <= 0 && !this.catFoodManager.isActive);
             this.uiManager.updateCatFoodBar(this.playerData.currentCatFood, this.playerData.getMaxCatFood());
         }
-        this.updateShopButtonState(); // Actualizar también el botón de tienda
     }
 
-    /** Configura los listeners para los botones de herramienta */
     private setupToolButtonListeners = (): void => {
         this.controlElements.brushToolButton?.addEventListener('tool-activated', () => this.activateBrush());
         this.controlElements.clearInkToolButton?.addEventListener('tool-activated', () => {
@@ -902,7 +876,6 @@ public resetGame(): void {
         this.controlElements.catFoodToolButton?.addEventListener('tool-activated', () => this.activateCatFood());
     };
 
-    // --- Getters públicos para acceder a los sistemas y datos ---
     public getQuizSystem(): QuizSystem { return this.quizSystem; }
     public getPhysicsManager(): PhysicsManager { return this.physicsManager; }
     public getStateMachine(): StateMachine { return this.stateMachine; }

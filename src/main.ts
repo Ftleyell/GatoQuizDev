@@ -1,8 +1,7 @@
 // src/main.ts
 import './styles/base.css';
 import './styles/layout.css';
-import './styles/animations.css'; // <-- Esta línea ya debería estar
-import './game/components/ui/blur-backdrop.ts'; // <-- AÑADE ESTA LÍNEA
+import './styles/animations.css'; 
 
 // Importar GameManager
 import { GameManager } from './game/GameManager';
