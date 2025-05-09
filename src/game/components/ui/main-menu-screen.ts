@@ -235,7 +235,7 @@ export class MainMenuScreen extends LitElement {
       font-size: clamp(1.8rem, 11vmin, 5.4rem);
       color: #000000;
       position: fixed;
-      top: 50%;
+      top: 48.6%;
       left: 50%;
       transform-origin: center center;
       animation: pawWiggleAbsolute 1.5s ease-in-out infinite;
