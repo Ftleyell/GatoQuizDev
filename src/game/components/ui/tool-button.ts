@@ -205,3 +205,4 @@ declare global {
     'tool-button': ToolButton;
   }
 }
+console.log('ToolButton component defined');

@@ -49,7 +49,7 @@ import './components/ui/combo-counter.ts';
 import './components/ui/shop-popup.ts';
 import './components/ui/explanation-overlay.ts';
 import './components/ui/blur-backdrop.ts';
-
+import './components/ui/tool-button.ts';
 import type {
     CatDisplayArea,
     DrawingCanvasLayer,
@@ -426,15 +426,17 @@ export class GameManager {
     }
 
     public updateBackdropAndFadeState(): void {
-        this.globalUIManager.updateBackdropVisibility(); 
+        this.globalUIManager.updateBackdropVisibility(); // Esto maneja el blur de fondo
         const shopIsOpen = this.shopManager.isShopOpen();
         const optionsAreOpen = this.globalUIManager.isOptionsMenuOpen();
         const isModuleOverlayVisible = this.isGamePausedForOverlay();
+        const isDraggingCat = this.isACatBeingDragged(); // Usamos el método getter
 
-        const shouldFadeModuleUI = shopIsOpen || optionsAreOpen || isModuleOverlayVisible;
+        // Se añade isDraggingCat a la condición
+        const shouldFadeModuleUI = shopIsOpen || optionsAreOpen || isModuleOverlayVisible || isDraggingCat;
         this.globalUIManager.setModuleUIsFaded(shouldFadeModuleUI);
 
-        this.updateGlobalButtonsState();
+        this.updateGlobalButtonsState(); // Esto actualiza el estado de los botones globales y de herramienta
     }
 
     private async toggleOptionsMenu(): Promise<void> { // Convertido a async
@@ -709,12 +711,17 @@ export class GameManager {
         this.toolManager.updateToolButtonActiveStates(); 
     }
 
+    // Dentro de la clase GameManager en LPM/src/game/GameManager.ts
+
     public setCatDragState(isDragging: boolean): void {
         this.isCatBeingDragged = isDragging;
-        this.updateGlobalButtonsState(); 
         if (this.drawingCanvasLayerElement) {
+            // Esto ya hace que el canvas de dibujo no interfiera con el arrastre
             this.drawingCanvasLayerElement.isPointerLockdown = isDragging;
         }
+        // Llamamos a updateBackdropAndFadeState para que actualice el fade de la UI del quiz
+        // y también el estado de los botones globales.
+        this.updateBackdropAndFadeState();
     }
 
     public isACatBeingDragged(): boolean {
