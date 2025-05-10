@@ -281,7 +281,7 @@ export class QuizGameModule implements IGameModule {
         const weightedTemplates = catManager.getSpawnableTemplatesWeighted();
         let selectedTemplateId = 'common_cat'; 
         if (weightedTemplates.length > 0) {
-            const totalWeight = weightedTemplates.reduce((sum, t) => sum + t.weight, 0);
+        const totalWeight = weightedTemplates.reduce((sum: number, t: { weight: number }) => sum + t.weight, 0);
             if (totalWeight > 0) {
                 let randomNum = Math.random() * totalWeight;
                 for (const template of weightedTemplates) {

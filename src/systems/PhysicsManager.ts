@@ -1,8 +1,8 @@
 // src/systems/PhysicsManager.ts
 
 import Matter from 'matter-js';
-import { CatManager } from './CatManager';
-import { CatFoodManager } from './CatFoodManager';
+import { CatManager } from '../game/engine/managers';
+import { CatFoodManager } from '../game/engine/managers';
 import type { CatDisplayArea } from '../game/components/ui/cat-display-area';
 import { GameManager } from '../game/GameManager'; // Importar GameManager
 

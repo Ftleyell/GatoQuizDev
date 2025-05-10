@@ -1,15 +1,1302 @@
 [
   {
     "id": 1,
-    "text": "TEST",
+    "text": "¿En qué año se produjo la Revolución de Mayo?",
     "options": [
-      {"key": "A", "text": "CORRECTO"},
-      {"key": "B", "text": "NO1"},
-      {"key": "C", "text": "NO2"},
-      {"key": "D", "text": "NO3"}
+      {"key": "A", "text": "1810"},
+      {"key": "B", "text": "1816"},
+      {"key": "C", "text": "1776"},
+      {"key": "D", "text": "1806"}
     ],
     "correctAnswerKey": "A",
     "difficulty": "1",
-    "explanation": "BUENA PERRO"
+    "explanation": "La Revolución de Mayo ocurrió el 25 de mayo de 1810 y marcó el inicio del proceso de surgimiento del Estado Argentino."
+  },
+  {
+    "id": 2,
+    "text": "¿Quién fue el creador de la bandera argentina?",
+    "options": [
+      {"key": "A", "text": "José de San Martín"},
+      {"key": "B", "text": "Manuel Belgrano"},
+      {"key": "C", "text": "Cornelio Saavedra"},
+      {"key": "D", "text": "Mariano Moreno"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Manuel Belgrano creó la bandera argentina en 1812, inspirándose en los colores de la escarapela."
+  },
+  {
+    "id": 3,
+    "text": "¿En qué provincia argentina se encuentra el Glaciar Perito Moreno?",
+    "options": [
+      {"key": "A", "text": "Tierra del Fuego"},
+      {"key": "B", "text": "Chubut"},
+      {"key": "C", "text": "Santa Cruz"},
+      {"key": "D", "text": "Río Negro"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El Glaciar Perito Moreno, uno de los más importantes del mundo, está ubicado en la provincia de Santa Cruz, en la Patagonia."
+  },
+  {
+    "id": 4,
+    "text": "¿Cuál es la bebida nacional de Argentina?",
+    "options": [
+      {"key": "A", "text": "Fernet con Coca"},
+      {"key": "B", "text": "Vino Malbec"},
+      {"key": "C", "text": "Mate"},
+      {"key": "D", "text": "Cerveza Quilmes"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El mate es una infusión hecha con hojas de yerba mate, profundamente arraigada en la cultura argentina y de países vecinos."
+  },
+  {
+    "id": 5,
+    "text": "¿Qué escritor argentino es autor de 'El Aleph'?",
+    "options": [
+      {"key": "A", "text": "Julio Cortázar"},
+      {"key": "B", "text": "Jorge Luis Borges"},
+      {"key": "C", "text": "Ernesto Sabato"},
+      {"key": "D", "text": "Adolfo Bioy Casares"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Jorge Luis Borges, uno de los escritores más destacados del siglo XX, publicó 'El Aleph' en 1949."
+  },
+  {
+    "id": 6,
+    "text": "¿Cuántas Copas del Mundo de la FIFA ha ganado la selección masculina de fútbol de Argentina?",
+    "options": [
+      {"key": "A", "text": "1"},
+      {"key": "B", "text": "2"},
+      {"key": "C", "text": "3"},
+      {"key": "D", "text": "4"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Argentina ha ganado la Copa del Mundo en 1978 (Argentina), 1986 (México) y 2022 (Qatar)."
+  },
+  {
+    "id": 7,
+    "text": "¿Cuál es la capital de la provincia de Córdoba?",
+    "options": [
+      {"key": "A", "text": "Rosario"},
+      {"key": "B", "text": "Córdoba"},
+      {"key": "C", "text": "Mendoza"},
+      {"key": "D", "text": "La Plata"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La ciudad de Córdoba es la capital de la provincia homónima y es conocida como 'La Docta'."
+  },
+  {
+    "id": 8,
+    "text": "¿Qué instrumento musical es emblemático del tango?",
+    "options": [
+      {"key": "A", "text": "Guitarra"},
+      {"key": "B", "text": "Bandoneón"},
+      {"key": "C", "text": "Violín"},
+      {"key": "D", "text": "Piano"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El bandoneón, con su sonido melancólico, es el instrumento más característico del tango."
+  },
+  {
+    "id": 9,
+    "text": "¿En qué año se sancionó la actual Constitución Nacional Argentina?",
+    "options": [
+      {"key": "A", "text": "1810"},
+      {"key": "B", "text": "1853"},
+      {"key": "C", "text": "1949"},
+      {"key": "D", "text": "1994"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La Constitución Nacional Argentina fue sancionada en 1853, con importantes reformas posteriores, siendo la última en 1994."
+  },
+  {
+    "id": 10,
+    "text": "¿Cuál es el pico más alto de América?",
+    "options": [
+      {"key": "A", "text": "Monte Everest"},
+      {"key": "B", "text": "Aconcagua"},
+      {"key": "C", "text": "Monte McKinley (Denali)"},
+      {"key": "D", "text": "Kilimanjaro"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El Aconcagua, ubicado en la provincia de Mendoza, Argentina, es la montaña más alta fuera de Asia, con 6.961 metros."
+  },
+  {
+    "id": 11,
+    "text": "¿Quién fue el primer presidente electo por sufragio universal, secreto y obligatorio en Argentina (Ley Sáenz Peña)?",
+    "options": [
+      {"key": "A", "text": "Julio Argentino Roca"},
+      {"key": "B", "text": "Hipólito Yrigoyen"},
+      {"key": "C", "text": "Marcelo T. de Alvear"},
+      {"key": "D", "text": "Juan Domingo Perón"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Hipólito Yrigoyen fue el primer presidente electo bajo la Ley Sáenz Peña en 1916."
+  },
+  {
+    "id": 12,
+    "text": "¿En qué provincia se encuentra el Parque Nacional Talampaya?",
+    "options": [
+      {"key": "A", "text": "San Juan"},
+      {"key": "B", "text": "La Rioja"},
+      {"key": "C", "text": "Catamarca"},
+      {"key": "D", "text": "Salta"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El Parque Nacional Talampaya, conocido por sus imponentes formaciones rocosas y restos fósiles, se encuentra en La Rioja."
+  },
+  {
+    "id": 13,
+    "text": "¿Qué famoso cantante de tango era conocido como 'El Zorzal Criollo'?",
+    "options": [
+      {"key": "A", "text": "Julio Sosa"},
+      {"key": "B", "text": "Roberto Goyeneche"},
+      {"key": "C", "text": "Carlos Gardel"},
+      {"key": "D", "text": "Aníbal Troilo"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Carlos Gardel es la figura más emblemática del tango, apodado 'El Zorzal Criollo' o 'El Morocho del Abasto'."
+  },
+  {
+    "id": 14,
+    "text": "¿Cuál de estos platos es una comida tradicional argentina, especialmente en las fiestas patrias?",
+    "options": [
+      {"key": "A", "text": "Paella"},
+      {"key": "B", "text": "Sushi"},
+      {"key": "C", "text": "Locro"},
+      {"key": "D", "text": "Feijoada"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El locro es un guiso sustancioso a base de maíz, porotos, zapallo y carne, típico del 25 de Mayo y 9 de Julio."
+  },
+  {
+    "id": 15,
+    "text": "¿Qué importante río argentino forma parte de la frontera con Uruguay?",
+    "options": [
+      {"key": "A", "text": "Río Paraná"},
+      {"key": "B", "text": "Río de la Plata"},
+      {"key": "C", "text": "Río Uruguay"},
+      {"key": "D", "text": "Río Colorado"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El Río Uruguay sirve como frontera natural entre Argentina y Uruguay en gran parte de su recorrido."
+  },
+  {
+    "id": 16,
+    "text": "¿Qué club de fútbol argentino es conocido como 'El Xeneize'?",
+    "options": [
+      {"key": "A", "text": "River Plate"},
+      {"key": "B", "text": "Independiente"},
+      {"key": "C", "text": "San Lorenzo"},
+      {"key": "D", "text": "Boca Juniors"}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "Boca Juniors, del barrio de La Boca, es conocido como 'El Xeneize' debido a la inmigración genovesa en la zona."
+  },
+  {
+    "id": 17,
+    "text": "¿Cuál es la moneda oficial de Argentina?",
+    "options": [
+      {"key": "A", "text": "Real"},
+      {"key": "B", "text": "Dólar"},
+      {"key": "C", "text": "Peso Argentino"},
+      {"key": "D", "text": "Euro"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La moneda oficial de la República Argentina es el Peso Argentino."
+  },
+  {
+    "id": 18,
+    "text": "¿Quién escribió 'Martín Fierro'?",
+    "options": [
+      {"key": "A", "text": "Domingo Faustino Sarmiento"},
+      {"key": "B", "text": "José Hernández"},
+      {"key": "C", "text": "Esteban Echeverría"},
+      {"key": "D", "text": "Ricardo Güiraldes"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "José Hernández es el autor de 'El Gaucho Martín Fierro', obra cumbre de la literatura gauchesca argentina."
+  },
+  {
+    "id": 19,
+    "text": "¿En qué provincia se encuentran las Cataratas del Iguazú?",
+    "options": [
+      {"key": "A", "text": "Salta"},
+      {"key": "B", "text": "Jujuy"},
+      {"key": "C", "text": "Misiones"},
+      {"key": "D", "text": "Corrientes"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Las Cataratas del Iguazú, una de las Siete Maravillas Naturales del Mundo, se ubican en la provincia de Misiones."
+  },
+  {
+    "id": 20,
+    "text": "¿Qué presidente argentino fue derrocado en el golpe de estado de 1976?",
+    "options": [
+      {"key": "A", "text": "Arturo Illia"},
+      {"key": "B", "text": "Juan Domingo Perón"},
+      {"key": "C", "text": "María Estela Martínez de Perón"},
+      {"key": "D", "text": "Héctor Cámpora"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "María Estela Martínez de Perón (Isabel Perón) fue derrocada por el golpe militar del 24 de marzo de 1976."
+  },
+  {
+    "id": 21,
+    "text": "¿Cuál es la capital de Francia?",
+    "options": [
+      {"key": "A", "text": "Berlín"},
+      {"key": "B", "text": "Madrid"},
+      {"key": "C", "text": "París"},
+      {"key": "D", "text": "Roma"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "París es la capital y ciudad más poblada de Francia, conocida por su arte, moda y cultura."
+  },
+  {
+    "id": 22,
+    "text": "¿Quién pintó la Mona Lisa?",
+    "options": [
+      {"key": "A", "text": "Vincent van Gogh"},
+      {"key": "B", "text": "Pablo Picasso"},
+      {"key": "C", "text": "Leonardo da Vinci"},
+      {"key": "D", "text": "Miguel Ángel"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La Mona Lisa (La Gioconda) es una obra del Renacimiento pintada por el polímata italiano Leonardo da Vinci."
+  },
+  {
+    "id": 23,
+    "text": "¿En qué continente se encuentra Egipto?",
+    "options": [
+      {"key": "A", "text": "Asia"},
+      {"key": "B", "text": "Europa"},
+      {"key": "C", "text": "África"},
+      {"key": "D", "text": "Oceanía"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Egipto es un país transcontinental, con la mayor parte de su territorio en el noreste de África y una porción en Asia (península del Sinaí)."
+  },
+  {
+    "id": 24,
+    "text": "¿Cuál es el río más largo del mundo?",
+    "options": [
+      {"key": "A", "text": "Nilo"},
+      {"key": "B", "text": "Amazonas"},
+      {"key": "C", "text": "Yangtsé"},
+      {"key": "D", "text": "Misisipi"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Existe debate, pero mediciones recientes sugieren que el río Amazonas es ligeramente más largo que el Nilo."
+  },
+  {
+    "id": 25,
+    "text": "¿Qué gas es esencial para la respiración humana?",
+    "options": [
+      {"key": "A", "text": "Nitrógeno"},
+      {"key": "B", "text": "Dióxido de carbono"},
+      {"key": "C", "text": "Oxígeno"},
+      {"key": "D", "text": "Hidrógeno"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El oxígeno es el gas que los seres humanos y la mayoría de los seres vivos necesitan para respirar y obtener energía."
+  },
+  {
+    "id": 26,
+    "text": "¿Cuál es el océano más grande del mundo?",
+    "options": [
+      {"key": "A", "text": "Atlántico"},
+      {"key": "B", "text": "Índico"},
+      {"key": "C", "text": "Ártico"},
+      {"key": "D", "text": "Pacífico"}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "El Océano Pacífico es el más extenso y profundo de los océanos de la Tierra."
+  },
+  {
+    "id": 27,
+    "text": "¿Quién escribió 'Don Quijote de la Mancha'?",
+    "options": [
+      {"key": "A", "text": "Federico García Lorca"},
+      {"key": "B", "text": "Miguel de Cervantes"},
+      {"key": "C", "text": "Gabriel García Márquez"},
+      {"key": "D", "text": "Lope de Vega"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Miguel de Cervantes Saavedra es el autor de 'El ingenioso hidalgo don Quijote de la Mancha', una obra cumbre de la literatura universal."
+  },
+  {
+    "id": 28,
+    "text": "¿En qué país se encuentran las pirámides de Giza?",
+    "options": [
+      {"key": "A", "text": "Sudán"},
+      {"key": "B", "text": "Egipto"},
+      {"key": "C", "text": "Libia"},
+      {"key": "D", "text": "Marruecos"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Las famosas pirámides de Giza, incluyendo la Gran Pirámide, se encuentran en Egipto, cerca de El Cairo."
+  },
+  {
+    "id": 29,
+    "text": "¿Cuál es el planeta más grande del sistema solar?",
+    "options": [
+      {"key": "A", "text": "Tierra"},
+      {"key": "B", "text": "Marte"},
+      {"key": "C", "text": "Júpiter"},
+      {"key": "D", "text": "Saturno"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Júpiter es el planeta más grande de nuestro sistema solar, un gigante gaseoso."
+  },
+  {
+    "id": 30,
+    "text": "¿Qué cordillera atraviesa gran parte de la región oeste de Sudamérica?",
+    "options": [
+      {"key": "A", "text": "Alpes"},
+      {"key": "B", "text": "Himalaya"},
+      {"key": "C", "text": "Montañas Rocosas"},
+      {"key": "D", "text": "Cordillera de los Andes"}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "La Cordillera de los Andes es la cadena montañosa más larga del mundo y se extiende a lo largo de la costa occidental de Sudamérica."
+  },
+  {
+    "id": 31,
+    "text": "¿Cuál es el nombre del general que cruzó los Andes para liberar Chile y Perú?",
+    "options": [
+      {"key": "A", "text": "Manuel Belgrano"},
+      {"key": "B", "text": "José de San Martín"},
+      {"key": "C", "text": "Martín Miguel de Güemes"},
+      {"key": "D", "text": "Juan Manuel de Rosas"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El General José de San Martín lideró el Cruce de los Andes, una hazaña militar clave para la independencia de Argentina, Chile y Perú."
+  },
+  {
+    "id": 32,
+    "text": "¿Qué región de Argentina es famosa por su producción de vinos Malbec?",
+    "options": [
+      {"key": "A", "text": "Patagonia"},
+      {"key": "B", "text": "Mesopotamia"},
+      {"key": "C", "text": "Cuyo"},
+      {"key": "D", "text": "Noroeste"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La región de Cuyo, especialmente la provincia de Mendoza, es reconocida mundialmente por la calidad de sus vinos Malbec."
+  },
+  {
+    "id": 33,
+    "text": "¿Quién es el autor de la música del Himno Nacional Argentino?",
+    "options": [
+      {"key": "A", "text": "Vicente López y Planes"},
+      {"key": "B", "text": "Blas Parera"},
+      {"key": "C", "text": "Juan Pedro Esnaola"},
+      {"key": "D", "text": "Alberto Williams"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La música del Himno Nacional Argentino fue compuesta por Blas Parera, mientras que la letra es de Vicente López y Planes."
+  },
+  {
+    "id": 34,
+    "text": "¿Qué baile folklórico argentino se caracteriza por el zapateo y el uso de pañuelos?",
+    "options": [
+      {"key": "A", "text": "Tango"},
+      {"key": "B", "text": "Chacarera"},
+      {"key": "C", "text": "Cumbia"},
+      {"key": "D", "text": "Salsa"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La chacarera es una danza folklórica tradicional de Argentina, especialmente del noroeste, que incluye zapateo y el revoleo de pañuelos."
+  },
+  {
+    "id": 35,
+    "text": "¿Cuál es el nombre del aeropuerto internacional más importante de Buenos Aires?",
+    "options": [
+      {"key": "A", "text": "Aeroparque Jorge Newbery"},
+      {"key": "B", "text": "Aeropuerto de El Palomar"},
+      {"key": "C", "text": "Aeropuerto Internacional Ministro Pistarini (Ezeiza)"},
+      {"key": "D", "text": "Aeropuerto de San Fernando"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El Aeropuerto Internacional Ministro Pistarini, comúnmente conocido como Ezeiza, es el principal aeropuerto internacional de Argentina."
+  },
+  {
+    "id": 36,
+    "text": "¿Qué famoso personaje de historieta argentino fue creado por Quino?",
+    "options": [
+      {"key": "A", "text": "Patoruzú"},
+      {"key": "B", "text": "Mafalda"},
+      {"key": "C", "text": "Clemente"},
+      {"key": "D", "text": "Gaturro"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Mafalda, la niña contestataria y preocupada por la humanidad, es una creación del humorista gráfico Quino (Joaquín Lavado)."
+  },
+  {
+    "id": 37,
+    "text": "¿En qué año ocurrió la Guerra de las Malvinas?",
+    "options": [
+      {"key": "A", "text": "1978"},
+      {"key": "B", "text": "1982"},
+      {"key": "C", "text": "1983"},
+      {"key": "D", "text": "1990"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La Guerra de las Malvinas fue un conflicto bélico entre Argentina y el Reino Unido que tuvo lugar en 1982."
+  },
+  {
+    "id": 38,
+    "text": "¿Cuál es la ciudad más austral del mundo, ubicada en Argentina?",
+    "options": [
+      {"key": "A", "text": "Río Gallegos"},
+      {"key": "B", "text": "Punta Arenas"},
+      {"key": "C", "text": "Ushuaia"},
+      {"key": "D", "text": "Puerto Williams"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Ushuaia, capital de la provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur, es considerada la ciudad más austral del mundo."
+  },
+  {
+    "id": 39,
+    "text": "¿Qué banda de rock argentina es liderada por Gustavo Cerati (hasta su fallecimiento)?",
+    "options": [
+      {"key": "A", "text": "Patricio Rey y sus Redonditos de Ricota"},
+      {"key": "B", "text": "Divididos"},
+      {"key": "C", "text": "Soda Stereo"},
+      {"key": "D", "text": "Sumo"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Soda Stereo, con Gustavo Cerati como vocalista y guitarrista, fue una de las bandas más influyentes del rock en español."
+  },
+  {
+    "id": 40,
+    "text": "¿Cuál es el nombre de la avenida más ancha del mundo, ubicada en Buenos Aires?",
+    "options": [
+      {"key": "A", "text": "Avenida Corrientes"},
+      {"key": "B", "text": "Avenida Santa Fe"},
+      {"key": "C", "text": "Avenida 9 de Julio"},
+      {"key": "D", "text": "Avenida Rivadavia"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La Avenida 9 de Julio en Buenos Aires es famosa por ser considerada la más ancha del mundo."
+  },
+  {
+    "id": 41,
+    "text": "¿Quién fue el primer emperador romano?",
+    "options": [
+      {"key": "A", "text": "Julio César"},
+      {"key": "B", "text": "Augusto"},
+      {"key": "C", "text": "Nerón"},
+      {"key": "D", "text": "Trajano"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Augusto (nacido como Cayo Octavio) es considerado el primer emperador romano, gobernando desde el 27 a.C. hasta su muerte en el 14 d.C."
+  },
+  {
+    "id": 42,
+    "text": "¿Cuál es el elemento químico más abundante en la corteza terrestre?",
+    "options": [
+      {"key": "A", "text": "Hierro"},
+      {"key": "B", "text": "Silicio"},
+      {"key": "C", "text": "Oxígeno"},
+      {"key": "D", "text": "Aluminio"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El oxígeno constituye aproximadamente el 46.6% de la masa de la corteza terrestre."
+  },
+  {
+    "id": 43,
+    "text": "¿En qué país se originaron los Juegos Olímpicos?",
+    "options": [
+      {"key": "A", "text": "Italia"},
+      {"key": "B", "text": "Egipto"},
+      {"key": "C", "text": "Grecia"},
+      {"key": "D", "text": "China"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Los Juegos Olímpicos antiguos se celebraron por primera vez en Olimpia, Grecia, en el año 776 a.C."
+  },
+  {
+    "id": 44,
+    "text": "¿Quién formuló la teoría de la relatividad?",
+    "options": [
+      {"key": "A", "text": "Isaac Newton"},
+      {"key": "B", "text": "Albert Einstein"},
+      {"key": "C", "text": "Galileo Galilei"},
+      {"key": "D", "text": "Stephen Hawking"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Albert Einstein desarrolló la teoría de la relatividad especial (1905) y la teoría de la relatividad general (1915)."
+  },
+  {
+    "id": 45,
+    "text": "¿Cuál es la capital de Japón?",
+    "options": [
+      {"key": "A", "text": "Pekín"},
+      {"key": "B", "text": "Seúl"},
+      {"key": "C", "text": "Tokio"},
+      {"key": "D", "text": "Kioto"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Tokio es la capital y la metrópoli más grande de Japón."
+  },
+  {
+    "id": 46,
+    "text": "¿Qué famoso dramaturgo inglés escribió 'Romeo y Julieta'?",
+    "options": [
+      {"key": "A", "text": "Charles Dickens"},
+      {"key": "B", "text": "William Shakespeare"},
+      {"key": "C", "text": "Oscar Wilde"},
+      {"key": "D", "text": "George Bernard Shaw"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "William Shakespeare, uno de los más grandes escritores en lengua inglesa, es el autor de la tragedia 'Romeo y Julieta'."
+  },
+  {
+    "id": 47,
+    "text": "¿Cuál es el metal más ligero?",
+    "options": [
+      {"key": "A", "text": "Aluminio"},
+      {"key": "B", "text": "Magnesio"},
+      {"key": "C", "text": "Litio"},
+      {"key": "D", "text": "Titanio"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El litio es el metal más ligero y el elemento sólido menos denso a temperatura ambiente."
+  },
+  {
+    "id": 48,
+    "text": "¿En qué año llegó Cristóbal Colón a América?",
+    "options": [
+      {"key": "A", "text": "1492"},
+      {"key": "B", "text": "1500"},
+      {"key": "C", "text": "1453"},
+      {"key": "D", "text": "1607"}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "1",
+    "explanation": "Cristóbal Colón llegó al continente americano el 12 de octubre de 1492, marcando un hito en la historia mundial."
+  },
+  {
+    "id": 49,
+    "text": "¿Cuál es el país más poblado del mundo?",
+    "options": [
+      {"key": "A", "text": "China"},
+      {"key": "B", "text": "India"},
+      {"key": "C", "text": "Estados Unidos"},
+      {"key": "D", "text": "Indonesia"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Desde 2023, India ha superado a China como el país más poblado del mundo."
+  },
+  {
+    "id": 50,
+    "text": "¿Qué vitamina se obtiene principalmente de la exposición al sol?",
+    "options": [
+      {"key": "A", "text": "Vitamina A"},
+      {"key": "B", "text": "Vitamina C"},
+      {"key": "C", "text": "Vitamina D"},
+      {"key": "D", "text": "Vitamina B12"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La vitamina D, también conocida como la 'vitamina del sol', se sintetiza en la piel por la acción de los rayos ultravioleta."
+  },
+  {
+    "id": 51,
+    "text": "¿Cuál es el nombre del personaje principal en la saga de 'Harry Potter'?",
+    "options": [
+      {"key": "A", "text": "Ron Weasley"},
+      {"key": "B", "text": "Hermione Granger"},
+      {"key": "C", "text": "Harry Potter"},
+      {"key": "D", "text": "Albus Dumbledore"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Harry Potter es el joven mago protagonista de la popular serie de libros y películas creada por J.K. Rowling."
+  },
+  {
+    "id": 52,
+    "text": "¿Qué astro es el centro de nuestro sistema solar?",
+    "options": [
+      {"key": "A", "text": "La Luna"},
+      {"key": "B", "text": "Marte"},
+      {"key": "C", "text": "El Sol"},
+      {"key": "D", "text": "Júpiter"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El Sol es la estrella alrededor de la cual orbitan la Tierra y los demás planetas del sistema solar."
+  },
+  {
+    "id": 53,
+    "text": "¿En qué ciudad italiana se encuentra la Torre Inclinada?",
+    "options": [
+      {"key": "A", "text": "Roma"},
+      {"key": "B", "text": "Florencia"},
+      {"key": "C", "text": "Pisa"},
+      {"key": "D", "text": "Venecia"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La famosa Torre Inclinada de Pisa es el campanario de la catedral de la ciudad de Pisa, en la Toscana italiana."
+  },
+  {
+    "id": 54,
+    "text": "¿Cuál es el idioma más hablado en el mundo por número de hablantes nativos?",
+    "options": [
+      {"key": "A", "text": "Inglés"},
+      {"key": "B", "text": "Español"},
+      {"key": "C", "text": "Chino Mandarín"},
+      {"key": "D", "text": "Hindi"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El Chino Mandarín es el idioma con mayor número de hablantes nativos en el mundo."
+  },
+  {
+    "id": 55,
+    "text": "¿Quién fue el líder del movimiento por los derechos civiles en Estados Unidos, conocido por su discurso 'I Have a Dream'?",
+    "options": [
+      {"key": "A", "text": "Malcolm X"},
+      {"key": "B", "text": "Martin Luther King Jr."},
+      {"key": "C", "text": "Rosa Parks"},
+      {"key": "D", "text": "Nelson Mandela"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Martin Luther King Jr. fue un pastor y activista estadounidense, líder del movimiento por los derechos civiles para los afroamericanos."
+  },
+  {
+    "id": 56,
+    "text": "¿Cuál es el animal terrestre más rápido?",
+    "options": [
+      {"key": "A", "text": "León"},
+      {"key": "B", "text": "Tigre"},
+      {"key": "C", "text": "Guepardo"},
+      {"key": "D", "text": "Leopardo"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El guepardo (chita) es capaz de alcanzar velocidades de hasta 115 km/h en carreras cortas."
+  },
+  {
+    "id": 57,
+    "text": "¿Qué famoso científico desarrolló la ley de la gravitación universal?",
+    "options": [
+      {"key": "A", "text": "Galileo Galilei"},
+      {"key": "B", "text": "Nicolás Copérnico"},
+      {"key": "C", "text": "Isaac Newton"},
+      {"key": "D", "text": "Johannes Kepler"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Isaac Newton formuló las leyes del movimiento y la ley de la gravitación universal, pilares de la física clásica."
+  },
+  {
+    "id": 58,
+    "text": "¿En qué país se encuentra el Taj Mahal?",
+    "options": [
+      {"key": "A", "text": "Pakistán"},
+      {"key": "B", "text": "India"},
+      {"key": "C", "text": "Bangladesh"},
+      {"key": "D", "text": "Nepal"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El Taj Mahal, un mausoleo de mármol blanco, se encuentra en la ciudad de Agra, India."
+  },
+  {
+    "id": 59,
+    "text": "¿Cuál es el hueso más largo del cuerpo humano?",
+    "options": [
+      {"key": "A", "text": "Tibia"},
+      {"key": "B", "text": "Fémur"},
+      {"key": "C", "text": "Húmero"},
+      {"key": "D", "text": "Peroné"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El fémur, ubicado en el muslo, es el hueso más largo, fuerte y voluminoso del esqueleto humano."
+  },
+  {
+    "id": 60,
+    "text": "¿Qué banda británica es conocida por álbumes como 'The Dark Side of the Moon' y 'The Wall'?",
+    "options": [
+      {"key": "A", "text": "The Beatles"},
+      {"key": "B", "text": "Led Zeppelin"},
+      {"key": "C", "text": "Queen"},
+      {"key": "D", "text": "Pink Floyd"}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "Pink Floyd es una influyente banda de rock progresivo y psicodélico, famosa por sus elaborados álbumes conceptuales."
+  },
+  {
+    "id": 61,
+    "text": "¿Cuál es la capital de la provincia de Santa Fe?",
+    "options": [
+      {"key": "A", "text": "Rosario"},
+      {"key": "B", "text": "Santa Fe de la Vera Cruz"},
+      {"key": "C", "text": "Rafaela"},
+      {"key": "D", "text": "Reconquista"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La ciudad de Santa Fe de la Vera Cruz es la capital de la provincia de Santa Fe."
+  },
+  {
+    "id": 62,
+    "text": "¿Quién fue Eva Perón, conocida popularmente como Evita?",
+    "options": [
+      {"key": "A", "text": "Una escritora famosa"},
+      {"key": "B", "text": "Una actriz de cine"},
+      {"key": "C", "text": "Una influyente figura política y Primera Dama"},
+      {"key": "D", "text": "Una científica reconocida"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Eva Perón fue una actriz que se convirtió en una poderosa figura política como esposa del presidente Juan Domingo Perón, impulsando el sufragio femenino y políticas sociales."
+  },
+  {
+    "id": 63,
+    "text": "¿Qué región argentina es conocida por el 'Tren a las Nubes'?",
+    "options": [
+      {"key": "A", "text": "Patagonia"},
+      {"key": "B", "text": "Cuyo"},
+      {"key": "C", "text": "Noroeste (NOA)"},
+      {"key": "D", "text": "Litoral"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El Tren a las Nubes es un famoso ferrocarril turístico que recorre paisajes montañosos en la provincia de Salta, en el Noroeste Argentino."
+  },
+  {
+    "id": 64,
+    "text": "¿Cuál de estos músicos es considerado uno de los padres del rock nacional argentino?",
+    "options": [
+      {"key": "A", "text": "Andrés Calamaro"},
+      {"key": "B", "text": "Charly García"},
+      {"key": "C", "text": "Fito Páez"},
+      {"key": "D", "text": "Gustavo Santaolalla"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Charly García, con bandas como Sui Generis, Serú Girán y su carrera solista, es una figura fundamental en la historia del rock argentino."
+  },
+  {
+    "id": 65,
+    "text": "¿En qué deporte se destacó Emanuel Ginóbili?",
+    "options": [
+      {"key": "A", "text": "Fútbol"},
+      {"key": "B", "text": "Tenis"},
+      {"key": "C", "text": "Básquetbol"},
+      {"key": "D", "text": "Hockey sobre césped"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Emanuel 'Manu' Ginóbili es uno de los basquetbolistas argentinos más exitosos, campeón de la NBA y medallista olímpico."
+  },
+  {
+    "id": 66,
+    "text": "¿Qué es el 'asado' en la cultura argentina?",
+    "options": [
+      {"key": "A", "text": "Un tipo de baile"},
+      {"key": "B", "text": "Una bebida alcohólica"},
+      {"key": "C", "text": "Una técnica de cocción de carne a la parrilla y un evento social"},
+      {"key": "D", "text": "Un instrumento musical"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El asado es mucho más que una comida; es un ritual social y una tradición culinaria central en Argentina, que consiste en cocinar carne a las brasas."
+  },
+  {
+    "id": 67,
+    "text": "¿Cuál es la flor nacional de Argentina?",
+    "options": [
+      {"key": "A", "text": "Jazmín"},
+      {"key": "B", "text": "Rosa"},
+      {"key": "C", "text": "Ceibo"},
+      {"key": "D", "text": "Girasol"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La flor del ceibo, con sus característicos pétalos rojos, fue declarada flor nacional de Argentina en 1942."
+  },
+  {
+    "id": 68,
+    "text": "¿Qué río separa la Ciudad Autónoma de Buenos Aires de la Provincia de Buenos Aires en su parte sur?",
+    "options": [
+      {"key": "A", "text": "Río Paraná"},
+      {"key": "B", "text": "Río Luján"},
+      {"key": "C", "text": "Riachuelo (Río Matanza)"},
+      {"key": "D", "text": "Río Salado"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El Riachuelo, cuyo nombre oficial es Río Matanza, actúa como límite sur entre la CABA y la provincia de Buenos Aires."
+  },
+  {
+    "id": 69,
+    "text": "¿Quién fue el máximo goleador histórico de la selección argentina de fútbol hasta ser superado por Lionel Messi?",
+    "options": [
+      {"key": "A", "text": "Diego Maradona"},
+      {"key": "B", "text": "Mario Kempes"},
+      {"key": "C", "text": "Gabriel Batistuta"},
+      {"key": "D", "text": "Hernán Crespo"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Gabriel Batistuta fue durante muchos años el máximo artillero de la selección argentina, con 54 goles."
+  },
+  {
+    "id": 70,
+    "text": "¿Qué se conmemora en Argentina el 2 de abril?",
+    "options": [
+      {"key": "A", "text": "Día de la Independencia"},
+      {"key": "B", "text": "Día de la Bandera"},
+      {"key": "C", "text": "Día del Veterano y de los Caídos en la Guerra de Malvinas"},
+      {"key": "D", "text": "Día del Trabajador"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El 2 de abril se conmemora el Día del Veterano y de los Caídos en la Guerra de Malvinas, en recuerdo del desembarco argentino en las islas en 1982."
+  },
+  {
+    "id": 71,
+    "text": "¿Cuál es la capital de Australia?",
+    "options": [
+      {"key": "A", "text": "Sídney"},
+      {"key": "B", "text": "Melbourne"},
+      {"key": "C", "text": "Canberra"},
+      {"key": "D", "text": "Perth"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Aunque Sídney y Melbourne son más conocidas, Canberra es la capital de Australia."
+  },
+  {
+    "id": 72,
+    "text": "¿Qué civilización antigua construyó Machu Picchu?",
+    "options": [
+      {"key": "A", "text": "Aztecas"},
+      {"key": "B", "text": "Mayas"},
+      {"key": "C", "text": "Incas"},
+      {"key": "D", "text": "Egipcios"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Machu Picchu, la famosa ciudadela en los Andes peruanos, fue construida por el Imperio Inca en el siglo XV."
+  },
+  {
+    "id": 73,
+    "text": "¿Cuántos lados tiene un hexágono?",
+    "options": [
+      {"key": "A", "text": "5"},
+      {"key": "B", "text": "6"},
+      {"key": "C", "text": "7"},
+      {"key": "D", "text": "8"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Un hexágono es un polígono que tiene seis lados y seis ángulos."
+  },
+  {
+    "id": 74,
+    "text": "¿Quién escribió 'Cien años de soledad'?",
+    "options": [
+      {"key": "A", "text": "Mario Vargas Llosa"},
+      {"key": "B", "text": "Gabriel García Márquez"},
+      {"key": "C", "text": "Julio Cortázar"},
+      {"key": "D", "text": "Isabel Allende"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El escritor colombiano Gabriel García Márquez es el autor de 'Cien años de soledad', una obra emblemática del realismo mágico."
+  },
+  {
+    "id": 75,
+    "text": "¿Cuál es el proceso por el cual las plantas producen su alimento?",
+    "options": [
+      {"key": "A", "text": "Respiración"},
+      {"key": "B", "text": "Digestión"},
+      {"key": "C", "text": "Fotosíntesis"},
+      {"key": "D", "text": "Transpiración"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La fotosíntesis es el proceso mediante el cual las plantas utilizan la luz solar, agua y dióxido de carbono para crear glucosa (su alimento) y oxígeno."
+  },
+  {
+    "id": 76,
+    "text": "¿En qué país se encuentra la Estatua de la Libertad?",
+    "options": [
+      {"key": "A", "text": "Francia"},
+      {"key": "B", "text": "Reino Unido"},
+      {"key": "C", "text": "Estados Unidos"},
+      {"key": "D", "text": "Canadá"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "La Estatua de la Libertad, un regalo de Francia, se encuentra en la Isla de la Libertad en Nueva York, Estados Unidos."
+  },
+  {
+    "id": 77,
+    "text": "¿Cuál es el símbolo químico del agua?",
+    "options": [
+      {"key": "A", "text": "O2"},
+      {"key": "B", "text": "CO2"},
+      {"key": "C", "text": "H2O"},
+      {"key": "D", "text": "NaCl"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "H2O es la fórmula química del agua, indicando que cada molécula está compuesta por dos átomos de hidrógeno y uno de oxígeno."
+  },
+  {
+    "id": 78,
+    "text": "¿Quién fue el primer hombre en pisar la Luna?",
+    "options": [
+      {"key": "A", "text": "Buzz Aldrin"},
+      {"key": "B", "text": "Yuri Gagarin"},
+      {"key": "C", "text": "Neil Armstrong"},
+      {"key": "D", "text": "Michael Collins"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Neil Armstrong, comandante de la misión Apolo 11, fue el primer ser humano en caminar sobre la superficie lunar el 20 de julio de 1969."
+  },
+  {
+    "id": 79,
+    "text": "¿Cuál es el desierto más grande del mundo (considerando los desiertos fríos)?",
+    "options": [
+      {"key": "A", "text": "Sahara"},
+      {"key": "B", "text": "Gobi"},
+      {"key": "C", "text": "Antártida"},
+      {"key": "D", "text": "Kalahari"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Si se incluyen los desiertos polares, la Antártida es el desierto más grande, seguido por el Ártico. El Sahara es el desierto cálido más grande."
+  },
+  {
+    "id": 80,
+    "text": "¿Qué instrumento se utiliza para medir la temperatura?",
+    "options": [
+      {"key": "A", "text": "Barómetro"},
+      {"key": "B", "text": "Termómetro"},
+      {"key": "C", "text": "Anemómetro"},
+      {"key": "D", "text": "Higrómetro"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El termómetro es el instrumento diseñado para medir la temperatura."
+  },
+  {
+    "id": 81,
+    "text": "¿Cuál es la provincia más extensa de Argentina?",
+    "options": [
+      {"key": "A", "text": "Santa Cruz"},
+      {"key": "B", "text": "Buenos Aires"},
+      {"key": "C", "text": "Chubut"},
+      {"key": "D", "text": "Salta"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La provincia de Buenos Aires es la más extensa de Argentina, excluyendo el sector antártico."
+  },
+  {
+    "id": 82,
+    "text": "¿Qué escritor argentino es conocido por su obra 'Rayuela'?",
+    "options": [
+      {"key": "A", "text": "Jorge Luis Borges"},
+      {"key": "B", "text": "Ernesto Sabato"},
+      {"key": "C", "text": "Julio Cortázar"},
+      {"key": "D", "text": "Manuel Puig"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Julio Cortázar es el autor de 'Rayuela', una novela innovadora que permite múltiples lecturas."
+  },
+  {
+    "id": 83,
+    "text": "¿En qué ciudad argentina se celebra anualmente la Fiesta Nacional de la Vendimia?",
+    "options": [
+      {"key": "A", "text": "Salta"},
+      {"key": "B", "text": "Mendoza"},
+      {"key": "C", "text": "San Juan"},
+      {"key": "D", "text": "Cafayate"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "La Fiesta Nacional de la Vendimia, una de las festividades más importantes de Argentina, se celebra cada año en la ciudad de Mendoza."
+  },
+  {
+    "id": 84,
+    "text": "¿Cuál es el nombre del estadio de Boca Juniors?",
+    "options": [
+      {"key": "A", "text": "El Monumental"},
+      {"key": "B", "text": "La Bombonera"},
+      {"key": "C", "text": "El Cilindro"},
+      {"key": "D", "text": "El Nuevo Gasómetro"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El estadio de Boca Juniors es el Alberto J. Armando, popularmente conocido como 'La Bombonera'."
+  },
+  {
+    "id": 85,
+    "text": "¿Qué se celebra el 9 de julio en Argentina?",
+    "options": [
+      {"key": "A", "text": "Día de la Revolución de Mayo"},
+      {"key": "B", "text": "Día de la Independencia"},
+      {"key": "C", "text": "Día de la Bandera"},
+      {"key": "D", "text": "Día de la Soberanía Nacional"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El 9 de julio se conmemora la Declaración de Independencia de Argentina, proclamada en 1816 en Tucumán."
+  },
+  {
+    "id": 86,
+    "text": "¿Cuál es el nombre del famoso barrio de Buenos Aires conocido por sus casas coloridas y el tango?",
+    "options": [
+      {"key": "A", "text": "Palermo"},
+      {"key": "B", "text": "Recoleta"},
+      {"key": "C", "text": "San Telmo"},
+      {"key": "D", "text": "La Boca"}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "El barrio de La Boca, con su icónico Caminito, es famoso por sus conventillos de chapa pintados de colores vivos y su fuerte vínculo con el tango."
+  },
+  {
+    "id": 87,
+    "text": "¿Qué tenista argentino ganó el US Open en 2009?",
+    "options": [
+      {"key": "A", "text": "Guillermo Vilas"},
+      {"key": "B", "text": "Gastón Gaudio"},
+      {"key": "C", "text": "David Nalbandian"},
+      {"key": "D", "text": "Juan Martín del Potro"}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "Juan Martín del Potro logró una histórica victoria en el US Open de 2009 al vencer a Roger Federer en la final."
+  },
+  {
+    "id": 88,
+    "text": "¿Qué es el 'dulce de leche'?",
+    "options": [
+      {"key": "A", "text": "Un tipo de queso"},
+      {"key": "B", "text": "Una mermelada de frutas"},
+      {"key": "C", "text": "Un dulce tradicional hecho a base de leche y azúcar"},
+      {"key": "D", "text": "Una bebida chocolatada"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El dulce de leche es un manjar muy popular en Argentina y otros países de Latinoamérica, elaborado mediante la cocción lenta de leche y azúcar."
+  },
+  {
+    "id": 89,
+    "text": "¿En qué provincia argentina se encuentra el 'Valle de la Luna'?",
+    "options": [
+      {"key": "A", "text": "La Rioja"},
+      {"key": "B", "text": "San Juan"},
+      {"key": "C", "text": "Catamarca"},
+      {"key": "D", "text": "Jujuy"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El Parque Provincial Ischigualasto, más conocido como 'Valle de la Luna', se encuentra en la provincia de San Juan y es famoso por sus formaciones geológicas y hallazgos paleontológicos."
+  },
+  {
+    "id": 90,
+    "text": "¿Quién fue el director técnico de la selección argentina campeona del mundo en México 1986?",
+    "options": [
+      {"key": "A", "text": "César Luis Menotti"},
+      {"key": "B", "text": "Carlos Bilardo"},
+      {"key": "C", "text": "Alfio Basile"},
+      {"key": "D", "text": "Marcelo Bielsa"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "Carlos Salvador Bilardo fue el entrenador que condujo a la selección argentina, liderada por Diego Maradona, a ganar la Copa del Mundo en 1986."
+  },
+  {
+    "id": 91,
+    "text": "¿Qué significa 'www' en una dirección de internet?",
+    "options": [
+      {"key": "A", "text": "World Wide Web"},
+      {"key": "B", "text": "Web World Wide"},
+      {"key": "C", "text": "World Web Window"},
+      {"key": "D", "text": "Wide World Web"}
+    ],
+    "correctAnswerKey": "A",
+    "difficulty": "1",
+    "explanation": "'WWW' son las siglas de 'World Wide Web', el sistema de distribución de documentos de hipertexto interconectados y accesibles vía Internet."
+  },
+  {
+    "id": 92,
+    "text": "¿Cuál es la obra más famosa de Vincent van Gogh?",
+    "options": [
+      {"key": "A", "text": "El Grito"},
+      {"key": "B", "text": "La noche estrellada"},
+      {"key": "C", "text": "Guernica"},
+      {"key": "D", "text": "Las Meninas"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "'La noche estrellada' (1889) es una de las pinturas más reconocidas del artista postimpresionista neerlandés Vincent van Gogh."
+  },
+  {
+    "id": 93,
+    "text": "¿Cuántos continentes hay en el modelo tradicional de 7 continentes?",
+    "options": [
+      {"key": "A", "text": "5"},
+      {"key": "B", "text": "6"},
+      {"key": "C", "text": "7"},
+      {"key": "D", "text": "8"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El modelo más comúnmente enseñado reconoce siete continentes: Asia, África, América del Norte, América del Sur, Antártida, Europa y Oceanía."
+  },
+  {
+    "id": 94,
+    "text": "¿Qué Beatle fue asesinado en Nueva York en 1980?",
+    "options": [
+      {"key": "A", "text": "Paul McCartney"},
+      {"key": "B", "text": "George Harrison"},
+      {"key": "C", "text": "Ringo Starr"},
+      {"key": "D", "text": "John Lennon"}
+    ],
+    "correctAnswerKey": "D",
+    "difficulty": "1",
+    "explanation": "John Lennon, uno de los fundadores de The Beatles, fue asesinado el 8 de diciembre de 1980 frente a su apartamento en Nueva York."
+  },
+  {
+    "id": 95,
+    "text": "¿Cuál es el principal gas de efecto invernadero responsable del calentamiento global?",
+    "options": [
+      {"key": "A", "text": "Oxígeno"},
+      {"key": "B", "text": "Nitrógeno"},
+      {"key": "C", "text": "Dióxido de carbono"},
+      {"key": "D", "text": "Metano"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "El dióxido de carbono (CO2) es el principal gas de efecto invernadero emitido por actividades humanas, contribuyendo significativamente al calentamiento global."
+  },
+  {
+    "id": 96,
+    "text": "¿En qué ciudad se encuentra el Coliseo Romano?",
+    "options": [
+      {"key": "A", "text": "Atenas"},
+      {"key": "B", "text": "Roma"},
+      {"key": "C", "text": "Estambul"},
+      {"key": "D", "text": "Florencia"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "El Coliseo, un anfiteatro de la época del Imperio Romano, es uno de los monumentos más famosos de Roma, Italia."
+  },
+  {
+    "id": 97,
+    "text": "¿Qué tipo de animal es una ballena?",
+    "options": [
+      {"key": "A", "text": "Pez"},
+      {"key": "B", "text": "Mamífero"},
+      {"key": "C", "text": "Reptil"},
+      {"key": "D", "text": "Anfibio"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "A pesar de vivir en el agua, las ballenas son mamíferos marinos; respiran aire, son de sangre caliente y amamantan a sus crías."
+  },
+  {
+    "id": 98,
+    "text": "¿Cuál es la capital de Rusia?",
+    "options": [
+      {"key": "A", "text": "San Petersburgo"},
+      {"key": "B", "text": "Kiev"},
+      {"key": "C", "text": "Moscú"},
+      {"key": "D", "text": "Varsovia"}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "1",
+    "explanation": "Moscú es la capital y la ciudad más grande de la Federación Rusa."
+  },
+  {
+    "id": 99,
+    "text": "¿Quién dirigió la película 'Titanic' (1997)?",
+    "options": [
+      {"key": "A", "text": "Steven Spielberg"},
+      {"key": "B", "text": "James Cameron"},
+      {"key": "C", "text": "George Lucas"},
+      {"key": "D", "text": "Christopher Nolan"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "James Cameron dirigió la exitosa película 'Titanic', protagonizada por Leonardo DiCaprio y Kate Winslet."
+  },
+  {
+    "id": 100,
+    "text": "¿Cuál es el gentilicio de las personas nacidas en la Ciudad Autónoma de Buenos Aires?",
+    "options": [
+      {"key": "A", "text": "Bonaerenses"},
+      {"key": "B", "text": "Porteños"},
+      {"key": "C", "text": "Capitalinos"},
+      {"key": "D", "text": "Argentinos"}
+    ],
+    "correctAnswerKey": "B",
+    "difficulty": "1",
+    "explanation": "A las personas nacidas en la Ciudad Autónoma de Buenos Aires se las conoce como 'porteños', en referencia al puerto de la ciudad."
   }
 ]
