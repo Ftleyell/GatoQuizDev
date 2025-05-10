@@ -1,9 +1,14 @@
 // src/game/entities/CatEntity.ts
 
-import { IComponent } from '../components/IComponent'; // Importar interfaz base
-import { PhysicsComponent } from '../components/PhysicsComponent';
-import { RenderComponent } from '../components/RenderComponent';
-import { ValueComponent } from '../components/ValueComponent';
+// Importar componentes de entidad usando el barrel file de la carpeta 'components'
+import {
+    IComponent,
+    PhysicsComponent,
+    RenderComponent,
+    ValueComponent
+} from '../components'; // Sube un nivel a 'game/', luego entra a 'components/' (usa index.ts)
+
+// Importar otros componentes si se definen (manteniendo la misma lógica de agrupación si es posible)
 // Importar otros componentes si se definen
 
 /**

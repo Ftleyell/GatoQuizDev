@@ -1,12 +1,13 @@
 // src/game/states/ResultsState.ts
 
-import { IState } from '../StateMachine';
+import type { IState } from '../StateMachine'; // La interfaz IState se importa directamente desde StateMachine.ts
 import { GameManager } from '../GameManager';
-// <<< CAMBIO: Importar el componente Lit >>>
-import '../components/ui/results-screen.ts';
-import type { ResultsScreen } from '../components/ui/results-screen';
-// <<< FIN CAMBIO >>>
 
+// Para asegurar que el componente Lit se registre (se ejecuta el código del archivo):
+import '../components/ui/results-screen.js'; // Sube un nivel a 'game/', luego a 'components/ui/' (o .ts)
+
+// Para tipos, usando el barrel file:
+import type { ResultsScreen } from '../components/ui'; // Sube un nivel a 'game/', luego a 'components/ui/' (usa index.ts)
 export class ResultsState implements IState {
     private gameManager: GameManager;
     private finalScore: number = 0;
@@ -14,10 +15,8 @@ export class ResultsState implements IState {
     private totalQuestions: number = 0;
     private isNewHighScore: boolean = false;
 
-    // <<< CAMBIO: Referencia al componente Lit y al handler >>>
     private resultsScreenElement: ResultsScreen | null = null;
     private continueHandler: (() => void) | null = null;
-    // <<< FIN CAMBIO >>>
 
     constructor(gameManager: GameManager) {
         this.gameManager = gameManager;
@@ -29,7 +28,9 @@ export class ResultsState implements IState {
         this.correctAnswers = params?.correct ?? 0;
         this.totalQuestions = params?.total ?? 0;
         this.isNewHighScore = params?.isNewHighScore ?? false;
-        this.gameManager.setBodyStateClass('results'); // Aplicar clase al body
+
+        this.gameManager.setBodyStateClass('results');
+        // La lógica de mostrar/ocultar botones globales es manejada por `wrapEnter` en GameManager.
 
         const container = this.gameManager.getContainerElement();
         if (!container) {
@@ -37,44 +38,39 @@ export class ResultsState implements IState {
             return;
         }
 
-        // <<< CAMBIO: Crear e insertar el componente Lit >>>
         container.innerHTML = ''; // Limpiar contenedor
         this.resultsScreenElement = document.createElement('results-screen') as ResultsScreen;
 
-        // Pasar propiedades
+        // Pasar propiedades al componente Lit
         this.resultsScreenElement.finalScore = this.finalScore;
         this.resultsScreenElement.correctAnswers = this.correctAnswers;
         this.resultsScreenElement.totalQuestions = this.totalQuestions;
         this.resultsScreenElement.isNewHighScore = this.isNewHighScore;
 
-        // Añadir listener para el evento personalizado
+        // Listener para el evento personalizado del botón de continuar
         this.continueHandler = () => {
             console.log("ResultsState: Evento 'continue-requested' recibido.");
             this.gameManager.getAudioManager().playSound('ui_confirm');
-            // Decidir a dónde ir después (Game Over o de vuelta al Menú/Quiz?)
-            // Esta lógica podría necesitar ajustes basados en las reglas del juego.
-            // Por ahora, asumimos que vuelve al menú principal.
-            this.gameManager.create();
+            // Decide a dónde ir después. Por ejemplo, volver al menú principal.
+            // La transición de barrido se definirá preferentemente en el estado o al llamar a changeState.
+            this.gameManager.getStateMachine().changeState('MainMenu', undefined, 'gq-wipe-transition');
         };
 
         this.resultsScreenElement.addEventListener('continue-requested', this.continueHandler);
-
         container.appendChild(this.resultsScreenElement);
-        // <<< FIN CAMBIO >>>
 
-        // Lógica adicional (ej. sonido de resultados)
+        // Sonido de resultados o fin de nivel
         this.gameManager.getAudioManager().playSound('level_complete'); // O un sonido específico de resultados
     }
 
     exit(): void {
         console.log('ResultsState: exit');
-        // <<< CAMBIO: Limpiar listener del componente Lit >>>
         if (this.resultsScreenElement && this.continueHandler) {
             this.resultsScreenElement.removeEventListener('continue-requested', this.continueHandler);
         }
-        this.resultsScreenElement = null; // Limpiar referencia
+        this.resultsScreenElement = null;
         this.continueHandler = null;
-        // <<< FIN CAMBIO >>>
+        // El contenido del containerElement se limpia o se cubre por la StateMachine.
     }
 
     update(_deltaTime: number): void {

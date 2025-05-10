@@ -1,21 +1,20 @@
 // src/systems/CatManager.ts
 
-import { CatEntity } from '../game/entities/CatEntity';
-import { PhysicsComponent } from '../game/components/PhysicsComponent';
-import { RenderComponent } from '../game/components/RenderComponent';
-import { ValueComponent } from '../game/components/ValueComponent';
-import { PhysicsManager } from './PhysicsManager';
-import { AudioManager } from './AudioManager';
-import { CatTemplate } from '../types/CatTemplate';
+// src/game/engine/managers/CatManager.ts
+
+import { CatEntity } from '../../entities'; // Sube dos niveles, entra a 'entities' (usa index.ts)
+import { PhysicsComponent, RenderComponent, ValueComponent } from '../../components'; // Sube dos niveles, entra a 'components' (usa index.ts)
+import { PhysicsManager, AudioManager } from '../../../systems'; // Sube tres niveles a 'src', luego a 'systems' (usa index.ts)
+import type { CatTemplate } from '../../../types'; // Sube tres niveles a 'src', luego a 'types' (usa index.ts)
 import Matter from 'matter-js';
-import { GameManager } from '../game/GameManager';
+import { GameManager } from '../../GameManager'; // Sube dos niveles y entra a 'game'
 import { LitElement } from 'lit';
 
-// Importar el componente y su tipo
-import '../game/components/ui/cat-entity-display.ts';
-import type { CatEntityDisplay } from '../game/components/ui/cat-entity-display';
-import type { CatDisplayArea } from '../game/components/ui/cat-display-area'; // Asegúrate que la ruta sea correcta
+// Para asegurar que el componente Lit se registre:
+import '../../components/ui/cat-entity-display.js'; // O .ts
 
+// Para tipos de componentes UI, usando el barrel file:
+import type { CatEntityDisplay, CatDisplayArea } from '../../components/ui'; // Sube dos niveles, entra a 'components/ui' (usa index.ts)
 const WALL_COLLISION_CATEGORY = 0x0001;
 const CAT_COLLISION_CATEGORY = 0x0002;
 const INK_COLLISION_CATEGORY = 0x0004;

@@ -1,17 +1,19 @@
 // src/game/states/MainMenuState.ts
 
-import { IState } from '../StateMachine';
-import { GameManager } from '../GameManager';
-// Importar el componente Lit <main-menu-screen> y su tipo
-import '../components/ui/main-menu-screen';
-import type { MainMenuScreen } from '../components/ui/main-menu-screen';
+import type { IState } from '../StateMachine'; // Correcto
+import { GameManager } from '../GameManager';   // Correcto
+
+// Para asegurar que el componente Lit se registre (se ejecuta el código del archivo):
+// La extensión .js es una convención común, pero .ts también puede funcionar dependiendo de tu configuración.
+import '../components/ui/main-menu-screen.js'; // Sube un nivel a 'game/', luego a 'components/ui/'
+
+// Para tipos, usando el barrel file:
+import type { MainMenuScreen } from '../components/ui'; // Sube un nivel a 'game/', luego a 'components/ui/' (usa index.ts)
 
 export class MainMenuState implements IState {
   private gameManager: GameManager;
-  // Listener para el evento personalizado del componente Lit <main-menu-screen>
-  private startListener: (() => void) | null = null;
+  private startListener: (() => Promise<void>) | null = null; // Modificado para ser async
   private containerElement: HTMLElement | null = null;
-  // Las propiedades sparkleIntervalId y hasStarted ahora son manejadas internamente por MainMenuScreen.
 
   constructor(gameManager: GameManager) {
     this.gameManager = gameManager;
@@ -19,7 +21,7 @@ export class MainMenuState implements IState {
 
   enter(params?: any): void {
     console.log('MainMenuState: enter', params);
-    this.gameManager.setBodyStateClass('mainmenu-whiskers'); // Establece clase para estilos de fondo/globales
+    this.gameManager.setBodyStateClass('mainmenu-whiskers');
     this.containerElement = this.gameManager.getContainerElement();
 
     if (!this.containerElement) {
@@ -28,96 +30,90 @@ export class MainMenuState implements IState {
     }
 
     // Limpiar el contenedor antes de añadir el nuevo componente
-    this.containerElement.innerHTML = ''; 
+    this.containerElement.innerHTML = '';
     const mainMenuElement = document.createElement('main-menu-screen') as MainMenuScreen;
-    
-    // Pasar los mensajes de carga al componente (si es necesario)
+
+    // Pasar los mensajes de carga al componente
     mainMenuElement.loadingMessages = this.gameManager.getLoadingMessages();
-    
+    // Aquí podrías pasar otros datos al mainMenuElement si es necesario, como gameData.
+    // Ejemplo:
+    // mainMenuElement.gameData = {
+    //   title: 'GatoQuiz Interactivo', // O obtener de alguna configuración
+    //   version: '2.0.0',
+    //   highScore: this.gameManager.getPlayerData()?.highScore ?? 0,
+    //   lastScore: this.gameManager.getPlayerData()?.lastScore ?? 0,
+    // };
+
+
     this.containerElement.appendChild(mainMenuElement);
 
-    if (mainMenuElement) {
-      // Configurar el listener para el evento 'start-game-requested' emitido por <main-menu-screen>
-      this.startListener = () => {
-        console.log("MainMenuState: Evento 'start-game-requested' recibido desde <main-menu-screen>.");
-        this.gameManager.getAudioManager().playSound('ui_confirm'); // Sonido de confirmación
-        
-        this.removeStartListeners(); // Limpiar este listener específico
-                // Reinicia el ciclo principal del juego (requestAnimationFrame y físicas)
-                this.gameManager.start(); 
-        console.log("MainMenuState: Iniciando transición con BARRIDO a QuizGameplay...");
-        // --- CAMBIO CLAVE: Usar la transición de barrido ---
-        // Se pasa 'gq-wipe-transition' como clase de animación de salida (y/o entrada).
-        // La StateMachine interpretará esto para usar el componente DiagonalWipe.
-        this.gameManager.getStateMachine().changeState(
-            'QuizGameplay', 
-            undefined, // No hay parámetros de entrada para QuizGameplay en este caso
-            'gq-wipe-transition' // Especifica que la salida de MainMenu debe usar el barrido
-                                 // Opcionalmente, también se puede pasar como animación de entrada para QuizGameplay
-                                 // si se desea que el barrido también "revele" el nuevo estado.
-                                 // Si solo se quiere que cubra, solo es necesario en la salida.
-                                 // Para un efecto completo de cubrir y luego revelar:
-                                 // 'gq-wipe-transition', 'gq-wipe-transition'
-        );
-      };
-      
-      // Añadir el listener al componente Lit (se ejecutará una sola vez)
-      mainMenuElement.addEventListener('start-game-requested', this.startListener, { once: true });
-      console.log("MainMenuState: Listener 'start-game-requested' añadido a <main-menu-screen>.");
+    // La lógica de mostrar/ocultar botones globales es manejada por `wrapEnter` en GameManager.
 
-    } else {
-      console.error("MainMenuState: Error al encontrar <main-menu-screen> después de añadirlo al DOM.");
-    }
-    // La lógica de efectos visuales como destellos y carga de fuentes ahora está encapsulada
-    // dentro del componente <main-menu-screen>.
+    // Configurar el listener para el evento 'start-game-requested'
+    // La función del listener ahora es async para permitir 'await' para tryResumeContext.
+    this.startListener = async () => {
+      console.log("MainMenuState: Evento 'start-game-requested' recibido desde <main-menu-screen>.");
+
+      // --- Integración de la corrección de Audio ---
+      // Intenta resumir el AudioContext después de la interacción del usuario (solicitud de inicio de juego)
+      // Esto es crucial para que el audio funcione en navegadores con políticas de reproducción automática estrictas.
+      try {
+        if (this.gameManager.getAudioManager()) {
+            await this.gameManager.getAudioManager().tryResumeContext();
+            console.log("MainMenuState: Intento de reanudación del AudioContext completado.");
+        } else {
+            console.warn("MainMenuState: AudioManager no está disponible para reanudar el contexto.");
+        }
+      } catch (error) {
+        console.error("MainMenuState: Error al intentar reanudar el AudioContext:", error);
+      }
+      // --- Fin de la integración de la corrección de Audio ---
+
+      // Reproducir sonido de confirmación (ahora debería funcionar si el contexto se reanudó)
+      this.gameManager.getAudioManager().playSound('ui_confirm');
+      
+      this.removeStartListeners(); // Limpiar este listener
+      this.gameManager.start(); // Asegurar que el bucle de juego y físicas estén corriendo
+      
+      // Usar la transición de barrido definida en el plan y en getPreferredExitAnimation
+      this.gameManager.getStateMachine().changeState(
+          'QuizGameplay', // O el estado de carga/juego apropiado
+          undefined,
+          this.getPreferredExitAnimation?.() ?? 'default-animation' // Usar la animación preferida de salida o un valor por defecto
+      );
+    };
+
+    mainMenuElement.addEventListener('start-game-requested', this.startListener as EventListener, { once: true });
+    console.log("MainMenuState: Listener 'start-game-requested' (async) añadido a <main-menu-screen>.");
   }
 
-  /**
-   * Remueve los listeners de eventos para evitar fugas de memoria.
-   */
   private removeStartListeners(): void {
-    // Buscar el elemento Lit por si acaso (necesario si se llama desde fuera de enter/exit)
     const mainMenuElement = this.containerElement?.querySelector('main-menu-screen');
     if (mainMenuElement && this.startListener) {
-      // Remover específicamente el listener de nuestro evento personalizado
-      mainMenuElement.removeEventListener('start-game-requested', this.startListener);
-      console.log("MainMenuState: Listener 'start-game-requested' removido de <main-menu-screen>.");
+      // Asegúrate de castear el listener a EventListener si TypeScript se queja por la firma async
+      mainMenuElement.removeEventListener('start-game-requested', this.startListener as EventListener);
+      // console.log("MainMenuState: Listener 'start-game-requested' removido de <main-menu-screen>.");
     }
-    // Limpiar la referencia a la función listener
     this.startListener = null;
   }
 
   exit(): void {
     console.log('MainMenuState: exit');
-    this.removeStartListeners(); // Asegurarse de limpiar listeners al salir
-    
-    // No es necesario limpiar el innerHTML del containerElement aquí si la StateMachine
-    // se encarga de la transición del contenido de #app. La StateMachine lo hará
-    // después de que la animación de salida (el barrido) haya cubierto la pantalla.
-    
-    if (this.containerElement) {
-        this.containerElement.style.cursor = ''; // Restaurar cursor por si acaso
-    }
-    // this.containerElement = null; // No anular si #app es el contenedor persistente de la StateMachine
+    this.removeStartListeners();
+    // `wrapEnter` en GameManager se encarga de la UI global.
+    // El contenido de `this.containerElement` será limpiado por `StateMachine`
+    // si la transición es `fade`, o cubierto por `DiagonalWipe`.
   }
 
   update(_deltaTime: number): void {
     // No se necesita acción por frame en este estado
   }
 
-  /**
-   * (Opcional pero recomendado) Define la animación de salida preferida para este estado.
-   * La StateMachine usará esto si no se fuerza otra animación en changeState.
-   */
   public getPreferredExitAnimation?(): string {
-    return 'gq-wipe-transition'; // Indicar que queremos usar el barrido al salir de este estado.
+    return 'gq-wipe-transition';
   }
 
-  /**
-   * (Opcional) Define la animación de entrada preferida para este estado.
-   * Si se vuelve a este estado desde otro, se podría usar el barrido.
-   */
   public getPreferredEnterAnimation?(): string {
-    return 'gq-wipe-transition'; // Indicar que queremos usar el barrido al entrar a este estado.
+    return 'gq-wipe-transition';
   }
 }

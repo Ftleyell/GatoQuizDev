@@ -1,19 +1,21 @@
 // src/systems/InkManager.ts
 
-import { GameManager } from '../game/GameManager';
-import { PlayerData } from '../game/PlayerData';
-import { PhysicsManager } from './PhysicsManager';
+// src/game/engine/managers/InkManager.ts
+
+import { GameManager } from '../../GameManager';   // Sube dos niveles ('engine', 'game') para llegar a src/, luego entra a 'game/'
+import { PlayerData } from '../../PlayerData';      // Sube dos niveles ('engine', 'game') para llegar a src/, luego entra a 'game/'
+import { PhysicsManager } from '../../../systems'; // Sube tres niveles ('managers', 'engine', 'game') para llegar a src/, luego a 'systems/' (usa index.ts)
 import Matter from 'matter-js';
-// Importar el tipo del nuevo componente Lit para el canvas
-import type { DrawingCanvasLayer } from '../game/components/ui/drawing-canvas-layer';
-// Asegurarse de que el componente se registre si no se importa en otro lado (main.ts o GameManager.ts)
-import '../game/components/ui/drawing-canvas-layer.ts';
 
+// Para asegurar que el componente Lit se registre (se ejecuta el código del archivo):
+import '../../components/ui/drawing-canvas-layer.js'; // Sube dos niveles, entra a 'components/ui/' (o .ts)
 
-// --- Constantes de Dibujo ---
+// Para tipos, usando los barrel files:
+import type { DrawingCanvasLayer } from '../../components/ui'; // Sube dos niveles, entra a 'components/ui/' (usa index.ts)
+
+// --- Constantes de Dibujo (sin cambios) ---
 const MIN_PATH_DISTANCE_SQ = 25;
 const INK_LINE_THICKNESS = 8;
-const INK_LINE_COLOR = '#E5E7EB'; // Podría ser variable de tema
 const INK_PER_CORRECT_ANSWER = 150;
 const INK_COLLISION_CATEGORY = 0x0004;
 const CAT_COLLISION_CATEGORY = 0x0002;
@@ -26,30 +28,21 @@ export class InkManager {
     private gameManager: GameManager;
     private physicsManager!: PhysicsManager;
     private playerData!: PlayerData;
-
-    // Referencia al componente Lit <drawing-canvas-layer>
     private drawingCanvasLayer: DrawingCanvasLayer | null = null;
-    // Referencias al elemento <canvas> y su contexto, obtenidos del componente Lit
     private actualCanvasElement: HTMLCanvasElement | null = null;
     private drawingCtx: CanvasRenderingContext2D | null = null;
-
     public isBrushActive: boolean = false;
     private isDrawing: boolean = false;
     private currentPath: Point[] = [];
     private lastPoint: Point | null = null;
     private drawnPaths: DrawnPath[] = [];
-
     private isInitialized: boolean = false;
     private generalListeners: { element: HTMLElement | Window; type: string; handler: (e: any) => void, options?: AddEventListenerOptions | boolean }[] = [];
-    
-    private lastToggleTime: number = 0;
-    private readonly BRUSH_TOGGLE_DEBOUNCE = 200;
 
     constructor(gameManager: GameManager) {
         this.gameManager = gameManager;
         try {
             this.playerData = gameManager.getPlayerData();
-            // La obtención del componente Lit se hará en init()
         } catch (e) {
             console.error("InkManager: Error en constructor al obtener PlayerData.", e);
         }
@@ -59,106 +52,156 @@ export class InkManager {
         this.physicsManager = physicsManager;
     }
 
-    public init(): void {
+    public async init(): Promise<void> {
         if (this.isInitialized) {
-            this.updateInkUI();
+            this.updateInkRelatedUI();
             return;
         }
+        console.log("InkManager: init() INICIADO.");
         try {
             if (!this.physicsManager) {
                 this.physicsManager = this.gameManager.getPhysicsManager();
-                if (!this.physicsManager) throw new Error("PhysicsManager no disponible.");
+                if (!this.physicsManager) throw new Error("PhysicsManager no disponible para InkManager.");
             }
             if (!this.playerData) {
                 this.playerData = this.gameManager.getPlayerData();
-                if (!this.playerData) throw new Error("PlayerData no disponible.");
+                if (!this.playerData) throw new Error("PlayerData no disponible para InkManager.");
             }
             
-            // Obtener el componente Lit del DOM
-            this.drawingCanvasLayer = document.getElementById('drawing-canvas-layer-main') as DrawingCanvasLayer | null;
-            if (!this.drawingCanvasLayer) {
+            const canvasLayerElement = document.getElementById('drawing-canvas-layer-main');
+            console.log("InkManager init: Buscando <drawing-canvas-layer id='drawing-canvas-layer-main'>...");
+            if (!canvasLayerElement) {
                 throw new Error("<drawing-canvas-layer id='drawing-canvas-layer-main'> no encontrado en el DOM.");
             }
+            console.log("InkManager init: canvasLayerElement encontrado:", canvasLayerElement, "Conectado:", canvasLayerElement.isConnected);
 
-            // Obtener el canvas y el contexto del componente Lit
-            this.actualCanvasElement = this.drawingCanvasLayer.getCanvasElement();
-            this.drawingCtx = this.drawingCanvasLayer.getContext();
+            console.log("InkManager init: Esperando a que 'drawing-canvas-layer' sea definido...");
+            await customElements.whenDefined('drawing-canvas-layer');
+            this.drawingCanvasLayer = canvasLayerElement as DrawingCanvasLayer;
+            console.log("InkManager init: 'drawing-canvas-layer' DEFINIDO. drawingCanvasLayer:", this.drawingCanvasLayer);
 
-            if (!this.actualCanvasElement || !this.drawingCtx) {
-                throw new Error("No se pudo obtener el canvas o el contexto 2D desde drawing-canvas-layer.");
+            console.log("InkManager init: Esperando a drawingCanvasLayer.updateComplete...");
+            await this.drawingCanvasLayer.updateComplete;
+            console.log("InkManager init: drawingCanvasLayer.updateComplete RESUELTO.");
+
+            if (!this.drawingCanvasLayer.getContext()) {
+                console.log("InkManager: Contexto no disponible después de updateComplete. Esperando evento 'canvas-ready' de drawingCanvasLayer...");
+                await new Promise<void>((resolve, reject) => {
+                    const timeoutDuration = 3000; 
+                    const timeoutId = setTimeout(() => {
+                        console.error(`InkManager: Timeout (${timeoutDuration}ms) esperando 'canvas-ready'. El componente drawing-canvas-layer puede no estar inicializando su contexto correctamente.`);
+                        reject(new Error("Timeout esperando 'canvas-ready' desde drawing-canvas-layer"));
+                    }, timeoutDuration);
+
+                    const readyListener = () => {
+                        clearTimeout(timeoutId);
+                        this.drawingCanvasLayer!.removeEventListener('canvas-ready', readyListener);
+                        console.log("InkManager: Evento 'canvas-ready' RECIBIDO de drawing-canvas-layer.");
+                        resolve();
+                    };
+                    
+                    if (this.drawingCanvasLayer!.getContext()) {
+                        console.log("InkManager: Contexto de drawing-canvas-layer ya estaba disponible al intentar añadir listener de 'canvas-ready'.");
+                        clearTimeout(timeoutId);
+                        resolve();
+                        return;
+                    }
+                    console.log("InkManager: Añadiendo listener para 'canvas-ready' en drawingCanvasLayer.");
+                    this.drawingCanvasLayer!.addEventListener('canvas-ready', readyListener);
+                });
+            } else {
+                console.log("InkManager: Contexto de drawing-canvas-layer ya estaba disponible DESPUÉS de updateComplete (antes de la espera del evento).");
             }
 
-            this.setupDrawingCanvas(); // Redimensiona y aplica estilos al contexto
-            this.initDrawingListeners(); // Añade listeners al *elemento canvas*
+            this.actualCanvasElement = this.drawingCanvasLayer.getCanvasElement();
+            this.drawingCtx = this.drawingCanvasLayer.getContext();
+            console.log("InkManager init: actualCanvasElement:", this.actualCanvasElement, "drawingCtx:", this.drawingCtx);
+
+
+            if (!this.actualCanvasElement || !this.drawingCtx) {
+                // Esta es la línea que da el error si algo falla antes.
+                throw new Error("No se pudo obtener el canvas o el contexto 2D desde drawing-canvas-layer DESPUÉS de las esperas (whenDefined, updateComplete, canvas-ready).");
+            }
+
+            this.setupDrawingCanvas(); 
+            this.initDrawingListeners(); 
             this.isInitialized = true;
-            this.updateInkUI();
+            this.updateInkRelatedUI();
+            console.log("InkManager: Inicializado correctamente.");
+
         } catch (error) {
-            console.error("InkManager: Error CRÍTICO en inicialización:", error);
+            console.error("InkManager: Error CRÍTICO en inicialización:", error); // Este es el log que estás viendo
             this.isInitialized = false;
+            // Considera si deberías relanzar el error si es irrecuperable para detener la carga del juego.
+            // throw error; 
         }
     }
 
-    private initDrawingListeners(): void {
-        this.removeDrawingListeners();
-        // Los listeners de dibujo ahora se aplican al canvas *interno* del componente Lit
-        if (this.actualCanvasElement) {
-            const startHandler = this.startDrawing.bind(this);
-            const drawHandler = this.draw.bind(this);
-            const stopHandler = this.stopDrawing.bind(this);
-            this.addListener(this.actualCanvasElement, 'mousedown', startHandler);
-            this.addListener(this.actualCanvasElement, 'mousemove', drawHandler);
-            this.addListener(this.actualCanvasElement, 'mouseup', stopHandler);
-            this.addListener(this.actualCanvasElement, 'mouseleave', stopHandler);
-            this.addListener(this.actualCanvasElement, 'touchstart', startHandler, { passive: false });
-            this.addListener(this.actualCanvasElement, 'touchmove', drawHandler, { passive: false });
-            this.addListener(this.actualCanvasElement, 'touchend', stopHandler);
-            this.addListener(this.actualCanvasElement, 'touchcancel', stopHandler);
-        }
-        // El listener de resize sigue siendo global o podría ser manejado por el componente Lit
-        this.addListener(window, 'resize', this.handleResize.bind(this));
-    }
+    // ... (El resto de los métodos de InkManager.ts deben permanecer como en la versión anterior que te pasé) ...
+    // Copia aquí el resto de los métodos desde "private addListener" hasta el final de la clase
+    // de la versión de InkManager.ts que te di en el mensaje anterior.
+    // Si la necesitas de nuevo, dímelo.
 
     private addListener(element: HTMLElement | Window, type: string, handler: (e: any) => void, options?: AddEventListenerOptions | boolean): void {
         element.addEventListener(type, handler, options);
         this.generalListeners.push({ element, type, handler, options });
     }
 
+    private initDrawingListeners(): void {
+        this.removeDrawingListeners(); 
+        if (this.actualCanvasElement) {
+            const startHandler = this.startDrawing.bind(this);
+            const drawHandler = this.draw.bind(this);
+            const stopHandler = this.stopDrawing.bind(this);
+
+            this.addListener(this.actualCanvasElement, 'mousedown', startHandler);
+            this.addListener(this.actualCanvasElement, 'mousemove', drawHandler);
+            this.addListener(this.actualCanvasElement, 'mouseup', stopHandler);
+            this.addListener(this.actualCanvasElement, 'mouseleave', stopHandler); 
+
+            this.addListener(this.actualCanvasElement, 'touchstart', startHandler, { passive: false });
+            this.addListener(this.actualCanvasElement, 'touchmove', drawHandler, { passive: false });
+            this.addListener(this.actualCanvasElement, 'touchend', stopHandler);
+            this.addListener(this.actualCanvasElement, 'touchcancel', stopHandler);
+        }
+        this.addListener(window, 'resize', this.handleResize.bind(this));
+    }
+
     private removeDrawingListeners(): void {
         this.generalListeners.forEach(({ element, type, handler, options }) => {
-            try { element.removeEventListener(type, handler, options); }
-            catch (e) { /* Ignorar */ }
+            try {
+                element.removeEventListener(type, handler, options);
+            } catch (e) {
+            }
         });
         this.generalListeners = [];
     }
 
     private setupDrawingCanvas(): void {
-        // Ya no necesitamos obtener el contexto aquí, se obtiene en init()
         if (this.drawingCtx && this.drawingCanvasLayer) {
-            this.drawingCanvasLayer.resizeCanvas(); // Pedir al componente que redimensione su canvas
-            this.applyContextStyles(); // Aplicar estilos al contexto obtenido
-            this.clearCanvas();
-            this.redrawPaths();
+            this.drawingCanvasLayer.resizeCanvas(); 
+            this.applyContextStyles(); 
+            this.clearCanvas(); 
+            this.redrawPaths(); 
         }
     }
 
     private applyContextStyles(): void {
         if (!this.drawingCtx) return;
-        this.drawingCtx.strokeStyle = INK_LINE_COLOR;
-        this.drawingCtx.lineWidth = INK_LINE_THICKNESS;
+        const inkColor = getComputedStyle(document.documentElement).getPropertyValue('--gq-ink-line-color').trim() || '#E5E7EB';
+        this.drawingCtx.strokeStyle = inkColor;
+        this.drawingCtx.lineWidth = INK_LINE_THICKNESS; 
         this.drawingCtx.lineCap = 'round';
         this.drawingCtx.lineJoin = 'round';
     }
 
     private handleResize(): void {
         if (this.drawingCanvasLayer) {
-            this.drawingCanvasLayer.resizeCanvas(); // El componente se encarga de su canvas
-            // Es importante que el componente Lit emita un evento 'canvas-resized' o que
-            // InkManager obtenga el nuevo contexto si este se recrea al redimensionar.
-            // Asumimos que getContext() siempre devuelve el actual.
-            this.drawingCtx = this.drawingCanvasLayer.getContext(); // Re-obtener por si acaso
+            this.drawingCanvasLayer.resizeCanvas(); 
+            this.drawingCtx = this.drawingCanvasLayer.getContext(); 
             if (this.drawingCtx) {
-                this.applyContextStyles(); // Reaplicar estilos al (posiblemente nuevo) contexto
-                this.redrawPaths(); // Redibujar trazos existentes
+                this.applyContextStyles(); 
+                this.redrawPaths(); 
             }
         }
     }
@@ -172,65 +215,53 @@ export class InkManager {
     private redrawPaths(): void {
         this.clearCanvas();
         if (!this.drawingCtx) return;
-        this.drawnPaths.forEach(pathData => { this.drawPathPoints(pathData.points); });
+        this.drawnPaths.forEach(pathData => {
+            this.drawPathPoints(pathData.points);
+        });
     }
 
     private drawPathPoints(points: Point[]): void {
         if (!this.drawingCtx || points.length < 2) return;
         this.drawingCtx.beginPath();
         this.drawingCtx.moveTo(points[0].x, points[0].y);
-        for (let i = 1; i < points.length; i++) { this.drawingCtx.lineTo(points[i].x, points[i].y); }
+        for (let i = 1; i < points.length; i++) {
+            this.drawingCtx.lineTo(points[i].x, points[i].y);
+        }
         this.drawingCtx.stroke();
     }
 
-    public updateInkUI(): void {
+    private updateInkRelatedUI(): void {
         if (!this.isInitialized || !this.playerData) return;
-        const isUnlocked = this.playerData.isDrawingUnlocked;
-        this.gameManager.getUIManager().updateInkVisibility(isUnlocked);
-        this.gameManager.getUIManager().updateInkBar();
-        if (isUnlocked && this.playerData.currentInk <= 0 && this.isBrushActive) {
+        
+        this.gameManager.updateInkUI(); 
+
+        if (this.playerData.currentInk <= 0 && this.isBrushActive) {
             this.toggleBrush(false); 
-        } else {
-            this.gameManager.updateToolButtonStates();
         }
     }
 
     public toggleBrush(forceState?: boolean): void {
-        if (!this.isInitialized) return;
-        const now = Date.now();
-        if (forceState === undefined && (now - this.lastToggleTime < this.BRUSH_TOGGLE_DEBOUNCE)) {
+        if (!this.isInitialized) {
+            console.warn("InkManager: Intento de toggleBrush antes de inicializar.");
             return;
         }
-        this.lastToggleTime = now;
+
         const newState = (forceState !== undefined) ? forceState : !this.isBrushActive;
 
-        if (newState === true && (!this.playerData.isDrawingUnlocked || this.playerData.currentInk <= 0)) {
-            if (this.isBrushActive) { 
-                this.isBrushActive = false;
-                this.gameManager.setQuizUiFaded(false); 
-                this.updateCanvasActiveState(); // Actualiza el componente <drawing-canvas-layer>
-                this.gameManager.updateToolButtonStates();
-            }
-            return;
-        }
         if (newState === this.isBrushActive) return; 
         this.isBrushActive = newState;
 
-        if (!this.isBrushActive && this.isDrawing) { this.stopDrawing(null); }
-
-        this.gameManager.setQuizUiFaded(this.isBrushActive); 
-        this.updateCanvasActiveState(); // Actualiza el componente <drawing-canvas-layer>
-        this.gameManager.updateToolButtonStates(); 
+        if (!this.isBrushActive && this.isDrawing) {
+            this.stopDrawing(null);
+        }
+        
+        this.gameManager.getGlobalUIManager().setModuleUIsFaded(this.isBrushActive);
+        this.updateCanvasActiveState(); 
     }
 
-    /**
-     * Actualiza el estado del componente Lit <drawing-canvas-layer>.
-     * GameManager se encargará del `isPointerLockdown` en este componente.
-     */
     public updateCanvasActiveState(): void {
         if (this.drawingCanvasLayer) {
             this.drawingCanvasLayer.isActive = this.isBrushActive;
-            // No manejamos isPointerLockdown aquí; GameManager lo hará.
         }
     }
 
@@ -238,42 +269,51 @@ export class InkManager {
         if (!this.isInitialized || !this.playerData.isDrawingUnlocked || this.playerData.inkSpentSinceLastClear <= 0) {
             return;
         }
+
         const allBodiesToRemove: Matter.Body[] = this.drawnPaths.flatMap(p => p.bodies);
         if (this.physicsManager?.getWorld && allBodiesToRemove.length > 0) {
             try {
                 const world = this.physicsManager.getWorld();
                 const bodiesInWorld = allBodiesToRemove.filter(body => Matter.Composite.get(world, body.id, 'body'));
-                if (bodiesInWorld.length > 0) { Matter.World.remove(world, bodiesInWorld); }
-            } catch(error) { console.error("InkManager: Error removiendo cuerpos de tinta:", error); }
+                if (bodiesInWorld.length > 0) {
+                    Matter.World.remove(world, bodiesInWorld);
+                }
+            } catch(error) {
+                console.error("InkManager: Error removiendo cuerpos de tinta del mundo físico:", error);
+            }
         }
-        this.drawnPaths = [];
-        this.clearCanvas();
-        this.playerData.recoverSpentInk();
-        this.updateInkUI();
+
+        this.drawnPaths = []; 
+        this.clearCanvas();   
+
+        this.playerData.recoverSpentInk(); 
+        this.updateInkRelatedUI();         
         this.gameManager.getAudioManager().playSound('clear_ink');
     }
 
     public gainInkOnCorrectAnswer(): void {
         if (!this.isInitialized || !this.playerData.isDrawingUnlocked) return;
         this.playerData.gainInk(INK_PER_CORRECT_ANSWER);
-        this.updateInkUI();
+        this.updateInkRelatedUI();
     }
 
     public destroy(): void {
-        this.removeDrawingListeners();
+        this.removeDrawingListeners(); 
         this.isInitialized = false;
         this.isBrushActive = false;
         this.isDrawing = false;
         this.currentPath = [];
         this.drawnPaths = [];
-        this.clearCanvas(); // Limpia el contexto del canvas
+        this.clearCanvas(); 
+        
         if (this.drawingCanvasLayer) {
-            this.drawingCanvasLayer.isActive = false; // Asegurar que el componente sepa que está inactivo
-            this.drawingCanvasLayer.isPointerLockdown = false;
+            this.drawingCanvasLayer.isActive = false; 
+            this.drawingCanvasLayer.isPointerLockdown = false; 
         }
         this.drawingCtx = null;
         this.actualCanvasElement = null;
-        this.drawingCanvasLayer = null;
+        this.drawingCanvasLayer = null; 
+        console.log("InkManager: Destruido y recursos liberados.");
     }
 
     private startDrawing(event: MouseEvent | TouchEvent): void { 
@@ -300,7 +340,7 @@ export class InkManager {
                 this.drawingCtx.lineTo(pos.x, pos.y); this.drawingCtx.stroke(); 
                 this.drawingCtx.beginPath(); this.drawingCtx.moveTo(pos.x, pos.y); 
                 this.lastPoint = pos; 
-                this.updateInkUI(); 
+                this.updateInkRelatedUI(); 
             } else { 
                 this.stopDrawing(event); 
                 if (this.playerData.currentInk <=0) this.toggleBrush(false);
@@ -325,7 +365,6 @@ export class InkManager {
     }
     
     private getMousePos(event: MouseEvent | TouchEvent): Point { 
-        // Usa actualCanvasElement para getBoundingClientRect
         if (!this.actualCanvasElement) return { x: 0, y: 0 }; 
         const rect = this.actualCanvasElement.getBoundingClientRect(); 
         let clientX = 0, clientY = 0; 

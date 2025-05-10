@@ -1,178 +1,177 @@
 // src/game/GameManager.ts
 
-// --- Importaciones de Sistemas y Tipos ---
-import { PhysicsManager } from '../systems/PhysicsManager';
-import { QuizSystem } from '../systems/QuizSystem';
-import { StateMachine, IState } from './StateMachine';
-import { AudioManager } from '../systems/AudioManager';
-import { CatManager } from '../systems/CatManager';
-import { ShopManager } from '../systems/ShopManager';
+// --- Sistemas y Managers del Motor ---
+// Desde src/systems/ (usando su index.ts)
+import { AudioManager, PhysicsManager, ThemeManager } from '../systems';
+// Desde src/game/engine/managers/ (usando su index.ts)
+import { CatManager, ShopManager, InkManager, CatFoodManager, ToolManager } from './engine/managers';
+// Desde src/game/modules/quiz/ (usando su index.ts)
+import { QuizSystem } from './modules/quiz';
+
+// --- Gestores de UI del Motor ---
+// Desde src/game/engine/ui/ (usando su index.ts)
+import { GlobalUIManager } from './engine/ui';
+
+// --- Datos y Estado del Juego ---
 import { PlayerData } from './PlayerData';
-import { CatTemplate } from '../types/CatTemplate';
-import { ShopItemJsonData } from '../types/ShopItemData';
-import { InkManager } from '../systems/InkManager';
-import { UIManager } from '../systems/UIManager';
-import { ThemeManager } from '../systems/ThemeManager';
-import { Theme } from '../types/Theme';
-import { CatFoodManager } from '../systems/CatFoodManager';
+import { StateMachine, type IState } from './StateMachine'; // Agrupada IState aquí
 
-// --- Importaciones de Estados ---
-import { LoadingState } from './states/LoadingState';
-import { MainMenuState } from './states/MainMenuState';
-import { QuizGameplayState } from './states/QuizGameplayState';
-import { ResultsState } from './states/ResultsState';
-import { GameOverState } from './states/GameOverState';
+// --- Tipos Globales ---
+// Desde src/types/ (usando su index.ts)
+import type { EngineServices, CatTemplate, ShopItemJsonData, Theme } from '../types';
 
-// --- Importaciones de Componentes UI y sus Tipos ---
-import './components/ui/tool-button.ts';
-import './components/ui/combo-counter.ts';
+// --- Módulos de Juego y su UI ---
+// Desde src/game/modules/quiz/ (usando su index.ts)
+import type { QuizGameModule } from './modules/quiz';
+// Desde src/game/modules/quiz/ui/ (usando su index.ts)
+import { QuizUIManager } from './modules/quiz/ui'; // Asumiendo que se necesita la clase, no solo el tipo
+
+// --- Estados del Juego ---
+// Desde src/game/states/ (usando su index.ts)
+import {
+    LoadingState,
+    MainMenuState,
+    QuizGameplayState,
+    ResultsState,
+    GameOverState
+} from './states';
+
+// --- Componentes UI Globales (Registros y Tipos) ---
+// Registros (side-effect imports - mantener rutas directas o usar .js según configuración)
 import './components/ui/cat-display-area.ts';
 import './components/ui/drawing-canvas-layer.ts';
 import './components/ui/shop-button.ts';
-import './components/ui/shop-popup.ts';
-import './components/ui/main-menu-screen.ts';
-import './components/ui/quiz-ui-container.ts';
-import './components/ui/diagonal-wipe.ts';
-import './components/ui/blur-backdrop.ts';
 import './components/ui/options-button-component.ts';
 import './components/ui/options-menu-popup.ts';
+import './components/ui/main-menu-screen.ts';
+import './components/ui/diagonal-wipe.ts';
+import './components/ui/combo-counter.ts';
+import './components/ui/shop-popup.ts';
+import './components/ui/explanation-overlay.ts';
+import './components/ui/blur-backdrop.ts';
 
-import type { ToolButton } from './components/ui/tool-button';
-import type { CatDisplayArea } from './components/ui/cat-display-area';
-import type { QuizUiContainer } from './components/ui/quiz-ui-container';
-import type { DrawingCanvasLayer } from './components/ui/drawing-canvas-layer';
-import type { ShopButtonComponent } from './components/ui/shop-button';
-import type { ShopPopup } from './components/ui/shop-popup';
-import type { MainMenuScreen } from './components/ui/main-menu-screen';
-import type { DiagonalWipe } from './components/ui/diagonal-wipe';
-import type { BlurBackdropComponent } from './components/ui/blur-backdrop';
-import type { OptionsButtonComponent } from './components/ui/options-button-component';
-import type { OptionsMenuPopup } from './components/ui/options-menu-popup';
+import type {
+    CatDisplayArea,
+    DrawingCanvasLayer,
+    ShopButtonComponent,
+    OptionsButtonComponent,
+    OptionsMenuPopup,
+    MainMenuScreen,
+    DiagonalWipe,
+    QuizUiContainer
+} from './components/ui';
 
-
-/**
- * Define la estructura para las referencias a los elementos de control de herramientas.
- */
-type ControlElements = {
-    controlsContainer: HTMLElement | null;
-    drawingButtonsContainer: HTMLElement | null;
-    catFoodUiContainer: HTMLElement | null;
-    brushToolButton: ToolButton | null;
-    clearInkToolButton: ToolButton | null;
-    catFoodToolButton: ToolButton | null;
-};
 
 export class GameManager {
-    // --- Referencias a Sistemas ---
+    // --- Gestores de Sistemas del Motor ---
     private physicsManager!: PhysicsManager;
     private quizSystem!: QuizSystem;
-    private stateMachine!: StateMachine;
     private audioManager!: AudioManager;
     private catManager!: CatManager;
     private playerData!: PlayerData;
     private shopManager!: ShopManager;
     private inkManager!: InkManager;
-    private uiManager!: UIManager;
     private themeManager!: ThemeManager;
     private catFoodManager!: CatFoodManager;
 
-    // --- Referencias a Elementos UI Clave ---
+    // --- Gestores del Motor para UI Global y Herramientas ---
+    private globalUIManager!: GlobalUIManager;
+    private toolManager!: ToolManager;
+
+    // --- Máquina de Estados ---
+    private stateMachine!: StateMachine;
+
+    // --- Elementos del DOM Globales y Contenedores ---
+    private containerElement: HTMLElement;
     private catDisplayAreaElement!: CatDisplayArea;
     private drawingCanvasLayerElement: DrawingCanvasLayer | null = null;
-    private containerElement: HTMLElement;
-    private gameUiContainer: QuizUiContainer | null = null;
     private diagonalWipeElement: DiagonalWipe | null = null;
-    private blurBackdrop: BlurBackdropComponent | null = null;
 
-    // --- Referencias a componentes de Opciones ---
-    private optionsButtonInstance: OptionsButtonComponent | null = null;
-    private optionsPopupInstance: OptionsMenuPopup | null = null;
-
-    // --- Estado del Juego ---
+    // --- Estado del Juego y Bucle ---
     private lastTimestamp: number = 0;
     private isRunning: boolean = false;
     private gameLoopRequestId?: number;
+    private isCatBeingDragged: boolean = false;
 
-    // --- Listeners y Referencias a Controles ---
+    // --- Listeners de Eventos ---
     private keydownListener: ((event: KeyboardEvent) => void) | null = null;
-    private controlElements: ControlElements;
     private themeChangeListener: EventListener | null = null;
-    private shopButtonInstance: ShopButtonComponent | null = null;
     private shopButtonInteractionListener: (() => void) | null = null;
-    private shopCloseRequestListener: (() => void) | null = null;
     private optionsButtonClickListener: (() => void) | null = null;
     private optionsPopupCloseListener: (() => void) | null = null;
 
+    // --- Datos Cargados ---
     private loadingMessages: string[] = ["Desenredando la diversión..."];
-    private _lastToolToggleTime: number = 0;
-    private readonly TOOL_TOGGLE_DEBOUNCE_MS = 300;
 
     constructor(container: HTMLElement) {
         this.containerElement = container;
+        console.log("GameManager: Constructor iniciado.");
 
-        this.audioManager = new AudioManager();
-        this.quizSystem = new QuizSystem();
         this.playerData = new PlayerData();
+        this.audioManager = new AudioManager(); // AudioManager instanciado
+        this.quizSystem = new QuizSystem();
         this.themeManager = new ThemeManager('body');
+        
+        this.globalUIManager = new GlobalUIManager(this);
+        this.toolManager = new ToolManager(this);
+
         this.catManager = new CatManager(this.audioManager, this);
-        this.uiManager = new UIManager(this);
         this.shopManager = new ShopManager(this.playerData, this);
         this.inkManager = new InkManager(this);
         this.catFoodManager = new CatFoodManager(this);
         this.physicsManager = new PhysicsManager(this.catManager, this.catFoodManager, this);
 
+        this.toolManager.setManagers(this.inkManager, this.catFoodManager, this.playerData);
+        this.catManager.setPhysicsManager(this.physicsManager);
+        this.inkManager.setPhysicsManager(this.physicsManager);
+
         this.stateMachine = new StateMachine();
         this.stateMachine.setAnimationContainer(this.containerElement);
 
         this.diagonalWipeElement = document.getElementById('diagonal-wipe-transition-element') as DiagonalWipe | null;
-        if (!this.diagonalWipeElement || !(this.diagonalWipeElement instanceof HTMLElement && 'playIn' in this.diagonalWipeElement)) {
-            console.error("GameManager CRITICAL: Componente <diagonal-wipe id='diagonal-wipe-transition-element'> no encontrado o inválido.");
-            this.diagonalWipeElement = null;
+        if (!this.diagonalWipeElement) {
+            console.warn("GameManager: Componente <diagonal-wipe> no encontrado en el DOM.");
         }
         this.stateMachine.setWipeComponent(this.diagonalWipeElement);
 
         const catDisplayArea = document.getElementById('cat-display-area-main') as CatDisplayArea | null;
-        if (!catDisplayArea || !(catDisplayArea instanceof HTMLElement && 'clearAllEntityElements' in catDisplayArea)) {
-            console.error("GameManager CRITICAL: <cat-display-area id='cat-display-area-main'> no encontrado o inválido.");
-            throw new Error("<cat-display-area> no encontrado y es esencial.");
+        if (!catDisplayArea) {
+            throw new Error("GameManager CRITICAL: <cat-display-area id='cat-display-area-main'> no encontrado.");
         }
         this.catDisplayAreaElement = catDisplayArea;
-
-        this.drawingCanvasLayerElement = document.getElementById('drawing-canvas-layer-main') as DrawingCanvasLayer | null;
-        if (this.drawingCanvasLayerElement && !(this.drawingCanvasLayerElement instanceof HTMLElement && 'resizeCanvas' in this.drawingCanvasLayerElement)) {
-            console.warn("GameManager: drawingCanvasLayerElement no parece ser una instancia válida de DrawingCanvasLayer.");
-        }
-
         this.catManager.setCatDisplayArea(this.catDisplayAreaElement);
         this.catFoodManager.setCatDisplayArea(this.catDisplayAreaElement);
-        this.catManager.setPhysicsManager(this.physicsManager);
-        this.inkManager.setPhysicsManager(this.physicsManager);
 
-        this.controlElements = {
-            controlsContainer: document.getElementById('right-controls'),
-            drawingButtonsContainer: document.getElementById('drawing-buttons-container'),
-            catFoodUiContainer: document.getElementById('cat-food-ui-container'),
-            brushToolButton: document.querySelector<ToolButton>('tool-button[toolId="brush"]'),
-            clearInkToolButton: document.querySelector<ToolButton>('tool-button[toolId="clear-ink"]'),
-            catFoodToolButton: document.querySelector<ToolButton>('tool-button[toolId="cat-food"]'),
-        };
-        if (!this.controlElements.controlsContainer ||
-            !this.controlElements.drawingButtonsContainer ||
-            !this.controlElements.catFoodUiContainer ||
-            !this.controlElements.brushToolButton ||
-            !this.controlElements.clearInkToolButton ||
-            !this.controlElements.catFoodToolButton) {
-            console.warn("GameManager: Uno o más elementos de control UI no fueron encontrados en el DOM.");
+        this.drawingCanvasLayerElement = document.getElementById('drawing-canvas-layer-main') as DrawingCanvasLayer | null;
+        if (!this.drawingCanvasLayerElement) {
+            console.warn("GameManager: <drawing-canvas-layer id='drawing-canvas-layer-main'> no encontrado.");
         }
+        
         this.setupStates();
+        console.log("GameManager: Constructor finalizado.");
+    }
+
+    public getEngineServices(): EngineServices {
+        return {
+            playerData: this.playerData,
+            audioManager: this.audioManager,
+            catManager: this.catManager,
+            physicsManager: this.physicsManager,
+            themeManager: this.themeManager,
+            shopManager: this.shopManager,
+            inkManager: this.inkManager,
+            catFoodManager: this.catFoodManager,
+            globalUI: this.globalUIManager,
+            toolManager: this.toolManager,
+            quizSystem: this.quizSystem,
+            gameManager: this,
+        };
     }
 
     public setBodyStateClass(stateName: string | null): void {
         const body = document.body;
         body.className.split(' ').forEach(cls => {
-            if (cls.startsWith('state-')) {
-                body.classList.remove(cls);
-            }
+            if (cls.startsWith('state-')) body.classList.remove(cls);
         });
         if (stateName) {
             body.classList.add(`state-${stateName.toLowerCase()}`);
@@ -180,70 +179,44 @@ export class GameManager {
     }
 
     public async init(): Promise<void> {
+        console.log("GameManager: init() llamado.");
+        
+        // --- PUNTO CRÍTICO PARA EL AUDIO ---
+        // Inicializar el AudioManager aquí. Esto crea el AudioContext.
+        this.audioManager.init(); 
+        console.log("GameManager: AudioManager.init() llamado.");
+        // ------------------------------------
+
         this.playerData.reset();
         this.physicsManager.init(this.catDisplayAreaElement);
+        await this.inkManager.init();
         this.catFoodManager.init();
 
-        this.blurBackdrop = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
-        if (!this.blurBackdrop) {
-            console.warn("GameManager (init): Componente <blur-backdrop-component> no encontrado.");
-        }
+        this.toolManager.showToolControls(false);
+        this.globalUIManager.showShopButton(false);
+        this.globalUIManager.showOptionsButton(false);
+        this.globalUIManager.updateBackdropVisibility();
 
-        this.optionsButtonInstance = document.getElementById('settings-options-button-global') as OptionsButtonComponent | null;
-        this.optionsPopupInstance = document.getElementById('options-menu-popup-global') as OptionsMenuPopup | null;
-
-        if (!this.optionsButtonInstance || !this.optionsPopupInstance) {
-            console.error("GameManager (init): No se encontraron los componentes de opciones (botón o popup). La funcionalidad de opciones no estará disponible.");
-        } else {
-            this.optionsPopupInstance.audioManagerInstance = this.audioManager;
-            this.optionsPopupInstance.themeManagerInstance = this.themeManager;
-            (this.optionsPopupInstance as any).gameManagerInstance = this;
-            console.log("GameManager (init): Instancias de AudioManager y ThemeManager pasadas a OptionsMenuPopup.");
-        }
-
-        this.shopButtonInstance = document.getElementById('shop-button-global') as ShopButtonComponent | null;
-        if (!this.shopButtonInstance) {
-            console.info("GameManager (init): Botón de tienda global no encontrado inicialmente. Se creará si es necesario.");
-        }
-
-        this.hideToolControls();
-        this.hideShopButton();
-        this.hideOptionsButton();
         this.addThemeChangeListener();
-        await this.preload();
-        this.setupToolButtonListeners();
+        await this.preload(); // preload ahora puede cargar sonidos de forma segura
         this.addKeyboardListener();
         this.setupGlobalUICListeners();
+        console.log("GameManager: init() completado.");
     }
 
     public create(): void {
-        console.log("GameManager: create() - Iniciando reseteo...");
+        console.log("GameManager: create() llamado (transicionando a MainMenu).");
         this.quizSystem.resetAvailableQuestions();
         this.catManager.removeAllCats();
 
-        if (this.shopManager) {
-             this.shopManager.closeShop();
-             console.log("GameManager: create() - ShopManager.closeShop() llamado.");
-        } else {
-             console.warn("GameManager: create() - ShopManager no disponible para cerrar tienda.");
-        }
-        if (this.optionsPopupInstance?.isVisible) {
-            this.closeOptionsMenu();
-        }
-
-        this.hideToolControls();
-        this.hideShopButton();
-        this.hideOptionsButton();
-
-        if (!document.querySelector('combo-counter')) {
-             document.body.appendChild(document.createElement('combo-counter'));
-        }
+        if (this.shopManager.isShopOpen()) this.handleShopCloseRequest();
+        if (this.globalUIManager.isOptionsMenuOpen()) this.closeOptionsMenu();
 
         this.stateMachine.changeState('MainMenu', undefined, 'gq-wipe-transition');
-        console.log("GameManager: create() - Reseteo completado, transicionando a MainMenu.");
     }
-
+    
     private setupStates(): void {
+        console.log("GameManager: setupStates() iniciando.");
         const loadingState = new LoadingState(this);
         const mainMenuState = new MainMenuState(this);
         const quizGameplayState = new QuizGameplayState(this);
@@ -252,61 +225,51 @@ export class GameManager {
 
         const wrapEnter = (state: IState, showShopBtn: boolean, showToolCtrl: boolean, showOptionsBtn: boolean) => {
             const originalEnter = state.enter.bind(state);
-            return (params?: any) => {
-                try { originalEnter(params); }
-                catch (e) { console.error(`Error en enter() para ${state.constructor.name}:`, e); }
+            return async (params?: any): Promise<void> => {
+                try {
+                    const result = originalEnter(params);
+                    if (result instanceof Promise) {
+                        await result;
+                    }
+                } catch (e) {
+                    console.error(`GameManager: Error en enter() para ${state.constructor.name}:`, e);
+                }
 
-                if (state instanceof QuizGameplayState) {
-                    this.gameUiContainer = this.containerElement.querySelector('quiz-ui-container');
-                } else if (state instanceof MainMenuState) {
+                if (state instanceof MainMenuState) {
                     const mainMenuElement = this.containerElement.querySelector('main-menu-screen') as MainMenuScreen | null;
                     if (mainMenuElement) {
                         mainMenuElement.loadingMessages = this.getLoadingMessages();
                     }
                 }
 
-                if (showShopBtn) this.showShopButton();
-                else this.hideShopButton();
+                this.getGlobalUIManager().showShopButton(showShopBtn);
+                this.getGlobalUIManager().showOptionsButton(showOptionsBtn);
+                this.getToolManager().showToolControls(showToolCtrl);
 
-                // <<< INICIO CAMBIO VISIBILIDAD BOTÓN OPCIONES >>>
-                if (showOptionsBtn) this.showOptionsButton();
-                else this.hideOptionsButton();
-                // <<< FIN CAMBIO VISIBILIDAD BOTÓN OPCIONES >>>
-
-                if (showToolCtrl) {
-                    this.showToolControls();
-                    if (state instanceof QuizGameplayState) {
-                        this.updateCatFoodUI();
-                    }
-                } else {
-                    this.hideToolControls();
+                if (showToolCtrl && state instanceof QuizGameplayState) {
+                    this.getToolManager().updateControlVisibilityBasedOnUnlocks();
+                    this.getToolManager().updateCatFoodUIToolButton();
                 }
-                this.updateGlobalButtonsState(); // Esta función también debe ser ajustada
+                this.getToolManager().updateToolButtonActiveStates();
+                this.getGlobalUIManager().updateBackdropVisibility();
             };
         };
 
         const wrapExit = (state: IState) => {
             const originalExit = state.exit.bind(state);
-            return () => {
-                try { originalExit(); }
-                catch (e) { console.error(`Error en exit() para ${state.constructor.name}:`, e); }
-                if (state instanceof QuizGameplayState) {
-                    this.gameUiContainer = null;
-                }
-            };
+            return () => { try { originalExit(); } catch (e) { console.error(`GameManager: Error en exit() para ${state.constructor.name}:`, e); }};
         };
 
-        // <<< INICIO CAMBIO VISIBILIDAD BOTÓN OPCIONES (en parámetros de wrapEnter) >>>
         loadingState.enter = wrapEnter(loadingState, false, false, false);
         loadingState.exit = wrapExit(loadingState);
-        mainMenuState.enter = wrapEnter(mainMenuState, false, false, false); // Opciones NO visible
+        mainMenuState.enter = wrapEnter(mainMenuState, false, false, false);
         mainMenuState.exit = wrapExit(mainMenuState);
-        quizGameplayState.enter = wrapEnter(quizGameplayState, true, true, true); // Opciones SÍ visible
+        quizGameplayState.enter = wrapEnter(quizGameplayState, true, true, true);
         quizGameplayState.exit = wrapExit(quizGameplayState);
-        resultsState.enter = wrapEnter(resultsState, false, false, false); // Opciones NO visible
+        resultsState.enter = wrapEnter(resultsState, false, false, false);
         resultsState.exit = wrapExit(resultsState);
-        gameOverState.enter = wrapEnter(gameOverState, false, false, false); // Opciones NO visible
-        // <<< FIN CAMBIO VISIBILIDAD BOTÓN OPCIONES >>>
+        gameOverState.enter = wrapEnter(gameOverState, false, false, false);
+        gameOverState.exit = wrapExit(gameOverState);
 
         this.stateMachine.addState('Loading', loadingState);
         this.stateMachine.addState('MainMenu', mainMenuState);
@@ -315,13 +278,27 @@ export class GameManager {
         this.stateMachine.addState('GameOver', gameOverState);
 
         this.stateMachine.addState('__shutdown__', {
-            enter: () => { this.hideToolControls(); this.hideShopButton(); this.hideOptionsButton(); },
-            exit: () => {},
-            update: () => {}
+            enter: () => {
+                this.toolManager.showToolControls(false);
+                this.globalUIManager.showShopButton(false);
+                this.globalUIManager.showOptionsButton(false);
+            },
+            exit: () => {}, update: () => {}
         });
+        console.log("GameManager: setupStates() completado.");
     }
-
+    
     public async preload(): Promise<void> {
+        console.log("GameManager: preload() iniciando.");
+        // Asegurarse que AudioManager esté inicializado antes de cargar sonidos.
+        // Esto ya se hace en GameManager.init(), así que aquí es seguro.
+        
+        // Ejemplo de cómo cargarías sonidos (asegúrate que las rutas sean correctas)
+        // await this.audioManager.loadSound('ui_confirm', `${cleanBaseUrl}/audio/ui_confirm.mp3`);
+        // await this.audioManager.loadSound('ui_cancel', `${cleanBaseUrl}/audio/ui_cancel.mp3`);
+        // await this.audioManager.loadSound('ui_select', `${cleanBaseUrl}/audio/ui_select.mp3`);
+        // Añade aquí todos los sonidos que necesites precargar.
+
         const baseUrl = import.meta.env.BASE_URL;
         const cleanBaseUrl = baseUrl === '/' ? '' : (baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl);
         const urls = {
@@ -337,22 +314,19 @@ export class GameManager {
                 if (!res.ok) throw new Error(`HTTP ${res.status} cargando ${Object.values(urls)[i]}`);
             });
             const [questionData, templateData, shopItemJsonData, themeData, loadingMessagesData] = await Promise.all(responses.map(res => res.json()));
-            if (!Array.isArray(questionData) || !Array.isArray(templateData) ||
-                !Array.isArray(shopItemJsonData) || !Array.isArray(themeData) ||
-                !Array.isArray(loadingMessagesData)) {
-                throw new Error('Formato de datos JSON inválido.');
+
+            if (!Array.isArray(questionData) || !Array.isArray(templateData) || !Array.isArray(shopItemJsonData) || !Array.isArray(themeData) || !Array.isArray(loadingMessagesData)) {
+                throw new Error('Formato de datos JSON inválido en uno o más archivos.');
             }
             if (!(await this.quizSystem.loadQuestionsData(questionData))) throw new Error("Fallo al procesar preguntas.");
             this.catManager.loadTemplates(templateData as CatTemplate[]);
             this.shopManager.init(shopItemJsonData as ShopItemJsonData[]);
             if (!(await this.themeManager.loadThemesData(themeData as Theme[]))) throw new Error("Fallo al procesar temas.");
             this.loadingMessages = loadingMessagesData as string[];
-            if (this.loadingMessages.length === 0) {
-                this.loadingMessages = ["Cargando michi-diversión..."];
-            }
-             console.log("GameManager: Preload completado exitosamente.");
+            if (this.loadingMessages.length === 0) this.loadingMessages = ["Cargando michi-diversión..."];
+            console.log("GameManager: preload() de datos JSON completado exitosamente.");
         } catch (error: any) {
-            console.error('GameManager: Error durante preload:', error);
+            console.error('GameManager: Error CRÍTICO durante preload:', error);
             this.containerElement.innerHTML = `Error cargando assets: ${error.message}. Revisa la consola.`;
             throw error;
         }
@@ -360,22 +334,20 @@ export class GameManager {
 
     public start(): void {
         if (this.isRunning) return;
+        console.log("GameManager: start() - Iniciando bucle de juego y físicas.");
         this.isRunning = true;
         this.lastTimestamp = performance.now();
         this.physicsManager.start();
         this.gameLoopRequestId = requestAnimationFrame(this.gameLoop.bind(this));
-        console.log("GameManager: Ciclo de juego iniciado.");
     }
 
     public stop(): void {
         if (!this.isRunning) return;
+        console.log("GameManager: stop() - Deteniendo bucle de juego y físicas.");
         this.isRunning = false;
-        if (this.gameLoopRequestId) {
-            cancelAnimationFrame(this.gameLoopRequestId);
-        }
+        if (this.gameLoopRequestId) cancelAnimationFrame(this.gameLoopRequestId);
         this.gameLoopRequestId = undefined;
         this.physicsManager.stop();
-        console.log("GameManager: Ciclo de juego detenido.");
     }
 
     private gameLoop(timestamp: number): void {
@@ -393,308 +365,176 @@ export class GameManager {
             this.catManager.updateCats(deltaTime);
             this.catFoodManager.update(deltaTime);
         } catch (error) {
-            console.error("Error en gameLoop update:", error);
+            console.error("GameManager: Error en gameLoop update:", error);
             this.stop();
         }
     }
 
     public shutdown(): void {
-        console.log("GameManager: Iniciando shutdown...");
+        console.log("GameManager: shutdown() iniciando.");
         this.stop();
-        this.hideToolControls();
-        this.hideShopButton();
-        this.hideOptionsButton();
+        this.toolManager.showToolControls(false);
+        this.globalUIManager.showShopButton(false);
+        this.globalUIManager.showOptionsButton(false);
         this.removeKeyboardListener();
         this.removeThemeChangeListener();
         this.removeGlobalUICListeners();
         this.physicsManager.shutdown();
-
         const currentStateName = this.stateMachine.getCurrentStateName();
         if (currentStateName && currentStateName !== '__shutdown__') {
             try { this.stateMachine.getCurrentState()?.exit(); }
-            catch (e) { console.warn("Error en exit() del estado durante shutdown:", e) }
+            catch (e) { console.warn("GameManager: Error en exit() del estado durante shutdown:", e); }
         }
         this.stateMachine.changeState('__shutdown__');
-
         this.catManager.removeAllCats();
         this.inkManager.destroy();
         this.shopManager.destroy();
         this.catFoodManager.destroy();
-
         this.containerElement.innerHTML = '';
-        this.gameUiContainer = null;
         this.setBodyStateClass(null);
         document.querySelector('combo-counter')?.remove();
-        this.diagonalWipeElement?.reset();
-        this.blurBackdrop = null;
-
-        console.log("GameManager: Shutdown completado.");
+        this.globalUIManager.resetWipe();
+        console.log("GameManager: shutdown() completado.");
     }
 
-    public getUIManager(): UIManager {
-        if (!this.uiManager) throw new Error("UIManager no inicializado en GameManager.");
-        return this.uiManager;
-    }
-    public getQuizUiContainerElement(): QuizUiContainer | null {
-        if (!this.gameUiContainer || !this.containerElement.contains(this.gameUiContainer)) {
-            this.gameUiContainer = this.containerElement.querySelector('quiz-ui-container');
-        }
-        return this.gameUiContainer;
-    }
+    // --- Getters ---
+    public getGlobalUIManager(): GlobalUIManager { return this.globalUIManager; }
+    public getToolManager(): ToolManager { return this.toolManager; }
+    public getQuizSystem(): QuizSystem { return this.quizSystem; }
+    public getPhysicsManager(): PhysicsManager { return this.physicsManager; }
+    public getStateMachine(): StateMachine { return this.stateMachine; }
+    public getAudioManager(): AudioManager { return this.audioManager; }
+    public getCatManager(): CatManager { return this.catManager; }
+    public getShopManager(): ShopManager { return this.shopManager; }
+    public getPlayerData(): PlayerData { return this.playerData; }
+    public getInkManager(): InkManager { return this.inkManager; }
+    public getThemeManager(): ThemeManager { return this.themeManager; }
+    public getCatFoodManager(): CatFoodManager { return this.catFoodManager; }
+    public getContainerElement(): HTMLElement { return this.containerElement; }
+    public getCurrentState(): IState | null { return this.stateMachine.getCurrentState(); }
+    public getCatDisplayArea(): CatDisplayArea { return this.catDisplayAreaElement; }
+    public getDrawingCanvasLayer(): DrawingCanvasLayer | null { return this.drawingCanvasLayerElement; }
+    public getLoadingMessages(): string[] { return this.loadingMessages.length > 0 ? this.loadingMessages : ["Cargando..."]; }
 
-    public setQuizUiFaded(isFaded: boolean): void {
-        const quizUi = this.getQuizUiContainerElement();
-        if (quizUi) { quizUi.isFaded = isFaded; }
+    public isGamePausedForOverlay(): boolean {
+        const currentState = this.stateMachine.getCurrentState() as any; 
+        const currentModule = currentState?.quizUIManager as QuizUIManager | null;
+        if (currentModule && typeof currentModule.isExplanationVisible === 'function') {
+             return currentModule.isExplanationVisible();
+        }
+        return false;
     }
-
-    public setCatDragState(isDragging: boolean): void {
-        this.setQuizUiFaded(isDragging);
-        if (this.drawingCanvasLayerElement) {
-            this.drawingCanvasLayerElement.isPointerLockdown = isDragging;
-            if (!isDragging && this.inkManager) { this.inkManager.updateCanvasActiveState(); }
-        }
-    }
-
-    public resetGame(): void {
-        console.log("GameManager: resetGame() - Iniciando reseteo completo...");
-        this.stop();
-        if (this.playerData) {
-            this.playerData.reset();
-        }
-        if (this.quizSystem) {
-            this.quizSystem.resetAvailableQuestions();
-        }
-        if (this.catManager) {
-            this.catManager.removeAllCats();
-        }
-        if (this.inkManager) {
-            this.inkManager.destroy();
-        }
-        if (this.catFoodManager) {
-            this.catFoodManager.destroy();
-        }
-        if (this.shopManager) {
-            this.shopManager.closeShop();
-        }
-        if (this.optionsPopupInstance?.isVisible) {
-            this.closeOptionsMenu();
-        }
-        this.hideToolControls();
-        this.hideShopButton();
-        this.hideOptionsButton();
-        this.gameUiContainer = null;
-        document.querySelector('combo-counter')?.remove();
-        this.stateMachine.changeState('MainMenu', undefined, 'gq-wipe-transition');
-    }
-
-    // --- Métodos para mostrar/ocultar controles y botones ---
-    private showToolControls(): void {
-        const container = this.controlElements.controlsContainer;
-        if (container) {
-            container.classList.remove('hidden');
-            this.updateControlVisibilityBasedOnUnlocks();
-        } else {
-            console.warn("[GameManager] Contenedor de controles (#right-controls) no encontrado.");
-        }
-    }
-
-    private hideToolControls(): void {
-        const container = this.controlElements.controlsContainer;
-        if (container) {
-            container.classList.add('hidden');
-        }
-    }
-
-    private showShopButton(): void {
-        if (!this.shopButtonInstance) {
-             this.shopButtonInstance = document.getElementById('shop-button-global') as ShopButtonComponent | null;
-             if (!this.shopButtonInstance) {
-                 console.warn("GameManager: shop-button-global no encontrado, creando dinámicamente. Revisa index.html.");
-                 const shopButton = document.createElement('shop-button-component') as ShopButtonComponent;
-                 shopButton.id = 'shop-button-global';
-                 shopButton.titleText = "Abrir Tienda (S)";
-                 document.body.appendChild(shopButton);
-                 this.shopButtonInstance = shopButton;
-             }
-             if (this.shopButtonInstance && !this.shopButtonInteractionListener) {
-                this.shopButtonInteractionListener = () => this.handleShopButtonInteraction();
-                this.shopButtonInstance.addEventListener('shop-button-interaction', this.shopButtonInteractionListener);
-             }
-        }
-        if (this.shopButtonInstance) {
-            this.shopButtonInstance.classList.remove('hidden');
-        }
-        // El estado (disabled) se actualiza en updateGlobalButtonsState
-    }
-
-    private hideShopButton(): void {
-        if (this.shopButtonInstance) {
-            this.shopButtonInstance.classList.add('hidden');
-        }
-    }
-
-    private showOptionsButton(): void {
-        if (this.optionsButtonInstance) {
-            this.optionsButtonInstance.classList.remove('hidden');
-        }
-    }
-
-    private hideOptionsButton(): void {
-        if (this.optionsButtonInstance) {
-            this.optionsButtonInstance.classList.add('hidden');
-        }
-    }
-    // --- Fin Métodos para mostrar/ocultar ---
-
 
     public updateBackdropAndFadeState(): void {
+        this.globalUIManager.updateBackdropVisibility(); 
         const shopIsOpen = this.shopManager.isShopOpen();
-        const optionsAreOpen = this.optionsPopupInstance?.isVisible ?? false;
-        const explanationIsVisible = this.uiManager.isExplanationVisible();
+        const optionsAreOpen = this.globalUIManager.isOptionsMenuOpen();
+        const isModuleOverlayVisible = this.isGamePausedForOverlay();
 
-        const isAnyPopupOpen = shopIsOpen || optionsAreOpen || explanationIsVisible;
+        const shouldFadeModuleUI = shopIsOpen || optionsAreOpen || isModuleOverlayVisible;
+        this.globalUIManager.setModuleUIsFaded(shouldFadeModuleUI);
 
-        if (this.blurBackdrop) {
-            this.blurBackdrop.visible = isAnyPopupOpen;
-        } else {
-            // console.warn("[GameManager] updateBackdropAndFadeState: blurBackdrop es null.");
-        }
-
-        this.setQuizUiFaded(isAnyPopupOpen);
         this.updateGlobalButtonsState();
     }
 
-    // <<< MODIFICADO >>> toggleOptionsMenu
-    private toggleOptionsMenu(): void {
-        if (!this.optionsPopupInstance) { 
-            console.warn("GameManager: No se puede alternar el menú de opciones, falta el popup.");
-            return;
-        }
-
-        const currentVisibility = this.optionsPopupInstance.isVisible;
-        const newState = !currentVisibility;
-
-        this.optionsPopupInstance.isVisible = newState; 
-
-        if (newState) { 
-            this.optionsPopupInstance.initialVolume = this.audioManager.getVolume();
-            this.optionsPopupInstance.initiallyMuted = this.audioManager.isMuted();
-            this.audioManager.playSound('ui_confirm');
-        }
+    private async toggleOptionsMenu(): Promise<void> { // Convertido a async
+        const isCurrentlyOpen = this.globalUIManager.isOptionsMenuOpen();
         
-        this.updateBackdropAndFadeState(); 
+        // Intentar resumir el contexto de audio si se está abriendo el menú
+        if (!isCurrentlyOpen) {
+            await this.audioManager.tryResumeContext();
+        }
+
+        this.globalUIManager.toggleOptionsMenu(!isCurrentlyOpen);
+        this.audioManager.playSound(!isCurrentlyOpen ? 'ui_confirm' : 'ui_cancel');
+        
+        this.updateBackdropAndFadeState();
     }
 
-    // <<< MODIFICADO Y CORREGIDO >>> closeOptionsMenu
-    private closeOptionsMenu(): void {
-        if (this.optionsPopupInstance) { 
-            if (this.optionsPopupInstance.isVisible) { 
-                this.optionsPopupInstance.isVisible = false; 
-            }
+    private async closeOptionsMenu(): Promise<void> { // Convertido a async
+        const wasMenuOpen = this.globalUIManager.isOptionsMenuOpen();
+        if (wasMenuOpen) {
+            // No es necesario tryResumeContext aquí ya que estamos cerrando.
+            this.globalUIManager.toggleOptionsMenu(false);
+            // El sonido ya se maneja en toggleOptionsMenu o debería ser consistente.
+            // this.audioManager.playSound('ui_cancel'); // Podría ser redundante si toggleOptionsMenu lo hace
             this.updateBackdropAndFadeState();
+        } else {
+            this.updateBackdropAndFadeState(); 
         }
     }
-    // <<< FIN MODIFICADO Y CORREGIDO >>>
+    
+    public async handleShopButtonInteraction(): Promise<void> { // Convertido a async
+        // Intenta resumir el contexto de audio ANTES de cualquier lógica de la tienda o reproducción de sonido.
+        await this.audioManager.tryResumeContext();
 
-    private handleShopButtonInteraction(): void {
-        const audioManager = this.getAudioManager();
-        if (!audioManager.isReady()) { audioManager.init(); }
         if (!this.shopManager.isShopOpen()) {
-             this.openShop();
-             audioManager?.playSound('ui_confirm');
+             this.shopManager.openShop();
+             this.audioManager.playSound('ui_confirm'); // Reproduce el sonido después de intentar resumir
+             this.updateBackdropAndFadeState();
         }
     }
 
-    private handleShopCloseRequest(): void {
-        this.closeShop();
-    }
-
-    private addShopCloseListener(popupElement: ShopPopup): void {
-        this.removeShopCloseListener(popupElement);
-        this.shopCloseRequestListener = () => this.handleShopCloseRequest();
-        popupElement.addEventListener('close-requested', this.shopCloseRequestListener);
-    }
-
-     private removeShopCloseListener(popupElement: ShopPopup): void {
-         if (popupElement && this.shopCloseRequestListener) {
-             popupElement.removeEventListener('close-requested', this.shopCloseRequestListener);
-         }
-     }
-
-    public openShop(): void {
-        if (this.shopManager) {
-            this.shopManager.openShop();
-            this.updateBackdropAndFadeState();
-        } else {
-            console.warn("GameManager: openShop() llamado pero ShopManager no está disponible.");
-        }
-    }
-
-    public closeShop(): void {
-        if (this.shopManager) {
+    public async handleShopCloseRequest(): Promise<void> { // Convertido a async
+        if (this.shopManager.isShopOpen()) {
+            // No es estrictamente necesario tryResumeContext al cerrar, pero no hace daño.
+            // await this.audioManager.tryResumeContext(); 
             this.shopManager.closeShop();
+            this.audioManager.playSound('ui_cancel');
             this.updateBackdropAndFadeState();
-        } else {
-            console.warn("GameManager: closeShop() llamado pero ShopManager no está disponible.");
+        }
+    }
+    
+    public async openShop(): Promise<void> { // Convertido a async
+        // Intenta resumir el contexto de audio ANTES de cualquier lógica de la tienda o reproducción de sonido.
+        await this.audioManager.tryResumeContext();
+
+        if (this.shopManager && !this.shopManager.isShopOpen()) {
+            this.shopManager.openShop();
+            this.audioManager.playSound('ui_confirm');
+            this.updateBackdropAndFadeState();
         }
     }
 
-    // <<< INICIO CAMBIO VISIBILIDAD BOTÓN OPCIONES (en updateGlobalButtonsState) >>>
     private updateGlobalButtonsState(): void {
-        const isShopOpen = this.shopManager.isShopOpen();
-        const isOptionsOpen = this.optionsPopupInstance?.isVisible ?? false;
-        const isExplanationVisible = this.uiManager.isExplanationVisible();
-        const isAnyPopupOpen = isShopOpen || isOptionsOpen || isExplanationVisible;
+        const shopIsOpen = this.shopManager.isShopOpen();
+        const optionsAreOpen = this.globalUIManager.isOptionsMenuOpen();
+        const isModuleOverlayVisible = this.isGamePausedForOverlay();
+        const isAnyPopupBlockingInteractions = shopIsOpen || optionsAreOpen || isModuleOverlayVisible || this.isCatBeingDragged;
 
         const currentStateName = this.stateMachine.getCurrentStateName();
-        const isGameplay = currentStateName === 'QuizGameplay';
-        // const isMainMenu = currentStateName === 'MainMenu'; // No se usa más para optionsButton
-        // const isResults = currentStateName === 'Results';   // No se usa más para optionsButton
-        // const isGameOver = currentStateName === 'GameOver'; // No se usa más para optionsButton
+        const isGameplayActive = currentStateName === 'QuizGameplay';
 
-        if (this.shopButtonInstance) {
-            this.shopButtonInstance.disabled = isAnyPopupOpen || !isGameplay;
-            this.shopButtonInstance.classList.toggle('hidden', !isGameplay);
-        }
+        this.globalUIManager.setShopButtonDisabled(isAnyPopupBlockingInteractions || !isGameplayActive);
+        this.globalUIManager.showShopButton(isGameplayActive); 
 
-        if (this.optionsButtonInstance) {
-            // Botón de opciones solo visible en Gameplay
-            const shouldBeVisibleForState = isGameplay; 
-            this.optionsButtonInstance.disabled = (isShopOpen || isExplanationVisible) || !shouldBeVisibleForState; // Deshabilitado si otros popups están abiertos o no es gameplay
-            this.optionsButtonInstance.classList.toggle('hidden', !shouldBeVisibleForState);
-        }
-        this.updateToolButtonStates();
-    }
-    // <<< FIN CAMBIO VISIBILIDAD BOTÓN OPCIONES >>>
+        this.globalUIManager.setOptionsButtonDisabled(isAnyPopupBlockingInteractions || !isGameplayActive);
+        this.globalUIManager.showOptionsButton(isGameplayActive);
 
-    public updateControlVisibilityBasedOnUnlocks(): void {
-        const drawingUnlocked = this.playerData.isDrawingUnlocked;
-        const catFoodUnlocked = this.playerData.isCatFoodUnlocked;
-        if (this.controlElements.drawingButtonsContainer) {
-            this.controlElements.drawingButtonsContainer.classList.toggle('hidden', !drawingUnlocked);
-        }
-        if (this.controlElements.catFoodUiContainer) {
-            this.controlElements.catFoodUiContainer.classList.toggle('hidden', !catFoodUnlocked);
-        }
-        this.updateToolButtonStates();
+        this.toolManager.updateToolButtonActiveStates();
     }
 
     private addThemeChangeListener(): void {
-        this.removeThemeChangeListener();
+        this.removeThemeChangeListener(); 
         this.themeChangeListener = (_event: Event) => {
-            const currentState = this.stateMachine.getCurrentState();
-            if (currentState instanceof QuizGameplayState) {
-                this.uiManager.rebuildInterface();
+            const currentState = this.stateMachine.getCurrentState() as any;
+            if (currentState && typeof currentState.rebuildInterface === 'function') {
+                currentState.rebuildInterface();
+            } else if (currentState?.quizModule && typeof currentState.quizModule.rebuildUI === 'function') {
+                currentState.quizModule.rebuildUI();
             }
+
             if (this.shopManager.isShopOpen()) {
                 this.shopManager.updateShopUI();
             }
-            if (this.optionsPopupInstance?.isVisible) {
-                this.optionsPopupInstance.requestUpdate();
+            const optionsPopup = document.getElementById('options-menu-popup-global') as OptionsMenuPopup | null;
+            if (optionsPopup?.isVisible) {
+                optionsPopup.requestUpdate(); 
             }
         };
         document.addEventListener('theme-changed', this.themeChangeListener);
     }
+
     private removeThemeChangeListener(): void {
         if (this.themeChangeListener) {
             document.removeEventListener('theme-changed', this.themeChangeListener);
@@ -704,55 +544,58 @@ export class GameManager {
 
     private addKeyboardListener(): void {
         this.removeKeyboardListener();
-        this.keydownListener = (event: KeyboardEvent) => {
+        this.keydownListener = async (event: KeyboardEvent) => { // Convertido a async
             if (event.key === 'Escape') {
-                if (this.optionsPopupInstance?.isVisible) {
-                    this.closeOptionsMenu(); 
-                    return;
+                if (this.globalUIManager.isOptionsMenuOpen()) { await this.closeOptionsMenu(); return; }
+                if (this.shopManager.isShopOpen()) { 
+                    await this.handleShopCloseRequest();
+                    return; 
                 }
-                if (this.shopManager.isShopOpen()) {
-                    this.closeShop(); 
-                    this.audioManager.playSound('ui_cancel'); 
-                    return;
+                const currentState = this.stateMachine.getCurrentState() as any;
+                const currentModule = currentState?.quizModule as QuizGameModule | null;
+                if (currentModule && typeof currentModule.handleEscapeKey === 'function') {
+                    if (currentModule.handleEscapeKey()) { 
+                        this.updateBackdropAndFadeState();
+                        return;
+                    }
                 }
             }
-
-            const isAnyPopupTrulyOpen = this.shopManager.isShopOpen() || (this.optionsPopupInstance?.isVisible ?? false) || this.uiManager.isExplanationVisible();
-            if (isAnyPopupTrulyOpen) return;
+            const isAnyPopupTrulyOpen = this.shopManager.isShopOpen() ||
+                                      this.globalUIManager.isOptionsMenuOpen() ||
+                                      this.isGamePausedForOverlay();
+            if (isAnyPopupTrulyOpen || this.isCatBeingDragged) return;
+            
+            // Intenta resumir el contexto de audio en otras interacciones de teclado si es relevante
+            // await this.audioManager.tryResumeContext(); // Considera si esto es necesario para cada tecla
 
             const currentStateName = this.stateMachine.getCurrentStateName();
             if (currentStateName === 'QuizGameplay') {
                 switch (event.key.toLowerCase()) {
-                    case 'b': this.activateBrush(); break;
+                    case 'b': this.toolManager.activateBrush(); break;
                     case 'c':
                         if (this.playerData.isDrawingUnlocked && this.playerData.inkSpentSinceLastClear > 0) {
                             this.inkManager.clearInkLines();
                         }
                         break;
-                    case 'f': this.activateCatFood(); break;
-                    case 's':
-                        if (this.shopButtonInstance && !this.shopButtonInstance.disabled) {
-                            this.handleShopButtonInteraction();
-                        }
+                    case 'f': this.toolManager.activateCatFood(); break;
+                    case 's': 
+                        const shopBtn = document.getElementById('shop-button-global') as ShopButtonComponent | null;
+                        if (shopBtn && !shopBtn.disabled) await this.handleShopButtonInteraction();
                         break;
-                    case 'o': // Atajo para opciones durante el quiz
-                        if (this.optionsButtonInstance && !this.optionsButtonInstance.disabled) {
-                            this.toggleOptionsMenu();
-                        }
+                    case 'o': 
+                        const optionsBtn = document.getElementById('settings-options-button-global') as OptionsButtonComponent | null;
+                        if (optionsBtn && !optionsBtn.disabled) await this.toggleOptionsMenu();
                         break;
-                    case 't': this.themeManager.cycleTheme(); break; // Mantener atajo de tema en quiz
+                    case 't': 
+                        await this.audioManager.tryResumeContext(); // Específico para acción con sonido
+                        this.themeManager.cycleTheme(); this.audioManager.playSound('ui_select'); 
+                        break;
                 }
             } else if (['MainMenu', 'GameOver', 'Results'].includes(currentStateName || '')) {
-                 // Atajos solo para tema y opciones si el botón de opciones estuviera visible en esos estados (actualmente no)
-                 if (event.key.toLowerCase() === 't') {
-                    this.themeManager.cycleTheme();
+                 if (event.key.toLowerCase() === 't') { 
+                    await this.audioManager.tryResumeContext(); // Específico para acción con sonido
+                    this.themeManager.cycleTheme(); this.audioManager.playSound('ui_select'); 
                 }
-                // Ya no se necesita el atajo 'o' aquí si el botón de opciones no está visible
-                //  if (event.key.toLowerCase() === 'o') {
-                //         if (this.optionsButtonInstance && !this.optionsButtonInstance.disabled) {
-                //             this.toggleOptionsMenu();
-                //         }
-                //  }
             }
         };
         window.addEventListener('keydown', this.keydownListener);
@@ -766,130 +609,166 @@ export class GameManager {
     }
 
     private setupGlobalUICListeners(): void {
-        this.removeGlobalUICListeners();
+        this.removeGlobalUICListeners(); 
 
-        if (this.shopButtonInstance) {
-            this.shopButtonInteractionListener = () => this.handleShopButtonInteraction();
-            this.shopButtonInstance.addEventListener('shop-button-interaction', this.shopButtonInteractionListener);
-        } else {
-            console.warn("GameManager: shopButtonInstance es null en setupGlobalUICListeners. No se pudo añadir listener.");
+        const shopButton = document.getElementById('shop-button-global') as ShopButtonComponent | null;
+        if (shopButton) {
+            this.shopButtonInteractionListener = () => this.handleShopButtonInteraction(); // Esto ya es async
+            shopButton.addEventListener('shop-button-interaction', this.shopButtonInteractionListener);
         }
 
-        const shopPopup = this.shopManager.getShopPopupElement();
-        if (shopPopup) {
-            this.addShopCloseListener(shopPopup);
+        const optionsButton = document.getElementById('settings-options-button-global') as OptionsButtonComponent | null;
+        if (optionsButton) {
+            this.optionsButtonClickListener = () => this.toggleOptionsMenu(); // Esto ya es async
+            optionsButton.addEventListener('options-button-clicked', this.optionsButtonClickListener);
         }
 
-        if (this.optionsButtonInstance) {
-            this.optionsButtonClickListener = () => this.toggleOptionsMenu();
-            this.optionsButtonInstance.addEventListener('options-button-clicked', this.optionsButtonClickListener);
-        } else {
-            console.warn("GameManager: optionsButtonInstance es null en setupGlobalUICListeners. No se pudo añadir listener.");
-        }
-
-        if (this.optionsPopupInstance) {
-            this.optionsPopupCloseListener = () => this.closeOptionsMenu();
-            this.optionsPopupInstance.addEventListener('options-close-requested', this.optionsPopupCloseListener);
-        } else {
-            console.warn("GameManager: optionsPopupInstance es null en setupGlobalUICListeners. No se pudo añadir listener.");
+        const optionsPopup = document.getElementById('options-menu-popup-global') as OptionsMenuPopup | null;
+        if (optionsPopup) {
+            this.optionsPopupCloseListener = () => this.closeOptionsMenu(); // Esto ya es async
+            optionsPopup.addEventListener('options-close-requested', this.optionsPopupCloseListener);
         }
     }
 
     private removeGlobalUICListeners(): void {
-        if (this.shopButtonInstance && this.shopButtonInteractionListener) {
-            this.shopButtonInstance.removeEventListener('shop-button-interaction', this.shopButtonInteractionListener);
-            this.shopButtonInteractionListener = null;
+        const shopButton = document.getElementById('shop-button-global') as ShopButtonComponent | null;
+        if (shopButton && this.shopButtonInteractionListener) {
+            shopButton.removeEventListener('shop-button-interaction', this.shopButtonInteractionListener);
         }
-        const shopPopup = this.shopManager?.getShopPopupElement();
-        if (shopPopup && this.shopCloseRequestListener) {
-            shopPopup.removeEventListener('close-requested', this.shopCloseRequestListener);
-            this.shopCloseRequestListener = null;
-        }
+        this.shopButtonInteractionListener = null;
 
-        if (this.optionsButtonInstance && this.optionsButtonClickListener) {
-            this.optionsButtonInstance.removeEventListener('options-button-clicked', this.optionsButtonClickListener);
-            this.optionsButtonClickListener = null;
+        const optionsButton = document.getElementById('settings-options-button-global') as OptionsButtonComponent | null;
+        if (optionsButton && this.optionsButtonClickListener) {
+            optionsButton.removeEventListener('options-button-clicked', this.optionsButtonClickListener);
         }
-        if (this.optionsPopupInstance && this.optionsPopupCloseListener) {
-            this.optionsPopupInstance.removeEventListener('options-close-requested', this.optionsPopupCloseListener);
-            this.optionsPopupCloseListener = null;
+        this.optionsButtonClickListener = null;
+
+        const optionsPopup = document.getElementById('options-menu-popup-global') as OptionsMenuPopup | null;
+        if (optionsPopup && this.optionsPopupCloseListener) {
+            optionsPopup.removeEventListener('options-close-requested', this.optionsPopupCloseListener);
+        }
+        this.optionsPopupCloseListener = null;
+    }
+    
+    public updateInkUI(): void {
+        this.toolManager.updateToolButtonActiveStates(); 
+        const quizUiInstance = this.getContainerElement().querySelector('quiz-ui-container') as QuizUiContainer | null;
+        const quizModule = (this.stateMachine.getCurrentState() as any)?.quizModule as QuizGameModule | null;
+        const quizUIManager = quizModule?.quizUIManager as any; 
+
+        if (quizUIManager && typeof quizUIManager.updateInkBar === 'function') {
+            quizUIManager.updateInkBar();
+            quizUIManager.updateInkVisibility(this.playerData.isDrawingUnlocked);
         }
     }
 
+    public updateExternalLivesUI(): void { 
+        const quizModule = (this.stateMachine.getCurrentState() as any)?.quizModule as QuizGameModule | null;
+        const quizUIManager = quizModule?.quizUIManager as any;
+        if (quizUIManager && typeof quizUIManager.updateLivesInQuizUI === 'function') {
+            quizUIManager.updateLivesInQuizUI(this.playerData.lives, this.playerData.hasShield, this.playerData.hintCharges);
+        }
+        this.globalUIManager.updateLivesDisplay(this.playerData.lives, this.playerData.hasShield, this.playerData.hintCharges);
+    }
 
+    public updateExternalShieldUI(isActive: boolean): void { 
+        const quizModule = (this.stateMachine.getCurrentState() as any)?.quizModule as QuizGameModule | null;
+        const quizUIManager = quizModule?.quizUIManager as any;
+        if (quizUIManager && typeof quizUIManager.updateLivesInQuizUI === 'function') {
+            quizUIManager.updateLivesInQuizUI(this.playerData.lives, isActive, this.playerData.hintCharges);
+        }
+        this.globalUIManager.updateShieldIcon(isActive);
+    }
+
+    public updateExternalHintUI(charges: number): void { 
+        const quizModule = (this.stateMachine.getCurrentState() as any)?.quizModule as QuizGameModule | null;
+        const quizUIManager = quizModule?.quizUIManager as any;
+        if (quizUIManager && typeof quizUIManager.updateLivesInQuizUI === 'function') {
+            quizUIManager.updateLivesInQuizUI(this.playerData.lives, this.playerData.hasShield, charges);
+        }
+        this.globalUIManager.updateHintIcon(charges);
+    }
+
+    public updateExternalScoreUI(): void { 
+        const currentState = this.stateMachine.getCurrentState() as any;
+        let currentCombo = 0;
+        if (currentState instanceof QuizGameplayState && currentState.quizModule) {
+            currentCombo = currentState.quizModule.consecutiveCorrectAnswers || 0;
+        }
+        
+        this.globalUIManager.updateScoreDisplay(this.playerData.score, currentCombo);
+        
+        const quizUIManager = (currentState?.quizModule as QuizGameModule | null)?.quizUIManager;
+        if (quizUIManager && typeof quizUIManager.updateScoreInQuizUI === 'function') {
+            quizUIManager.updateScoreInQuizUI(this.playerData.score, currentCombo);
+        }
+    }
+
+    public updateCatFoodUI(): void { 
+        this.toolManager.updateCatFoodUIToolButton(); 
+        this.toolManager.updateToolButtonActiveStates(); 
+    }
+
+    public setCatDragState(isDragging: boolean): void {
+        this.isCatBeingDragged = isDragging;
+        this.updateGlobalButtonsState(); 
+        if (this.drawingCanvasLayerElement) {
+            this.drawingCanvasLayerElement.isPointerLockdown = isDragging;
+        }
+    }
+
+    public isACatBeingDragged(): boolean {
+        return this.isCatBeingDragged;
+    }
+    
     public getLives(): number { return this.playerData.lives; }
-    public decrementLives(): void { if (this.playerData.lives > 0) { this.playerData.lives--; this.updateExternalLivesUI(); } }
-    public incrementLives(): void { this.playerData.lives++; this.updateExternalLivesUI(); }
-    public enableDrawingFeature(): boolean { try { this.inkManager.init(); this.updateInkUI(); this.updateControlVisibilityBasedOnUnlocks(); return true; } catch(e) { console.error("GameManager: Error habilitando dibujo:", e); return false; } }
-    public enableCatFoodFeature(): void { try { this.catFoodManager.enable(); this.updateCatFoodUI(); this.updateControlVisibilityBasedOnUnlocks(); } catch(e) { console.error("GameManager: Error habilitando comida:", e); } }
-    public updateInkUI(): void { this.uiManager.updateInkVisibility(this.playerData.isDrawingUnlocked); this.uiManager.updateInkBar(); this.updateToolButtonStates(); }
-    public updateExternalLivesUI(): void { this.uiManager.updateLivesDisplay(this.playerData.lives); }
-    public updateExternalShieldUI(isActive: boolean): void { this.uiManager.updateShieldIcon(isActive); }
-    public updateExternalHintUI(charges: number): void { this.uiManager.updateHintIcon(charges); }
-    public updateExternalScoreUI(): void { this.uiManager.updateScoreDisplay(this.playerData.score); }
-    public updateCatFoodUI(): void { this.uiManager.updateCatFoodBar(this.playerData.currentCatFood, this.playerData.getMaxCatFood()); this.updateToolButtonStates(); }
-
-    public activateBrush(): void {
-        const now = Date.now();
-        if (now - this._lastToolToggleTime < this.TOOL_TOGGLE_DEBOUNCE_MS) return;
-        this._lastToolToggleTime = now;
-        if (!this.playerData.isDrawingUnlocked) return;
-        if (this.catFoodManager.isActive) this.catFoodManager.toggleActive(false);
-        this.inkManager.toggleBrush();
-        this.updateGlobalButtonsState();
-    }
-
-    public activateCatFood(): void {
-        const now = Date.now();
-        if (now - this._lastToolToggleTime < this.TOOL_TOGGLE_DEBOUNCE_MS) return;
-        this._lastToolToggleTime = now;
-        if (!this.playerData.isCatFoodUnlocked) return;
-        if (this.inkManager.isBrushActive) this.inkManager.toggleBrush(false);
-        this.catFoodManager.toggleActive();
-        this.updateGlobalButtonsState();
-    }
-
-    public updateToolButtonStates(): void {
-        const isAnyPopupOpen = this.shopManager.isShopOpen() || (this.optionsPopupInstance?.isVisible ?? false) || this.uiManager.isExplanationVisible();
-
-        if (this.controlElements.brushToolButton) {
-            this.controlElements.brushToolButton.active = this.inkManager.isBrushActive;
-            this.controlElements.brushToolButton.disabled = isAnyPopupOpen || !this.playerData.isDrawingUnlocked || (this.playerData.currentInk <= 0 && !this.inkManager.isBrushActive);
-        }
-        if (this.controlElements.clearInkToolButton) {
-            this.controlElements.clearInkToolButton.disabled = isAnyPopupOpen || !this.playerData.isDrawingUnlocked || this.playerData.inkSpentSinceLastClear <= 0;
-        }
-        if (this.controlElements.catFoodToolButton) {
-            this.controlElements.catFoodToolButton.active = this.catFoodManager.isActive;
-            this.controlElements.catFoodToolButton.disabled = isAnyPopupOpen || !this.playerData.isCatFoodUnlocked || (this.playerData.currentCatFood <= 0 && !this.catFoodManager.isActive);
-            this.uiManager.updateCatFoodBar(this.playerData.currentCatFood, this.playerData.getMaxCatFood());
+    public decrementLives(): void { 
+        if (this.playerData.lives > 0) {
+            this.playerData.lives--;
+            this.updateExternalLivesUI();
         }
     }
+    public incrementLives(): void { 
+        this.playerData.lives++;
+        this.updateExternalLivesUI();
+    }
+    public enableDrawingFeature(): boolean { 
+        try {
+            this.toolManager.updateControlVisibilityBasedOnUnlocks();
+            this.toolManager.updateToolButtonActiveStates();
+            this.updateInkUI();
+            return true;
+        } catch(e) { console.error("GameManager: Error habilitando la función de dibujo:", e); return false; }
+    }
+    public enableCatFoodFeature(): void { 
+        try {
+            this.catFoodManager.enable(); 
+            this.toolManager.updateControlVisibilityBasedOnUnlocks();
+            this.toolManager.updateToolButtonActiveStates();
+            this.updateCatFoodUI();
+        } catch(e) { console.error("GameManager: Error habilitando la función de comida para gatos:", e); }
+    }
 
-    private setupToolButtonListeners = (): void => {
-        this.controlElements.brushToolButton?.addEventListener('tool-activated', () => this.activateBrush());
-        this.controlElements.clearInkToolButton?.addEventListener('tool-activated', () => {
-            if (this.playerData.isDrawingUnlocked && this.playerData.inkSpentSinceLastClear > 0) {
-                this.inkManager.clearInkLines();
-            }
-        });
-        this.controlElements.catFoodToolButton?.addEventListener('tool-activated', () => this.activateCatFood());
-    };
+    public moduleFinished(result?: { gameOver?: boolean, score?: number, correct?: number, total?: number, isNewHighScore?: boolean }): void {
+        console.log("[GameManager] moduleFinished llamado con resultado:", result);
+        const finalScore = result?.score !== undefined ? result.score : this.playerData.score;
+        let isNewHighScoreCalculated = false; 
+        if (result?.isNewHighScore !== undefined) {
+            isNewHighScoreCalculated = result.isNewHighScore;
+        }
 
-    public getQuizSystem(): QuizSystem { return this.quizSystem; }
-    public getPhysicsManager(): PhysicsManager { return this.physicsManager; }
-    public getStateMachine(): StateMachine { return this.stateMachine; }
-    public getAudioManager(): AudioManager { return this.audioManager; }
-    public getCatManager(): CatManager { return this.catManager; }
-    public getShopManager(): ShopManager { return this.shopManager; }
-    public getPlayerData(): PlayerData { return this.playerData; }
-    public getInkManager(): InkManager { return this.inkManager; }
-    public getThemeManager(): ThemeManager { return this.themeManager; }
-    public getCatFoodManager(): CatFoodManager { return this.catFoodManager; }
-    public getContainerElement(): HTMLElement { return this.containerElement; }
-    public getCurrentState(): IState | null { return this.stateMachine.getCurrentState(); }
-    public getControlElements(): ControlElements { return this.controlElements; }
-    public getCatDisplayArea(): CatDisplayArea { return this.catDisplayAreaElement; }
-    public getDrawingCanvasLayer(): DrawingCanvasLayer | null { return this.drawingCanvasLayerElement; }
-    public getLoadingMessages(): string[] { return this.loadingMessages.length > 0 ? this.loadingMessages : ["Cargando..."]; }
+        if (result?.gameOver) {
+            this.stateMachine.changeState('GameOver', {
+                score: finalScore,
+                isNewHighScore: isNewHighScoreCalculated
+            }, 'gq-wipe-transition');
+        } else {
+            this.stateMachine.changeState('Results', {
+                score: finalScore,
+                correct: result?.correct ?? 0,
+                total: result?.total ?? 0,
+                isNewHighScore: isNewHighScoreCalculated
+            }, 'gq-wipe-transition');
+        }
+    }
 }

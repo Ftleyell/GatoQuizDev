@@ -1,13 +1,15 @@
 // src/systems/ShopManager.ts
-import { ShopItemJsonData } from '../types/ShopItemData';
-import { PlayerData } from '../game/PlayerData';
-import { GameManager } from '../game/GameManager';
-import '../game/components/ui/shop-popup.ts';
-import type { ShopPopup } from '../game/components/ui/shop-popup';
-// ---> AÑADIR IMPORT DEL TOOLTIP <---
-import type { ShopTooltip } from '../game/components/ui/shop-tooltip';
-// ---> FIN AÑADIR IMPORT <---
-import type { BlurBackdropComponent } from '../game/components/ui/blur-backdrop';
+// src/game/engine/managers/ShopManager.ts
+
+import type { ShopItemJsonData } from '../../../types'; // Sube tres niveles ('managers', 'engine', 'game') a src/, luego a 'types/' (usa index.ts)
+import { PlayerData } from '../../PlayerData';          // Sube dos niveles ('engine', 'game') a src/, luego a 'game/'
+import { GameManager } from '../../GameManager';       // Sube dos niveles ('engine', 'game') a src/, luego a 'game/'
+
+// Para asegurar que el componente Lit se registre (se ejecuta el código del archivo):
+import '../../components/ui/shop-popup.js'; // Sube dos niveles, entra a 'components/ui/' (o .ts)
+
+// Para tipos, usando los barrel files:
+import type { ShopPopup, ShopTooltip, BlurBackdropComponent } from '../../components/ui'; // Sube dos niveles, entra a 'components/ui/' (usa index.ts)
 
 const SHOP_POPUP_ID = 'shop-popup';
 
@@ -18,7 +20,10 @@ export class ShopManager {
     private shopPopupElement: ShopPopup | null = null;
 
     private buyRequestListener = (e: Event) => this.handleBuyRequest(e);
-    private closeRequestListener = () => this.closeShop();
+    private closeRequestListener = () => {
+        // Llamar a GameManager para que maneje el cierre y la lógica de audio/UI global
+        this.gameManager.handleShopCloseRequest();
+    };
 
 
     constructor(playerData: PlayerData, gameManager: GameManager) {
@@ -42,10 +47,8 @@ export class ShopManager {
         if (!this.shopPopupElement || !document.body.contains(this.shopPopupElement)) {
             this.shopPopupElement = document.getElementById(SHOP_POPUP_ID) as ShopPopup | null;
             if (this.shopPopupElement) {
-                // Limpiar listeners existentes antes de añadir nuevos para evitar duplicados
                 this.shopPopupElement.removeEventListener('close-requested', this.closeRequestListener);
                 this.shopPopupElement.removeEventListener('buy-item-requested', this.buyRequestListener);
-                // Añadir listeners
                 this.shopPopupElement.addEventListener('close-requested', this.closeRequestListener);
                 this.shopPopupElement.addEventListener('buy-item-requested', this.buyRequestListener);
             } else {
@@ -69,41 +72,32 @@ export class ShopManager {
 
         try {
             popup.items = Array.from(this.items.values());
-            popup.playerDataSnapshot = this.playerData; // Pasar la instancia original
-            popup.updateTrigger = (popup.updateTrigger || 0) + 1; // Actualizar trigger inicial
-            popup.isVisible = true; // Activar visibilidad del popup
+            popup.playerDataSnapshot = this.playerData;
+            popup.updateTrigger = (popup.updateTrigger || 0) + 1;
+            popup.isVisible = true;
 
-            const backdropComponent = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
-            if (backdropComponent) {
-                backdropComponent.visible = true;
-            } else {
-                console.warn("ShopManager: Componente <blur-backdrop-component> no encontrado al abrir la tienda.");
-            }
-
+            // GameManager se encargará de actualizar el backdrop y el fade
+            // a través de this.gameManager.updateBackdropAndFadeState()
+            // que se llamará desde GameManager.handleShopButtonInteraction o GameManager.openShop
+            
         } catch (error) {
             console.error("[ShopManager] Error estableciendo props o visibilidad en <shop-popup>:", error);
             if (popup) popup.isVisible = false;
-            const backdropComponent = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
-             if (backdropComponent) backdropComponent.visible = false;
+            // Notificar a GameManager para que actualice el backdrop si algo falla aquí
+             this.gameManager.updateBackdropAndFadeState();
         }
     }
-
 
     public closeShop(): void {
         const popup = this.getShopPopupElement();
         if (!popup || !popup.isVisible) return;
 
         popup.isVisible = false;
-
-        const backdropComponent = document.getElementById('blur-backdrop') as BlurBackdropComponent | null;
-        const explanationIsVisible = this.gameManager.getUIManager()?.isExplanationVisible() ?? false;
-
-        if (backdropComponent && !explanationIsVisible) {
-            backdropComponent.visible = false;
-        }
+        // GameManager se encargará de actualizar el backdrop y el fade
+        // a través de this.gameManager.updateBackdropAndFadeState()
+        // que se llamará desde GameManager.handleShopCloseRequest o GameManager.closeShop
     }
 
-    // --- MÉTODO CON LOGS DE DEBUG Y LLAMADA A forceRefresh ---
     public updateShopUI(): void {
         if (!this.playerData) {
             console.warn("[ShopManager] updateShopUI llamado sin playerData.");
@@ -111,23 +105,14 @@ export class ShopManager {
         }
         const popup = this.getShopPopupElement();
         if (popup && popup.isVisible) {
-
-            // ---> LOG AÑADIDO <---
-            // Cambia 'comboMultiplierLevel' por la propiedad relevante si pruebas otra mejora
-            const currentLevel = this.playerData.comboMultiplierLevel; // Ejemplo
+            const currentLevel = this.playerData.comboMultiplierLevel;
             console.log(`[ShopManager DEBUG] updateShopUI: PlayerData level ANTES de pasar: ${currentLevel}`);
-            // ---> FIN LOG <---
-
-            // Usar la versión con trigger (más fiable con objetos mutables)
+            
             popup.playerDataSnapshot = this.playerData;
             popup.updateTrigger = (popup.updateTrigger || 0) + 1;
 
-            // ---> LOG AÑADIDO <---
             console.log(`[ShopManager DEBUG] updateShopUI: Snapshot asignado, trigger incrementado a ${popup.updateTrigger}. Intentando forzar refresh del tooltip...`);
-            // ---> FIN LOG <---
-
-            // Intentamos forzar refresh directamente en el tooltip como último recurso
-            // Esperamos un microtask para dar tiempo a Lit a procesar el cambio de trigger en el popup
+            
             queueMicrotask(() => {
                 const tooltip = popup.shadowRoot?.querySelector('shop-tooltip') as ShopTooltip | null;
                 if (tooltip && typeof tooltip.forceRefresh === 'function') {
@@ -135,15 +120,14 @@ export class ShopManager {
                      console.log(`[ShopManager DEBUG] updateShopUI (microtask): tooltip.forceRefresh() LLAMADO.`);
                 } else if(tooltip) {
                      console.warn("[ShopManager DEBUG] updateShopUI (microtask): Tooltip encontrado pero no tiene el método forceRefresh(). Intentando requestUpdate...");
-                     tooltip.requestUpdate(); // Fallback: forzar update del tooltip
+                     tooltip.requestUpdate();
                 } else {
                     console.warn("[ShopManager DEBUG] updateShopUI (microtask): No se pudo encontrar el componente shop-tooltip dentro del popup para forzar refresh. Forzando update del popup...");
-                    popup.requestUpdate(); // Fallback: forzar update del popup entero
+                    popup.requestUpdate();
                 }
             });
         }
     }
-    // --- FIN MÉTODO MODIFICADO ---
 
     private handleBuyRequest = (e: Event) => {
         const event = e as CustomEvent;
@@ -155,7 +139,6 @@ export class ShopManager {
         }
     };
 
-    // --- executePurchaseAction con logs ---
     private executePurchaseAction(itemId: string): boolean {
         const itemData = this.items.get(itemId);
         if (!itemData) {
@@ -163,32 +146,28 @@ export class ShopManager {
             return false;
         }
 
-        // ---> LOG AÑADIDO: Estado ANTES de la compra <---
         const levelRef = itemData.levelRef as keyof PlayerData | undefined;
         const levelBefore = levelRef ? this.playerData[levelRef] : 'N/A';
         console.log(`[ShopManager DEBUG exec] INTENTANDO COMPRA: Item '${itemId}', Nivel Actual: ${levelBefore}, Puntos Actuales: ${this.playerData.score}`);
-        // ---> FIN LOG <---
 
         const cost = this._calculateItemCost(itemData, this.playerData);
         const canAfford = this.playerData.score >= cost;
         const passesPurchaseCheck = this._checkItemCanPurchase(itemData, this.playerData);
-        const currentLevel = this._getItemLevel(itemData, this.playerData); // Usar helper por consistencia
+        const currentLevel = this._getItemLevel(itemData, this.playerData);
         const isMaxLevel = itemData.isLeveled && typeof itemData.maxLevel === 'number' && currentLevel >= itemData.maxLevel;
         const isAlreadyPurchasedNonLeveled = this._checkItemIsPurchased(itemData, this.playerData) && !itemData.isLeveled;
 
         if (isMaxLevel || isAlreadyPurchasedNonLeveled || !passesPurchaseCheck || !canAfford) {
              console.warn(`[ShopManager DEBUG exec] Compra RECHAZADA para '${itemId}'. Razones: max=${isMaxLevel}, purchased=${isAlreadyPurchasedNonLeveled}, reqs=${passesPurchaseCheck}, afford=${canAfford}`);
-             this.updateShopUI(); // Actualizar UI para reflejar el estado
+             this.updateShopUI();
              this.gameManager.getAudioManager().playSound('incorrect');
              return false;
         }
 
-        // 1. Deducir costo
         this.playerData.score -= cost;
-        this.gameManager.updateExternalScoreUI();
+        this.gameManager.updateExternalScoreUI(); // GameManager se encarga de notificar a GlobalUIManager
         console.log(`[ShopManager DEBUG exec] Costo ${cost} deducido. Puntos restantes: ${this.playerData.score}`);
 
-        // 2. Ejecutar la acción específica de compra
         let success = false;
         const actionId = itemData.actionId;
         try {
@@ -206,34 +185,28 @@ export class ShopManager {
                 case 'purchaseMaxCatSize':      success = this.purchaseMaxCatSizeAction(); break;
                 default: console.error(`ShopManager: Acción desconocida: ${actionId}`); success = false;
             }
-            // ---> LOG AÑADIDO: Estado DESPUÉS de la acción <---
             const levelAfter = levelRef && success ? this.playerData[levelRef] : 'N/A (o falló)';
             console.log(`[ShopManager DEBUG exec] Acción ${actionId} ejecutada. Éxito: ${success}. Nuevo Nivel: ${levelAfter}`);
-             // ---> FIN LOG <---
         } catch (error) {
             console.error(`ShopManager: Error ejecutando acción ${actionId}:`, error);
             success = false;
         }
 
-        // 3. Manejar resultado y actualizar UI
         if (!success) {
-             this.playerData.score += cost; // Revertir costo
-             this.gameManager.updateExternalScoreUI();
+             this.playerData.score += cost;
+             this.gameManager.updateExternalScoreUI(); // Notificar a GameManager
              console.warn(`[ShopManager DEBUG exec] Acción ${actionId} falló o no aplicó. Costo ${cost} revertido. Puntos: ${this.playerData.score}`);
              this.gameManager.getAudioManager().playSound('incorrect');
         } else {
              console.log(`[ShopManager DEBUG exec] Compra EXITOSA de '${itemId}'.`);
              this.gameManager.getAudioManager().playSound('purchase');
         }
-
-        // 4. Llamar a updateShopUI para reflejar los cambios (usará el trigger y forceRefresh)
+        
         console.log(`[ShopManager DEBUG exec] Llamando a updateShopUI DESPUÉS de intento de compra de '${itemId}'.`);
         this.updateShopUI();
         return success;
     }
-    // --- FIN executePurchaseAction ---
 
-      // --- Acciones de Compra (sin cambios lógicos internos) ---
       private purchaseLifeAction(): boolean { this.playerData.lives++; this.gameManager.updateExternalLivesUI(); return true; }
       private purchaseShieldAction(): boolean { if(this.playerData.hasShield) return false; this.playerData.hasShield = true; this.gameManager.updateExternalShieldUI(true); return true; }
       private purchaseHintAction(): boolean { this.playerData.hintCharges++; this.gameManager.updateExternalHintUI(this.playerData.hintCharges); return true; }
@@ -246,7 +219,6 @@ export class ShopManager {
       private purchaseUnlockCatFoodAction(): boolean { if (this.playerData.isCatFoodUnlocked) return false; this.playerData.isCatFoodUnlocked = true; this.playerData.refillCatFood(); this.gameManager.enableCatFoodFeature(); return true; }
       private purchaseRefillCatFoodAction(): boolean { if (this.playerData.currentCatFood >= this.playerData.getMaxCatFood()) return false; this.playerData.refillCatFood(); this.gameManager.updateCatFoodUI(); return true; }
 
-      // --- Métodos helper (SIN CAMBIOS) ---
       private _calculateItemCost(itemData: ShopItemJsonData, playerData: PlayerData): number { const costParams = itemData.cost; let cost = costParams.base; if (itemData.isLeveled) { const levelRef = itemData.levelRef; const currentLevel = levelRef ? (playerData as any)[levelRef] ?? 0 : 0; if (costParams.type === 'exponential' && typeof costParams.multiplier === 'number') { cost = costParams.base * Math.pow(costParams.multiplier, currentLevel); } else { cost = costParams.base + (costParams.perLevel ?? 0) * currentLevel; } } else if (costParams.levelRef && typeof costParams.perLevel === 'number') { const linkedLevel = (playerData as any)[costParams.levelRef] ?? 0; cost = costParams.base + costParams.perLevel * linkedLevel; } return Math.round(cost); }
       private _checkItemIsPurchased(itemData: ShopItemJsonData, playerData: PlayerData): boolean { if (!itemData.isPurchasedCheck) return false; const check = itemData.isPurchasedCheck; const valueRef = check.valueRef; const currentValue = (playerData as any)[valueRef]; if (typeof currentValue === 'undefined') return false; switch (check.condition) { case 'isTrue': return currentValue === true; case 'isFalse': return currentValue === false; case 'greaterThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue > check.limit; default: return false; } }
       private _checkItemCanPurchase(itemData: ShopItemJsonData, playerData: PlayerData): boolean { if (!itemData.purchaseCheck) return true; const check = itemData.purchaseCheck; const valueRef = check.valueRef; const currentValue = (playerData as any)[valueRef]; if (typeof currentValue === 'undefined') { return false; } switch (check.condition) { case 'lessThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue < check.limit; case 'lessThanOrEqual': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue <= check.limit; case 'isFalse': return currentValue === false; case 'isTrue': return currentValue === true; case 'greaterThan': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue > check.limit; case 'greaterThanOrEqual': return typeof currentValue === 'number' && typeof check.limit === 'number' && currentValue >= check.limit; default: return false; } }

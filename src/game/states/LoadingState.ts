@@ -1,7 +1,6 @@
 // src/game/states/LoadingState.ts
-
-import { IState } from '../StateMachine';
-import { GameManager } from '../GameManager'; // Ajusta la ruta si es necesario
+import type { IState } from '../StateMachine'; // Correcto, IState es una interfaz
+import { GameManager } from '../GameManager';   // Correcto
 
 export class LoadingState implements IState {
   private gameManager: GameManager;
@@ -12,23 +11,30 @@ export class LoadingState implements IState {
 
   enter(params?: any): void {
     console.log('LoadingState: enter', params);
-    this.gameManager.setBodyStateClass('loading'); // <-- AÑADIR ESTA LÍNEA
-    // Aquí podrías mostrar un indicador de carga en la UI
-    // this.gameManager.getContainerElement().innerHTML = '<h1>Cargando...</h1>';
-    // Idealmente, la carga de assets se haría aquí y se transicionaría
-    // al siguiente estado ('MainMenu') cuando termine.
-    // Por ahora, como la carga está en GameManager.preload, este estado
-    // podría no usarse activamente o usarse solo como estado inicial muy breve.
+    this.gameManager.setBodyStateClass('loading');
+    // La lógica de mostrar/ocultar botones globales (tienda, opciones, herramientas)
+    // ahora es manejada por la función `wrapEnter` en GameManager.ts,
+    // que se llama cuando se entra a este estado.
+
+    // Aquí podrías añadir UI específica de carga si es necesario en el futuro,
+    // pero los elementos globales de UI ya están siendo gestionados.
+    // Ejemplo:
+    // const loadingIndicator = document.createElement('div');
+    // loadingIndicator.id = 'loading-indicator-specific';
+    // loadingIndicator.textContent = 'Cargando recursos del juego...';
+    // this.gameManager.getContainerElement().appendChild(loadingIndicator);
   }
 
   exit(): void {
     console.log('LoadingState: exit');
-    // Limpiar UI de carga
+    // Limpiar UI específica de carga si se añadió en enter()
+    // const loadingIndicator = document.getElementById('loading-indicator-specific');
+    // if (loadingIndicator) {
+    //   loadingIndicator.remove();
+    // }
   }
 
-  // Corrección: Añadir guion bajo a 'deltaTime'
   update(_deltaTime: number): void {
-    // console.log('LoadingState: update', deltaTime); // Puede ser muy verboso
-    // Podría revisar si la carga ha terminado para cambiar de estado
+    // No se necesita acción por frame en este estado generalmente.
   }
 }
