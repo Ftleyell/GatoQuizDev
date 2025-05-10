@@ -2,29 +2,34 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/GatoQuizDev/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/GatoQuizDev/w&w.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GatoQuiz Interactivo</title>
+    <title>📖Wisdom & Wiskers😼</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
-      <script type="module" crossorigin src="/GatoQuizDev/assets/index-BxII4rR1.js"></script>
+      <script type="module" crossorigin src="/GatoQuizDev/assets/index-DszedeHM.js"></script>
       <link rel="stylesheet" crossorigin href="/GatoQuizDev/assets/index-B_58Nfp-.css">
     </head>
   <body>
     <drawing-canvas-layer id="drawing-canvas-layer-main"></drawing-canvas-layer>
+    <cat-display-area id="cat-display-area-main"></cat-display-area>
+    <diagonal-wipe id="diagonal-wipe-transition-element"></diagonal-wipe>
+    <blur-backdrop-component id="blur-backdrop"></blur-backdrop-component>
 
     <div id="app">
       </div>
 
-    <cat-display-area id="cat-display-area-main"></cat-display-area>
-
-    <diagonal-wipe id="diagonal-wipe-transition-element"></diagonal-wipe>
-    <options-menu-popup id="options-menu-popup-global"></options-menu-popup>
+    <combo-counter></combo-counter> <options-menu-popup id="options-menu-popup-global"></options-menu-popup>
     <options-button-component id="settings-options-button-global"></options-button-component>
+    <shop-button-component id="shop-button-global"></shop-button-component>
+    <shop-popup id="shop-popup"></shop-popup>
+    
+    <explanation-overlay-component id="explanation-overlay-component"></explanation-overlay-component>
+
     <div id="right-controls" class="control-container hidden">
-      <div id="drawing-buttons-container"> 
+      <div id="drawing-buttons-container">
           <tool-button
             toolId="brush"
             icon="🖌️"
@@ -38,19 +43,16 @@
             id="clear-ink-button"
             disabled>
           </tool-button>
-      </div> 
-      <div id="cat-food-ui-container" class="hidden"> 
+      </div>
+      <div id="cat-food-ui-container" class="hidden">
            <tool-button
              toolId="cat-food"
              icon="🍲"
              titleText="Activar/Desactivar Comida (F)"
              id="cat-food-button">
-             </tool-button>
+           </tool-button>
       </div>
-  </div> 
-
-    <blur-backdrop-component id="blur-backdrop"></blur-backdrop-component>
-
-    <shop-popup id="shop-popup"></shop-popup> <explanation-overlay-component id="explanation-overlay-component"></explanation-overlay-component> 
+    </div>
+
   </body>
 </html>
