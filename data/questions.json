@@ -1,1302 +1,1202 @@
 [
   {
     "id": 1,
-    "text": "¿En qué año se produjo la Revolución de Mayo?",
+    "text": "[Tipo: Defiición] Según Ariel, la moral se define como:",
     "options": [
-      {"key": "A", "text": "1810"},
-      {"key": "B", "text": "1816"},
-      {"key": "C", "text": "1776"},
-      {"key": "D", "text": "1806"}
+      {"key": "A", "text": "La existencia afirmativa del sujeto que desorganiza el orden social."},
+      {"key": "B", "text": "El conjunto de oposiciones necesarias para el funcionamiento de la sociedad."},
+      {"key": "C", "text": "La reflexión crítica y normativa sobre las morales existentes."},
+      {"key": "D", "text": "El tratado de los deberes específicos que regulan una profesión."}
     ],
-    "correctAnswerKey": "A",
+    "correctAnswerKey": "B",
     "difficulty": "1",
-    "explanation": "La Revolución de Mayo ocurrió el 25 de mayo de 1810 y marcó el inicio del proceso de surgimiento del Estado Argentino."
-  },
+    "explanation": "Según Ariel, la moral es el conjunto de oposiciones necesarias para el funcionamiento de la sociedad, regulando el buen o mal gusto pero sin determinar el gusto mismo."},
   {
     "id": 2,
-    "text": "¿Quién fue el creador de la bandera argentina?",
+    "text": "[Tipo: Concepto/Compaación] En el análisis de Ariel, el 'estilo' se diferencia de la moral porque:",
     "options": [
-      {"key": "A", "text": "José de San Martín"},
-      {"key": "B", "text": "Manuel Belgrano"},
-      {"key": "C", "text": "Cornelio Saavedra"},
-      {"key": "D", "text": "Mariano Moreno"}
+      {"key": "A", "text": "Se conforma como un sistema de normas y juicios para el buen funcionamiento social."},
+      {"key": "B", "text": "Es humano y cultural, regulando el buen o mal gusto en la sociedad."},
+      {"key": "C", "text": "Es un 'sí creador', una afirmación existencial que desorganiza el orden social."},
+      {"key": "D", "text": "Representa la dimensión estructural de la vida humana para tomar decisiones."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "Manuel Belgrano creó la bandera argentina en 1812, inspirándose en los colores de la escarapela."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Mientras la moral es un sistema de oposiciones necesario para la sociedad, el estilo es un 'sí creador', una afirmación existencial que desorganiza el orden social cada vez que irrumpe con un acto auténtico, no conformándose como un sistema de normas o juicios."},
   {
     "id": 3,
-    "text": "¿En qué provincia argentina se encuentra el Glaciar Perito Moreno?",
+    "text": "[Tipo: Defiición] Según Ariel, la ética es concebida como:",
     "options": [
-      {"key": "A", "text": "Tierra del Fuego"},
-      {"key": "B", "text": "Chubut"},
-      {"key": "C", "text": "Santa Cruz"},
-      {"key": "D", "text": "Río Negro"}
+      {"key": "A", "text": "Un complemento de la moral que ayuda a regular la sociedad."},
+      {"key": "B", "text_content": "El conjunto de normas socialmente establecidas."},
+      {"key": "C", "text": "La existencia afirmativa del sujeto, un excedente necesario de la moral."},
+      {"key": "D", "text": "La disciplina que trata sobre los deberes específicos de un profesional."}
     ],
     "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "El Glaciar Perito Moreno, uno de los más importantes del mundo, está ubicado en la provincia de Santa Cruz, en la Patagonia."
-  },
+    "explanation": "Ariel concibe la ética como la existencia afirmativa del sujeto, la capacidad de crear más allá de las determinaciones sociales, no como un complemento de la moral, sino como su excedente necesario."},
   {
     "id": 4,
-    "text": "¿Cuál es la bebida nacional de Argentina?",
+    "text": "[Tipo: Autor/Cocepto] Orlando Calo plantea que la formación ética del psicólogo argentino debe:",
     "options": [
-      {"key": "A", "text": "Fernet con Coca"},
-      {"key": "B", "text": "Vino Malbec"},
-      {"key": "C", "text": "Mate"},
-      {"key": "D", "text": "Cerveza Quilmes"}
+      {"key": "A", "text": "Limitarse a una instrucción filosófica tradicional sobre el bien y el mal."},
+      {"key": "B", "text": "Excluir la dimensión deontológica para enfocarse en la singularidad clínica."},
+      {"key": "C", "text": "Incluir principios profesionales específicos y una comprensión crítica del Código de Ética."},
+      {"key": "D", "text": "Separar completamente la ética personal del psicólogo de su responsabilidad profesional."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El mate es una infusión hecha con hojas de yerba mate, profundamente arraigada en la cultura argentina y de países vecinos."
-  },
+    "difficulty": "2",
+    "explanation": "Orlando Calo sostiene que la enseñanza de la ética no puede limitarse a la vertiente filosófica, sino que debe incluir principios profesionales específicos y una comprensión crítica del Código de Ética para enfrentar dilemas reales."},
   {
     "id": 5,
-    "text": "¿Qué escritor argentino es autor de 'El Aleph'?",
+    "text": "[Tipo Dato] ¿En qué año fue aprobado el Código de Ética Nacional por la Federación de Psicólogos de la República Argentina (Fe.P.R.A.)?",
     "options": [
-      {"key": "A", "text": "Julio Cortázar"},
-      {"key": "B", "text": "Jorge Luis Borges"},
-      {"key": "C", "text": "Ernesto Sabato"},
-      {"key": "D", "text": "Adolfo Bioy Casares"}
+      {"key": "A", "text": "2013."},
+      {"key": "B", "text": "1999."},
+      {"key": "C", "text": "1985."},
+      {"key": "D", "text": "2005."}
     ],
     "correctAnswerKey": "B",
     "difficulty": "1",
-    "explanation": "Jorge Luis Borges, uno de los escritores más destacados del siglo XX, publicó 'El Aleph' en 1949."
-  },
+    "explanation": "El Código de Ética Nacional fue aprobado por Fe.P.R.A. en 1999, marcando un hito en la formalización de deberes y derechos específicos del psicólogo."},
   {
     "id": 6,
-    "text": "¿Cuántas Copas del Mundo de la FIFA ha ganado la selección masculina de fútbol de Argentina?",
+    "text": "[Tipo: Aplicación prctica] Según Orlando Calo, la formación ética debe preparar a los profesionales para:",
     "options": [
-      {"key": "A", "text": "1"},
-      {"key": "B", "text": "2"},
-      {"key": "C", "text": "3"},
-      {"key": "D", "text": "4"}
+      {"key": "A", "text": "Adherirse formalmente a las normas del código sin cuestionamientos."},
+      {"key": "B", "text": "Evitar cualquier tipo de dilema clínico en la práctica."},
+      {"key": "C", "text": "Articular principios éticos con la capacidad de enfrentar dilemas clínicos en situaciones reales."},
+      {"key": "D", "text": "Priorizar la ética personal por encima de la responsabilidad profesional."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Argentina ha ganado la Copa del Mundo en 1978 (Argentina), 1986 (México) y 2022 (Qatar)."
-  },
+    "difficulty": "2",
+    "explanation": "Según Calo, la formación ética debe apuntar a articular los principios éticos con la capacidad de enfrentar dilemas clínicos en situaciones reales, capacitando a los profesionales para responder reflexivamente ante la complejidad y singularidad de los casos."},
   {
     "id": 7,
-    "text": "¿Cuál es la capital de la provincia de Córdoba?",
+    "text": "[Tipo: Defiición] Paula Abelaira define la deontología como:",
     "options": [
-      {"key": "A", "text": "Rosario"},
-      {"key": "B", "text": "Córdoba"},
-      {"key": "C", "text": "Mendoza"},
-      {"key": "D", "text": "La Plata"}
+      {"key": "A", "text": "La afirmación singular del sujeto frente a su soledad."},
+      {"key": "B", "text": "El conjunto de normas de conducta socialmente establecidas."},
+      {"key": "C", "text": "El tratado de los deberes específicos que regulan el ejercicio de una profesión particular."},
+      {"key": "D", "text": "Un saber práctico que reflexiona críticamente sobre la vida moral."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "La ciudad de Córdoba es la capital de la provincia homónima y es conocida como 'La Docta'."
-  },
+    "explanation": "Paula Abelaira define la deontología como el tratado de los deberes específicos que regulan el ejercicio de una profesión particular."},
   {
     "id": 8,
-    "text": "¿Qué instrumento musical es emblemático del tango?",
+    "text": "[Tipo: Cocepto] El 'doble movimiento' de la ética contemporánea, según Paula Abelaira, implica que:",
     "options": [
-      {"key": "A", "text": "Guitarra"},
-      {"key": "B", "text": "Bandoneón"},
-      {"key": "C", "text": "Violín"},
-      {"key": "D", "text": "Piano"}
+      {"key": "A", "text": "La ética siempre debe partir de sistemas normativos preexistentes."},
+      {"key": "B", "text": "Las situaciones clínicas complejas pueden ser resueltas aplicando únicamente las normas deontológicas."},
+      {"key": "C", "text": "Además de los sistemas normativos, la situación misma inaugura un conocimiento nuevo y suplementario."},
+      {"key": "D", "text_content": "La intuición moral es suficiente para tomar decisiones éticas sin necesidad de sistemas de pensamiento."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El bandoneón, con su sonido melancólico, es el instrumento más característico del tango."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "El 'doble movimiento' implica un primer movimiento de la intuición a los sistemas normativos, y un segundo movimiento donde la situación misma inaugura un conocimiento nuevo, suplementario, que interpela los sistemas establecidos."},
   {
     "id": 9,
-    "text": "¿En qué año se sancionó la actual Constitución Nacional Argentina?",
+    "text": "[Tipo: Aplicación práctica/Clasifiación] Según el esquema del IBIS de la UBA, las 'Relaciones Múltiples' en la práctica clínica se refieren a:",
     "options": [
-      {"key": "A", "text": "1810"},
-      {"key": "B", "text": "1853"},
-      {"key": "C", "text": "1949"},
-      {"key": "D", "text": "1994"}
+      {"key": "A", "text": "La prohibición de involucramiento sexual con pacientes."},
+      {"key": "B", "text": "El manejo ético de vínculos extra-clínicos que puedan interferir en la objetividad terapéutica."},
+      {"key": "C", "text": "La responsabilidad de mantenerse actualizado profesionalmente."},
+      {"key": "D", "text": "La identificación de excepciones justificadas al secreto profesional."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "La Constitución Nacional Argentina fue sancionada en 1853, con importantes reformas posteriores, siendo la última en 1994."
-  },
+    "difficulty": "2",
+    "explanation": "El IBIS categoriza las 'Relaciones Múltiples' como el manejo ético de vínculos extra-clínicos que puedan interferir en la objetividad terapéutica."},
   {
     "id": 10,
-    "text": "¿Cuál es el pico más alto de América?",
+    "text": "[Tipo: Clasifiación] El documento del IBIS de la UBA presenta áreas sensibles que requieren atención ética, entre las que se encuentran:",
     "options": [
-      {"key": "A", "text": "Monte Everest"},
-      {"key": "B", "text": "Aconcagua"},
-      {"key": "C", "text": "Monte McKinley (Denali)"},
-      {"key": "D", "text": "Kilimanjaro"}
+      {"key": "A", "text": "Fundamentación filosófica y deontología jurídica."},
+      {"key": "B", "text": "Historia de las teorías éticas y ética aplicada."},
+      {"key": "C", "text": "Límites de la Relación Terapéutica y Confidencialidad."},
+      {"key": "D", "text": "Responsabilidad civil y responsabilidad penal."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El Aconcagua, ubicado en la provincia de Mendoza, Argentina, es la montaña más alta fuera de Asia, con 6.961 metros."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "El documento del IBIS presenta categorías principales como Límites de la Relación Terapéutica, Relaciones Múltiples, Mal Uso del Trabajo Profesional, Competencia e Idoneidad, Confidencialidad y Protección de Menores."},
   {
     "id": 11,
-    "text": "¿Quién fue el primer presidente electo por sufragio universal, secreto y obligatorio en Argentina (Ley Sáenz Peña)?",
+    "text": "[Tipo: Defiición] Según Cortina y Martínez, la ética como rama de la filosofía práctica se orienta a:",
     "options": [
-      {"key": "A", "text": "Julio Argentino Roca"},
-      {"key": "B", "text": "Hipólito Yrigoyen"},
-      {"key": "C", "text": "Marcelo T. de Alvear"},
-      {"key": "D", "text": "Juan Domingo Perón"}
+      {"key": "A", "text": "Dictar reglas específicas para cada acción moral."},
+      {"key": "B", "text": "Describir las costumbres morales de una sociedad."},
+      {"key": "C", "text": "Comprender, justificar y orientar racionalmente el obrar humano mediante reflexión crítica."},
+      {"key": "D", "text": "Establecer el conjunto de normas de conducta socialmente aceptadas."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "Hipólito Yrigoyen fue el primer presidente electo bajo la Ley Sáenz Peña en 1916."
-  },
+    "explanation": "Cortina y Martínez definen la ética como la rama de la filosofía práctica destinada a reflexionar críticamente sobre la dimensión moral de la existencia humana, buscando comprender, justificar y orientar racionalmente el obrar humano."},
   {
     "id": 12,
-    "text": "¿En qué provincia se encuentra el Parque Nacional Talampaya?",
+    "text": "[Tipo: Cocepto] Cortina y Martínez señalan que la ética es indirectamente normativa porque:",
     "options": [
-      {"key": "A", "text": "San Juan"},
-      {"key": "B", "text": "La Rioja"},
-      {"key": "C", "text": "Catamarca"},
-      {"key": "D", "text": "Salta"}
+      {"key": "A", "text": "Dicta reglas específicas para cada acción."},
+      {"key": "B", "text": "Describe las morales existentes sin juzgarlas."},
+      {"key": "C", "text": "Proporciona marcos conceptuales para deliberar y fundamentar juicios morales."},
+      {"key": "D", "text": "Se limita a describir el conjunto de normas morales de una sociedad."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El Parque Nacional Talampaya, conocido por sus imponentes formaciones rocosas y restos fósiles, se encuentra en La Rioja."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La ética es indirectamente normativa, ya que no dicta reglas específicas para cada acción, sino que proporciona marcos conceptuales para deliberar y fundamentar juicios morales."},
   {
     "id": 13,
-    "text": "¿Qué famoso cantante de tango era conocido como 'El Zorzal Criollo'?",
+    "text": "[Tipo: EstudioDatos] La investigación empírica de Ana María Hermosilla et al. sobre dilemas éticos en Mar del Plata se centró especialmente en:",
     "options": [
-      {"key": "A", "text": "Julio Sosa"},
-      {"key": "B", "text": "Roberto Goyeneche"},
-      {"key": "C", "text": "Carlos Gardel"},
-      {"key": "D", "text": "Aníbal Troilo"}
+      {"key": "A", "text": "El consentimiento informado y la historia clínica."},
+      {"key": "B", "text": "Las relaciones extraterapéuticas y el abuso de menores."},
+      {"key": "C", "text": "La responsabilidad civil y penal del psicólogo."},
+      {"key": "D", "text": "La aplicación de principios de la APA y la Fe.P.R.A."}
     ],
-    "correctAnswerKey": "C",
+    "correctAnswerKey": "B",
     "difficulty": "1",
-    "explanation": "Carlos Gardel es la figura más emblemática del tango, apodado 'El Zorzal Criollo' o 'El Morocho del Abasto'."
-  },
+    "explanation": "La investigación de Hermosilla et al. se centró especialmente en dos dimensiones críticas: las relaciones extraterapéuticas y el abuso de menores."},
   {
     "id": 14,
-    "text": "¿Cuál de estos platos es una comida tradicional argentina, especialmente en las fiestas patrias?",
+    "text": "[Tipo: Concepto/Clasifiación] Según Hermosilla et al., la 'Ética Profesional' se diferencia de la 'Deontología' en que:",
     "options": [
-      {"key": "A", "text": "Paella"},
-      {"key": "B", "text": "Sushi"},
-      {"key": "C", "text": "Locro"},
-      {"key": "D", "text": "Feijoada"}
+      {"key": "A", "text": "Es más restrictiva y solo incluye los deberes profesionales."},
+      {"key": "B", "text": "Es un concepto jurídico que regula la práctica."},
+      {"key": "C", "text": "Es una dimensión más amplia que incluye deberes, derechos y virtudes en el ejercicio profesional."},
+      {"key": "D", "text": "Se limita a la aplicación formal de las normas sin reflexión crítica."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El locro es un guiso sustancioso a base de maíz, porotos, zapallo y carne, típico del 25 de Mayo y 9 de Julio."
-  },
+    "difficulty": "2",
+    "explanation": "Los autores distinguen la Deontología como el conjunto de normas que regulan la práctica profesional, de la Ética Profesional como una dimensión más amplia que incluye los deberes, derechos y virtudes implicadas en el ejercicio."},
   {
     "id": 15,
-    "text": "¿Qué importante río argentino forma parte de la frontera con Uruguay?",
+    "text": "[Tipo: Cocepto] Ignacio Lewkowicz sostiene que 'lo singular' en ética no debe entenderse simplemente como 'uno', sino como:",
     "options": [
-      {"key": "A", "text": "Río Paraná"},
-      {"key": "B", "text": "Río de la Plata"},
-      {"key": "C", "text": "Río Uruguay"},
-      {"key": "D", "text": "Río Colorado"}
+      {"key": "A", "text": "Aquello que puede ser plenamente representado por los lenguajes sociales."},
+      {"key": "B", "text": "Una agrupación que se inscribe en un marco clasificatorio normativo."},
+      {"key": "C", "text": "Un exceso respecto a toda totalización posible."},
+      {"key": "D", "text": "Aquello que escapa al régimen de la clasificación y desborda los esquemas normativos."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El Río Uruguay sirve como frontera natural entre Argentina y Uruguay en gran parte de su recorrido."
-  },
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "Según Lewkowicz, lo singular no es simplemente 'uno', sino aquello que escapa al régimen de la clasificación y no puede ser plenamente representado, introduciendo un desbordamiento respecto a cualquier sistema normativo previo."},
   {
     "id": 16,
-    "text": "¿Qué club de fútbol argentino es conocido como 'El Xeneize'?",
+    "text": "[Tipo: Concepto/Compaación] En la perspectiva de Lewkowicz, la diferencia fundamental entre 'lo particular' y 'lo universal' es que:",
     "options": [
-      {"key": "A", "text": "River Plate"},
-      {"key": "B", "text": "Independiente"},
-      {"key": "C", "text": "San Lorenzo"},
-      {"key": "D", "text": "Boca Juniors"}
+      {"key": "A", "text": "Lo universal se identifica con 'todos' de manera aditiva, mientras lo particular es solo 'varios'."},
+      {"key": "B", "text": "Lo particular se inscribe en un marco normativo, mientras lo universal implica un exceso respecto a toda totalización posible."},
+      {"key": "C", "text": "Lo particular escapa a la clasificación, mientras lo universal se refiere a los códigos de ética."},
+      {"key": "D", "text": "Lo universal es atemporal, mientras lo particular es temporal."}
     ],
-    "correctAnswerKey": "D",
-    "difficulty": "1",
-    "explanation": "Boca Juniors, del barrio de La Boca, es conocido como 'El Xeneize' debido a la inmigración genovesa en la zona."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "3",
+    "explanation": "Lewkowicz distingue lo particular como agrupaciones en un marco clasificatorio normativo, de lo universal que implica un exceso respecto a toda totalización posible, una apertura que cada singularidad pone en juego."},
   {
     "id": 17,
-    "text": "¿Cuál es la moneda oficial de Argentina?",
+    "text": "[Tipo: Ley/Cocepto] Según el Código de Ética de Fe.P.R.A., ante un conflicto normativo entre los principios éticos y las normas deontológicas:",
     "options": [
-      {"key": "A", "text": "Real"},
-      {"key": "B", "text": "Dólar"},
-      {"key": "C", "text": "Peso Argentino"},
-      {"key": "D", "text": "Euro"}
+      {"key": "A", "text": "Prevalecerá siempre la norma deontológica por ser obligatoria."},
+      {"key": "B", "text": "El profesional puede elegir cuál seguir según su criterio personal."},
+      {"key": "C", "text": "Prevalecerá el principio ético más elevado."},
+      {"key": "D", "text": "Se debe consultar a un tribunal de disciplina para resolverlo."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "La moneda oficial de la República Argentina es el Peso Argentino."
-  },
+    "difficulty": "2",
+    "explanation": "El Código de Ética de la Fe.P.R.A. establece que ante conflictos normativos, prevalecerá el principio ético más elevado."},
   {
     "id": 18,
-    "text": "¿Quién escribió 'Martín Fierro'?",
+    "text": "[Tipo: HistoriaAutor] Andrea Ferrero analiza que la consolidación de la deontología profesional en psicología estuvo impulsada principalmente por:",
     "options": [
-      {"key": "A", "text": "Domingo Faustino Sarmiento"},
-      {"key": "B", "text": "José Hernández"},
-      {"key": "C", "text": "Esteban Echeverría"},
-      {"key": "D", "text": "Ricardo Güiraldes"}
+      {"key": "A", "text": "El abandono de la reflexión filosófica en la disciplina."},
+      {"key": "B", "text": "La creciente formalización de la psicología como profesión a partir de carreras universitarias y leyes de ejercicio."},
+      {"key": "C", "text": "La necesidad de subordinar la práctica psicológica a la médica."},
+      {"key": "D", "text": "La imposición de códigos éticos por parte del Estado sin participación profesional."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "José Hernández es el autor de 'El Gaucho Martín Fierro', obra cumbre de la literatura gauchesca argentina."
-  },
+    "difficulty": "2",
+    "explanation": "Andrea Ferrero subraya que la consolidación de la psicología como profesión, con la creación de carreras universitarias y leyes de ejercicio, impulsó la necesidad de establecer códigos deontológicos."},
   {
     "id": 19,
-    "text": "¿En qué provincia se encuentran las Cataratas del Iguazú?",
+    "text": "[Tipo: Estudio/Hitoria] El primer Código Ético de la American Psychological Association (APA) en 1953 se destacó por:",
     "options": [
-      {"key": "A", "text": "Salta"},
-      {"key": "B", "text": "Jujuy"},
-      {"key": "C", "text": "Misiones"},
-      {"key": "D", "text": "Corrientes"}
+      {"key": "A", "text": "Basarse exclusivamente en principios filosóficos tradicionales."},
+      {"key": "B", "text": "Prohibir completamente la investigación con seres humanos."},
+      {"key": "C", "text": "Construirse a partir de investigaciones empíricas sobre dilemas reales enfrentados por psicólogos."},
+      {"key": "D", "text": "Limitar la práctica profesional a la evaluación psicológica."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Las Cataratas del Iguazú, una de las Siete Maravillas Naturales del Mundo, se ubican en la provincia de Misiones."
-  },
+    "difficulty": "2",
+    "explanation": "El primer Código Ético de la APA (1953) fue paradigmático por basarse en investigaciones empíricas sobre dilemas reales enfrentados por los psicólogos."},
   {
     "id": 20,
-    "text": "¿Qué presidente argentino fue derrocado en el golpe de estado de 1976?",
+    "text": "[Tipo: Ley/Clasifiación] Según Ferrero y De Andrea, el Estado argentino regula la psicología a través de dos vías principales que son:",
     "options": [
-      {"key": "A", "text": "Arturo Illia"},
-      {"key": "B", "text": "Juan Domingo Perón"},
-      {"key": "C", "text": "María Estela Martínez de Perón"},
-      {"key": "D", "text": "Héctor Cámpora"}
+      {"key": "A", "text": "La vía profesional (Colegios) y la vía judicial (Tribunales)."},
+      {"key": "B", "text": "La vía académica (Universidades) y la vía gremial (Sindicatos)."},
+      {"key": "C", "text": "La vía profesional (Leyes y Colegios) y la vía académica (Universidades)."},
+      {"key": "D", "text": "La vía deontológica (Códigos) y la vía ética (Principios)."}
     ],
     "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "María Estela Martínez de Perón (Isabel Perón) fue derrocada por el golpe militar del 24 de marzo de 1976."
-  },
+    "explanation": "Andrea Ferrero y Nidia De Andrea describen que el Estado argentino regula la psicología a través de dos circuitos principales: la vía profesional (leyes y colegios) y la vía académica (universidades)."},
   {
     "id": 21,
-    "text": "¿Cuál es la capital de Francia?",
+    "text": "[Tipo: Concepo/Ley] El papel del Estado en la regulación de la psicología, según Ferrero y De Andrea, busca principalmente:",
     "options": [
-      {"key": "A", "text": "Berlín"},
-      {"key": "B", "text": "Madrid"},
-      {"key": "C", "text": "París"},
-      {"key": "D", "text": "Roma"}
+      {"key": "A", "text": "Limitar el campo de acción de los profesionales."},
+      {"key": "B", "text": "Promover exclusivamente la investigación científica en psicología."},
+      {"key": "C", "text": "Resguardar el bienestar de la ciudadanía mediante formación adecuada y ejercicio éticamente regulado."},
+      {"key": "D", "text": "Centralizar el control de la profesión en organismos nacionales."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "París es la capital y ciudad más poblada de Francia, conocida por su arte, moda y cultura."
-  },
+    "difficulty": "2",
+    "explanation": "Ferrero y De Andrea subrayan que ambas vías de regulación son expresiones del interés estatal en resguardar el bienestar de la ciudadanía, mediante una formación adecuada y un ejercicio profesional éticamente regulado."},
   {
     "id": 22,
-    "text": "¿Quién pintó la Mona Lisa?",
+    "text": "[Tipo: Histora/Ley] La actualización del Código de Ética de Fe.P.R.A. en 2013 se justificó, entre otras razones, por:",
     "options": [
-      {"key": "A", "text": "Vincent van Gogh"},
-      {"key": "B", "text": "Pablo Picasso"},
-      {"key": "C", "text": "Leonardo da Vinci"},
-      {"key": "D", "text": "Miguel Ángel"}
+      {"key": "A", "text": "La necesidad de limitar el acceso a la profesión."},
+      {"key": "B", "text": "La consolidación de la psicología como ciencia y la necesidad de adecuarse a nuevas leyes de protección de derechos."},
+      {"key_text": "C", "text_content": "La intención de reducir el énfasis en la perspectiva de derechos humanos."},
+      {"key": "D", "text": "La obligatoriedad impuesta por organismos internacionales sin consulta local."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "La Mona Lisa (La Gioconda) es una obra del Renacimiento pintada por el polímata italiano Leonardo da Vinci."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Los fundamentos de la revisión del Código de Ética de Fe.P.R.A. en 2013 incluyeron el reconocimiento del avance de la psicología y la necesidad de adecuarse a nuevas leyes de protección y promoción de derechos."},
   {
     "id": 23,
-    "text": "¿En qué continente se encuentra Egipto?",
+    "text": "[Tipo: Ley/Cocepto] Entre las principales modificaciones del Código de Ética de Fe.P.R.A. en 2013 se destaca:",
     "options": [
-      {"key": "A", "text": "Asia"},
-      {"key": "B", "text": "Europa"},
-      {"key": "C", "text": "África"},
-      {"key": "D", "text": "Oceanía"}
+      {"key": "A", "text": "La eliminación de las normas sobre confidencialidad."},
+      {"key": "B", "text": "La reducción del compromiso con la formación continua."},
+      {"key": "C", "text": "Mayor énfasis en la perspectiva de derechos humanos y actualización de normas de confidencialidad y consentimiento informado."},
+      {"key": "D", "text": "La prohibición total de la atención psicológica mediante TICs."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Egipto es un país transcontinental, con la mayor parte de su territorio en el noreste de África y una porción en Asia (península del Sinaí)."
-  },
+    "difficulty": "2",
+    "explanation": "Entre las principales modificaciones del Código de Ética de Fe.P.R.A. en 2013 se destacan mayor énfasis en la perspectiva de derechos humanos y actualización de las normas relativas a la confidencialidad y consentimiento informado."},
   {
     "id": 24,
-    "text": "¿Cuál es el río más largo del mundo?",
+    "text": "[Tip: Ley] La Ley Nacional de Salud Mental N° 26.657, sancionada en 2010, se considera un hito porque:",
     "options": [
-      {"key": "A", "text": "Nilo"},
-      {"key": "B", "text": "Amazonas"},
-      {"key": "C", "text": "Yangtsé"},
-      {"key": "D", "text": "Misisipi"}
+      {"key": "A", "text": "Reafirma las prácticas manicomiales tradicionales."},
+      {"key": "B", "text": "Subordina la atención de salud mental a la decisión judicial exclusiva."},
+      {"key": "C", "text": "Otorga un marco nacional a las políticas de atención en salud mental con nuevos paradigmas de derechos humanos e integración comunitaria."},
+      {"key": "D", "text": "Limita el ejercicio profesional de los psicólogos en salud mental."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "Existe debate, pero mediciones recientes sugieren que el río Amazonas es ligeramente más largo que el Nilo."
-  },
+    "explanation": "La Ley Nacional de Salud Mental N° 26.657 (2010) es un hito que otorga un marco nacional a las políticas de atención en salud mental, incorporando nuevos paradigmas de derechos humanos y de integración comunitaria."},
   {
     "id": 25,
-    "text": "¿Qué gas es esencial para la respiración humana?",
+    "text": "[Tipo: Concepo/Ley] Uno de los principios rectores de la Ley Nacional de Salud Mental 26.657 es:",
     "options": [
-      {"key": "A", "text": "Nitrógeno"},
-      {"key": "B", "text": "Dióxido de carbono"},
-      {"key": "C", "text": "Oxígeno"},
-      {"key": "D", "text": "Hidrógeno"}
+      {"key": "A", "text": "La priorización de las internaciones prolongadas en hospitales monovalentes."},
+      {"key": "B", "text": "La prohibición de diagnósticos fundados en diferencias culturales u orientación sexual."},
+      {"key": "C", "text": "La exclusión de las familias en el proceso de atención."},
+      {"key": "D", "text": "La limitación del consentimiento informado solo a casos de internación."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El oxígeno es el gas que los seres humanos y la mayoría de los seres vivos necesitan para respirar y obtener energía."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Ley 26.657 prohíbe diagnósticos fundados en diferencias políticas, religiosas, culturales o de orientación sexual y promueve el enfoque de derechos humanos."},
   {
     "id": 26,
-    "text": "¿Cuál es el océano más grande del mundo?",
+    "text": "[Tipo: Ley/Aplicación prctica] Según la Ley Nacional de Salud Mental 26.657, la internación involuntaria:",
     "options": [
-      {"key": "A", "text": "Atlántico"},
-      {"key": "B", "text": "Índico"},
-      {"key": "C", "text": "Ártico"},
-      {"key": "D", "text": "Pacífico"}
+      {"key": "A", "text": "Es el recurso terapéutico de primera elección para cuadros graves."},
+      {"key": "B", "text": "Está indicada solo cuando se verifique riesgo cierto e inminente para sí o para terceros, debiendo ser recurso excepcional."},
+      {"key": "C", "text": "No requiere notificación judicial ni al Órgano de Revisión."},
+      {"key": "D", "text": "Puede ser ordenada por un juez sin evaluación de un servicio de salud."}
     ],
-    "correctAnswerKey": "D",
-    "difficulty": "1",
-    "explanation": "El Océano Pacífico es el más extenso y profundo de los océanos de la Tierra."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Ley 26.657 considera la internación como recurso excepcional, indicada solo cuando se verifique riesgo cierto e inminente para sí o para terceros, priorizando abordajes ambulatorios."},
   {
     "id": 27,
-    "text": "¿Quién escribió 'Don Quijote de la Mancha'?",
+    "text": "[Tipo: Ley/Clasifiación] La Resolución Nº 2447/85 establece las 'incumbencias' del título de psicólogo, que se refieren a:",
     "options": [
-      {"key": "A", "text": "Federico García Lorca"},
-      {"key": "B", "text": "Miguel de Cervantes"},
-      {"key": "C", "text": "Gabriel García Márquez"},
-      {"key": "D", "text": "Lope de Vega"}
+      {"key": "A", "text": "Las instituciones donde los psicólogos pueden trabajar."},
+      {"key": "B", "text": "Los honorarios mínimos que pueden cobrar los psicólogos."},
+      {"key": "C", "text": "Las actividades que los profesionales pueden ejercer legítimamente."},
+      {"key": "D", "text": "Los principios éticos que deben guiar la práctica profesional."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "Miguel de Cervantes Saavedra es el autor de 'El ingenioso hidalgo don Quijote de la Mancha', una obra cumbre de la literatura universal."
-  },
+    "explanation": "La Resolución Nº 2447/85 establece las incumbencias profesionales, delimitando las actividades que los psicólogos y Licenciados en Psicología pueden ejercer legítimamente."},
   {
     "id": 28,
-    "text": "¿En qué país se encuentran las pirámides de Giza?",
+    "text": "[Tipo: Ley/Cocepto] La Ley 26.378, que aprueba la Convención sobre los Derechos de las Personas con Discapacidad, introduce un enfoque de derechos humanos que reemplaza el modelo:",
     "options": [
-      {"key": "A", "text": "Sudán"},
-      {"key": "B", "text": "Egipto"},
-      {"key": "C", "text": "Libia"},
-      {"key": "D", "text": "Marruecos"}
+      {"key": "A", "text": "Psicoanalítico."},
+      {"key": "B", "text": "Comunitario."},
+      {"key": "C", "text": "Moral."},
+      {"key": "D", "text": "Médico de la discapacidad."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "Las famosas pirámides de Giza, incluyendo la Gran Pirámide, se encuentran en Egipto, cerca de El Cairo."
-  },
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "La Convención, aprobada por Ley 26.378, introduce un enfoque de derechos humanos que reemplaza el modelo médico de la discapacidad."},
   {
     "id": 29,
-    "text": "¿Cuál es el planeta más grande del sistema solar?",
+    "text": "[Tipo: Ley/Cocepto] La Ley 26.529 sobre Derechos del Paciente establece como pilar fundamental el 'Consentimiento Informado' porque:",
     "options": [
-      {"key": "A", "text": "Tierra"},
-      {"key": "B", "text": "Marte"},
-      {"key": "C", "text": "Júpiter"},
-      {"key": "D", "text": "Saturno"}
+      {"key": "A", "text": "Es un requisito administrativo para validar los tratamientos."},
+      {"key": "B", "text": "Refuerza el respeto a la autonomía del paciente en su relación con profesionales de la salud."},
+      {"key": "C", "text": "Permite al profesional delegar la responsabilidad en el paciente."},
+      {"key": "D", "text": "Garantiza que el paciente siempre aceptará el tratamiento recomendado."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Júpiter es el planeta más grande de nuestro sistema solar, un gigante gaseoso."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Ley 26.529 refuerza el consentimiento informado como pilar del respeto a la autonomía del paciente."},
   {
     "id": 30,
-    "text": "¿Qué cordillera atraviesa gran parte de la región oeste de Sudamérica?",
+    "text": "[Tipo: Ley/Aplicación prctica] Según la Ley 26.529 de Derechos del Paciente, la negativa a recibir un tratamiento médico 'extraordinario':",
     "options": [
-      {"key": "A", "text": "Alpes"},
-      {"key": "B", "text": "Himalaya"},
-      {"key": "C", "text": "Montañas Rocosas"},
-      {"key": "D", "text": "Cordillera de los Andes"}
+      {"key": "A", "text": "Implica que el profesional puede desatender al paciente."},
+      {"key": "B", "text": "Requiere la autorización judicial obligatoria."},
+      {"key": "C", "text": "No implica desatención, sino respeto a la voluntad y dignidad de la persona."},
+      {"key": "D", "text": "Anula la relación terapéutica."}
     ],
-    "correctAnswerKey": "D",
-    "difficulty": "1",
-    "explanation": "La Cordillera de los Andes es la cadena montañosa más larga del mundo y se extiende a lo largo de la costa occidental de Sudamérica."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La Ley 26.529 establece que la negativa a tratamientos extraordinarios no implica desatención, sino respeto a la voluntad y dignidad de la persona."},
   {
     "id": 31,
-    "text": "¿Cuál es el nombre del general que cruzó los Andes para liberar Chile y Perú?",
+    "text": "[Tipo: Ley/Cocepto] La Ley 26.061 de Protección Integral de Niñas, Niños y Adolescentes se basa principalmente en el principio de:",
     "options": [
-      {"key": "A", "text": "Manuel Belgrano"},
-      {"key": "B", "text": "José de San Martín"},
-      {"key": "C", "text": "Martín Miguel de Güemes"},
-      {"key": "D", "text": "Juan Manuel de Rosas"}
+      {"key": "A", "text": "El paradigma tutelar del Estado sobre los menores."},
+      {"key": "B", "text": "La responsabilidad exclusiva de la familia en la protección."},
+      {"key": "C", "text": "El interés superior del niño, reconociéndolos como sujetos plenos de derecho."},
+      {"key": "D", "text": "La limitación de su participación en decisiones que los afectan."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "El General José de San Martín lideró el Cruce de los Andes, una hazaña militar clave para la independencia de Argentina, Chile y Perú."
-  },
+    "explanation": "La Ley 26.061 establece el Interés Superior del niño como principio fundamental, reconociendo a niñas, niños y adolescentes como sujetos plenos de derecho."},
   {
     "id": 32,
-    "text": "¿Qué región de Argentina es famosa por su producción de vinos Malbec?",
+    "text": "[Tipo: Ley/Aplicación prctica] Un deber impuesto por la Ley 26.061 es que, cuando un profesional de la salud tenga conocimiento de la vulneración de derechos de un niño, niña o adolescente, debe:",
     "options": [
-      {"key": "A", "text": "Patagonia"},
-      {"key": "B", "text": "Mesopotamia"},
-      {"key": "C", "text": "Cuyo"},
-      {"key": "D", "text": "Noroeste"}
+      {"key": "A", "text": "Actuar únicamente si tiene autorización de los padres."},
+      {"key": "B", "text": "Mantener la confidencialidad absoluta en todos los casos."},
+      {"key": "C", "text": "Comunicar el hecho a la autoridad administrativa de protección de derechos local."},
+      {"key": "D", "text": "Esperar una orden judicial para intervenir."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "La región de Cuyo, especialmente la provincia de Mendoza, es reconocida mundialmente por la calidad de sus vinos Malbec."
-  },
+    "difficulty": "2",
+    "explanation": "La Ley 26.061 impone el deber de comunicar para los miembros de establecimientos de salud, públicos o privados, cuando tengan conocimiento de la vulneración de derechos de niños, niñas o adolescentes, a la autoridad administrativa de protección de derechos local."},
   {
     "id": 33,
-    "text": "¿Quién es el autor de la música del Himno Nacional Argentino?",
+    "text": "[Tipo: Autor/eoría] Gabriela Z. Salomone plantea que la ética profesional en psicología no debe reducirse a la mera deontología porque:",
     "options": [
-      {"key": "A", "text": "Vicente López y Planes"},
-      {"key": "B", "text": "Blas Parera"},
-      {"key": "C", "text": "Juan Pedro Esnaola"},
-      {"key": "D", "text": "Alberto Williams"}
+      {"key": "A", "text": "La deontología es un concepto exclusivamente jurídico."},
+      {"key": "B", "text": "La deontología ignora por completo la existencia de normas."},
+      {"key": "C", "text": "El abordaje exclusivo desde las normas puede invisibilizar la dimensión subjetiva y la singularidad de la práctica clínica."},
+      {"key": "D", "text": "La dimensión clínica es irrelevante para la ética."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "La música del Himno Nacional Argentino fue compuesta por Blas Parera, mientras que la letra es de Vicente López y Planes."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Gabriela Z. Salomone plantea que la ética profesional no debe reducirse a las normas deontológicas, ya que el abordaje exclusivo desde las normas puede invisibilizar la dimensión subjetiva que implica la práctica clínica y la singularidad del sujeto."},
   {
     "id": 34,
-    "text": "¿Qué baile folklórico argentino se caracteriza por el zapateo y el uso de pañuelos?",
+    "text": "[Tipo: ConceptoAutor] La 'tensión estructural' en la ética profesional, según Salomone, se refiere a:",
     "options": [
-      {"key": "A", "text": "Tango"},
-      {"key": "B", "text": "Chacarera"},
-      {"key": "C", "text": "Cumbia"},
-      {"key": "D", "text": "Salsa"}
+      {"key": "A", "text": "El conflicto inevitable entre el psicólogo y el paciente."},
+      {"key": "B", "text": "La diferencia insuperable entre la ética personal y la profesional."},
+      {"key": "C", "text": "La tensión creativa entre el campo normativo y la dimensión clínica/singularidad que permite decisiones responsables."},
+      {"key": "D", "text": "La contradicción entre las leyes nacionales y provinciales."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "La chacarera es una danza folklórica tradicional de Argentina, especialmente del noroeste, que incluye zapateo y el revoleo de pañuelos."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "3",
+    "explanation": "Salomone sostiene que la ética se constituye precisamente en esa intersección conflictiva entre el campo normativo y la dimensión clínica, sosteniendo la tensión creativa entre norma y singularidad que permite decisiones responsables."},
   {
     "id": 35,
-    "text": "¿Cuál es el nombre del aeropuerto internacional más importante de Buenos Aires?",
+    "text": "[Tipo: Autor/Clasifiación] Gabriela Z. Salomone articula la Responsabilidad Profesional del psicólogo considerando tres dimensiones: deontológica, jurídica y...",
     "options": [
-      {"key": "A", "text": "Aeroparque Jorge Newbery"},
-      {"key": "B", "text": "Aeropuerto de El Palomar"},
-      {"key": "C", "text": "Aeropuerto Internacional Ministro Pistarini (Ezeiza)"},
-      {"key": "D", "text": "Aeropuerto de San Fernando"}
+      {"key": "A", "text": "Moral."},
+      {"key": "B", "text": "Filosófica."},
+      {"key": "C", "text": "Social."},
+      {"key": "D", "text": "Clínica."}
     ],
-    "correctAnswerKey": "C",
+    "correctAnswerKey": "D",
     "difficulty": "1",
-    "explanation": "El Aeropuerto Internacional Ministro Pistarini, comúnmente conocido como Ezeiza, es el principal aeropuerto internacional de Argentina."
-  },
+    "explanation": "Gabriela Z. Salomone desarrolla una visión integral de la responsabilidad profesional articulando tres dimensiones: deontológica, jurídica y clínica."},
   {
     "id": 36,
-    "text": "¿Qué famoso personaje de historieta argentino fue creado por Quino?",
+    "text": "[Tipo: DefiniciónAutor] Según Salomone, la 'Mala Praxis' es fundamentalmente un concepto jurídico que se refiere a:",
     "options": [
-      {"key": "A", "text": "Patoruzú"},
-      {"key": "B", "text": "Mafalda"},
-      {"key": "C", "text": "Clemente"},
-      {"key": "D", "text": "Gaturro"}
+      {"key": "A", "text": "La falta de ética personal del profesional."},
+      {"key": "B", "text": "El desacuerdo del paciente con el resultado del tratamiento."},
+      {"key": "C", "text": "Conductas que ponen en riesgo o dañan bienes jurídicos tutelados por leyes y normas deontológicas."},
+      {"key": "D", "text": "La ausencia de supervisión profesional."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "Mafalda, la niña contestataria y preocupada por la humanidad, es una creación del humorista gráfico Quino (Joaquín Lavado)."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Según Salomone, la mala praxis constituye un concepto jurídico que se refiere fundamentalmente a conductas que ponen en riesgo o dañan directamente bienes jurídicos tutelados por las leyes y, en consecuencia, por las normas deontológicas."},
   {
     "id": 37,
-    "text": "¿En qué año ocurrió la Guerra de las Malvinas?",
+    "text": "[Tipo: Definición/Clasifiación] La culpa en la mala praxis, según las fuentes, se manifiesta a través de cuatro elementos principales: negligencia, impericia, inobservancia de reglamentos e...",
     "options": [
-      {"key": "A", "text": "1978"},
-      {"key": "B", "text": "1982"},
-      {"key": "C", "text": "1983"},
-      {"key": "D", "text": "1990"}
+      {"key": "A", "text": "Dolo."},
+      {"key": "B", "text": "Responsabilidad penal."},
+      {"key": "C", "text": "Imprudencia."},
+      {"key": "D", "text": "Abandono de persona."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "La Guerra de las Malvinas fue un conflicto bélico entre Argentina y el Reino Unido que tuvo lugar en 1982."
-  },
+    "explanation": "El incumplimiento de obligaciones profesionales puede deberse a dolo o culpa, y esta última se manifiesta a través de negligencia, imprudencia, impericia o inobservancia de los reglamentos."},
   {
     "id": 38,
-    "text": "¿Cuál es la ciudad más austral del mundo, ubicada en Argentina?",
+    "text": "[Tipo: Defiición] Dentro de los elementos de la culpa, la 'Imprudencia' se describe como:",
     "options": [
-      {"key": "A", "text": "Río Gallegos"},
-      {"key": "B", "text": "Punta Arenas"},
-      {"key": "C", "text": "Ushuaia"},
-      {"key": "D", "text": "Puerto Williams"}
+      {"key": "A", "text": "Un acto negativo, un 'hacer de menos'."},
+      {"key": "B", "text": "La falta o insuficiencia de conocimientos básicos."},
+      {"key": "C", "text": "Un acto positivo, un 'hacer de más', falta de tacto o buen juicio."},
+      {"key": "D", "text": "El apartamiento de la normativa legal."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Ushuaia, capital de la provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur, es considerada la ciudad más austral del mundo."
-  },
+    "difficulty": "2",
+    "explanation": "La Imprudencia es un acto positivo ('hacer de más'), que implica falta de tacto, mesura o buen juicio al actuar sin contar con todos los elementos requeridos o usando métodos para los que no se está entrenado."},
   {
     "id": 39,
-    "text": "¿Qué banda de rock argentina es liderada por Gustavo Cerati (hasta su fallecimiento)?",
+    "text": "[Tipo: Defiición] Dentro de los elementos de la culpa, la 'Negligencia' se describe como:",
     "options": [
-      {"key": "A", "text": "Patricio Rey y sus Redonditos de Ricota"},
-      {"key": "B", "text": "Divididos"},
-      {"key": "C", "text": "Soda Stereo"},
-      {"key": "D", "text": "Sumo"}
+      {"key": "A", "text": "Un acto positivo, un 'hacer de más'."},
+      {"key": "B", "text": "La falta o insuficiencia de conocimientos básicos."},
+      {"key": "C", "text": "Un acto negativo, un 'hacer de menos', falta de cuidado o abandono de pautas."},
+      {"key": "D", "text": "El apartamiento de la normativa legal."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Soda Stereo, con Gustavo Cerati como vocalista y guitarrista, fue una de las bandas más influyentes del rock en español."
-  },
+    "difficulty": "2",
+    "explanation": "La Negligencia es un acto negativo ('hacer de menos'), que significa falta de cuidado, descuido o abandono de pautas de tratamiento estudiadas."},
   {
     "id": 40,
-    "text": "¿Cuál es el nombre de la avenida más ancha del mundo, ubicada en Buenos Aires?",
+    "text": "[Tipo: Defiición] Dentro de los elementos de la culpa, la 'Impericia' se describe como:",
     "options": [
-      {"key": "A", "text": "Avenida Corrientes"},
-      {"key": "B", "text": "Avenida Santa Fe"},
-      {"key": "C", "text": "Avenida 9 de Julio"},
-      {"key": "D", "text": "Avenida Rivadavia"}
+      {"key": "A", "text": "Un acto positivo, un 'hacer de más'."},
+      {"key": "B", "text": "La falta o insuficiencia de conocimientos o habilidad sobre procedimientos básicos."},
+      {"key": "C", "text": "Un acto negativo, un 'hacer de menos'."},
+      {"key": "D", "text": "El apartamiento de la normativa legal."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "La Avenida 9 de Julio en Buenos Aires es famosa por ser considerada la más ancha del mundo."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Impericia es un elemento negativo que significa la falta o insuficiencia de conocimientos o habilidad sobre procedimientos básicos/elementales para la atención de un caso."},
   {
     "id": 41,
-    "text": "¿Quién fue el primer emperador romano?",
+    "text": "[Tipo: Defiición] Dentro de los elementos de la culpa, la 'Inobservancia de los Reglamentos o Deberes a su Cargo' se describe como:",
     "options": [
-      {"key": "A", "text": "Julio César"},
-      {"key": "B", "text": "Augusto"},
-      {"key": "C", "text": "Nerón"},
-      {"key": "D", "text": "Trajano"}
+      {"key": "A", "text": "Un acto positivo, un 'hacer de más'."},
+      {"key": "B", "text": "La falta o insuficiencia de conocimientos básicos."},
+      {"key": "C", "text": "Un acto negativo, un 'hacer de menos'."},
+      {"key": "D", "text": "El apartamiento de la normativa legal aplicable o de una exigencia de un superior."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "Augusto (nacido como Cayo Octavio) es considerado el primer emperador romano, gobernando desde el 27 a.C. hasta su muerte en el 14 d.C."
-  },
+    "correctAnswerKey": "D",
+    "difficulty": "2",
+    "explanation": "La Inobservancia de los Reglamentos o Deberes a su Cargo es el apartamiento de la normativa legal aplicable, un hecho negativo que ocurre al no cumplir una ley, código de ética o exigencia."},
   {
     "id": 42,
-    "text": "¿Cuál es el elemento químico más abundante en la corteza terrestre?",
+    "text": "[Tipo: Autor/Cocepto] Fabián Vítolo señala que, aunque la psicología es considerada una especialidad de bajo riesgo médico-legal, los psicólogos presentan un alto porcentaje de consultas legales debido a:",
     "options": [
-      {"key": "A", "text": "Hierro"},
-      {"key": "B", "text": "Silicio"},
-      {"key": "C", "text": "Oxígeno"},
-      {"key": "D", "text": "Aluminio"}
+      {"key": "A", "text": "Errores en la prescripción de medicamentos."},
+      {"key": "B", "text": "Incidentes profesionales, especialmente transgresiones de límites y confidencialidad."},
+      {"key": "C", "text": "Conflictos con otros profesionales de la salud."},
+      {"key": "D", "text": "Demandas por resultados insatisfactorios de tratamiento."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El oxígeno constituye aproximadamente el 46.6% de la masa de la corteza terrestre."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Fabián Vítolo examina el riesgo médico-legal y subraya el alto porcentaje de consultas legales por incidentes profesionales, destacando la transgresión de límites y confidencialidad como fuentes frecuentes de conflicto."},
   {
     "id": 43,
-    "text": "¿En qué país se originaron los Juegos Olímpicos?",
+    "text": "[Tipo: ConceptoAutor] Según Vítolo, la relación terapéutica implica una asimetría estructural donde:",
     "options": [
-      {"key": "A", "text": "Italia"},
-      {"key": "B", "text": "Egipto"},
-      {"key": "C", "text": "Grecia"},
-      {"key": "D", "text": "China"}
+      {"key": "A", "text": "El profesional y el paciente tienen el mismo nivel de poder."},
+      {"key": "B", "text": "El profesional ocupa una posición de fragilidad y dependencia."},
+      {"key": "C", "text": "El paciente ocupa una posición de fragilidad y dependencia."},
+      {"key": "D", "text": "La asimetría solo existe en tratamientos de larga duración."}
     ],
     "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "Los Juegos Olímpicos antiguos se celebraron por primera vez en Olimpia, Grecia, en el año 776 a.C."
-  },
+    "explanation": "Vítolo señala que la relación terapéutica implica una asimetría estructural, donde el paciente ocupa una posición de fragilidad y dependencia, lo que hace las transgresiones de límites particularmente riesgosas."},
   {
     "id": 44,
-    "text": "¿Quién formuló la teoría de la relatividad?",
+    "text": "[Tipo: Ley/Cocepto] La responsabilidad civil del psicólogo se basa en una obligación de:",
     "options": [
-      {"key": "A", "text": "Isaac Newton"},
-      {"key": "B", "text": "Albert Einstein"},
-      {"key": "C", "text": "Galileo Galilei"},
-      {"key": "D", "text": "Stephen Hawking"}
+      {"key": "A", "text": "Resultados (garantizar la curación)."},
+      {"key": "B", "text": "Medios (actuar con prudencia y diligencia)."},
+      {"key": "C", "text": "Denuncia (reportar todos los delitos)."},
+      {"key": "D", "text": "Supervisión (asegurar que todos los colegas cumplan las normas)."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "Albert Einstein desarrolló la teoría de la relatividad especial (1905) y la teoría de la relatividad general (1915)."
-  },
+    "difficulty": "2",
+    "explanation": "La responsabilidad civil del psicólogo se basa en la obligación de medios (actuar con prudencia y diligencia), no de resultados."},
   {
     "id": 45,
-    "text": "¿Cuál es la capital de Japón?",
+    "text": "[Tipo: EstudioÉtica] El experimento de obediencia de Stanley Milgram se convirtió en un hito para la discusión de la ética en investigación psicológica debido a:",
     "options": [
-      {"key": "A", "text": "Pekín"},
-      {"key": "B", "text": "Seúl"},
-      {"key": "C", "text": "Tokio"},
-      {"key": "D", "text": "Kioto"}
+      {"key": "A", "text": "Su enfoque metodológico riguroso."},
+      {"key": "B", "text": "Los resultados que mostraban la capacidad de obediencia a la autoridad."},
+      {"key": "C", "text": "El uso de consignas engañosas y el impacto psicológico en los participantes."},
+      {"key": "D", "text": "Su gran tamaño muestral y generalizabilidad."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Tokio es la capital y la metrópoli más grande de Japón."
-  },
+    "difficulty": "2",
+    "explanation": "El experimento de Milgram es paradigmático de los desafíos éticos en investigación debido al uso de consignas engañosas, la falta de consentimiento informado veraz y el impacto psicológico en los participantes."},
   {
     "id": 46,
-    "text": "¿Qué famoso dramaturgo inglés escribió 'Romeo y Julieta'?",
+    "text": "[Tipo: Estudio/Aplicaciónética] Según las fuentes, el diseño original del experimento de Milgram, bajo los criterios éticos vigentes (ej. APA), hoy sería considerado:",
     "options": [
-      {"key": "A", "text": "Charles Dickens"},
-      {"key": "B", "text": "William Shakespeare"},
-      {"key": "C", "text": "Oscar Wilde"},
-      {"key": "D", "text": "George Bernard Shaw"}
+      {"key": "A", "text": "Completamente aceptable."},
+      {"key": "B", "text": "Aceptable con modificaciones menores."},
+      {"key": "C", "text": "Inaceptable."},
+      {"key": "D", "text": "Solo aceptable si los participantes reciben una compensación económica alta."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "William Shakespeare, uno de los más grandes escritores en lengua inglesa, es el autor de la tragedia 'Romeo y Julieta'."
-  },
+    "explanation": "Según las fuentes, el diseño de Milgram hoy sería considerado inaceptable bajo los criterios éticos vigentes, como los de la American Psychological Association (APA)."},
   {
     "id": 47,
-    "text": "¿Cuál es el metal más ligero?",
+    "text": "[Tipo: Estudio/Aplicaciónética] Jerry Burger realizó una réplica del experimento de Milgram incorporando medidas para reducir el daño psicológico, como:",
     "options": [
-      {"key": "A", "text": "Aluminio"},
-      {"key": "B", "text": "Magnesio"},
-      {"key": "C", "text": "Litio"},
-      {"key": "D", "text": "Titanio"}
+      {"key": "A", "text": "Aumentar la intensidad de las descargas eléctricas."},
+      {"key": "B", "text": "Eliminar el consentimiento informado para no influir en la obediencia."},
+      {"key": "C", "text": "Informar a los participantes inmediatamente después, limitar descargas a 150 voltios y supervisión clínica."},
+      {"key": "D", "text": "Realizar el experimento sin cómplices ni artefactos falsos."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El litio es el metal más ligero y el elemento sólido menos denso a temperatura ambiente."
-  },
+    "difficulty": "2",
+    "explanation": "Jerry Burger incorporó medidas como informar inmediatamente después de la intervención, limitar las descargas a 150 voltios, criterios de selección estrictos y supervisión clínica."},
   {
     "id": 48,
-    "text": "¿En qué año llegó Cristóbal Colón a América?",
+    "text": "[Tipo: Estudio/Cocepto] En las réplicas del experimento de Milgram (ej. Burger), se evidenció la tensión entre 'Consentimiento' y 'Obediencia' porque:",
     "options": [
-      {"key": "A", "text": "1492"},
-      {"key": "B", "text": "1500"},
-      {"key": "C", "text": "1453"},
-      {"key": "D", "text": "1607"}
+      {"key": "A", "text": "Los participantes que daban consentimiento previo desobedecían más."},
+      {"key": "B", "text": "A pesar de haber consentido con posibilidad de retirarse, muchos participantes continuaban obedeciendo a la autoridad."},
+      {"key": "C", "text": "El consentimiento informado eliminó por completo la obediencia."},
+      {"key": "D", "text": "La obediencia se incrementó al introducir el consentimiento informado."}
     ],
-    "correctAnswerKey": "A",
-    "difficulty": "1",
-    "explanation": "Cristóbal Colón llegó al continente americano el 12 de octubre de 1492, marcando un hito en la historia mundial."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Burger introdujo la firma de un consentimiento informado explícito, pero la experiencia demostró la tensión entre la autonomía formal del consentimiento y la presión de obedecer durante el procedimiento, donde muchos continuaron obedeciendo."},
   {
     "id": 49,
-    "text": "¿Cuál es el país más poblado del mundo?",
+    "text": "[Tipo: Historia/Etudio] Los juicios de Núremberg y la Declaración de Helsinki consolidaron principios éticos fundamentales para la investigación con seres humanos, tales como:",
     "options": [
-      {"key": "A", "text": "China"},
-      {"key": "B", "text": "India"},
-      {"key": "C", "text": "Estados Unidos"},
-      {"key": "D", "text": "Indonesia"}
+      {"key": "A", "text": "El uso irrestricto del engaño en la investigación."},
+      {"key": "B", "text": "La subordinación del participante a los objetivos científicos."},
+      {"key": "C", "text": "Respeto a la autonomía, beneficencia, no maleficencia y justicia."},
+      {"key": "D", "text": "La eliminación del consentimiento informado."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "Desde 2023, India ha superado a China como el país más poblado del mundo."
-  },
+    "explanation": "A partir de los juicios de Núremberg y la Declaración de Helsinki, se consolidaron los principios éticos fundamentales para la investigación con seres humanos: respeto a la autonomía, beneficencia, no maleficencia y justicia."},
   {
     "id": 50,
-    "text": "¿Qué vitamina se obtiene principalmente de la exposición al sol?",
+    "text": "[Tipo: Estudio/Cocepto] Según Ormart et al., la especificidad del campo psicológico en la investigación introduce problemáticas éticas particulares, como:",
     "options": [
-      {"key": "A", "text": "Vitamina A"},
-      {"key": "B", "text": "Vitamina C"},
-      {"key": "C", "text": "Vitamina D"},
-      {"key": "D", "text": "Vitamina B12"}
+      {"key": "A", "text": "La imposibilidad de medir variables objetivas."},
+      {"key": "B", "text": "Que el objeto de estudio es la subjetividad misma, exponiendo a dilemas de intrusión y asimetría investigador-participante."},
+      {"key": "C", "text": "La necesidad de ocultar los objetivos de la investigación a los participantes."},
+      {"key": "D", "text": "La irrelevancia del consentimiento informado."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "La vitamina D, también conocida como la 'vitamina del sol', se sintetiza en la piel por la acción de los rayos ultravioleta."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La especificidad del campo psicológico radica en que el objeto de estudio es la subjetividad, lo que expone al investigador a dilemas en torno a la intrusión y la interpretación, y la asimetría investigador-participante requiere cuidados éticos especiales."},
   {
     "id": 51,
-    "text": "¿Cuál es el nombre del personaje principal en la saga de 'Harry Potter'?",
+    "text": "[Tipo: TeoríaAutor] Zygmunt Bauman, interpretado por Eduardo Laso, explica la obediencia en el experimento de Milgram sugiriendo que la crueldad emerge en individuos comunes bajo condiciones de:",
     "options": [
-      {"key": "A", "text": "Ron Weasley"},
-      {"key": "B", "text": "Hermione Granger"},
-      {"key": "C", "text": "Harry Potter"},
-      {"key": "D", "text": "Albus Dumbledore"}
+      {"key": "A", "text": "Personalidades autoritarias innatas."},
+      {"key": "B", "text": "Falta total de normas sociales."},
+      {"key": "C", "text": "Autoridad y racionalización burocrática en la estructura social."},
+      {"key": "D", "text": "Empatía exacerbada hacia la figura de autoridad."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Harry Potter es el joven mago protagonista de la popular serie de libros y películas creada por J.K. Rowling."
-  },
+    "difficulty": "2",
+    "explanation": "Bauman sostiene que la crueldad emerge en individuos comunes bajo condiciones de autoridad y racionalización burocrática en la estructura social, idea que Laso retoma para explicar Milgram."},
   {
     "id": 52,
-    "text": "¿Qué astro es el centro de nuestro sistema solar?",
+    "text": "[Tipo: Teoría/Clasifiación] Un factor que facilita la obediencia a órdenes inhumanas, según la lectura de Bauman por Laso, es:",
     "options": [
-      {"key": "A", "text": "La Luna"},
-      {"key": "B", "text": "Marte"},
-      {"key": "C", "text": "El Sol"},
-      {"key": "D", "text": "Júpiter"}
+      {"key": "A", "text": "La cercanía física con la víctima."},
+      {"key": "B", "text": "La resistencia inicial a las órdenes."},
+      {"key": "C", "text": "La distancia social entre el agente de daño y la víctima."},
+      {"key": "D", "text": "La priorización del juicio moral sobre la eficiencia técnica."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El Sol es la estrella alrededor de la cual orbitan la Tierra y los demás planetas del sistema solar."
-  },
+    "difficulty": "2",
+    "explanation": "Factores que facilitan la obediencia incluyen la distancia social entre el agente de daño y la víctima, la paradoja de la acción secuencial, la moralización de la tecnología y la responsabilidad flotante."},
   {
     "id": 53,
-    "text": "¿En qué ciudad italiana se encuentra la Torre Inclinada?",
+    "text": "[Tipo: Autor/Cocepto] Florencia González Pla y Gabriela Z. Salomone señalan que, en salud mental, el consentimiento informado no puede reducirse a una formalidad jurídica porque:",
     "options": [
-      {"key": "A", "text": "Roma"},
-      {"key": "B", "text": "Florencia"},
-      {"key": "C", "text": "Pisa"},
-      {"key": "D", "text": "Venecia"}
+      {"key": "A", "text": "La autonomía del paciente es siempre plena e indiscutible."},
+      {"key": "B", "text": "La subjetividad del paciente puede plantear desafíos específicos a la noción de autonomía y decisión."},
+      {"key": "C", "text": "El consentimiento es irrelevante en el campo de la salud mental."},
+      {"key": "D", "text": "Solo importa la aceptación formal del tratamiento."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "La famosa Torre Inclinada de Pisa es el campanario de la catedral de la ciudad de Pisa, en la Toscana italiana."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "En el campo de la salud mental, el consentimiento informado es clínicamente complejo dado que la subjetividad en juego plantea desafíos específicos a la noción de autonomía."},
   {
     "id": 54,
-    "text": "¿Cuál es el idioma más hablado en el mundo por número de hablantes nativos?",
+    "text": "[Tipo: Concepto/Compaación] Según González Pla y Salomone, es importante diferenciar entre 'opción' (en el sentido reglamentario del consentimiento) y 'elección' porque:",
     "options": [
-      {"key": "A", "text": "Inglés"},
-      {"key": "B", "text": "Español"},
-      {"key": "C", "text": "Chino Mandarín"},
-      {"key": "D", "text": "Hindi"}
+      {"key": "A", "text": "Son sinónimos y se refieren a lo mismo."},
+      {"key": "B", "text": "La opción es una decisión reflexiva, mientras la elección es una adhesión formal."},
+      {"key": "C", "text": "La opción es una adhesión formal/reglamentaria, mientras la elección es una decisión reflexiva y comprometida que involucra al sujeto."},
+      {"key": "D", "text": "Solo la opción tiene relevancia clínica, la elección es un concepto jurídico."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El Chino Mandarín es el idioma con mayor número de hablantes nativos en el mundo."
-  },
+    "difficulty": "3",
+    "explanation": "Se requiere diferenciar entre 'opción' (adhesión formal) y 'elección' (decisión reflexiva y comprometida) en el consentimiento, especialmente en salud mental donde la subjetividad está en juego."},
   {
     "id": 55,
-    "text": "¿Quién fue el líder del movimiento por los derechos civiles en Estados Unidos, conocido por su discurso 'I Have a Dream'?",
+    "text": "[Tipo: ConceptoAutor] Según González Pla y Salomone, la evaluación de la capacidad del paciente para dar su consentimiento informado es una responsabilidad indelegable del profesional porque:",
     "options": [
-      {"key": "A", "text": "Malcolm X"},
-      {"key": "B", "text": "Martin Luther King Jr."},
-      {"key": "C", "text": "Rosa Parks"},
-      {"key": "D", "text": "Nelson Mandela"}
+      {"key": "A", "text": "El paciente autónomo siempre tiene plena capacidad."},
+      {"key": "B", "text": "Subraya el límite de la noción de sujeto autónomo pleno en salud mental y la complejidad clínica."},
+      {"key": "C", "text": "Permite delegar la responsabilidad de la decisión en el paciente."},
+      {"key": "D", "text": "Es un requisito meramente administrativo sin implicancias clínicas."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "Martin Luther King Jr. fue un pastor y activista estadounidense, líder del movimiento por los derechos civiles para los afroamericanos."
-  },
+    "difficulty": "2",
+    "explanation": "La evaluación de la capacidad de consentir es responsabilidad indelegable del profesional, lo que subraya el límite de la noción de sujeto autónomo pleno en salud mental y la dimensión clínica del consentimiento."},
   {
     "id": 56,
-    "text": "¿Cuál es el animal terrestre más rápido?",
+    "text": "[Tipo: Autor/Cocepto] Carlos Gutiérrez, al comentar el texto de Freud sobre el amor de transferencia, destaca como relevante éticamente:",
     "options": [
-      {"key": "A", "text": "León"},
-      {"key": "B", "text": "Tigre"},
-      {"key": "C", "text": "Guepardo"},
-      {"key": "D", "text": "Leopardo"}
+      {"key": "A", "text": "La necesidad de corresponder al amor de transferencia para facilitar la cura."},
+      {"key": "B", "text": "La importancia de diferenciar la dignidad profesional del analista de las exigencias de la moral burguesa."},
+      {"key": "C", "text": "Que el amor de transferencia es un obstáculo que debe ser eliminado rápidamente."},
+      {"key": "D", "text": "La aplicación de una técnica universal para todos los casos de transferencia."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El guepardo (chita) es capaz de alcanzar velocidades de hasta 115 km/h en carreras cortas."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Gutiérrez subraya que Freud insiste en diferenciar claramente entre la dignidad profesional del analista y las exigencias de la moral burguesa al abordar el amor de transferencia, destacando su relevancia ética."},
   {
     "id": 57,
-    "text": "¿Qué famoso científico desarrolló la ley de la gravitación universal?",
+    "text": "[Tipo: Autor/Cocepto] Sigmund Freud, en 'Observaciones sobre el amor de transferencia', plantea que el enamoramiento en análisis debe ser tratado como:",
     "options": [
-      {"key": "A", "text": "Galileo Galilei"},
-      {"key": "B", "text": "Nicolás Copérnico"},
-      {"key": "C", "text": "Isaac Newton"},
-      {"key": "D", "text": "Johannes Kepler"}
+      {"key": "A", "text": "Un sentimiento real que debe ser correspondido por el analista."},
+      {"key": "B", "text": "Una repetición inconsciente que debe ser trabajada analíticamente, no actuada."},
+      {"key": "C", "text": "Una desviación técnica que indica un mal manejo por parte del analista."},
+      {"key": "D", "text": "Una resistencia que impide el avance de la cura."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Isaac Newton formuló las leyes del movimiento y la ley de la gravitación universal, pilares de la física clásica."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Freud señala que el amor que el paciente experimenta hacia el analista es una repetición inconsciente de figuras y deseos reprimidos, que reaparecen bajo la modalidad transferencial y deben ser tratados, no actuados."},
   {
     "id": 58,
-    "text": "¿En qué país se encuentra el Taj Mahal?",
+    "text": "[Tipo: Autor/Cocepto] La 'neutralidad' del analista, según Freud y Salomone, implica éticamente:",
     "options": [
-      {"key": "A", "text": "Pakistán"},
-      {"key": "B", "text": "India"},
-      {"key": "C", "text": "Bangladesh"},
-      {"key": "D", "text": "Nepal"}
+      {"key": "A", "text": "Una distancia emocional absoluta del paciente."},
+      {"key": "B", "text": "Dirigir la cura hacia los ideales normativos del analista."},
+      {"key": "C", "text": "Sostener un marco que impide la manipulación o colonización de la subjetividad del paciente, evitando privilegiar contenidos o direcciones."},
+      {"key": "D", "text": "Corresponder a las demandas emocionales del paciente para generar confianza."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El Taj Mahal, un mausoleo de mármol blanco, se encuentra en la ciudad de Agra, India."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La neutralidad implica no dirigir la cura hacia determinados ideales normativos, creencias o posiciones personales, sosteniendo un marco ético que impide la manipulación o colonización de la subjetividad del paciente."},
   {
     "id": 59,
-    "text": "¿Cuál es el hueso más largo del cuerpo humano?",
+    "text": "[Tipo: Autor/Cocepto] La 'regla de abstinencia' en psicoanálisis, según Freud y Salomone, significa:",
     "options": [
-      {"key": "A", "text": "Tibia"},
-      {"key": "B", "text": "Fémur"},
-      {"key": "C", "text": "Húmero"},
-      {"key": "D", "text": "Peroné"}
+      {"key": "A", "text": "Limitar el número de sesiones semanales."},
+      {"key": "B", "text": "Negar al paciente la satisfacción demandada para mantener la tensión necesaria para el trabajo analítico."},
+      {"key": "C", "text": "Evitar todo tipo de interpretación."},
+      {"key": "D", "text": "Que el analista debe abstenerse de hablar durante la sesión."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El fémur, ubicado en el muslo, es el hueso más largo, fuerte y voluminoso del esqueleto humano."
-  },
+    "difficulty": "2",
+    "explanation": "La abstinencia implica negar satisfacciones sustitutivas y mantener necesidades insatisfechas para que funcionen como fuerzas motrices del trabajo analítico, impidiendo la descarga de impulsos por vías no elaborativas."},
   {
     "id": 60,
-    "text": "¿Qué banda británica es conocida por álbumes como 'The Dark Side of the Moon' y 'The Wall'?",
+    "text": "[Tipo: Ley/Clasifiación] El Código de Ética de la APA establece Principios Éticos Generales que, aunque no son reglas obligatorias en sí mismas, tienen la función de:",
     "options": [
-      {"key": "A", "text": "The Beatles"},
-      {"key": "B", "text": "Led Zeppelin"},
-      {"key": "C", "text": "Queen"},
-      {"key": "D", "text": "Pink Floyd"}
+      {"key": "A", "text": "Dictar sanciones disciplinarias directas."},
+      {"key": "B", "text": "Orientar la aspiración ética de los psicólogos."},
+      {"key": "C", "text": "Reemplazar a las Normas Éticas obligatorias."},
+      {"key": "D", "text": "Describir las prácticas profesionales comunes."}
     ],
-    "correctAnswerKey": "D",
+    "correctAnswerKey": "B",
     "difficulty": "1",
-    "explanation": "Pink Floyd es una influyente banda de rock progresivo y psicodélico, famosa por sus elaborados álbumes conceptuales."
-  },
+    "explanation": "Los Principios Éticos Generales del Código APA no son reglas obligatorias, pero orientan la aspiración ética de los psicólogos."},
   {
     "id": 61,
-    "text": "¿Cuál es la capital de la provincia de Santa Fe?",
+    "text": "[Tipo: Ley/Defiición] El Principio A del Código de Ética de la APA, 'Beneficencia y no maleficencia', implica que los psicólogos deben:",
     "options": [
-      {"key": "A", "text": "Rosario"},
-      {"key": "B", "text": "Santa Fe de la Vera Cruz"},
-      {"key": "C", "text": "Rafaela"},
-      {"key": "D", "text": "Reconquista"}
+      {"key": "A", "text": "Priorizar sus propios intereses sobre los del paciente."},
+      {"key": "B", "text": "Esforzarse por beneficiar a quienes trabajan y hacer el menor daño posible."},
+      {"key": "C", "text": "Evitar cualquier contacto con los pacientes fuera de la terapia."},
+      {"key": "D", "text": "Revelar toda la información confidencial si considera que beneficia a la sociedad."}
     ],
     "correctAnswerKey": "B",
     "difficulty": "1",
-    "explanation": "La ciudad de Santa Fe de la Vera Cruz es la capital de la provincia de Santa Fe."
-  },
+    "explanation": "El Principio A — Beneficencia y no maleficencia — establece que los psicólogos deben esforzarse por beneficiar a aquellos con quienes trabajan y por hacer el menor daño posible."},
   {
     "id": 62,
-    "text": "¿Quién fue Eva Perón, conocida popularmente como Evita?",
+    "text": "[Tipo: Ley/Cocepto] Las 'Normas Éticas' del Código de Ética de la APA se diferencian de los 'Principios Éticos Generales' en que las Normas:",
     "options": [
-      {"key": "A", "text": "Una escritora famosa"},
-      {"key": "B", "text": "Una actriz de cine"},
-      {"key": "C", "text": "Una influyente figura política y Primera Dama"},
-      {"key": "D", "text": "Una científica reconocida"}
+      {"key": "A", "text": "Solo orientan la aspiración ética."},
+      {"key": "B", "text": "No tienen relación con la conducta profesional."},
+      {"key": "C", "text": "Son reglas obligatorias de conducta que pueden constituir base para sanciones disciplinarias."},
+      {"key": "D", "text": "Son recomendaciones voluntarias para mejorar la práctica."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Eva Perón fue una actriz que se convirtió en una poderosa figura política como esposa del presidente Juan Domingo Perón, impulsando el sufragio femenino y políticas sociales."
-  },
+    "difficulty": "2",
+    "explanation": "Las Normas Éticas son reglas obligatorias de conducta que pueden constituir base para sanciones disciplinarias, a diferencia de los Principios Generales que solo orientan."},
   {
     "id": 63,
-    "text": "¿Qué región argentina es conocida por el 'Tren a las Nubes'?",
+    "text": "[Tipo: Ley/Hitoria] Las Enmiendas de 2010 al Código de Ética de la APA enfatizaron que:",
     "options": [
-      {"key": "A", "text": "Patagonia"},
-      {"key": "B", "text": "Cuyo"},
-      {"key": "C", "text": "Noroeste (NOA)"},
-      {"key": "D", "text": "Litoral"}
+      {"key": "A", "text": "La confidencialidad no es un principio fundamental."},
+      {"key": "B", "text": "Ninguna justificación institucional o gubernamental puede legitimar prácticas que violen los derechos humanos fundamentales."},
+      {"key": "C", "text": "Se eliminó la necesidad del consentimiento informado en investigación."},
+      {"key": "D", "text_content": "La competencia profesional no requiere formación continua."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El Tren a las Nubes es un famoso ferrocarril turístico que recorre paisajes montañosos en la provincia de Salta, en el Noroeste Argentino."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Las Enmiendas de 2010 enfatizaron que ninguna justificación gubernamental, administrativa o institucional puede legitimar prácticas que violen los derechos humanos fundamentales."},
   {
     "id": 64,
-    "text": "¿Cuál de estos músicos es considerado uno de los padres del rock nacional argentino?",
+    "text": "[Tipo: ConceptoAutor] Elizabeth B. Ormart señala que el 'Secreto Profesional' en psicología constituye:",
     "options": [
-      {"key": "A", "text": "Andrés Calamaro"},
-      {"key": "B", "text": "Charly García"},
-      {"key": "C", "text": "Fito Páez"},
-      {"key": "D", "text": "Gustavo Santaolalla"}
+      {"key": "A", "text": "Un obstáculo para la investigación."},
+      {"key": "B", "text": "Un requisito legal sin fundamento ético."},
+      {"key": "C", "text": "La piedra angular del vínculo terapéutico, fundado en el respeto al derecho a la intimidad del paciente."},
+      {"key": "D", "text": "Una obligación que solo aplica durante la terapia activa."}
     ],
-    "correctAnswerKey": "B",
+    "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "Charly García, con bandas como Sui Generis, Serú Girán y su carrera solista, es una figura fundamental en la historia del rock argentino."
-  },
+    "explanation": "El secreto profesional constituye la piedra angular del vínculo terapéutico, fundado en el respeto al derecho a la intimidad del paciente, el cual genera en el profesional el deber correlativo de confidencialidad."},
   {
     "id": 65,
-    "text": "¿En qué deporte se destacó Emanuel Ginóbili?",
+    "text": "[Tipo: Concepto/Compaación] Según Ormart, el secreto profesional en psicología requiere una protección aún más rigurosa que en la práctica médica porque:",
     "options": [
-      {"key": "A", "text": "Fútbol"},
-      {"key": "B", "text": "Tenis"},
-      {"key": "C", "text": "Básquetbol"},
-      {"key": "D", "text": "Hockey sobre césped"}
+      {"key": "A", "text": "El psicólogo accede a información menos relevante."},
+      {"key": "B", "text": "El médico interviene sobre la subjetividad y remordimientos."},
+      {"key": "C", "text": "El psicólogo trabaja sobre la subjetividad y telas íntimas del psiquismo, accediendo a confesiones, fantasías y remordimientos."},
+      {"key": "D", "text": "La práctica médica no tiene regulaciones sobre confidencialidad."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Emanuel 'Manu' Ginóbili es uno de los basquetbolistas argentinos más exitosos, campeón de la NBA y medallista olímpico."
-  },
+    "difficulty": "2",
+    "explanation": "Ormart señala que mientras el médico interviene sobre órganos/funciones, el psicólogo trabaja sobre la subjetividad y telas íntimas, accediendo a confesiones, fantasías y remordimientos, requiriendo mayor protección."},
   {
     "id": 66,
-    "text": "¿Qué es el 'asado' en la cultura argentina?",
+    "text": "[Tipo: Caso/Cocepto] La 'Teoría Tarasoff' establece una excepción a la obligación de confidencialidad cuando:",
     "options": [
-      {"key": "A", "text": "Un tipo de baile"},
-      {"key": "B", "text": "Una bebida alcohólica"},
-      {"key": "C", "text": "Una técnica de cocción de carne a la parrilla y un evento social"},
-      {"key": "D", "text": "Un instrumento musical"}
+      {"key": "A", "text": "El paciente autoriza por escrito la revelación."},
+      {"key": "B", "text": "Se encuentran en juego bienes jurídicos superiores, como el derecho a la vida de terceros en riesgo grave y previsible."},
+      {"key": "C", "text": "Un juez solicita la información sin evaluar el riesgo."},
+      {"key": "D", "text": "El paciente deja de asistir a la terapia."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El asado es mucho más que una comida; es un ritual social y una tradición culinaria central en Argentina, que consiste en cocinar carne a las brasas."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "El 'caso Tarasoff' establece que la obligación de confidencialidad puede ceder si la omisión puede resultar en daño grave y previsible para terceros, poniendo en juego bienes jurídicos superiores como el derecho a la vida."},
   {
     "id": 67,
-    "text": "¿Cuál es la flor nacional de Argentina?",
+    "text": "[Tipo: Cocepto] El consentimiento informado, en su dimensión deontológico-jurídica, se fundamenta en el principio de:",
     "options": [
-      {"key": "A", "text": "Jazmín"},
-      {"key": "B", "text": "Rosa"},
-      {"key": "C", "text": "Ceibo"},
-      {"key": "D", "text": "Girasol"}
+      {"key": "A", "text": "Beneficencia."},
+      {"key": "B", "text": "No maleficencia."},
+      {"key": "C", "text": "Justicia."},
+      {"key": "D", "text": "Autonomía."}
     ],
-    "correctAnswerKey": "C",
+    "correctAnswerKey": "D",
     "difficulty": "1",
-    "explanation": "La flor del ceibo, con sus característicos pétalos rojos, fue declarada flor nacional de Argentina en 1942."
-  },
+    "explanation": "La pauta deontológico-jurídica del consentimiento informado se fundamenta en el principio de autonomía, garantizando el derecho del paciente a aceptar o rechazar libremente cualquier intervención."},
   {
     "id": 68,
-    "text": "¿Qué río separa la Ciudad Autónoma de Buenos Aires de la Provincia de Buenos Aires en su parte sur?",
+    "text": "[Tipo: ConceptoAutor] Según Salomone y co-autores, la 'Avaluación Clínica' en el proceso de consentimiento informado se refiere al acto inicial donde:",
     "options": [
-      {"key": "A", "text": "Río Paraná"},
-      {"key": "B", "text": "Río Luján"},
-      {"key": "C", "text": "Riachuelo (Río Matanza)"},
-      {"key": "D", "text": "Río Salado"}
+      {"key": "A", "text": "El profesional evalúa la capacidad legal del paciente para consentir."},
+      {"key": "B", "text": "El paciente evalúa su sufrimiento como síntoma y busca ayuda, y el profesional acepta o rechaza esa demanda."},
+      {"key": "C", "text": "Se firma el documento formal de consentimiento."},
+      {"key": "D", "text": "El profesional evalúa el riesgo que presenta el paciente para sí o terceros."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El Riachuelo, cuyo nombre oficial es Río Matanza, actúa como límite sur entre la CABA y la provincia de Buenos Aires."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La 'Avaluación Clínica' refiere al acto inicial del paciente de evaluar su sufrimiento como síntoma y buscar ayuda, y al acto del profesional de aceptar o rechazar esa demanda."},
   {
     "id": 69,
-    "text": "¿Quién fue el máximo goleador histórico de la selección argentina de fútbol hasta ser superado por Lionel Messi?",
+    "text": "[Tipo: ConceptoAutor] Según Salomone y co-autores, el 'Asentimiento Subjetivo' se distingue de la mera aceptación formal del consentimiento informado porque:",
     "options": [
-      {"key": "A", "text": "Diego Maradona"},
-      {"key": "B", "text": "Mario Kempes"},
-      {"key": "C", "text": "Gabriel Batistuta"},
-      {"key": "D", "text": "Hernán Crespo"}
+      {"key": "A", "text": "Solo aplica a sujetos legalmente incapaces."},
+      {"key": "B", "text": "Implica que el sujeto toma una posición respecto de su palabra y padecimiento, involucrando al sujeto dividido, no solo a la persona jurídica."},
+      {"key": "C", "text": "Es sinónimo de la firma del documento de consentimiento."},
+      {"key": "D", "text": "Solo es relevante en contextos de investigación, no clínicos."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Gabriel Batistuta fue durante muchos años el máximo artillero de la selección argentina, con 54 goles."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "3",
+    "explanation": "El 'Asentimiento Subjetivo' implica que el sujeto toma una posición respecto de su palabra y su padecimiento, distinto de la mera aceptación formal de la persona jurídica; involucra al sujeto dividido."},
   {
     "id": 70,
-    "text": "¿Qué se conmemora en Argentina el 2 de abril?",
+    "text": "[Tipo: ConceptoAutor] La posición ética del profesional en relación al consentimiento informado, según Salomone, consiste en:",
     "options": [
-      {"key": "A", "text": "Día de la Independencia"},
-      {"key": "B", "text": "Día de la Bandera"},
-      {"key": "C", "text": "Día del Veterano y de los Caídos en la Guerra de Malvinas"},
-      {"key": "D", "text": "Día del Trabajador"}
+      {"key": "A", "text": "Aplicar estrictamente la norma deontológica sin considerar la singularidad."},
+      {"key": "B", "text": "Priorizar el asentimiento subjetivo por encima de la norma legal."},
+      {"key": "C", "text": "Articular la pauta deontológico-jurídica (sujeto de derecho) con la dimensión clínica (sujeto singular), permitiendo que la norma posibilite un espacio para la subjetivación."},
+      {"key": "D", "text": "Delegar la responsabilidad del consentimiento en un tercero autorizado."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El 2 de abril se conmemora el Día del Veterano y de los Caídos en la Guerra de Malvinas, en recuerdo del desembarco argentino en las islas en 1982."
-  },
+    "difficulty": "3",
+    "explanation": "La posición ética consiste en articular la pauta deontológico-jurídica del Consentimiento Informado (dirigida al sujeto de derecho) con la dimensión clínica del sufrimiento psíquico (dirigida al sujeto singular), permitiendo que la norma habilite un espacio para la 'avaluación clínica' y el 'asentimiento subjetivo'."},
   {
     "id": 71,
-    "text": "¿Cuál es la capital de Australia?",
+    "text": "[Tipo: Le/Dato] La actualización del Código de Ética de FePRA en 2013 sustituyó el término 'válido' por 'informado' para el consentimiento, con el objetivo de:",
     "options": [
-      {"key": "A", "text": "Sídney"},
-      {"key": "B", "text": "Melbourne"},
-      {"key": "C", "text": "Canberra"},
-      {"key": "D", "text": "Perth"}
+      {"key": "A", "text": "Reducir la información necesaria para el paciente."},
+      {"key": "B", "text": "Enfatizar el deber del profesional de informar adecuadamente al paciente."},
+      {"key": "C", "text": "Eliminar la necesidad de documentar el consentimiento."},
+      {"key": "D", "text": "Limitar la autonomía del paciente en la toma de decisiones."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Aunque Sídney y Melbourne son más conocidas, Canberra es la capital de Australia."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La actualización del Código de Ética de FePRA en 2013 sustituyó 'válido' por 'informado' para el consentimiento, enfatizando el deber de informar adecuadamente."},
   {
     "id": 72,
-    "text": "¿Qué civilización antigua construyó Machu Picchu?",
+    "text": "[Tipo: Aplicación práctia/Ley] En la atención psicológica mediante TICs, según las recomendaciones de FePRA, el consentimiento informado debe:",
     "options": [
-      {"key": "A", "text": "Aztecas"},
-      {"key": "B", "text": "Mayas"},
-      {"key": "C", "text": "Incas"},
-      {"key": "D", "text": "Egipcios"}
+      {"key": "A", "text": "Ser idéntico al de la atención presencial."},
+      {"key": "B", "text": "Omitir la información sobre los límites de la seguridad informática para no alarmar al paciente."},
+      {"key": "C", "text": "Adaptarse a la modalidad, explicando particularidades como plataformas, resguardo de privacidad y riesgos informáticos."},
+      {"key": "D", "text": "Ser un trámite único al inicio del tratamiento y no revisarse."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Machu Picchu, la famosa ciudadela en los Andes peruanos, fue construida por el Imperio Inca en el siglo XV."
-  },
+    "difficulty": "2",
+    "explanation": "Para la atención con TICs, se recomienda un consentimiento informado adaptado a esta modalidad, explicando particularidades como plataformas, resguardo de privacidad y advirtiendo sobre los límites de la seguridad informática."},
   {
     "id": 73,
-    "text": "¿Cuántos lados tiene un hexágono?",
+    "text": "[Tipo: Ley/Cocepto] La Ley 26.529 de Derechos del Paciente establece que la información sanitaria a terceros:",
     "options": [
-      {"key": "A", "text": "5"},
-      {"key": "B", "text": "6"},
-      {"key": "C", "text": "7"},
-      {"key": "D", "text": "8"}
+      {"key": "A", "text": "Puede ser brindada libremente por el profesional si considera que es pertinente."},
+      {"key": "B", "text": "Requiere autorización del paciente, salvo excepciones legales."},
+      {"key": "C", "text": "Solo puede ser accedida por orden judicial."},
+      {"key": "D", "text": "Es siempre confidencial y nunca se puede revelar."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "Un hexágono es un polígono que tiene seis lados y seis ángulos."
-  },
+    "difficulty": "2",
+    "explanation": "Según la Ley 26.529, la información a terceros requiere autorización del paciente, aunque contempla excepciones en casos de incapacidad o emergencia."},
   {
     "id": 74,
-    "text": "¿Quién escribió 'Cien años de soledad'?",
+    "text": "[Tipo: Ley/Aplicación prctica] Según la Ley 26.529, ¿cuál es la legitimidad del paciente respecto a su historia clínica?",
     "options": [
-      {"key": "A", "text": "Mario Vargas Llosa"},
-      {"key": "B", "text": "Gabriel García Márquez"},
-      {"key": "C", "text": "Julio Cortázar"},
-      {"key": "D", "text": "Isabel Allende"}
+      {"key": "A", "text": "El paciente no tiene derecho a acceder a ella."},
+      {"key": "B", "text": "Es el titular de la misma y tiene derecho a obtener copia."},
+      {"key": "C", "text": "Solo puede acceder si presenta una orden judicial."},
+      {"key": "D", "text": "La historia clínica es propiedad exclusiva del profesional o institución."}
     ],
     "correctAnswerKey": "B",
     "difficulty": "1",
-    "explanation": "El escritor colombiano Gabriel García Márquez es el autor de 'Cien años de soledad', una obra emblemática del realismo mágico."
-  },
+    "explanation": "Según la Ley 26.529, el paciente es titular de su historia clínica y tiene derecho a una copia."},
   {
     "id": 75,
-    "text": "¿Cuál es el proceso por el cual las plantas producen su alimento?",
+    "text": "[Tipo: Ley/Cocepto] La Ley 26.657 promueve un abordaje interdisciplinario en salud mental, ¿esto implica que se modifican las incumbencias de cada disciplina profesional?",
     "options": [
-      {"key": "A", "text": "Respiración"},
-      {"key": "B", "text": "Digestión"},
-      {"key": "C", "text": "Fotosíntesis"},
-      {"key": "D", "text": "Transpiración"}
+      {"key": "A", "text": "Sí, todas las disciplinas tienen ahora las mismas incumbencias."},
+      {"key": "B", "text": "No, la ley equipara a los miembros del equipo en la toma de decisiones y acceso a cargos, pero no modifica las incumbencias propias de cada disciplina."},
+      {"key": "C", "text": "Solo se modifican las incumbencias de los psicólogos para que puedan prescribir medicación."},
+      {"key": "D", "text": "La ley elimina las incumbencias profesionales."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "La fotosíntesis es el proceso mediante el cual las plantas utilizan la luz solar, agua y dióxido de carbono para crear glucosa (su alimento) y oxígeno."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Ley 26.657 promueve un abordaje interdisciplinario y equipara a los miembros del equipo, pero aclara que la ley no modifica las incumbencias de cada disciplina."},
   {
     "id": 76,
-    "text": "¿En qué país se encuentra la Estatua de la Libertad?",
+    "text": "[Tipo: Ley/Cocepto] La Ley 26.657 establece que las declaraciones judiciales de inhabilitación o incapacidad deben basarse en:",
     "options": [
-      {"key": "A", "text": "Francia"},
-      {"key": "B", "text": "Reino Unido"},
-      {"key": "C", "text": "Estados Unidos"},
-      {"key": "D", "text": "Canadá"}
+      {"key": "A", "text": "El diagnóstico exclusivo de un médico psiquiatra."},
+      {"key": "B", "text": "Evaluaciones interdisciplinarias y procurar la menor afectación posible de la autonomía de la persona."},
+      {"key": "C", "text_content": "Un único informe psicológico."},
+      {"key": "D", "text": "La voluntad de los familiares de la persona."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "La Estatua de la Libertad, un regalo de Francia, se encuentra en la Isla de la Libertad en Nueva York, Estados Unidos."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Ley 26.657 modifica el Código Civil para establecer que las declaraciones judiciales de inhabilitación o incapacidad deben basarse en evaluaciones interdisciplinarias y procurar la menor afectación posible de la autonomía."},
   {
     "id": 77,
-    "text": "¿Cuál es el símbolo químico del agua?",
+    "text": "[Tipo: Ley/Cocepto] La Ley 26.061 reconoce el derecho de las niñas, niños y adolescentes a 'ser oído/a' ante la autoridad competente, lo cual implica:",
     "options": [
-      {"key": "A", "text": "O2"},
-      {"key": "B", "text": "CO2"},
-      {"key": "C", "text": "H2O"},
-      {"key": "D", "text": "NaCl"}
+      {"key": "A", "text": "Que deben participar en todas las decisiones sin excepción."},
+      {"key": "B", "text": "Que deben ser escuchados y su opinión tomada primordialmente en cuenta según su grado de madurez en las decisiones que los afecten."},
+      {"key": "C", "text": "Que solo pueden ser oídos si sus padres lo autorizan."},
+      {"key": "D", "text": "Que su opinión no tiene relevancia legal."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "H2O es la fórmula química del agua, indicando que cada molécula está compuesta por dos átomos de hidrógeno y uno de oxígeno."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Ley 26.061 garantiza el derecho a ser oído/a, lo que implica que deben ser escuchados y su opinión tomada primordialmente en cuenta según su grado de madurez en las decisiones que los afecten."},
   {
     "id": 78,
-    "text": "¿Quién fue el primer hombre en pisar la Luna?",
+    "text": "[Tipo: Ley/Aplicación prctica] Según la Ley 26.061, las medidas de protección que implican separación del grupo familiar para niños, niñas o adolescentes son:",
     "options": [
-      {"key": "A", "text": "Buzz Aldrin"},
-      {"key": "B", "text": "Yuri Gagarin"},
-      {"key": "C", "text": "Neil Armstrong"},
-      {"key": "D", "text": "Michael Collins"}
+      {"key": "A", "text": "La primera opción ante cualquier riesgo."},
+      {"key": "B", "text": "Permanentes e irreversibles."},
+      {"key": "C", "text": "Excepcionales, subsidiarias, por el más breve lapso posible y deben propiciar el regreso a la familia/comunidad."},
+      {"key": "D", "text": "Decididas únicamente por los padres sin intervención estatal."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Neil Armstrong, comandante de la misión Apolo 11, fue el primer ser humano en caminar sobre la superficie lunar el 20 de julio de 1969."
-  },
+    "difficulty": "2",
+    "explanation": "Según la Ley 26.061, las medidas que implican separación del grupo familiar son excepcionales, subsidiarias y por el más breve lapso posible, debiendo propiciar el regreso a la familia/comunidad."},
   {
     "id": 79,
-    "text": "¿Cuál es el desierto más grande del mundo (considerando los desiertos fríos)?",
+    "text": "[Tipo: Defiición] En la distinción clásica, la 'Moral' se refiere a:",
     "options": [
-      {"key": "A", "text": "Sahara"},
-      {"key": "B", "text": "Gobi"},
-      {"key": "C", "text": "Antártida"},
-      {"key": "D", "text": "Kalahari"}
+      {"key": "A", "text": "La reflexión crítica sobre las normas."},
+      {"key": "B", "text": "El conjunto de normas de conducta socialmente establecidas o asumidas por una persona."},
+      {"key": "C", "text": "Los deberes específicos de una profesión."},
+      {"key": "D", "text": "La afirmación singular del sujeto."}
     ],
-    "correctAnswerKey": "C",
+    "correctAnswerKey": "B",
     "difficulty": "1",
-    "explanation": "Si se incluyen los desiertos polares, la Antártida es el desierto más grande, seguido por el Ártico. El Sahara es el desierto cálido más grande."
-  },
+    "explanation": "La moral se refiere al conjunto de normas de conducta socialmente establecidas o asumidas por una persona."},
   {
     "id": 80,
-    "text": "¿Qué instrumento se utiliza para medir la temperatura?",
+    "text": "[Tipo: Defiición] La 'Moralidad', según Cortina y Martínez, es:",
     "options": [
-      {"key": "A", "text": "Barómetro"},
-      {"key": "B", "text": "Termómetro"},
-      {"key": "C", "text": "Anemómetro"},
-      {"key": "D", "text": "Higrómetro"}
+      {"key": "A", "text": "Sinónimo de ética."},
+      {"key": "B", "text": "El conjunto de normas de una sociedad."},
+      {"key": "C", "text": "La dimensión estructural de la vida humana que implica la capacidad de tomar decisiones responsables."},
+      {"key": "D", "text": "La rama de la filosofía que estudia la moral."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El termómetro es el instrumento diseñado para medir la temperatura."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Moralidad es la dimensión estructural de la vida humana que implica la capacidad de tomar decisiones responsables."},
   {
     "id": 81,
-    "text": "¿Cuál es la provincia más extensa de Argentina?",
+    "text": "[Tipo: Histora/Ley] La Ley 17.132 (Ley Onganía de 1967) tuvo un impacto significativo en el ejercicio de la psicología en Argentina al:",
     "options": [
-      {"key": "A", "text": "Santa Cruz"},
-      {"key": "B", "text": "Buenos Aires"},
-      {"key": "C", "text": "Chubut"},
-      {"key": "D", "text": "Salta"}
+      {"key": "A", "text": "Crear los primeros Colegios de Psicólogos."},
+      {"key": "B", "text": "Sancionar el primer Código de Ética nacional."},
+      {"key": "C", "text": "Restringir la función del psicólogo en el ámbito clínico a la administración y evaluación de tests, subordinada al médico psiquiatra."},
+      {"key": "D", "text": "Garantizar la autonomía plena de la práctica psicológica."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "La provincia de Buenos Aires es la más extensa de Argentina, excluyendo el sector antártico."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La Ley 17.132 (1967) o la Resolución Ministerial de Incumbencias de 1980 restringieron la función del psicólogo en el ámbito clínico a la administración y evaluación de tests, subordinada al médico psiquiatra."},
   {
     "id": 82,
-    "text": "¿Qué escritor argentino es conocido por su obra 'Rayuela'?",
+    "text": "[Tipo: Histora/Ley] El proceso legalizador del ejercicio profesional de la psicología en Argentina, con la sanción de leyes provinciales, se intensificó a partir de:",
     "options": [
-      {"key": "A", "text": "Jorge Luis Borges"},
-      {"key": "B", "text": "Ernesto Sabato"},
-      {"key": "C", "text": "Julio Cortázar"},
-      {"key": "D", "text": "Manuel Puig"}
+      {"key": "A", "text": "La promulgación de la primera ley en Entre Ríos en 1973."},
+      {"key": "B", "text": "La recuperación democrática en la década de 1980."},
+      {"key": "C", "text": "La creación de Fe.P.R.A. en 1999."},
+      {"key": "D", "text": "La sanción de la Ley Nacional de Salud Mental en 2010."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "Julio Cortázar es el autor de 'Rayuela', una novela innovadora que permite múltiples lecturas."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "A partir de la recuperación democrática, se produjo un importante proceso legalizador, con la sanción de leyes provinciales de ejercicio profesional."},
   {
     "id": 83,
-    "text": "¿En qué ciudad argentina se celebra anualmente la Fiesta Nacional de la Vendimia?",
+    "text": "[Tipo: Ley/Cocepto] La organización federal de Argentina resultó en una sobreabundancia de códigos de ética provinciales. Esto dificultaba la integración al Mercosur por:",
     "options": [
-      {"key": "A", "text": "Salta"},
-      {"key": "B", "text": "Mendoza"},
-      {"key": "C", "text": "San Juan"},
-      {"key": "D", "text": "Cafayate"}
+      {"key": "A", "text": "La falta de profesionales calificados."},
+      {"key": "B", "text": "La rigidez de los códigos provinciales."},
+      {"key": "C", "text": "La falta de un corpus deontológico unificado a nivel nacional."},
+      {"key": "D", "text": "La prohibición del ejercicio profesional transfronterizo."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "La Fiesta Nacional de la Vendimia, una de las festividades más importantes de Argentina, se celebra cada año en la ciudad de Mendoza."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La organización federal y la multiplicidad de códigos provinciales dificultaban la integración al Mercosur por falta de un corpus deontológico unificado a nivel nacional, lo que motivó la creación del código Fe.P.R.A.."},
   {
     "id": 84,
-    "text": "¿Cuál es el nombre del estadio de Boca Juniors?",
+    "text": "[Tipo: Cocepto] Una relación del profesional con los códigos de ética basada en la mera 'sumisión' (heterónoma) se considera insuficiente porque:",
     "options": [
-      {"key": "A", "text": "El Monumental"},
-      {"key": "B", "text": "La Bombonera"},
-      {"key": "C", "text": "El Cilindro"},
-      {"key": "D", "text": "El Nuevo Gasómetro"}
+      {"key": "A", "text": "Los códigos son demasiado extensos para ser comprendidos completamente."},
+      {"key": "B", "text": "Impide el discernimiento del profesional y su responsabilidad en la toma de decisión ante situaciones singulares."},
+      {"key": "C", "text": "Los códigos cambian constantemente y no son fiables."},
+      {"key": "D", "text": "La sumisión garantiza siempre la conducta ética."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El estadio de Boca Juniors es el Alberto J. Armando, popularmente conocido como 'La Bombonera'."
-  },
+    "difficulty": "2",
+    "explanation": "La relación con los códigos no debe ser de mera sumisión; los códigos son guías, pero nunca podrán sustituir el discernimiento del profesional ni reemplazar su responsabilidad en la toma de decisión en una situación dada."},
   {
     "id": 85,
-    "text": "¿Qué se celebra el 9 de julio en Argentina?",
+    "text": "[Tipo: Concepto/Etudio] La investigación de Hermosilla et al. sobre dilemas éticos en Mar del Plata mostró, en general, que las respuestas de los psicólogos se basaban más en:",
     "options": [
-      {"key": "A", "text": "Día de la Revolución de Mayo"},
-      {"key": "B", "text": "Día de la Independencia"},
-      {"key": "C", "text": "Día de la Bandera"},
-      {"key": "D", "text": "Día de la Soberanía Nacional"}
+      {"key": "A", "text": "Fundamentos deontológicos explícitos."},
+      {"key": "B", "text": "Aspectos técnicos y prácticos del caso."},
+      {"key": "C", "text": "El marco teórico de referencia sin considerar las normas."},
+      {"key": "D", "text": "La opinión de colegas en supervisión."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El 9 de julio se conmemora la Declaración de Independencia de Argentina, proclamada en 1816 en Tucumán."
-  },
+    "difficulty": "2",
+    "explanation": "Las respuestas a los dilemas en la investigación de Hermosilla et al., en general, muestran una escasa fundamentación desde lo deontológico, estando más ligada a los aspectos técnicos."},
   {
     "id": 86,
-    "text": "¿Cuál es el nombre del famoso barrio de Buenos Aires conocido por sus casas coloridas y el tango?",
+    "text": "[Tipo: Concepto/Clasifiación] La formación ético-deontológica del psicólogo, según las fuentes, debe buscar una articulación entre:",
     "options": [
-      {"key": "A", "text": "Palermo"},
-      {"key": "B", "text": "Recoleta"},
-      {"key": "C", "text": "San Telmo"},
-      {"key": "D", "text": "La Boca"}
+      {"key": "A", "text": "La ética personal y los intereses económicos."},
+      {"key": "B", "text": "La capacitación teórica y técnica exclusivamente."},
+      {"key": "C", "text": "La ética filosófica tradicional y los contenidos específicos del ejercicio legal y códigos deontológicos."},
+      {"key": "D", "text": "La obediencia normativa y el rechazo a cualquier sistema de reglas."}
     ],
-    "correctAnswerKey": "D",
-    "difficulty": "1",
-    "explanation": "El barrio de La Boca, con su icónico Caminito, es famoso por sus conventillos de chapa pintados de colores vivos y su fuerte vínculo con el tango."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La formación del psicólogo no debe reducirse a la capacitación teórica y técnica. La combinación del abordaje filosófico y el profesional (códigos deontológicos) brinda óptimas condiciones para la formación ético-deontológica."},
   {
     "id": 87,
-    "text": "¿Qué tenista argentino ganó el US Open en 2009?",
+    "text": "[Tipo: Cocepto] El 'segundo movimiento' de la ética contemporánea postula que:",
     "options": [
-      {"key": "A", "text": "Guillermo Vilas"},
-      {"key": "B", "text": "Gastón Gaudio"},
-      {"key": "C", "text": "David Nalbandian"},
-      {"key": "D", "text": "Juan Martín del Potro"}
+      {"key": "A", "text": "El conocimiento ético siempre antecede a la situación."},
+      {"key": "B", "text": "Las categorías morales existentes son suficientes para resolver cualquier dilema."},
+      {"key": "C", "text": "La singularidad de una situación puede inaugurar un conocimiento nuevo, suplementario, que interpela las referencias existentes."},
+      {"key": "D", "text": "La intuición moral es la única guía válida para la acción."}
     ],
-    "correctAnswerKey": "D",
-    "difficulty": "1",
-    "explanation": "Juan Martín del Potro logró una histórica victoria en el US Open de 2009 al vencer a Roger Federer en la final."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "3",
+    "explanation": "En el 'segundo movimiento', la situación misma inaugura el conocimiento, presentándose una singularidad que interpela la existencia del universo de referencias existentes, siendo un conocimiento suplementario."},
   {
     "id": 88,
-    "text": "¿Qué es el 'dulce de leche'?",
+    "text": "[Tipo: Errorcomún] Según las fuentes, un error común en la aplicación del consentimiento informado es:",
     "options": [
-      {"key": "A", "text": "Un tipo de queso"},
-      {"key": "B", "text": "Una mermelada de frutas"},
-      {"key": "C", "text": "Un dulce tradicional hecho a base de leche y azúcar"},
-      {"key": "D", "text": "Una bebida chocolatada"}
+      {"key": "A", "text": "Considerarlo un proceso continuo."},
+      {"key": "B", "text": "Articular la norma con la dimensión clínica."},
+      {"key": "C", "text": "Reducirlo a un mero trámite administrativo o una simple opción formal."},
+      {"key": "D", "text": "Evaluar la capacidad del paciente para consentir."}
     ],
     "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El dulce de leche es un manjar muy popular en Argentina y otros países de Latinoamérica, elaborado mediante la cocción lenta de leche y azúcar."
-  },
+    "difficulty": "2",
+    "explanation": "Salomone y co-autores critican que se reduzca el consentimiento informado a un mero trámite administrativo o una simple opción (sí/no)."},
   {
     "id": 89,
-    "text": "¿En qué provincia argentina se encuentra el 'Valle de la Luna'?",
+    "text": "[Tipo: Clasifiación] En la estructura del Código de Ética de Fe.P.R.A., existe una jerarquía donde:",
     "options": [
-      {"key": "A", "text": "La Rioja"},
-      {"key": "B", "text": "San Juan"},
-      {"key": "C", "text": "Catamarca"},
-      {"key": "D", "text": "Jujuy"}
+      {"key": "A", "text": "Las normas tienen primacía sobre los principios y valores."},
+      {"key": "B", "text": "Los valores fundamentan los principios, y estos a las normas."},
+      {"key": "C", "text": "Los principios y las normas son equivalentes."},
+      {"key": "D", "text": "Los valores son irrelevantes para los principios y normas."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El Parque Provincial Ischigualasto, más conocido como 'Valle de la Luna', se encuentra en la provincia de San Juan y es famoso por sus formaciones geológicas y hallazgos paleontológicos."
-  },
+    "difficulty": "2",
+    "explanation": "La estructura del código se organiza en valores, principios y normas deontológicas, donde los valores fundamentan los principios, y estos a las normas."},
   {
     "id": 90,
-    "text": "¿Quién fue el director técnico de la selección argentina campeona del mundo en México 1986?",
+    "text": "[Tipo: Le/Dato] La Resolución 136/04 incluyó la carrera de Psicología en el Artículo 43 de la Ley de Educación Superior debido a que:",
     "options": [
-      {"key": "A", "text": "César Luis Menotti"},
-      {"key": "B", "text": "Carlos Bilardo"},
-      {"key": "C", "text": "Alfio Basile"},
-      {"key": "D", "text": "Marcelo Bielsa"}
+      {"key": "A", "text": "Es una carrera exclusivamente teórica."},
+      {"key": "B", "text": "Su ejercicio no compromete el interés público."},
+      {"key": "C", "text": "Su ejercicio pudiera comprometer el interés público al poner en riesgo la salud, seguridad y bienes de los habitantes."},
+      {"key": "D", "text": "Los psicólogos son los únicos profesionales de la salud incluidos en dicho artículo."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "Carlos Salvador Bilardo fue el entrenador que condujo a la selección argentina, liderada por Diego Maradona, a ganar la Copa del Mundo en 1986."
-  },
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "La carrera fue incluida en el Art. 43 de la Ley de Educación Superior porque su ejercicio puede comprometer el interés público al poner en riesgo la salud, la seguridad y los bienes de los habitantes."},
   {
     "id": 91,
-    "text": "¿Qué significa 'www' en una dirección de internet?",
+    "text": "[Tipo: Aplicación práctia/Ley] Según la Ley 26.529 de Derechos del Paciente, ¿en qué situaciones se contempla una excepción al consentimiento informado?",
     "options": [
-      {"key": "A", "text": "World Wide Web"},
-      {"key": "B", "text": "Web World Wide"},
-      {"key": "C", "text": "World Web Window"},
-      {"key": "D", "text": "Wide World Web"}
+      {"key": "A", "text": "En todos los casos donde el profesional lo considere innecesario."},
+      {"key": "B", "text": "Solo en casos de grave peligro para la salud pública o emergencia con grave peligro para la salud/vida del paciente, si no se puede obtener el consentimiento."},
+      {"key": "C", "text": "Cuando el paciente es menor de edad."},
+      {"key": "D", "text": "Si el profesional considera que la información perjudicaría al paciente."}
     ],
-    "correctAnswerKey": "A",
-    "difficulty": "1",
-    "explanation": "'WWW' son las siglas de 'World Wide Web', el sistema de distribución de documentos de hipertexto interconectados y accesibles vía Internet."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La Ley 26.529 contempla excepciones al CI solo en casos de grave peligro para la salud pública o emergencia con grave peligro para la salud/vida del paciente, si no se puede obtener el consentimiento. Estas excepciones deben interpretarse de forma restrictiva."},
   {
     "id": 92,
-    "text": "¿Cuál es la obra más famosa de Vincent van Gogh?",
+    "text": "[Tipo: Error común/Aplicación prctica] Según las fuentes, una práctica criticada en la aplicación del consentimiento informado en salud mental es:",
     "options": [
-      {"key": "A", "text": "El Grito"},
-      {"key": "B", "text": "La noche estrellada"},
-      {"key": "C", "text": "Guernica"},
-      {"key": "D", "text": "Las Meninas"}
+      {"key": "A", "text": "Evaluar la capacidad del paciente para consentir."},
+      {"key": "B", "text": "Solicitar la firma de un tercero (familiar) cuando el paciente tiene capacidad para consentir."},
+      {"key": "C", "text": "Considerar el consentimiento como un proceso continuo."},
+      {"key": "D", "text": "Brindar información clara y suficiente al paciente."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "'La noche estrellada' (1889) es una de las pinturas más reconocidas del artista postimpresionista neerlandés Vincent van Gogh."
-  },
+    "difficulty": "2",
+    "explanation": "Se critica la práctica de solicitar la firma de un tercero (familiar) cuando el paciente tiene capacidad para consentir, ya que vulnera la autonomía del paciente."},
   {
     "id": 93,
-    "text": "¿Cuántos continentes hay en el modelo tradicional de 7 continentes?",
+    "text": "[Tipo: ConceptoAutor] La Responsabilidad subjetiva, diferenciada de la responsabilidad jurídica por Salomone, atañe al sujeto en relación con:",
     "options": [
-      {"key": "A", "text": "5"},
-      {"key": "B", "text": "6"},
-      {"key": "C", "text": "7"},
-      {"key": "D", "text": "8"}
+      {"key": "A", "text": "El cumplimiento formal de la norma."},
+      {"key": "B", "text": "Aquello que desconoce de sí mismo (Responsabilidad ante el inconsciente)."},
+      {"key": "C", "text": "El contrato de prestación de servicios."},
+      {"key": "D", "text": "La reparación del daño causado."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El modelo más comúnmente enseñado reconoce siete continentes: Asia, África, América del Norte, América del Sur, Antártida, Europa y Oceanía."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "3",
+    "explanation": "La responsabilidad aquí atañe al sujeto en relación con aquello que desconoce de sí mismo (Responsabilidad subjetiva), distinta de la responsabilidad jurídica."},
   {
     "id": 94,
-    "text": "¿Qué Beatle fue asesinado en Nueva York en 1980?",
+    "text": "[Tipo: Defiición] En el contexto de la responsabilidad profesional, la 'obligación de medios' significa que el profesional debe:",
     "options": [
-      {"key": "A", "text": "Paul McCartney"},
-      {"key": "B", "text": "George Harrison"},
-      {"key": "C", "text": "Ringo Starr"},
-      {"key": "D", "text": "John Lennon"}
+      {"key": "A", "text": "Garantizar un resultado específico (ej. la curación)."},
+      {"key": "B", "text": "Poner toda la diligencia y cuidado necesarios, actuando conforme al 'arte' de la profesión, sin poder asegurar el resultado."},
+      {"key": "C", "text": "Disponer de todos los recursos materiales posibles para el tratamiento."},
+      {"key": "D", "text": "Realizar todos los estudios y exámenes disponibles."}
     ],
-    "correctAnswerKey": "D",
-    "difficulty": "1",
-    "explanation": "John Lennon, uno de los fundadores de The Beatles, fue asesinado el 8 de diciembre de 1980 frente a su apartamento en Nueva York."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "Un profesional de la salud tiene una obligación de medios, no de resultados. Debe actuar con prudencia y máxima diligencia."},
   {
     "id": 95,
-    "text": "¿Cuál es el principal gas de efecto invernadero responsable del calentamiento global?",
+    "text": "[Tipo: Ley/Cocepto] Según las fuentes, la mala praxis en sí misma no está tipificada como delito en el Código Penal Argentino, pero sí se sancionan penalmente:",
     "options": [
-      {"key": "A", "text": "Oxígeno"},
-      {"key": "B", "text": "Nitrógeno"},
-      {"key": "C", "text": "Dióxido de carbono"},
-      {"key": "D", "text": "Metano"}
+      {"key": "A", "text": "Las consultas legales que genera."},
+      {"key": "B", "text": "Las consecuencias de la mala praxis, como causar muerte o daño en el cuerpo/salud por culpa (imprudencia, negligencia, etc.)."},
+      {"key": "C", "text": "La falta de consentimiento informado por sí sola."},
+      {"key": "D", "text": "Cualquier error de diagnóstico."}
     ],
-    "correctAnswerKey": "C",
-    "difficulty": "1",
-    "explanation": "El dióxido de carbono (CO2) es el principal gas de efecto invernadero emitido por actividades humanas, contribuyendo significativamente al calentamiento global."
-  },
+    "correctAnswerKey": "B",
+    "difficulty": "2",
+    "explanation": "La mala praxis no está tipificada como delito, pero sí se sancionan penalmente sus consecuencias, como causar muerte o daño por imprudencia, negligencia, impericia o inobservancia (Arts. 84 y 94 del C.P.)."},
   {
     "id": 96,
-    "text": "¿En qué ciudad se encuentra el Coliseo Romano?",
+    "text": "[Tipo: Ley/Cocepto] Además de las figuras de homicidio y lesiones por culpa, otras figuras penales que pueden aplicar (aunque no exclusivamente a profesionales) mencionadas en las fuentes son:",
     "options": [
-      {"key": "A", "text": "Atenas"},
-      {"key": "B", "text": "Roma"},
-      {"key": "C", "text": "Estambul"},
-      {"key": "D", "text": "Florencia"}
-    ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "El Coliseo, un anfiteatro de la época del Imperio Romano, es uno de los monumentos más famosos de Roma, Italia."
-  },
-  {
-    "id": 97,
-    "text": "¿Qué tipo de animal es una ballena?",
-    "options": [
-      {"key": "A", "text": "Pez"},
-      {"key": "B", "text": "Mamífero"},
-      {"key": "C", "text": "Reptil"},
-      {"key": "D", "text": "Anfibio"}
-    ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "A pesar de vivir en el agua, las ballenas son mamíferos marinos; respiran aire, son de sangre caliente y amamantan a sus crías."
-  },
-  {
-    "id": 98,
-    "text": "¿Cuál es la capital de Rusia?",
-    "options": [
-      {"key": "A", "text": "San Petersburgo"},
-      {"key": "B", "text": "Kiev"},
-      {"key": "C", "text": "Moscú"},
-      {"key": "D", "text": "Varsovia"}
+      {"key": "A", "text": "Robo y Hurto."},
+      {"key": "B", "text": "Calumnias e Injurias."},
+      {"key": "C", "text": "Abandono de Persona y Omisión de Auxilio."},
+      {"key": "D", "text": "Falsificación de Documentos."}
     ],
     "correctAnswerKey": "C",
     "difficulty": "1",
-    "explanation": "Moscú es la capital y la ciudad más grande de la Federación Rusa."
-  },
+    "explanation": "Otras figuras penales aplicables (no exclusivas de profesionales de la salud) son el Abandono de Persona (Art. 106) y la Omisión de Auxilio (Art. 108), que implican desamparar o no asistir a alguien en peligro."},
+  {
+    "id": 97,
+    "text": "[Tipo: Estudio/Compaación] Al comparar éticamente los experimentos de Asch, Milgram y Zimbardo, se concluye que Milgram y Zimbardo presentaron:",
+    "options": [
+      {"key": "A", "text": "Un daño psíquico significativamente menor que Asch."},
+      {"key": "B", "text": "Problemas éticos similares pero con menor impacto en los participantes."},
+      {"key": "C", "text": "Un daño psíquico significativamente mayor que Asch."},
+      {"key": "D", "text": "Una metodología de engaño menos severa que Asch."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "Al comparar éticamente los experimentos, se concluye que Milgram y Zimbardo presentaron un daño psíquico significativamente mayor que Asch."},
+  {
+    "id": 98,
+    "text": "[Tipo: ConceptoAutor] La 'dimensión clínica' de la responsabilidad profesional, según Salomone, es fundamental porque:",
+    "options": [
+      {"key": "A", "text": "Se reduce a la aplicación de técnicas terapéuticas."},
+      {"key": "B", "text": "Se limita al ámbito de la investigación."},
+      {"key": "C", "text": "Implica una referencia al campo de la singularidad y el sufrimiento psíquico, que no se reduce a la lógica normativa."},
+      {"key": "D", "text": "Es sinónimo de la responsabilidad jurídica."}
+    ],
+    "correctAnswerKey": "C",
+    "difficulty": "3",
+    "explanation": "La dimensión clínica no se reduce al ámbito terapéutico, sino que implica una referencia al campo de la singularidad, distinto de la lógica general/particular del campo normativo, y convoca una responsabilidad que surge del trabajo con el sujeto del sufrimiento psíquico."},
   {
     "id": 99,
-    "text": "¿Quién dirigió la película 'Titanic' (1997)?",
+    "text": "[Tipo: Ley/Cocepto] La Ley 26.657 crea el 'Órgano de Revisión Nacional', cuya función principal es:",
     "options": [
-      {"key": "A", "text": "Steven Spielberg"},
-      {"key": "B", "text": "James Cameron"},
-      {"key": "C", "text": "George Lucas"},
-      {"key": "D", "text": "Christopher Nolan"}
+      {"key": "A", "text": "Dictar las sentencias en juicios por mala praxis."},
+      {"key": "B", "text": "Supervisar las condiciones de internación, evaluar las internaciones involuntarias y controlar el cumplimiento de la ley y los derechos humanos en salud mental."},
+      {"key": "C", "text": "Certificar la idoneidad profesional de los psicólogos."},
+      {"key": "D", "text": "Aprobar los códigos de ética provinciales."}
     ],
     "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "James Cameron dirigió la exitosa película 'Titanic', protagonizada por Leonardo DiCaprio y Kate Winslet."
-  },
+    "difficulty": "2",
+    "explanation": "La Ley 26.657 crea un Órgano de Revisión Nacional para supervisar las condiciones de internación, evaluar las internaciones involuntarias y controlar el cumplimiento de la ley y los derechos humanos en salud mental."},
   {
     "id": 100,
-    "text": "¿Cuál es el gentilicio de las personas nacidas en la Ciudad Autónoma de Buenos Aires?",
+    "text": "[Tipo: Concepto/Clasifiación] Según las fuentes que abordan la ética y TICs en psicología, la 'e-salud' se refiere a:",
     "options": [
-      {"key": "A", "text": "Bonaerenses"},
-      {"key": "B", "text": "Porteños"},
-      {"key": "C", "text": "Capitalinos"},
-      {"key": "D", "text": "Argentinos"}
+      {"key": "A", "text": "La atención psicológica a distancia mediante videoconferencia."},
+      {"key": "B", "text": "La salud móvil a través de smartphones."},
+      {"key": "C", "text": "Infraestructuras y aplicaciones digitales en salud (telemedicina, investigación, educación)."},
+      {"key": "D", "text": "El uso ético de las redes sociales por parte de los profesionales."}
     ],
-    "correctAnswerKey": "B",
-    "difficulty": "1",
-    "explanation": "A las personas nacidas en la Ciudad Autónoma de Buenos Aires se las conoce como 'porteños', en referencia al puerto de la ciudad."
-  }
+    "correctAnswerKey": "C",
+    "difficulty": "2",
+    "explanation": "E-salud se refiere a infraestructuras y aplicaciones digitales en salud (telemedicina, investigación, educación), siendo un concepto más amplio que telepsiquiatría o m-sald."}
 ]
