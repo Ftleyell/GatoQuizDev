@@ -10,7 +10,7 @@ export default defineConfig({
     // litPlugin(), // Ejemplo
   ],
   // --- Configuración 'base' para tu repositorio ---
-  base: '/GatoQuizDev/', // <-- ¡Este es el valor correcto para tu repo!
+  base: '/Wisdom-Wiskers/', // <-- ¡Este es el valor correcto para tu repo!
   // ---------------------------------------------
   build: {
     outDir: 'dist', // Directorio de salida (default)
